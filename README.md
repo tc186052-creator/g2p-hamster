@@ -77,8 +77,10 @@ r = text_to_profile_v2_full(text)
 r["state"]     # complete | partial | empty | rejected (đo COVERAGE)
 r["profile"]   # chuỗi phôn vị
 r["dropped"]   # từng unit bị bỏ: {word, reason, intentional}
-r["sources"]   # {"core": n, "cmu": n, "espeak": n, "spell": n}
-r["provenance"]  # policy hash (code+mapping+pin lõi) + espeak version/voice/options
+r["units"]     # trace TỪNG unit: {word, outcome, source, read_complete, reason?}
+r["sources"]   # {"core": n, "cmu": n, "espeak": n, "spell": n} — đếm theo unit
+r["strict_policy"]  # policy strict thực tế của lần gọi này
+r["provenance"]  # policy hash (sha256 code v2 + mapping + pin lõi) + espeak version/voice/options
 ```
 
 `text_to_profile_v2(text)` giữ nguyên API cũ `(profile, errs, notes)`.
@@ -88,11 +90,13 @@ r["provenance"]  # policy hash (code+mapping+pin lõi) + espeak version/voice/op
 - `mode="best_effort"` (mặc định, cho **render**): câu luôn đọc tiếp, từ
   hụt bị bỏ TỪ và báo tường minh.
 - `mode="strict"` (cho **prep dữ liệu train**): từ chối cả câu
-  (`state="rejected"`) nếu mất unit nội dung, nếu unit được cứu bằng nguồn
-  ngoài `strict_policy` (mặc định nhận `cmu` + `spell`; **espeak phải
-  opt-in** vì là suy diễn chưa duyệt), hoặc nếu profile rỗng dù câu có
-  nội dung. Lưu ý: strict bảo đảm đủ coverage + nguồn theo policy,
-  KHÔNG bảo đảm phát âm đúng.
+  (`state="rejected"`) nếu mất unit nội dung — **kể cả từ bị scope QD57
+  cấm phát âm** (giữ lệnh cấm, nhưng bỏ một từ nội dung vẫn là mất
+  coverage; `intentional` chỉ miễn icon/biểu tượng không có gì để đọc),
+  nếu unit được cứu bằng nguồn ngoài `strict_policy` (mặc định nhận
+  `cmu` + `spell`; **espeak phải opt-in** vì là suy diễn chưa duyệt), hoặc
+  nếu profile rỗng dù câu có nội dung. Lưu ý: strict bảo đảm đủ coverage
+  + nguồn theo policy, KHÔNG bảo đảm phát âm đúng.
 
 Môi trường: `ESPEAK_NG_BIN=""` tắt hẳn nguồn espeak; `ESPEAK_NG_TIMEOUT`
 (số giây, mặc định 10). Input espeak ngoài `[A-Za-z']` bị TỪ CHỐI (không
@@ -121,12 +125,15 @@ python3 v2/so_sanh.py --input van_ban.txt --procs 22
 | tone/coda mapper kokoro178 | 74 PASS, 0 FAIL |
 
 So sánh v1 vs v2 trên 5.000 câu Wikipedia tiếng Việt (metric theo
-COVERAGE — KHÔNG phải độ chính xác phát âm): 60,4% giống hệt v1 · 9,9%
-v1 bỏ câu / v2 đủ coverage · 7,3% v1 bỏ câu / v2 đọc thiếu (đã báo) ·
-0,2% cả hai hụt · 1,6% v1 đủ mà v2 đọc thiếu (chủ yếu markup wiki và từ
-có dấu ngoài phạm vi — từng câu nằm trong `lech_duyet.tsv`) · 20,5% đọc
-khác v1 do nâng cấp OOV anh (v1 đánh vần từng chữ → v2 phiên âm thật).
-Số liệu này đo đọc đủ/thiếu/rỗng; muốn kết luận đọc ĐÚNG cần gold được
+COVERAGE — KHÔNG phải độ chính xác phát âm): 60,4% giống hệt v1 · 20,5%
+đọc khác v1 = THAY ĐỔI PHIÊN ÂM (phần lớn do nâng cấp OOV anh: v1 đánh
+vần từng chữ → v2 phiên âm thật — KHÔNG mặc định là tốt hơn, từng câu
+cần duyệt) · 9,9% v1 bỏ câu / v2 đủ coverage · 7,3% v1 bỏ câu / v2 đọc
+thiếu (đã báo) · 0,2% cả hai hụt · 1,6% v1 đủ mà v2 đọc thiếu (chủ yếu
+markup wiki và từ có dấu ngoài phạm vi — từng câu nằm trong
+`lech_duyet.tsv`). Mỗi lần chạy xuất kèm `ket_qua.json` (máy đọc được:
+toàn bộ rows + policy hash + version/config espeak) để kiểm chứng. Số
+liệu này đo đọc đủ/thiếu/rỗng; muốn kết luận đọc ĐÚNG cần gold được
 duyệt hoặc đánh giá nghe.
 
 ## License

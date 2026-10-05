@@ -71,9 +71,25 @@ class TestAPITuongThich(unittest.TestCase):
     def test_schema_va_truong_bat_buoc(self):
         r = text_to_profile_v2_full("xin chào")
         for k in ("schema", "mode", "state", "profile", "errs", "notes",
-                  "warnings", "dropped", "sources", "provenance"):
+                  "warnings", "dropped", "units", "sources",
+                  "strict_policy", "provenance"):
             self.assertIn(k, r)
-        self.assertEqual(r["schema"], "g2p_v2_result/0.1")
+        self.assertEqual(r["schema"], "g2p_v2_result/0.2")
+        self.assertIn("cmu", r["strict_policy"])   # "core" luôn ngầm được phép
+
+    def test_units_trace_co_read_complete(self):
+        # trace từng unit — đã đọc phải có read_complete=True, bị bỏ = False
+        r = text_to_profile_v2_full("Xin chào thế giới.")
+        self.assertTrue(r["units"])
+        for u in r["units"]:
+            self.assertIn("read_complete", u)
+            self.assertEqual(u["read_complete"], u["outcome"] in
+                             ("read", "upgraded"))
+        # đơn vị thống nhất: tổng sources == số UNIT đã đọc (fast path gom
+        # cả record nên phải nhân unit_count, không đếm entry)
+        n_read = sum(u.get("unit_count", 1) for u in r["units"]
+                     if u["outcome"] in ("read", "upgraded"))
+        self.assertEqual(sum(r["sources"].values()), n_read)
 
     def test_mode_la_loai_doc_lap(self):
         # best_effort mặc định KHÔNG đụng strict mặc định
@@ -193,9 +209,16 @@ class TestRegressionV1OK(unittest.TestCase):
         self.assertEqual([d for d in r2["dropped"] if not d["intentional"]], [])
 
 
-class TestStrictBestEffort(unittest.TestCase):
+class TestStrictBestEffort(EnvCase):
     """strict cho prep train: từ chối mất nội dung + nguồn ngoài policy.
-    best_effort cho render: luôn đọc tiếp, chỉ báo."""
+    best_effort cho render: luôn đọc tiếp, chỉ báo. Test espeak dùng MOCK —
+    không phụ thuộc espeak thật trên máy (offline-safe)."""
+
+    def _mock_espeak(self):
+        """Giả espeak_arpabet trả phiên âm cố định cho từ OOV."""
+        return mock.patch.object(
+            gv2, "espeak_arpabet",
+            return_value=["K", "W", "IH0", "Z", "EY1", "SH", "AH0", "S"])
 
     def test_strict_cau_sach_se_complete(self):
         r = text_to_profile_v2_full("Xin chào thế giới.", mode="strict")
@@ -213,42 +236,48 @@ class TestStrictBestEffort(unittest.TestCase):
         # OOV anh: best_effort nâng cấp espeak; strict mặc định từ chối vì
         # espeak là suy diễn quy tắc chưa duyệt; opt-in tường minh thì qua
         s = "The quizzacious thing."
-        rb = text_to_profile_v2_full(s)
-        self.assertEqual(rb["state"], "complete")
-        self.assertIn("espeak", rb["sources"])
-        self.assertIn("kwɪz", rb["profile"])   # phát âm thật, không phải đánh vần
-        rs = text_to_profile_v2_full(s, mode="strict")
-        self.assertEqual(rs["state"], "rejected")
-        self.assertIn("espeak", rs["errs"][0])
-        rs2 = text_to_profile_v2_full(s, mode="strict",
-                                      strict_policy={"cmu", "spell", "espeak"})
-        self.assertEqual(rs2["state"], "complete")
+        with self._mock_espeak():
+            rb = text_to_profile_v2_full(s)
+            self.assertEqual(rb["state"], "complete")
+            self.assertIn("espeak", rb["sources"])
+            self.assertIn("kwɪz", rb["profile"])   # phát âm thật, không đánh vần
+            rs = text_to_profile_v2_full(s, mode="strict")
+            self.assertEqual(rs["state"], "rejected")
+            self.assertIn("espeak", rs["errs"][0])
+            rs2 = text_to_profile_v2_full(s, mode="strict",
+                                          strict_policy={"cmu", "spell", "espeak"})
+            self.assertEqual(rs2["state"], "complete")
 
     def test_strict_tu_choi_empty(self):
         r = text_to_profile_v2_full("Café", mode="strict")
         self.assertEqual(r["state"], "rejected")
         self.assertIn("rỗng", r["errs"][0])
 
-    def test_strict_drop_chu_y_khong_tu_choi(self):
-        # scope QD57 + icon là drop CHỦ Ý (v1 hành xử giống hệt) — strict
-        # không từ chối vì chúng
-        r = text_to_profile_v2_full("Tôi dùng cue nhé.", mode="strict")
-        self.assertEqual(r["state"], "complete")
+    def test_strict_cho_phep_icon_khong_tu_choi(self):
+        # icon/biểu tượng là drop CHỦ Ý (không có gì để đọc) — strict không từ chối
         r2 = text_to_profile_v2_full("Tôi thích 🎉 lắm.", mode="strict")
         self.assertEqual(r2["state"], "complete")
 
 
 class TestScopeKhongLach(unittest.TestCase):
-    """Scope QD57: từ cấm phát âm KHÔNG được cứu qua route kia hay espeak."""
+    """Scope QD57: từ cấm phát âm KHÔNG được cứu qua route kia hay espeak —
+    NHƯNG bỏ một từ nội dung vẫn là MẤT COVERAGE: best_effort → partial,
+    strict → rejected (intentional=True không miễn mọi loại mất nội dung)."""
 
     def test_cue_scope_bi_bo_co_bao_khong_cuu(self):
         r = text_to_profile_v2_full("Tôi dùng cue nhé.")
-        self.assertEqual(r["state"], "complete")
+        self.assertEqual(r["state"], "partial")   # mất 1 từ nội dung
         drops = [d for d in r["dropped"] if d["word"] == "cue"]
         self.assertEqual(len(drops), 1)
         self.assertIn("scope", drops[0]["reason"])
-        self.assertTrue(drops[0]["intentional"])
+        self.assertFalse(drops[0]["intentional"])  # vẫn là mất nội dung
         self.assertEqual(set(r["sources"]), {"core"})   # không nguồn cứu ngoài
+
+    def test_cue_scope_strict_tu_choi(self):
+        r = text_to_profile_v2_full("Tôi dùng cue nhé.", mode="strict")
+        self.assertEqual(r["state"], "rejected")
+        self.assertIn("cue", r["errs"][0])
+        self.assertEqual(r["profile"], "")
 
     def test_scope_best_effort_cung_khong_phat_am(self):
         r = text_to_profile_v2_full("Tôi dùng cue nhé.")
@@ -303,6 +332,26 @@ class TestProvenance(EnvCase):
             self.skipTest("máy không có espeak-ng")
         p = v2_provenance()
         self.assertIn("eSpeak NG", p["espeak"]["version"])
+
+    def test_espeak_meta_khong_stale_khi_env_doi(self):
+        # đổi env GIỮA phiên làm việc (không reset cache tay) phải probe lại
+        if not gv2._espeak_bin():
+            self.skipTest("máy không có espeak-ng")
+        p1 = v2_provenance()
+        self.assertTrue(p1["espeak"]["enabled"])
+        os.environ[gv2._ESPEAK_BIN_ENV] = ""          # tắt nguồn — không reset tay
+        p2 = v2_provenance()
+        self.assertFalse(p2["espeak"]["enabled"])
+        os.environ.pop(gv2._ESPEAK_BIN_ENV, None)     # bật lại — probe lại
+        p3 = v2_provenance()
+        self.assertTrue(p3["espeak"]["enabled"])
+
+    def test_strict_policy_thuc_te_trong_ket_qua(self):
+        r1 = text_to_profile_v2_full("xin chào")
+        self.assertEqual(r1["strict_policy"], sorted(gv2.DEFAULT_STRICT_POLICY))
+        r2 = text_to_profile_v2_full("xin chào", mode="strict",
+                                     strict_policy={"cmu", "espeak"})
+        self.assertEqual(r2["strict_policy"], ["cmu", "espeak"])
 
 
 class TestEspeakFailClosed(EnvCase):

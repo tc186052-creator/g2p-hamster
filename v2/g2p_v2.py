@@ -269,12 +269,15 @@ def _rescue_record(rec, by_id, notes):
         # đường nâng cấp CMU/espeak thành dead code (bug có từ bản gốc)
         if not fb.lower().startswith("oov"):
             trace.append({"word": rec.get("surface", ""), "outcome": "read",
-                          "source": "core"})
+                          "source": "core", "read_complete": True,
+                          "unit_count": len(rec["master"]["read_units"])})
             return pd.get("text", "") or None, trace
     elif st not in ("unresolved", "no_nucleus"):
         if not pd.get("errors"):
             trace.append({"word": rec.get("surface", ""), "outcome": "read",
-                          "source": "core"})
+                          "source": "core", "read_complete": True,
+                          "unit_count": max(1, len(rec.get("master", {})
+                                                  .get("read_units", [])))})
             return pd.get("text", "") or None, trace
     pieces = []
     for u in rec.get("master", {}).get("read_units", []):
@@ -285,7 +288,8 @@ def _rescue_record(rec, by_id, notes):
         txt, why = _unit_profile_text(w_c, rec, by_id)
         if txt and why != "spell":
             pieces.append(txt)
-            trace.append({"word": w_c, "outcome": "read", "source": "core"})
+            trace.append({"word": w_c, "outcome": "read", "source": "core",
+                          "read_complete": True})
             continue
         if txt and why == "spell":
             # v1 đánh vần từng chữ — v2 thử phiên âm thật (CMU/espeak) trước
@@ -302,21 +306,27 @@ def _rescue_record(rec, by_id, notes):
                     notes.append(f"nâng cấp '{w}' từ {src} (v1 đánh vần chữ): {tf_txt}")
                     pieces.append(tf_txt)
                     trace.append({"word": w_c, "outcome": "upgraded",
-                                  "source": src})
+                                  "source": src, "read_complete": True})
                     continue
             pieces.append(txt)               # hụt → giữ đánh vần (tốt hơn câm)
-            trace.append({"word": w_c, "outcome": "read", "source": "core"})
+            trace.append({"word": w_c, "outcome": "read", "source": "core",
+                          "read_complete": True})
             continue
         if why == "scope_excluded":
             notes.append(f"bỏ từ '{w}' (scope QD57 cấm phát âm — không cứu)")
+            # scope là TỪ NỘI DUNG bị policy cấm — vẫn là mất coverage
+            # (best_effort partial / strict rejected), intentional chỉ dành
+            # cho icon/biểu tượng không có gì để đọc
             trace.append({"word": w_c, "outcome": "dropped",
-                          "reason": "scope QD57", "intentional": True})
+                          "reason": "scope QD57 cấm phát âm",
+                          "read_complete": False})
             continue
         if any(ch.isdigit() for ch in w):
             # chữ số/tổ hợp số là việc verbalize của tầng 1 — cứu là đọc sai
             notes.append(f"bỏ từ '{w}' (chữ số — tầng 1 chưa verbalize)")
             trace.append({"word": w_c, "outcome": "dropped",
-                          "reason": "chữ số — tầng 1 chưa verbalize"})
+                          "reason": "chữ số — tầng 1 chưa verbalize",
+                          "read_complete": False})
             continue
         if not any(ch.isalpha() for ch in w):
             # biểu tượng/emoji — KHÔNG có chữ để đọc, v1 cũng không phát âm
@@ -324,12 +334,13 @@ def _rescue_record(rec, by_id, notes):
             notes.append(f"bỏ '{w}' (biểu tượng không phát âm — v1 cũng bỏ)")
             trace.append({"word": w_c, "outcome": "dropped",
                           "reason": "biểu tượng/icon không phát âm",
-                          "intentional": True})
+                          "read_complete": False, "intentional": True})
             continue
         syls, src = rescue_syllables(w)
         if syls is None:
             notes.append(f"bỏ từ '{w}' ({src}) — câu vẫn đọc tiếp")
-            trace.append({"word": w_c, "outcome": "dropped", "reason": src})
+            trace.append({"word": w_c, "outcome": "dropped", "reason": src,
+                          "read_complete": False})
             continue
         tf_txt, bad = "", False
         for syl in syls:
@@ -340,50 +351,70 @@ def _rescue_record(rec, by_id, notes):
             tf_txt += tf.text
         if bad:
             notes.append(f"bỏ từ '{w}' (map 178 lỗi) — câu vẫn đọc tiếp")
-            trace.append({"word": w_c, "outcome": "dropped", "reason": "map 178 lỗi"})
+            trace.append({"word": w_c, "outcome": "dropped", "reason": "map 178 lỗi",
+                          "read_complete": False})
             continue
         notes.append(f"cứu '{w}' từ {src}: {tf_txt}")
         pieces.append(tf_txt)
-        trace.append({"word": w_c, "outcome": "read", "source": src})
+        trace.append({"word": w_c, "outcome": "read", "source": src,
+                      "read_complete": True})
     return (" ".join(pieces) if pieces else None), trace
+
+
+def _sha256_file(p: Path) -> str:
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 # ---------------------------------------------------------------- provenance
 def _espeak_meta() -> dict:
-    """Cấu hình espeak hiệu lực: binary, VERSION (probe 1 lần), voice, options.
-    Chỉ ghi đường dẫn chưa đủ — version đổi nghĩa là hành vi đổi."""
-    global _ESPEAK_META
-    if _ESPEAK_META is None:
-        bin_ = _espeak_bin()
-        meta = {"voice": "en-us", "options": ["-q", "--ipa", "--sep= "]}
-        if not bin_:
-            meta["enabled"] = False
-        else:
-            meta["enabled"] = True
-            meta["binary"] = bin_
-            try:
-                r = subprocess.run([bin_, "--version"], capture_output=True,
-                                   text=True, timeout=_espeak_timeout())
-                ver = (r.stdout or r.stderr).strip().splitlines()
-                meta["version"] = ver[0] if ver else f"returncode={r.returncode}"
-            except (OSError, subprocess.TimeoutExpired) as ex:
-                meta["version"] = f"probe lỗi: {type(ex).__name__}"
-        _ESPEAK_META = meta
-    return _ESPEAK_META
+    """Cấu hình espeak hiệu lực: binary, VERSION (probe), voice, options.
+    Cache PHỤ THUỘC env — đổi ESPEAK_NG_BIN/ESPEAK_NG_TIMEOUT là probe lại,
+    không trả metadata cũ."""
+    global _ESPEAK_META, _ESPEAK_META_KEY
+    import shutil
+    bin_env = os.environ.get(_ESPEAK_BIN_ENV)
+    key = (bin_env, os.environ.get(_ESPEAK_TIMEOUT_ENV),
+           shutil.which("espeak-ng") if bin_env is None else None)
+    if _ESPEAK_META is not None and _ESPEAK_META_KEY == key:
+        return _ESPEAK_META
+    meta = {"voice": "en-us", "options": ["-q", "--ipa", "--sep= "]}
+    bin_ = _espeak_bin()
+    if not bin_:
+        meta["enabled"] = False
+    else:
+        meta["enabled"] = True
+        meta["binary"] = bin_
+        try:
+            r = subprocess.run([bin_, "--version"], capture_output=True,
+                               text=True, timeout=_espeak_timeout())
+            ver = (r.stdout or r.stderr).strip().splitlines()
+            meta["version"] = ver[0] if ver else f"returncode={r.returncode}"
+        except (OSError, subprocess.TimeoutExpired) as ex:
+            meta["version"] = f"probe lỗi: {type(ex).__name__}"
+    _ESPEAK_META = meta
+    _ESPEAK_META_KEY = key
+    return meta
 
 
 _ESPEAK_META: dict | None = None
+_ESPEAK_META_KEY: tuple | None = None
 _POLICY_HASH: str | None = None
 
 
 def v2_policy_hash() -> str:
-    """Fingerprint POLICY/CODE/MAPPING của v2: mọi bảng mapping espeak, WS fix,
-    PUNCT_EMIT, bậc cứu, strict policy mặc định + g2p_policy_hash của lõi.
-    Đổi bất kỳ cái nào (và mọi mutation đổi hành vi) phải làm hash này đổi."""
+    """Fingerprint POLICY/CODE/MAPPING của v2: CODE wrapper (sha256 file này),
+    mọi bảng mapping espeak, WS fix, PUNCT_EMIT, bậc cứu, strict policy mặc
+    định + g2p_policy_hash của lõi. Đổi bất kỳ cái nào (và mọi mutation đổi
+    hành vi) phải làm hash này đổi."""
     global _POLICY_HASH
     if _POLICY_HASH is None:
         payload = {
-            "schema": "g2p_v2_policy/0.1",
+            "schema": "g2p_v2_policy/0.2",
+            "code_sha256_v2": _sha256_file(Path(__file__).resolve()),
             "espeak_vowels": _ESPEAK_VOWELS,
             "espeak_cons": _ESPEAK_CONS,
             "espeak_syllabic": _ESPEAK_SYLLABIC,
@@ -420,11 +451,12 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
         coverage + nguồn theo policy; KHÔNG bảo đảm phát âm đúng.
 
     state (coverage, KHÔNG phải correctness):
-      complete — mọi unit nội dung được đọc, không drop phi-chủ-ý, profile có
+      complete — mọi unit nội dung được đọc, không mất unit nào (kể cả từ bị
+                 scope QD57 cấm phát âm — đó vẫn là mất coverage), profile có
                  nội dung (≥1 từ). Contract error của IR chỉ là warning
                  (xử lý per-token không mất unit) và KHÔNG hạ state.
-      partial  — câu vẫn đọc nhưng có unit nội dung bị bỏ (hoặc token bị
-                 chặn bởi validation).
+      partial  — câu vẫn đọc nhưng có unit nội dung bị bỏ (scope QD57, chữ
+                 số chưa verbalize, từ ngoài phạm vi, validation).
       empty    — profile không còn unit nội dung nào (chỉ dấu câu/rỗng) dù
                  câu CÓ nội dung cần đọc — KHÔNG được tính là cứu thành công.
       rejected — chỉ ở strict: vi phạm policy.
@@ -441,7 +473,7 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
     ir = t1_normalize(text.translate(_WS_FIX))
     out = G.g2p_stream(ir)
     parts, errs, notes, warnings = [], [], [], []
-    dropped, sources = [], Counter()
+    dropped, sources, units = [], Counter(), []
     contract_ok = True
     if out.get("contract_errors"):
         # lỗi hợp đồng IR (vd read_string lệch dãy do token dính NBSP) — chỉ
@@ -464,22 +496,33 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
             notes.append(f"bỏ token deferred '{surf}'")
             dropped.append({"word": surf, "reason": "icon/deferred (v1 bỏ giống hệt)",
                             "intentional": True})
+            units.append({"word": surf, "outcome": "dropped", "source": None,
+                          "read_complete": False,
+                          "reason": "icon/deferred (v1 bỏ giống hệt)"})
             continue
         if st == "scope_excluded":
             notes.append(f"bỏ từ '{surf}' (scope QD57 cấm phát âm — không cứu)")
-            dropped.append({"word": surf, "reason": "scope QD57",
-                            "intentional": True})
+            # scope là TỪ NỘI DUNG bị policy cấm phát âm: giữ lệnh cấm, NHƯNG
+            # vẫn là mất coverage (best_effort → partial, strict → rejected).
+            # intentional=True chỉ dành cho icon/biểu tượng (không có gì để đọc)
+            dropped.append({"word": surf, "reason": "scope QD57 cấm phát âm",
+                            "intentional": False})
+            units.append({"word": surf, "outcome": "dropped", "source": None,
+                          "read_complete": False, "reason": "scope QD57"})
             continue
         if rec.get("contract_errors") or rec.get("validation"):
             msg = (rec.get("validation") or rec.get("contract_errors"))[0]
             errs.append(f"tok[{rec.get('i')}:{surf[:20]}] {msg}")
             dropped.append({"word": surf, "reason": f"validation: {msg}",
                             "intentional": False})
+            units.append({"word": surf, "outcome": "dropped", "source": None,
+                          "read_complete": False, "reason": f"validation: {msg}"})
             continue
         txt, trace = _rescue_record(rec, by_id, notes)
         for t in trace:
+            units.append({k: t[k] for k in t})
             if t["outcome"] in ("read", "upgraded"):
-                sources[t["source"]] += 1
+                sources[t["source"]] += t.get("unit_count", 1)
             else:
                 dropped.append({"word": t["word"], "reason": t.get("reason", "?"),
                                 "intentional": t.get("intentional", False)})
@@ -522,7 +565,7 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
             profile = ""
 
     return {
-        "schema": "g2p_v2_result/0.1",
+        "schema": "g2p_v2_result/0.2",
         "mode": mode,
         "state": state,
         "profile": profile,
@@ -531,7 +574,9 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
         "warnings": warnings,
         "contract_ok": contract_ok,
         "dropped": dropped,
+        "units": units,
         "sources": dict(sources),
+        "strict_policy": sorted(policy),
         "provenance": v2_provenance(),
     }
 
