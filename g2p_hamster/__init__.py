@@ -7,7 +7,7 @@ Import chính:
 
 Lõi thuần stdlib; espeak-ng binary là tuỳ chọn (nguồn cứu phiên âm anh).
 """
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 __all__ = ["text_to_profile", "text_to_profile_v2", "text_to_profile_v2_full",
            "v2_provenance", "v2_policy_hash", "__version__"]

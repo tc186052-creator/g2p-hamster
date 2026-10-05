@@ -268,7 +268,7 @@ bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 | Hệ | Leakage (còn số) | Drop giờ (`13h00` → mất số) | Khớp đọc gold (mean / số câu ≥0.95) |
 |---|---|---|---|
-| **g2p-hamster (repo này)** | **0 / 1.052** | **0** | **0,981** · 335/390 |
+| **g2p-hamster (repo này, v0.2.1)** | **0 / 1.052** | **0** | **0,984** · 343/390 |
 | donglao_g2p | 0 / 1.052 | **103** | 0,904 · 209/390 |
 | sea_g2p | **762 / 1.052 (72%)** | — (leak sẵn) | 0,662 · **0/390** |
 
@@ -282,7 +282,7 @@ percent 119/119, date 104/104, acronyms 48/157, code-switch 63/139):
 | date (104) | **0,971** | 0,954 | 0,442 |
 | percent (119) | **0,998** | 0,990 | 0,618 |
 | currency (86) | 0,989 | **0,993** | 0,727 |
-| units (81) | 0,954 | **0,969** | 0,758 |
+| units (81) | 0,966 | **0,969** | 0,758 |
 | phone (17) | **1,000** | 0,841 | 0,527 |
 | acronyms (157) | **0,981** | 0,791 | 0,755 |
 | code-switch (139) | **0,945** | 0,877 | 0,628 |
@@ -297,8 +297,10 @@ Viet-Eng codeswitch texts").
 **Và công khai cả những chỗ repo này CHƯA hoàn hảo** (nguyên văn trong
 [`outputs_ours_v2.csv`](benchmark_frozen/outputs_ours_v2.csv)):
 
-- `Phiên bản v2.1.0-beta…` → **rơi mất "2.1.0"** — lỗi thật, sẽ sửa;
-- `5 kg` → "năm ki lô" — **mất "gam"**;
+- Hai lỗi thật mà benchmark bắt được ở v0.2.0 — `v2.1.0-beta`
+  **rơi mất "2.1.0"** và `5 kg` đọc "năm ki lô" **mất "gam"** — **đã sửa
+  trong v0.2.1** (hậu tố version nhận thêm beta/alpha/dev; kg → "ký lô
+  gam"): khớp đọc gold của repo tăng 0,981 → 0,984, units 0,954 → 0,966;
 - `97,8%` trong câu mix được đọc kiểu anh "ninety-seven point eight" —
   có chủ đích hay lỗi, để người nghe quyết;
 - một phần điểm trừ là gold hẹp: `12 GB` đọc "gờ-bê" (cách đọc phổ

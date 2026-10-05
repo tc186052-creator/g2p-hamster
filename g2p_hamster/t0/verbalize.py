@@ -379,16 +379,27 @@ def verbal_token(t, prev_surface: str = "") -> str:
             else:
                 body = number_to_words(a, route)
             return ("âm " if route == "vi" else "minus ") + body
-        if kind == "version":   # "2.4.1" -> "hai chấm bốn chấm một"; "2.4.0-rc1" -> "..., r c một"
-            base, rc = s, ""
-            m_rc = re.search(r"-rc(\d*)$", s, re.I)
-            if m_rc:
-                base, rc = s[: m_rc.start()], m_rc.group(1)
+        if kind == "version":   # "2.4.1" -> "hai chấm bốn chấm một";
+                                # "2.4.0-rc1" -> "..., r c một";
+                                # "2.1.0-beta" -> "..., bê ta"
+            base, suf, num = s, "", ""
+            m_suf = re.search(r"-(rc|beta|alpha|dev|snapshot)(\d*)$", s, re.I)
+            if m_suf:
+                base, suf, num = (s[: m_suf.start()], m_suf.group(1).lower(),
+                                  m_suf.group(2))
             joiner = " chấm " if route == "vi" else " point "
             out = joiner.join(number_to_words(p, route) for p in base.split("."))
-            if m_rc:
-                rd = (vi_digits(rc) if route == "vi" else en_digits(rc)) if rc else ""
-                out += ", r c" + ((" " + rd) if rd else "")
+            if m_suf:
+                suf_rd = {"rc": ", r c", "beta": ", bê ta" if route == "vi"
+                          else ", beta",
+                          "alpha": ", an pha" if route == "vi"
+                          else ", alpha",
+                          "dev": ", đét" if route == "vi" else ", dev",
+                          "snapshot": ", s náp sọt" if route == "vi"
+                          else ", snapshot"}[suf]
+                rd = (vi_digits(num) if route == "vi" else en_digits(num)) \
+                    if num else ""
+                out += suf_rd + ((" " + rd) if rd else "")
             return out
         if kind == "ver":   # "v1.4" -> "v một phẩy bốn" (vi); "v one point four" (en)
             joiner = " phẩy " if route == "vi" else " point "

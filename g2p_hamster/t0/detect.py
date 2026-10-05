@@ -242,8 +242,11 @@ def detect(spans_in, config):
             continue
 
         # 3) date
-        # version phần mềm "2.4.1", "2.4.1-rc2" (3-4 nhóm số chấm nhau + hậu tố rc, không đứng sau từ ngày)
-        if re.fullmatch(r"\d+(\.\d+){2,3}(-[rR][cC]\d*)?", s) and prev_low not in ("ngày", "mùng", "vào"):
+        # version phần mềm "2.4.1", "2.4.1-rc2", "2.1.0-beta", "1.0.0-alpha2"
+        # (3-4 nhóm số chấm nhau + hậu tố rc/beta/alpha/dev/snapshot,
+        # không đứng sau từ ngày)
+        if re.fullmatch(r"\d+(\.\d+){2,3}(-(?:[rR][cC]|beta|alpha|dev|snapshot)\d*)?",
+                        s, re.I) and prev_low not in ("ngày", "mùng", "vào"):
             mark(i, "number", kind="version", route="en" if sent == "en" else "vi")
             continue
         # "v1.4", "v2.0" -> "v một phẩy bốn" (trong câu Việt, không lật en theo chữ "v")

@@ -1,7 +1,7 @@
 {
   "n": 1052,
   "n_gold": 416,
-  "date": "2026-10-05 21:14 UTC",
+  "date": "2026-10-05 21:26 UTC",
   "systems": {
     "ours_v2": {
       "per_cat": {
@@ -52,8 +52,8 @@
           "error": 0,
           "empty": 0,
           "match_n": 51,
-          "match_ge95": 33,
-          "match_mean": 0.9545
+          "match_ge95": 39,
+          "match_mean": 0.9659
         },
         "phone": {
           "n": 17,
@@ -101,8 +101,8 @@
           "error": 0,
           "empty": 0,
           "match_n": 22,
-          "match_ge95": 15,
-          "match_mean": 0.9464
+          "match_ge95": 17,
+          "match_mean": 0.9711
         },
         "foreign_names": {
           "n": 40,
@@ -139,8 +139,8 @@
         "error": 0,
         "empty": 0,
         "match_n": 390,
-        "match_mean": 0.9814,
-        "match_ge95": 335
+        "match_mean": 0.9843,
+        "match_ge95": 343
       },
       "match_worst": [
         {
@@ -156,27 +156,6 @@
           "best_alt": "Chi phí sửa chữa ước tính chín mươi chín nghìn v n đ.",
           "sim": 0.88,
           "out": "ci fi↗ ʂɨə↓ cɨəʔ↗ ɨə↗k ti↗ɲ ci↗nmɨəjci↗nŋi↘n vəː↘nəː↘dəː↘."
-        },
-        {
-          "idx": 164,
-          "text": "Quãng đường còn lại khoảng 5 kg.",
-          "best_alt": "Quãng đường còn lại khoảng năm ki lô gam.",
-          "sim": 0.8718,
-          "out": "kwaːʔ↗ŋ dɨə↘ŋ kɔ↘n laːʔ↓j xwaː↓ŋ nam ki↗lo."
-        },
-        {
-          "idx": 166,
-          "text": "Thiết bị hỗ trợ dung lượng 5 kg.",
-          "best_alt": "Thiết bị hỗ trợ dung lượng năm ki lô gam.",
-          "sim": 0.8718,
-          "out": "θiə↗t biʔ↓ hoʔ↗ ʈʂəːʔ↓ zuŋ lɨəʔ↓ŋ nam ki↗lo."
-        },
-        {
-          "idx": 167,
-          "text": "Băng tải chạy tối đa 5 kg.",
-          "best_alt": "Băng tải chạy tối đa năm ki lô gam.",
-          "sim": 0.8387,
-          "out": "baŋ taː↓j caʔ↓j to↗j daː nam ki↗lo."
         },
         {
           "idx": 180,
@@ -235,13 +214,6 @@
           "out": "to↗k doʔ↓ ˈʌplˌoʊd ci↓ daːʔ↓t haːjmɨəjlam mˈɛɡə biʔ↓t ʈʂen ʝəj ʈʂɔŋ xi ɣɔ↗j kwaː↓ŋ kaː↗w laː↘ baːʈʂam mˈɛɡə biʔ↓t ʈʂen ʝəj."
         },
         {
-          "idx": 261,
-          "text": "Phiên bản v2.1.0-beta đã được triển khai lên máy chủ nội bộ.",
-          "best_alt": "Phiên bản v hai chấm một chấm không beta đã được triển khai lên máy chủ nội bộ.",
-          "sim": 0.6711,
-          "out": "fiən baː↓n vˈi daːʔ↗ dɨəʔ↓k ʈʂiə↓n xaːj len ma↗j cu↓ noʔ↓j boʔ↓."
-        },
-        {
           "idx": 262,
           "text": "Chuyến bay VN-A356 khởi hành lúc 05h40 từ sân bay Tân Sơn Nhất.",
           "best_alt": "Chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất.",
@@ -275,20 +247,6 @@
           "best_alt": "Hôm qua, băng tải chạy tối đa mười hai gi ga bai.",
           "sim": 0.8667,
           "out": "hom kwaː, baŋ taː↓j caʔ↓j to↗j daː mɨə↘jhaːj ɣəː↘bəː↘."
-        },
-        {
-          "idx": 405,
-          "text": "Theo đề án, băng tải chạy tối đa 5 kg.",
-          "best_alt": "Theo đề án, băng tải chạy tối đa năm ki lô gam.",
-          "sim": 0.878,
-          "out": "θɛw de↘ aː↗n, baŋ taː↓j caʔ↓j to↗j daː nam ki↗lo."
-        },
-        {
-          "idx": 411,
-          "text": "Anh cho biết: phiên bản v2.1.0-beta đã được triển khai lên máy chủ nội bộ.",
-          "best_alt": "Anh cho biết: phiên bản v hai chấm một chấm không beta đã được triển khai lên máy chủ nội bộ.",
-          "sim": 0.7093,
-          "out": "aːɲ cɔ biə↗t: fiən baː↓n vˈi daːʔ↗ dɨəʔ↓k ʈʂiə↓n xaːj len ma↗j cu↓ noʔ↓j boʔ↓."
         }
       ]
     },
