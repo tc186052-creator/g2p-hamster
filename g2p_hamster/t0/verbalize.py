@@ -429,6 +429,11 @@ def verbal_token(t, prev_surface: str = "") -> str:
             return en_day_ordinal(int(s))
         if kind == "digits":
             return vi_digits(s) if route == "vi" else en_digits(s)
+        if kind == "digits_hyphen":
+            # ISBN "978-604-1-12345-6" — từng chữ số + "gạch", mất 0 nội dung
+            sep = " gạch " if route == "vi" else " dash "
+            return sep.join(vi_digits(g) if route == "vi" else en_digits(g)
+                            for g in t["groups"])
         return number_to_words(s, route, "cardinal")
     if cat == "money":
         if t.get("kind") == "prefix":
@@ -466,6 +471,8 @@ def verbal_token(t, prev_surface: str = "") -> str:
         entry = dicts.slang().get(s.lower())
         return entry[0] if entry else s
     if cat == "unit":
+        if t.get("kind") == "slash_unit":
+            return f"đồng trên {t['groups'][0]}"
         if t.get("kind") == "million":
             return "triệu" if route == "vi" else "million"
         if t.get("kind") == "p_res":

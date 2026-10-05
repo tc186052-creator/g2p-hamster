@@ -286,5 +286,18 @@ class TestGapGroups(unittest.TestCase):
 
 
 
+    def test_slash_unit_glued_and_isbn(self):
+        # mục 4.3 đánh giá độc lập: đ/lượt và ISBN không được rụng âm thầm
+        self.assertIn("năm mươi nghìn đồng trên lượt", ir("Vé vào cửa 50.000đ/lượt.")["read_string"])
+        self.assertIn("một trăm nghìn đồng trên lượt khách", ir("Giá 100.000 đ/lượt khách.")["read_string"])
+        self.assertIn("đồng trên cái", ir("Vé 50.000 đ/cái.")["read_string"])
+        r = ir("ISBN 978-604-1-12345-6 là mã sách.")["read_string"]
+        self.assertIn("chín bảy tám gạch sáu không bốn gạch một", r)
+        # không giẫm các dạng đã đọc đúng
+        self.assertIn("một đến hai triệu đồng", ir("1-2 triệu đồng.")["read_string"])
+        self.assertIn("hai, một", ir("tỉ số 2-1.")["read_string"])
+
+
+
 if __name__ == "__main__":
     unittest.main()

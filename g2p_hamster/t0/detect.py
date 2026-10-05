@@ -397,6 +397,12 @@ def detect(spans_in, config):
         if RE_INTERVAL_GROUPED.match(s):
             mark(i, "number", kind="interval")
             continue
+        # mã dạng ISBN "978-604-1-12345-6" (≥3 nhóm, RE_INTERVAL đã nhận
+        # cặp 2 nhóm phía trên) — đọc từng chữ số, KHÔNG rụng "chưa verbalize"
+        if re.fullmatch(r"\d{1,7}(?:-\d{1,7}){2,}", s):
+            mark(i, "number", kind="digits_hyphen",
+                 groups=tuple(s.split("-")))
+            continue
         # 6) money có ký hiệu
         if RE_MONEY_PREFIX.match(s):
             mark(i, "money", kind="prefix")
@@ -441,6 +447,12 @@ def detect(spans_in, config):
                             and next_low in ("đ", "đồng", "vnđ", "vnd"))
             mark(i, "number", kind=kind, _pct=(next_low == "%"),
                  _money_adj=is_money_adj)
+            continue
+        # "đ/lượt", "đồng/cái" dính (không space) — đọc "đồng trên lượt"
+        # giống dạng có space; không có nhánh này -> rụng âm thầm "hết bậc cứu"
+        m_dslash = re.fullmatch(r"(?:đ|đồng)/([a-zđà-ỹ]{1,12})", s)
+        if m_dslash:
+            mark(i, "unit", kind="slash_unit", groups=(m_dslash.group(1),))
             continue
         # 7b) đơn vị/tiền tệ đứng sau số ("100 USD") — xét trước ALL-CAPS
         # "in his 50s" (en): số 1-2 chữ + s là THẬP KỶ, không phải giây

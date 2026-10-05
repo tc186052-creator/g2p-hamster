@@ -13,7 +13,7 @@ try:
     from importlib.metadata import version as _v
     __version__ = _v("g2p-hamster")
 except Exception:
-    __version__ = "0.2.3"
+    __version__ = "0.2.4"
 
 __all__ = ["text_to_profile", "text_to_profile_v2", "text_to_profile_v2_full",
            "v2_provenance", "v2_policy_hash", "__version__"]

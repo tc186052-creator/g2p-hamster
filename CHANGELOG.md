@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.2.4 — 2026-10-05
+
+- Giảm rụng ở best_effort (mục 4.3/đề xuất 7 của đánh giá độc lập):
+  - `50.000đ/lượt` dính — trước đây rụng "hết bậc cứu", giờ đọc
+    "năm mươi nghìn đồng trên lượt" (giống dạng có space).
+  - `ISBN 978-604-1-12345-6` — trước đây rụng "chữ số — tầng 1 chưa
+    verbalize", giờ đọc từng chữ số + "gạch" (mất 0 nội dung).
+  Cả hai bị khóa bằng unit test.
+
 ## 0.2.3 — 2026-10-05
 
 - Sửa `g2p_hamster.__version__` — 0.2.2 phát hành với attr còn ghi
