@@ -1,0 +1,95 @@
+{
+  "dataset": "/home/hseomymyi9/01_project/dataset_100k.tsv",
+  "n": 99999,
+  "nproc": 24,
+  "date": "2026-10-05 20:22 UTC",
+  "metric": "digit_leak = chữ số độc lập sót trong chuỗi ra",
+  "speed_note": "KHÔNG đo tốc độ trong bài này; thông lượng chỉ ghi log để biết thời gian chạy",
+  "ours_v2": {
+    "tool": "ours_v2",
+    "per_lang": {
+      "vi": {
+        "n": 52000,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      },
+      "mixed": {
+        "n": 14999,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      },
+      "en": {
+        "n": 33000,
+        "leak": 0,
+        "error": 0,
+        "empty": 1
+      }
+    },
+    "total": {
+      "n": 99999,
+      "leak": 0,
+      "error": 0,
+      "empty": 1
+    }
+  },
+  "sea_g2p": {
+    "tool": "sea_g2p",
+    "per_lang": {
+      "vi": {
+        "n": 52000,
+        "leak": 14083,
+        "error": 0,
+        "empty": 0
+      },
+      "mixed": {
+        "n": 14999,
+        "leak": 7556,
+        "error": 0,
+        "empty": 0
+      },
+      "en": {
+        "n": 33000,
+        "leak": 9026,
+        "error": 0,
+        "empty": 0
+      }
+    },
+    "total": {
+      "n": 99999,
+      "leak": 30665,
+      "error": 0,
+      "empty": 0
+    }
+  },
+  "donglao_g2p": {
+    "tool": "donglao_g2p",
+    "per_lang": {
+      "vi": {
+        "n": 52000,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      },
+      "mixed": {
+        "n": 14999,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      },
+      "en": {
+        "n": 33000,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      }
+    },
+    "total": {
+      "n": 99999,
+      "leak": 0,
+      "error": 0,
+      "empty": 0
+    }
+  }
+}

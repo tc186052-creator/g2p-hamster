@@ -173,6 +173,57 @@ Tốc độ riêng từng đường của repo (đo trên 400 câu listening_tes
 | v1 (fail-closed) | 572 | 4,9 ms | 10 ms |
 | espeak-ng (tham khảo) | 168 | 16,9 ms | 30 ms |
 
+## Bài test 100.000 câu thật — normalization VI/EN code-switch: ai ăn ai?
+
+Có ý kiến cho rằng phía normalization VI/EN code-switch repo này thua
+sea_g2p. Thôi thì lấy **99.999 câu thật** (52.000 vi · 33.000 anh ·
+14.999 mix —
+[`dataset_100k.tsv.gz`](listening_test/g2p_compare_100k/dataset_100k.tsv.gz),
+chính là corpus
+đối chiếu của dự án; 31.456 câu trong đó có chữ số) và chạy 3 hệ qua
+cùng một phép đo chất lượng, **không đo tốc độ** (tốc độ đã có bảng
+trên; bài này chỉ trả lời câu hỏi "ai verbalize số/ngày/giờ/code-switch
+tốt hơn"):
+[`listening_test/g2p_compare_100k/`](listening_test/g2p_compare_100k) —
+script + **nguyên văn output từng hệ, từng câu** (`outputs_*.csv.gz`) +
+summary, tự chạy lại được bằng `bench_100k.py`.
+
+Hai chỉ số khách quan, không cần người chấm:
+
+- **Số rò rỉ** — câu còn chữ số đứng độc lập trong chuỗi ra (`13`,
+  `00`, `2026` chưa verbalize → acoustic model không đọc được).
+- **Số bị rơi** — chữ số **biến mất khỏi đầu ra** (đọc thiếu nội dung
+  một cách âm thầm — nguy hiểm hơn rò rỉ vì khó phát hiện).
+
+| Hệ | Rò rỉ số (toàn corpus) | vi | anh | mix | Lỗi / rỗng | Rơi số ở mẫu giờ `13h00` |
+|---|---|---|---|---|---|---|
+| **g2p-hamster (repo này)** | **0 / 99.999 (0,00%)** | 0,00% | 0,00% | 0,00% | 1 rỗng¹ | **0 / 252** |
+| donglao_g2p | 0 / 99.999 (0,00%) | 0,00% | 0,00% | 0,00% | 0 | **114 / 252 (45,2%)** |
+| sea_g2p | **30.665 / 99.999 (30,67%)** | 27,08% | 27,35% | **50,38%** | 0 | — (rò rỉ sẵn) |
+
+¹ Câu 88974 là tiếng Ba Tư (dữ liệu Wikipedia), repo này trả về rỗng —
+công khai nguyên văn trong CSV, không giấu.
+
+Đọc bảng: donglao_g2p **đáng khen** — nó verbalize được phần lớn số
+(ngày/tháng/năm/phần trăm), 0% rò rỉ. Nhưng nó có kiểu lỗi khác tệ hơn:
+**rơi mất con số**. Ví dụ nguyên văn (cùng một câu trong CSV):
+
+| Câu | Hệ | Đầu ra |
+|---|---|---|
+| "Từ 13h00 - 14h00 cùng ngày…" | **repo này** | "mười ba giờ, mười bốn giờ cùng ngày…" |
+| | donglao_g2p | "tɯ2 **h, h** kuŋ2 ŋaj2…" — **cả hai mốc giờ biến mất** |
+| "anh dành 1,5 tiếng tập thể dục" | **repo này** | "một **phẩy** năm" (đúng) |
+| | donglao_g2p | "một **phần** năm" (sai nghĩa — 1/5 thay vì 1,5) |
+| "…năm 2025, chiếm 33% tổng giá trị…" | **repo này** | "hai nghìn không trăm hai mươi lăm, ba mươi ba phần trăm" |
+| | sea_g2p | "…nam 2025, ciếm 33%…" — **số còn nguyên, chưa verbalize** |
+
+Và đúng điểm "code-switch" mà sea_g2p hụt: câu **mix** của nó rò
+rỉ tới **50,38%** — cứ câu có từ anh lẫn vi là cứ mỗi hai câu nó để
+nguyên một câu số chưa đọc. Toàn bộ 100.000 dòng output từng hệ nằm
+trong `outputs_sea_g2p.csv.gz` /
+`outputs_donglao_g2p.csv.gz` /
+`outputs_ours_v2.csv.gz` — mở ra tự chấm, kể cả câu repo này rỗng.
+
 ## Demo — nghe thử 400 clip + toàn bộ số liệu
 
 **Nghe: bấm vào clip → trang GitHub → Download raw → tải về nghe ngay** (GitHub không phát audio trực tiếp được — mọi repo đều vậy). 400 clip MP3 (4 bộ × 100 câu, 42 phút, 24 kHz, ~14MB) render bằng đúng G2P này, mỗi clip được **2 engine STT độc lập** (PhoWhisper-large của VinAI + Whisper-large-v3 của OpenAI) nghe ngược lại để kiểm chứng.
