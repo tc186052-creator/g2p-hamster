@@ -1,36 +1,61 @@
 {
+ "dataset": "/home/hseomymyi9/01_project/g2p-hamster/listening_test/g2p_compare_100k/dataset_100k.tsv.gz",
+ "n": 99999,
+ "digit_leak_def": "regex \\b\\d+\\b trên chuỗi ra; chỉ đếm status=ok; time_h bad = mất số (h độc lập)",
+ "systems": {
   "ours_v2": {
-    "%": {
-      "n": 2263,
-      "leak": 0
-    },
-    "a/b": {
-      "n": 3033,
-      "leak": 0
-    }
+   "percent": {
+    "n": 2263,
+    "bad": 0
+   },
+   "a_b": {
+    "n": 3026,
+    "bad": 0
+   },
+   "acro_caps": {
+    "n": 18584,
+    "bad": 0
+   },
+   "time_h": {
+    "n": 259,
+    "bad": 0
+   }
   },
   "sea_g2p": {
-    "%": {
-      "n": 2263,
-      "leak": 2263
-    },
-    "a/b": {
-      "n": 3033,
-      "leak": 3033
-    }
+   "percent": {
+    "n": 2263,
+    "bad": 0
+   },
+   "a_b": {
+    "n": 3026,
+    "bad": 1
+   },
+   "acro_caps": {
+    "n": 18584,
+    "bad": 0
+   },
+   "time_h": {
+    "n": 259,
+    "bad": 0
+   }
   },
   "donglao_g2p": {
-    "%": {
-      "n": 2263,
-      "leak": 0
-    },
-    "a/b": {
-      "n": 3033,
-      "leak": 0
-    },
-    "gio_h": {
-      "n": 252,
-      "drop": 114
-    }
+   "percent": {
+    "n": 2263,
+    "bad": 0
+   },
+   "a_b": {
+    "n": 3026,
+    "bad": 0
+   },
+   "acro_caps": {
+    "n": 18584,
+    "bad": 0
+   },
+   "time_h": {
+    "n": 259,
+    "bad": 114
+   }
   }
+ }
 }

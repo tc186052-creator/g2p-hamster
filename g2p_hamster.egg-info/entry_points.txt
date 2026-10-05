@@ -1,2 +1,0 @@
-[console_scripts]
-g2p-hamster = g2p_hamster.cli:main

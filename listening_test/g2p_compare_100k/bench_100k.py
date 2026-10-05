@@ -75,11 +75,15 @@ def _init(tool):
         def run(s):
             return text_to_profile_v2_full(s)["profile"]
     elif tool == "sea_g2p":
-        from sea_g2p import G2P
-        g = G2P(lang="vi")
+        # 0.2.2: đo ĐÚNG usage mà sea_g2p tài liệu hoá — SEAPipeline.run()
+        # gồm cả bộ chuẩn hoá 17 bước của nó (bản trước dùng G2P.convert()
+        # trần, tắt normalizer — sai cấu hình, phát hiện bởi đánh giá
+        # độc lập 2026-10 và được vá tại đây)
+        from sea_g2p import SEAPipeline
+        p = SEAPipeline(lang="vi")
 
         def run(s):
-            return g.convert(s)
+            return p.run(s)
     elif tool == "donglao_g2p":
         from donglao_g2p import Pipeline
         p = Pipeline()
@@ -156,13 +160,16 @@ def dump_outputs(tool, results):
 
 def main():
     # dataset có thể truyền qua argv (vd bộ held-out khác bộ phát triển);
-    # khi dataset KHÁC bộ gốc (dataset_100k.tsv), tự loại các câu trùng —
-    # chỉ đo trên phần mới tuyệt đối (held-out thuần).
-    path = Path(sys.argv[1]) if len(sys.argv) > 1 else DATA
+    # khi dataset KHÁC bộ gốc (dataset_100k.tsv / bản gz đi kèm repo),
+    # tự loại các câu trùng — chỉ đo trên phần mới tuyệt đối (held-out
+    # thuần). Bộ gốc thì KHÔNG loại (nó là chính nó).
+    path = (Path(sys.argv[1]) if len(sys.argv) > 1 else DATA).resolve()
     rows = load_rows(path)
     held_out_excluded = 0
+    dev_paths = {DATA.resolve(),
+                 Path("/home/hseomymyi9/01_project/dataset_100k.tsv").resolve()}
     old_path = Path("/home/hseomymyi9/01_project/dataset_100k.tsv")
-    if path.resolve() != old_path and old_path.exists():
+    if path not in dev_paths and old_path.exists():
         old_texts = {t for _, t in load_rows(old_path)}
         before = len(rows)
         rows = [(lg, t) for lg, t in rows if t not in old_texts]

@@ -414,3 +414,39 @@
 {"idx": 413, "category": "time", "gold_readings": ["Anh cho biết: cuộc họp bắt đầu lúc mười giờ tại phòng họp số 3.", "Anh cho biết: cuộc họp bắt đầu lúc mười giờ không tại phòng họp số 3."], "en_spans": []}
 {"idx": 414, "category": "phone", "gold_readings": ["Anh cho biết: hotline của tổng đài là không chín tám bảy sáu năm bốn ba hai một, nhấn phím một để gặp tổng đài viên."], "en_spans": []}
 {"idx": 415, "category": "adversarial", "gold_readings": ["Theo đề án, cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ tất cả các ngày trong tuần.", "Theo đề án, cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ không tất cả các ngày trong tuần."], "en_spans": []}
+{"idx": 416, "category": "currency", "gold_readings": ["Đơn hàng này có giá một triệu đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 417, "category": "currency", "gold_readings": ["Doanh thu công ty đạt một triệu đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 418, "category": "currency", "gold_readings": ["Chị ấy dành dụm được một triệu đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 419, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm một triệu đồng."], "en_spans": []}
+{"idx": 420, "category": "currency", "gold_readings": ["Đơn hàng này có giá năm triệu đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 421, "category": "currency", "gold_readings": ["Doanh thu công ty đạt năm triệu đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 422, "category": "currency", "gold_readings": ["Chị ấy dành dụm được năm triệu đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 423, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm năm triệu đồng."], "en_spans": []}
+{"idx": 424, "category": "currency", "gold_readings": ["Đơn hàng này có giá một triệu hai trăm năm mươi nghìn đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 425, "category": "currency", "gold_readings": ["Doanh thu công ty đạt một triệu hai trăm năm mươi nghìn đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 426, "category": "currency", "gold_readings": ["Chị ấy dành dụm được một triệu hai trăm năm mươi nghìn đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 427, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm một triệu hai trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 428, "category": "currency", "gold_readings": ["Đơn hàng này có giá ba mươi ba triệu chín trăm chín mươi nghìn đồng đã bao gồm phí vận chuyển.", "Đơn hàng này có giá ba mươi ba triệu chín trăm chín mươi nghìn v n đ đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 429, "category": "currency", "gold_readings": ["Doanh thu công ty đạt ba mươi ba triệu chín trăm chín mươi nghìn đồng trong quý vừa rồi.", "Doanh thu công ty đạt ba mươi ba triệu chín trăm chín mươi nghìn v n đ trong quý vừa rồi."], "en_spans": []}
+{"idx": 430, "category": "currency", "gold_readings": ["Chị ấy dành dụm được ba mươi ba triệu chín trăm chín mươi nghìn đồng sau hai năm làm việc.", "Chị ấy dành dụm được ba mươi ba triệu chín trăm chín mươi nghìn v n đ sau hai năm làm việc."], "en_spans": []}
+{"idx": 431, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm ba mươi ba triệu chín trăm chín mươi nghìn đồng.", "Khoản đầu tư ban đầu chiếm ba mươi ba triệu chín trăm chín mươi nghìn v n đ."], "en_spans": []}
+{"idx": 432, "category": "currency", "gold_readings": ["Đơn hàng này có giá một triệu đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 433, "category": "currency", "gold_readings": ["Doanh thu công ty đạt một triệu đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 434, "category": "currency", "gold_readings": ["Chị ấy dành dụm được một triệu đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 435, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm một triệu đồng."], "en_spans": []}
+{"idx": 436, "category": "currency", "gold_readings": ["Đơn hàng này có giá một triệu đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 437, "category": "currency", "gold_readings": ["Doanh thu công ty đạt một triệu đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 438, "category": "currency", "gold_readings": ["Chị ấy dành dụm được một triệu đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 439, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm một triệu đồng."], "en_spans": []}
+{"idx": 440, "category": "currency", "gold_readings": ["Đơn hàng này có giá một tỷ đồng đã bao gồm phí vận chuyển.", "Đơn hàng này có giá một tỉ đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 441, "category": "currency", "gold_readings": ["Doanh thu công ty đạt một tỷ đồng trong quý vừa rồi.", "Doanh thu công ty đạt một tỉ đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 442, "category": "currency", "gold_readings": ["Chị ấy dành dụm được một tỷ đồng sau hai năm làm việc.", "Chị ấy dành dụm được một tỉ đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 443, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm một tỷ đồng.", "Khoản đầu tư ban đầu chiếm một tỉ đồng."], "en_spans": []}
+{"idx": 444, "category": "currency", "gold_readings": ["Đơn hàng này có giá mười hai triệu năm trăm nghìn đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 445, "category": "currency", "gold_readings": ["Doanh thu công ty đạt mười hai triệu năm trăm nghìn đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 446, "category": "currency", "gold_readings": ["Chị ấy dành dụm được mười hai triệu năm trăm nghìn đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 447, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm mười hai triệu năm trăm nghìn đồng."], "en_spans": []}
+{"idx": 448, "category": "currency", "gold_readings": ["Đơn hàng này có giá bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng đã bao gồm phí vận chuyển."], "en_spans": []}
+{"idx": 449, "category": "currency", "gold_readings": ["Doanh thu công ty đạt bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng trong quý vừa rồi."], "en_spans": []}
+{"idx": 450, "category": "currency", "gold_readings": ["Chị ấy dành dụm được bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng sau hai năm làm việc."], "en_spans": []}
+{"idx": 451, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng."], "en_spans": []}

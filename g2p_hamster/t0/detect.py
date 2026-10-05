@@ -29,7 +29,8 @@ RE_NUM_MIXED = re.compile(r"^\d{1,3}([.,]\d{3})+[.,]\d{1,6}$")
 RE_NUM_PLAIN = re.compile(r"^\d+$")
 RE_ORDINAL = re.compile(r"^(\d{1,4})(st|nd|rd|th)$", re.I)
 RE_MONEY_PREFIX = re.compile(r"^[$€£¥](\d{1,12}([.,]\d+)?)([BMKbmk])?$")
-RE_MONEY_SUFFIX = re.compile(r"^(\d{1,12}([.,]\d+)?)[$]$")
+RE_MONEY_SUFFIX = re.compile(r"^(\d{1,3}(?:[.,] ?\d{3})+|\d{1,15})( ?đồng| ?đ|vnđ|vnd|\$)$",
+                             re.I)
 RE_ABBR_DOT = re.compile(r"^([A-Za-zÀ-ỹĐđ]+)\.$")
 def is_caps(s: str) -> bool:
     """ALL-CAPS 2-6 ký tự (đúng nghĩa hoa, không đụng chữ thường vi như 'đó')."""
@@ -242,6 +243,32 @@ def detect(spans_in, config):
             continue
 
         # 3) date
+        # số nhóm nghìn "5.000.000", "99.000", "1.000.000.000" — mọi nhóm
+        # sau đều đúng 3 chữ số → là SỐ, phải xét TRƯỚC version (regex
+        # version \d+(\.\d+){2,3} khớp luôn "5.000.000"!)
+        if RE_NUM_GROUP.match(s):
+            mark(i, "number", kind="cardinal", _pct=(next_low == "%"))
+            continue
+        # nhóm số cách space "1 000 000" (ít gặp, nhưng tokenizer giữ
+        # nguyên thành 1 token) — đọc là một số, không đọc từng nhóm
+        m_spacegrp = re.fullmatch(r"\d{1,3}( \d{3})+", s)
+        if m_spacegrp:
+            mark(i, "number", kind="cardinal", _pct=(next_low == "%"))
+            continue
+        # "1 000 000 đồng" — tokenizer tách space nên tới đây thành nhiều
+        # token; gộp lại thành MỘT số khi ngay sau là đơn vị tiền
+        if re.fullmatch(r"\d{1,3}", s):
+            j = i + 1
+            while j < n and toks[j]["cat"] == "raw" \
+                    and re.fullmatch(r"\d{3}", toks[j]["surface"]):
+                j += 1
+            if j > i + 1 and j < n \
+                    and toks[j]["surface"].lower() in ("đ", "đồng", "vnđ", "vnd"):
+                joined = "".join(toks[k]["surface"] for k in range(i, j))
+                for k in range(i + 1, j):
+                    toks[k]["cat"] = "skip"
+                mark(i, "number", kind="cardinal", surface=joined, _money_adj=True)
+                continue
         # version phần mềm "2.4.1", "2.4.1-rc2", "2.1.0-beta", "1.0.0-alpha2"
         # (3-4 nhóm số chấm nhau + hậu tố rc/beta/alpha/dev/snapshot,
         # không đứng sau từ ngày)
@@ -374,8 +401,10 @@ def detect(spans_in, config):
         if RE_MONEY_PREFIX.match(s):
             mark(i, "money", kind="prefix")
             continue
-        if RE_MONEY_SUFFIX.match(s):
-            mark(i, "money", kind="suffix")
+        m_money = RE_MONEY_SUFFIX.match(s)
+        if m_money:
+            mark(i, "money", kind="suffix",
+                 groups=(m_money.group(1), m_money.group(2).strip()))
             continue
         # số âm "-3.2"
         m_neg = re.fullmatch(r"-(\d+(?:[.,]\d+)?)", s)
@@ -405,7 +434,13 @@ def detect(spans_in, config):
                         and len(s) == 3 and fold(prev_word) in MODEL_NUM_WORDS)
             kind = ("year" if is_year else "en_day" if is_en_day
                     else "digits" if is_model else "cardinal")
-            mark(i, "number", kind=kind, _pct=(next_low == "%"))
+            # số 7+ chữ số đứng cạnh đơn vị tiền ("1000000đ" -> tokenizer
+            # tách "đ" riêng) là SỐ TIỀN, không phải mã/link -> đọc thang
+            # nghìn/triệu/tỷ, không đọc từng chữ số
+            is_money_adj = (kind == "cardinal" and s.isdigit() and len(s) >= 7
+                            and next_low in ("đ", "đồng", "vnđ", "vnd"))
+            mark(i, "number", kind=kind, _pct=(next_low == "%"),
+                 _money_adj=is_money_adj)
             continue
         # 7b) đơn vị/tiền tệ đứng sau số ("100 USD") — xét trước ALL-CAPS
         # "in his 50s" (en): số 1-2 chữ + s là THẬP KỶ, không phải giây

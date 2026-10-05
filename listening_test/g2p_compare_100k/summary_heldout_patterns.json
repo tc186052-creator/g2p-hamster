@@ -1,44 +1,61 @@
 {
+ "dataset": "/home/hseomymyi9/01_project/dataset_100k (1).tsv",
+ "n": 74760,
+ "digit_leak_def": "regex \\b\\d+\\b trên chuỗi ra; chỉ đếm status=ok; time_h bad = mất số (h độc lập)",
+ "systems": {
   "ours_v2": {
-    "percent": {
-      "n": 1603,
-      "bad": 0
-    },
-    "a/b": {
-      "n": 2664,
-      "bad": 0
-    },
-    "acro_caps": {
-      "n": 14337,
-      "bad": 0
-    }
+   "percent": {
+    "n": 1603,
+    "bad": 0
+   },
+   "a_b": {
+    "n": 2656,
+    "bad": 0
+   },
+   "acro_caps": {
+    "n": 14337,
+    "bad": 0
+   },
+   "time_h": {
+    "n": 239,
+    "bad": 0
+   }
   },
   "sea_g2p": {
-    "percent": {
-      "n": 1603,
-      "bad": 1603
-    },
-    "a/b": {
-      "n": 2664,
-      "bad": 2664
-    },
-    "acro_caps": {
-      "n": 14337,
-      "bad": 0
-    }
+   "percent": {
+    "n": 1603,
+    "bad": 0
+   },
+   "a_b": {
+    "n": 2656,
+    "bad": 0
+   },
+   "acro_caps": {
+    "n": 14337,
+    "bad": 0
+   },
+   "time_h": {
+    "n": 239,
+    "bad": 0
+   }
   },
   "donglao_g2p": {
-    "percent": {
-      "n": 1603,
-      "bad": 0
-    },
-    "a/b": {
-      "n": 2664,
-      "bad": 0
-    },
-    "acro_caps": {
-      "n": 14337,
-      "bad": 0
-    }
+   "percent": {
+    "n": 1603,
+    "bad": 0
+   },
+   "a_b": {
+    "n": 2656,
+    "bad": 0
+   },
+   "acro_caps": {
+    "n": 14337,
+    "bad": 0
+   },
+   "time_h": {
+    "n": 239,
+    "bad": 92
+   }
   }
+ }
 }

@@ -10,7 +10,7 @@ còn sót trong chuỗi ra (chữ số chưa được verbalize → acoustic mod
 Các hệ tham gia + cài đặt:
   - ours_v2        : G2P v2 của repo này (chạy in-process)
   - donglao_g2p    : pip install donglao_g2p   → Pipeline().phonemize
-  - sea_g2p        : pip install sea_g2p       → G2P(lang='vi').convert
+  - sea_g2p        : pip install sea_g2p       → SEAPipeline(lang='vi').run
   - vietnormalizer : pip install vietnormalizer → VietnameseNormalizer
                      (đầu ra là VĂN BẢN chuẩn hóa, không phải phôn vị —
                      ghi vào cột kind)
@@ -99,9 +99,12 @@ def make_donglao():
 
 
 def make_sea():
-    from sea_g2p import G2P
-    g = G2P(lang="vi")
-    return "sea_g2p", "phoneme", g.convert
+    # 0.2.2: đo ĐÚNG documented usage — SEAPipeline.run() gồm cả bộ chuẩn
+    # hoá 17 bước của sea (bản trước dùng G2P.convert() trần, sai cấu
+    # hình — phát hiện bởi đánh giá độc lập 2026-10, được vá tại đây)
+    from sea_g2p import SEAPipeline
+    p = SEAPipeline(lang="vi")
+    return "sea_g2p", "phoneme", p.run
 
 
 def make_vn():

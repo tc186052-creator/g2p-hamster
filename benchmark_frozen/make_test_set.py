@@ -116,6 +116,23 @@ def money_w(s):
     return f"{n2w(n)} đồng"
 
 
+def money_big_w(s):
+    """'1.250.000' → 'một triệu hai trăm năm mươi nghìn' (thang tỷ/triệu/
+    nghìn — v2, sinh gold cho tiền ≥ 7 chữ số; KHÔNG dùng để chạy hệ nào)."""
+    n = int(re.sub(r"\D", "", s))
+    parts = []
+    for scale, word in ((10 ** 9, "tỷ"), (10 ** 6, "triệu"), (10 ** 3, "nghìn")):
+        if n >= scale:
+            q, n = divmod(n, scale)
+            parts.append(f"{n2w(q)} {word}")
+    if n:
+        if parts and n < 100:
+            parts.append("không trăm lẻ " + _3w(n))
+        else:
+            parts.append(_3w(n))
+    return " ".join(parts)
+
+
 ROWS = []
 
 
@@ -218,6 +235,23 @@ family("currency", "easy",
         "Khách hàng đã thanh toán {} ngay tại quầy.",
         "Chi phí sửa chữa ước tính {}."],
        MONEY_V, {v: money_read(v) for v in MONEY_V})
+
+# v2: tiền ≥ 7 chữ số — LƯU Ý sinh sau khối nhân bản tiền tố (bên dưới)
+# để KHÔNG đụng luồng random: mọi câu/gold v1 giữ nguyên từng ký tự.
+# Lớp này bị thiếu ở v1; lỗi đọc "1.000.000đ" thành "một chấm không chấm
+# không đồng" của 0.2.1 đáng lẽ bị MÁY bắt chứ không phải bị người ngoài.
+BIG_MONEY_V = ["1.000.000đ", "5.000.000 đồng", "1.250.000đ",
+               "33.990.000 VNĐ", "1000000đ", "1 000 000 đồng",
+               "1.000.000.000 đồng", "12.500.000 đồng", "4.999.999đ"]
+
+
+def big_money_read(v):
+    r = money_big_w(re.match(r"[\d .,]+", v).group(0).strip())
+    if "VNĐ" in v:
+        return [r + " đồng", r + " v n đ"]
+    if "tỷ" in r:
+        return [r + " đồng", r.replace("tỷ", "tỉ") + " đồng"]
+    return [r + " đồng"]
 
 UNIT_V = [("12 km", ["mười hai ki lô mét", "mười hai cây số"]),
           ("3,5 km", [dec_w("3,5") + " ki lô mét", dec_w("3,5") + " cây số"]),
@@ -452,6 +486,15 @@ for r in extra[:140]:
     g2 = [pre + g[0].lower() + g[1:] for g in r["gold_readings"]]
     add(r["category"], r["level"], t2, g2, r["en_spans"])
 
+# v2: family big_money sinh TẠI ĐÂY (sau nhân bản, trước SYN) — không
+# đụng luồng random nên mọi câu/gold khác giữ nguyên như v1
+family("currency", "big_money",
+       ["Đơn hàng này có giá {} đã bao gồm phí vận chuyển.",
+        "Doanh thu công ty đạt {} trong quý vừa rồi.",
+        "Chị ấy dành dụm được {} sau hai năm làm việc.",
+        "Khoản đầu tư ban đầu chiếm {}."],
+       BIG_MONEY_V, {v: big_money_read(v) for v in BIG_MONEY_V})
+
 SYN = list(ROWS)
 print(f"synthetic: {len(SYN)} câu "
       f"({sum(1 for r in SYN if r['gold_readings'])} có gold)")
@@ -541,4 +584,21 @@ with open(HERE / "gold.jsonl", "w", encoding="utf-8") as f:
                                 "en_spans": r["en_spans"]},
                                ensure_ascii=False) + "\n")
 
-print(f"TỔNG: {len(ALL)} câu → test_set.tsv + gold.jsonl")
+# Frozen versioning: sửa test set = bắt buộc bump version + ghi lý do.
+FROZEN_META = {
+    "frozen_version": 2,
+    "seed": 20261005,
+    "date": "2026-10-05",
+    "changes": [
+        {"from": 1, "to": 2,
+         "reason": "thêm level 'currency/big_money' (9 giá trị tiền ≥ 7 chữ"
+                   " số × 4 template = 36 câu synthetic) — lớp dữ liệu bị"
+                   " thiếu ở v1, lỗi đọc '1.000.000đ' thành 'một chấm không"
+                   " chấm không đồng' của wheel 0.2.1 do đánh giá độc lập"
+                   " 2026-10 phát hiện; mọi câu/gold khác GIỮ NGUYÊN."},
+    ],
+}
+with open(HERE / "frozen_meta.json", "w", encoding="utf-8") as f:
+    json.dump(FROZEN_META, f, ensure_ascii=False, indent=2)
+
+print(f"TỔNG: {len(ALL)} câu → test_set.tsv + gold.jsonl (frozen v{FROZEN_META['frozen_version']})")

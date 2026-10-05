@@ -46,16 +46,14 @@ def bench(fn, sents, repeat=REPEAT):
         fn(s)
     lats, chars = [], 0
     for _ in range(repeat):
-        lats = []
-        chars = 0
         for s in sents:
             t0 = time.perf_counter()
             fn(s)
             lats.append((time.perf_counter() - t0) * 1000.0)
             chars += len(s)
-    total = sum(lats) / 1000.0  # ms → s
+    total = sum(lats) / 1000.0  # ms → s (CẢ repeat lượt, không chỉ lượt cuối)
     return {"sents_per_s": len(sents) * repeat / total,
-            "chars_per_s": chars * repeat / total,
+            "chars_per_s": chars / total,
             "lat": lats}
 
 

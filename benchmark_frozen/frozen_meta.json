@@ -1,0 +1,12 @@
+{
+  "frozen_version": 2,
+  "seed": 20261005,
+  "date": "2026-10-05",
+  "changes": [
+    {
+      "from": 1,
+      "to": 2,
+      "reason": "thêm level 'currency/big_money' (9 giá trị tiền ≥ 7 chữ số × 4 template = 36 câu synthetic) — lớp dữ liệu bị thiếu ở v1, lỗi đọc '1.000.000đ' thành 'một chấm không chấm không đồng' của wheel 0.2.1 do đánh giá độc lập 2026-10 phát hiện; mọi câu/gold khác GIỮ NGUYÊN."
+    }
+  ]
+}

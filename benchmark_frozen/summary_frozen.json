@@ -1,7 +1,13 @@
 {
-  "n": 1052,
-  "n_gold": 416,
-  "date": "2026-10-05 21:26 UTC",
+  "n": 1088,
+  "n_gold": 452,
+  "date": "2026-10-05 22:47 UTC",
+  "provenance": {
+    "frozen_version": 2,
+    "sea_g2p": "0.10.0",
+    "donglao_g2p": "1.0.0",
+    "espeak_ng": "eSpeak NG text-to-speech: 1.51  Data at: /usr/lib/x86_64-linux-gnu/espeak-ng-data"
+  },
   "systems": {
     "ours_v2": {
       "per_cat": {
@@ -36,14 +42,14 @@
           "match_mean": 0.9983
         },
         "currency": {
-          "n": 86,
+          "n": 122,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 46,
-          "match_ge95": 41,
-          "match_mean": 0.9893
+          "match_n": 82,
+          "match_ge95": 73,
+          "match_mean": 0.9906
         },
         "units": {
           "n": 81,
@@ -133,14 +139,14 @@
         }
       },
       "total": {
-        "n": 1052,
+        "n": 1088,
         "leak": 0,
         "drop": 0,
         "error": 0,
         "empty": 0,
-        "match_n": 390,
-        "match_mean": 0.9843,
-        "match_ge95": 343
+        "match_n": 426,
+        "match_mean": 0.985,
+        "match_ge95": 375
       },
       "match_worst": [
         {
@@ -254,6 +260,640 @@
       "per_cat": {
         "time": {
           "n": 133,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 73,
+          "match_ge95": 20,
+          "match_mean": 0.9516
+        },
+        "date": {
+          "n": 104,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 44,
+          "match_ge95": 30,
+          "match_mean": 0.9554
+        },
+        "percent": {
+          "n": 119,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 79,
+          "match_ge95": 79,
+          "match_mean": 0.9981
+        },
+        "currency": {
+          "n": 122,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 82,
+          "match_ge95": 73,
+          "match_mean": 0.9851
+        },
+        "units": {
+          "n": 81,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 51,
+          "match_ge95": 33,
+          "match_mean": 0.9637
+        },
+        "phone": {
+          "n": 17,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 17,
+          "match_ge95": 17,
+          "match_mean": 1.0
+        },
+        "email_url": {
+          "n": 26,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        },
+        "acronyms": {
+          "n": 157,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 37,
+          "match_ge95": 28,
+          "match_mean": 0.9728
+        },
+        "code_switch": {
+          "n": 139,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 21,
+          "match_ge95": 9,
+          "match_mean": 0.9421
+        },
+        "adversarial": {
+          "n": 44,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 22,
+          "match_ge95": 13,
+          "match_mean": 0.9475
+        },
+        "foreign_names": {
+          "n": 40,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        },
+        "numbers": {
+          "n": 80,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        },
+        "loanwords": {
+          "n": 26,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        }
+      },
+      "total": {
+        "n": 1088,
+        "leak": 0,
+        "drop": 0,
+        "error": 0,
+        "empty": 0,
+        "match_n": 426,
+        "match_mean": 0.9716,
+        "match_ge95": 302
+      },
+      "match_worst": [
+        {
+          "idx": 52,
+          "text": "Chương trình bế mạc vào lúc 11h00 ngày 05/10/2026.",
+          "best_alt": "Chương trình bế mạc vào lúc mười một giờ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.",
+          "sim": 0.8854,
+          "out": "tʃˈyəŋ tʃˈi2ɲ bˈeɜ mˈaː6c vˈaː2w lˌuɜc mˈyə2j mˈo6t̪ zˈəː2 xˌoŋ fˈuɜt̪ ŋˈa2j nˈam tˈaːɜŋ mˈyə2j nˈam hˈaːj ŋˈi2n xˌoŋ tʃˈam hˈaːj mˈyəj sˈaɜw."
+        },
+        {
+          "idx": 62,
+          "text": "Chương trình bế mạc vào lúc 11h00 ngày 01/01/2025.",
+          "best_alt": "Chương trình bế mạc vào lúc mười một giờ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm.",
+          "sim": 0.8866,
+          "out": "tʃˈyəŋ tʃˈi2ɲ bˈeɜ mˈaː6c vˈaː2w lˌuɜc mˈyə2j mˈo6t̪ zˈəː2 xˌoŋ fˈuɜt̪ ŋˈa2j mˈo6t̪ tˈaːɜŋ mˈo6t̪ nˈam hˈaːj ŋˈi2n xˌoŋ tʃˈam hˈaːj mˈyəj lˈam."
+        },
+        {
+          "idx": 67,
+          "text": "Chương trình bế mạc vào lúc 11h00 ngày 28/02/2024.",
+          "best_alt": "Chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.",
+          "sim": 0.8585,
+          "out": "tʃˈyəŋ tʃˈi2ɲ bˈeɜ mˈaː6c vˈaː2w lˌuɜc mˈyə2j mˈo6t̪ zˈəː2 xˌoŋ fˈuɜt̪ ŋˈa2j hˈaːj mˈyəj t̪ˈaːɜm tˈaːɜŋ hˈaːj nˈam hˈaːj ŋˈi2n xˌoŋ tʃˈam hˈaːj mˈyəj bˈoɜn."
+        },
+        {
+          "idx": 72,
+          "text": "Chương trình bế mạc vào lúc 11h00 ngày 15/08/2023.",
+          "best_alt": "Chương trình bế mạc vào lúc mười một giờ ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.",
+          "sim": 0.8911,
+          "out": "tʃˈyəŋ tʃˈi2ɲ bˈeɜ mˈaː6c vˈaː2w lˌuɜc mˈyə2j mˈo6t̪ zˈəː2 xˌoŋ fˈuɜt̪ ŋˈa2j mˈyə2j lˈam tˈaːɜŋ t̪ˈaːɜm nˈam hˈaːj ŋˈi2n xˌoŋ tʃˈam hˈaːj mˈyəj bˈaː."
+        },
+        {
+          "idx": 136,
+          "text": "Gói cước này có giá 99.000 VNĐ mỗi tháng.",
+          "best_alt": "Gói cước này có giá chín mươi chín nghìn đồng mỗi tháng.",
+          "sim": 0.8361,
+          "out": "ɣˈɔɜj kˈyəɜc nˈa2j kˈɔɜ zˈaːɜ tʃˈiɜn mˈyəj tʃˈiɜn ŋˈi2n vˈiɛ6t̪ nˈaːm ɗˈo2ŋ mˌo5j tˈaːɜŋ."
+        },
+        {
+          "idx": 137,
+          "text": "Tổng ngân sách dự kiến cho dự án là 99.000 VNĐ.",
+          "best_alt": "Tổng ngân sách dự kiến cho dự án là chín mươi chín nghìn đồng.",
+          "sim": 0.8485,
+          "out": "t̪ˈo4ŋ ŋˈən sˈe-ɜc zˈy6 kˈiɛɜn tʃˌɔ zˈy6 ˈaːɜn lˌaː2 tʃˈiɜn mˈyəj tʃˈiɜn ŋˈi2n vˈiɛ6t̪ nˈaːm ɗˈo2ŋ."
+        },
+        {
+          "idx": 138,
+          "text": "Khách hàng đã thanh toán 99.000 VNĐ ngay tại quầy.",
+          "best_alt": "Khách hàng đã thanh toán chín mươi chín nghìn đồng ngay tại quầy.",
+          "sim": 0.8551,
+          "out": "xˈe-ɜc hˈaː2ŋ ɗˌaː5 tˈe-ɲ t̪wˈaːɜn tʃˈiɜn mˈyəj tʃˈiɜn ŋˈi2n vˈiɛ6t̪ nˈaːm ɗˈo2ŋ ŋˈaj t̪ˈaː6j kwˈəɪ2."
+        },
+        {
+          "idx": 139,
+          "text": "Chi phí sửa chữa ước tính 99.000 VNĐ.",
+          "best_alt": "Chi phí sửa chữa ước tính chín mươi chín nghìn đồng.",
+          "sim": 0.8214,
+          "out": "tʃˈi fˈiɜ sˈyə4 tʃˈyə5 ˈyəɜc t̪ˈiɜɲ tʃˈiɜn mˈyəj tʃˈiɜn ŋˈi2n vˈiɛ6t̪ nˈaːm ɗˈo2ŋ."
+        },
+        {
+          "idx": 180,
+          "text": "Quãng đường còn lại khoảng 500 MB.",
+          "best_alt": "Quãng đường còn lại khoảng năm trăm em bai.",
+          "sim": 0.878,
+          "out": "kwˈaː5ŋ ɗˈyə2ŋ kˌɔ2n lˈaː6j xwˌaː4ŋ nˈam tʃˈam mˈɛɡəbˌaɪt."
+        },
+        {
+          "idx": 182,
+          "text": "Thiết bị hỗ trợ dung lượng 500 MB.",
+          "best_alt": "Thiết bị hỗ trợ dung lượng năm trăm em bai.",
+          "sim": 0.875,
+          "out": "tˈiɛɜt̪ bˌi6 hˈo5 tʃˈəː6 zˈuŋ lˈyə6ŋ nˈam tʃˈam mˈɛɡəbˌaɪt."
+        },
+        {
+          "idx": 183,
+          "text": "Băng tải chạy tối đa 500 MB.",
+          "best_alt": "Băng tải chạy tối đa năm trăm em bai.",
+          "sim": 0.8649,
+          "out": "bˈaŋ t̪ˈaː4j tʃˈa6j t̪ˈoɜj ɗˈaː nˈam tʃˈam mˈɛɡəbˌaɪt."
+        },
+        {
+          "idx": 184,
+          "text": "Quãng đường còn lại khoảng 12 GB.",
+          "best_alt": "Quãng đường còn lại khoảng mười hai gi bai.",
+          "sim": 0.8605,
+          "out": "kwˈaː5ŋ ɗˈyə2ŋ kˌɔ2n lˈaː6j xwˌaː4ŋ mˈyə2j hˈaːj ɡˈɪɡəbˌaɪt."
+        },
+        {
+          "idx": 186,
+          "text": "Thiết bị hỗ trợ dung lượng 12 GB.",
+          "best_alt": "Thiết bị hỗ trợ dung lượng mười hai gi bai.",
+          "sim": 0.8571,
+          "out": "tˈiɛɜt̪ bˌi6 hˈo5 tʃˈəː6 zˈuŋ lˈyə6ŋ mˈyə2j hˈaːj ɡˈɪɡəbˌaɪt."
+        },
+        {
+          "idx": 187,
+          "text": "Băng tải chạy tối đa 12 GB.",
+          "best_alt": "Băng tải chạy tối đa mười hai gi bai.",
+          "sim": 0.8462,
+          "out": "bˈaŋ t̪ˈaː4j tʃˈa6j t̪ˈoɜj ɗˈaː mˈyə2j hˈaːj ɡˈɪɡəbˌaɪt."
+        },
+        {
+          "idx": 247,
+          "text": "Tốc độ upload chỉ đạt 25 Mbps trong khi gói quảng cáo là 300 Mbps.",
+          "best_alt": "Tốc độ upload chỉ đạt hai mươi lăm megabit một giây trong khi gói quảng cáo là ba trăm megabit một giây.",
+          "sim": 0.8218,
+          "out": "t̪ˈoɜk ɗˈo6 ˈʌploʊd tʃˈi4 ɗˈaː6t̪ hˈaːj mˈyəj lˈam mˈɛɡəbˌɪts pɜː sˈɛkənd tʃˈɔŋ xˌi ɣˈɔɜj kwˈaː4ŋ kˈaːɜw lˌaː2 bˈaː tʃˈam mˈɛɡəbˌɪts pɜː sˈɛkənd."
+        },
+        {
+          "idx": 251,
+          "text": "Từ 13h00 - 14h00 cùng ngày sẽ là hoạt động đón khách mời.",
+          "best_alt": "Từ mười ba giờ đến mười bốn giờ cùng ngày sẽ là hoạt động đón khách mời.",
+          "sim": 0.8214,
+          "out": "t̪ˌy2 mˈyə2j bˈaː zˈəː2 xˌoŋ fˈuɜt̪, mˈyə2j bˈoɜn zˈəː2 xˌoŋ fˈuɜt̪ kˈu2ŋ ŋˈa2j sˌɛ5 lˌaː2 hwˈaː6t̪ ɗˈo6ŋ ɗˈɔɜn xˈe-ɜc mˈəː2j."
+        },
+        {
+          "idx": 262,
+          "text": "Chuyến bay VN-A356 khởi hành lúc 05h40 từ sân bay Tân Sơn Nhất.",
+          "best_alt": "Chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất.",
+          "sim": 0.7708,
+          "out": "tʃwˈiɛɜn bˈaj vˈiɛ6t̪ nˈaːm ˈaː bˈaː tʃˈam nˈam mˈyəj sˈaɜw xˈəː4j hˈe-2ɲ lˌuɜc nˈam zˈəː2 bˈoɜn mˈyəj fˈuɜt̪ t̪ˌy2 sˈən bˈaj t̪ˈən sˈəːn ɲˈəɜt̪."
+        },
+        {
+          "idx": 264,
+          "text": "Đường dây nóng tiếp nhận trong giờ hành chính từ 8h00 đến 17h30.",
+          "best_alt": "Đường dây nóng tiếp nhận trong giờ hành chính từ tám giờ đến mười bảy giờ ba mươi.",
+          "sim": 0.8556,
+          "out": "ɗˈyə2ŋ zˈəɪ nˈɔɜŋ t̪ˈiɛɜp ɲˈə6n tʃˈɔŋ zˈəː2 hˈe-2ɲ tʃˈiɜɲ t̪ˌy2 t̪ˈaːɜm zˈəː2 xˌoŋ fˈuɜt̪ ɗˌeɜn mˈyə2j bˈa4j zˈəː2 bˈaː mˈyəj fˈuɜt̪."
+        },
+        {
+          "idx": 266,
+          "text": "Tỷ giá hôm nay: 1 USD = 25.450đ.",
+          "best_alt": "Tỷ giá hôm nay: một USD bằng hai mươi lăm nghìn bốn trăm năm mươi đồng.",
+          "sim": 0.8923,
+          "out": "t̪ˈi4 zˈaːɜ hˈom nˈaj, mˈo6t̪ ˈu ˈɛɜt̪ ɗˈe bˈa2ŋ hˈaːj mˈyəj lˈam ŋˈi2n bˈoɜn tʃˈam nˈam mˈyəj ɗˈo2ŋ."
+        },
+        {
+          "idx": 283,
+          "text": "Hôm qua, thiết bị hỗ trợ dung lượng 12 GB.",
+          "best_alt": "Hôm qua, thiết bị hỗ trợ dung lượng mười hai gi bai.",
+          "sim": 0.8776,
+          "out": "hˈom kwˈaː, tˈiɛɜt̪ bˌi6 hˈo5 tʃˈəː6 zˈuŋ lˈyə6ŋ mˈyə2j hˈaːj ɡˈɪɡəbˌaɪt."
+        },
+        {
+          "idx": 294,
+          "text": "Theo đề án, đường dây nóng tiếp nhận trong giờ hành chính từ 8h00 đến 17h30.",
+          "best_alt": "Theo đề án, đường dây nóng tiếp nhận trong giờ hành chính từ tám giờ đến mười bảy giờ ba mươi.",
+          "sim": 0.87,
+          "out": "tˈɛw ɗˈe2 ˈaːɜn, ɗˈyə2ŋ zˈəɪ nˈɔɜŋ t̪ˈiɛɜp ɲˈə6n tʃˈɔŋ zˈəː2 hˈe-2ɲ tʃˈiɜɲ t̪ˌy2 t̪ˈaːɜm zˈəː2 xˌoŋ fˈuɜt̪ ɗˌeɜn mˈyə2j bˈa4j zˈəː2 bˈaː mˈyəj fˈuɜt̪."
+        },
+        {
+          "idx": 304,
+          "text": "Theo đề án, khách hàng đã thanh toán 99.000 VNĐ ngay tại quầy.",
+          "best_alt": "Theo đề án, khách hàng đã thanh toán chín mươi chín nghìn đồng ngay tại quầy.",
+          "sim": 0.8734,
+          "out": "tˈɛw ɗˈe2 ˈaːɜn, xˈe-ɜc hˈaː2ŋ ɗˌaː5 tˈe-ɲ t̪wˈaːɜn tʃˈiɜn mˈyəj tʃˈiɜn ŋˈi2n vˈiɛ6t̪ nˈaːm ɗˈo2ŋ ŋˈaj t̪ˈaː6j kwˈəɪ2."
+        },
+        {
+          "idx": 334,
+          "text": "Theo đề án, chương trình bế mạc vào lúc 11h00 ngày 05/10/2026.",
+          "best_alt": "Theo đề án, chương trình bế mạc vào lúc mười một giờ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.",
+          "sim": 0.8962,
+          "out": "tˈɛw ɗˈe2 ˈaːɜn, tʃˈyəŋ tʃˈi2ɲ bˈeɜ mˈaː6c vˈaː2w lˌuɜc mˈyə2j mˈo6t̪ zˈəː2 xˌoŋ fˈuɜt̪ ŋˈa2j nˈam tˈaːɜŋ mˈyə2j nˈam hˈaːj ŋˈi2n xˌoŋ tʃˈam hˈaːj mˈyəj sˈaɜw."
+        },
+        {
+          "idx": 343,
+          "text": "Theo đề án, hĐQT công bố kế hoạch kinh doanh quý 4.",
+          "best_alt": "Theo đề án, hờ đê quy tê công bố kế hoạch kinh doanh quý tư.",
+          "sim": 0.8,
+          "out": "tˈɛw ɗˈe2 ˈaːɜn, hˈaɜtđ kwˈitˈe kˈoŋ bˈoɜ kˈeɜ hwˈe-6c kˈiɲ zwˈe-ɲ kwˈiɜ bˈoɜn."
+        },
+        {
+          "idx": 364,
+          "text": "Anh cho biết: chuyến bay VN-A356 khởi hành lúc 05h40 từ sân bay Tân Sơn Nhất.",
+          "best_alt": "Anh cho biết: chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất.",
+          "sim": 0.7944,
+          "out": "ˈe-ɲ tʃˌɔ bˈiɛɜt̪, tʃwˈiɛɜn bˈaj vˈiɛ6t̪ nˈaːm ˈaː bˈaː tʃˈam nˈam mˈyəj sˈaɜw xˈəː4j hˈe-2ɲ lˌuɜc nˈam zˈəː2 bˈoɜn mˈyəj fˈuɜt̪ t̪ˌy2 sˈən bˈaj t̪ˈən sˈəːn ɲˈə"
+        }
+      ]
+    },
+    "donglao_g2p": {
+      "per_cat": {
+        "time": {
+          "n": 133,
+          "leak": 0,
+          "drop": 80,
+          "error": 0,
+          "empty": 0,
+          "match_n": 73,
+          "match_ge95": 2,
+          "match_mean": 0.7693
+        },
+        "date": {
+          "n": 104,
+          "leak": 0,
+          "drop": 9,
+          "error": 0,
+          "empty": 0,
+          "match_n": 44,
+          "match_ge95": 35,
+          "match_mean": 0.9541
+        },
+        "percent": {
+          "n": 119,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 79,
+          "match_ge95": 70,
+          "match_mean": 0.9902
+        },
+        "currency": {
+          "n": 122,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 82,
+          "match_ge95": 68,
+          "match_mean": 0.9652
+        },
+        "units": {
+          "n": 81,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 51,
+          "match_ge95": 40,
+          "match_mean": 0.9691
+        },
+        "phone": {
+          "n": 17,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 17,
+          "match_ge95": 8,
+          "match_mean": 0.8413
+        },
+        "email_url": {
+          "n": 26,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        },
+        "acronyms": {
+          "n": 157,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 37,
+          "match_ge95": 0,
+          "match_mean": 0.7915
+        },
+        "code_switch": {
+          "n": 139,
+          "leak": 0,
+          "drop": 6,
+          "error": 0,
+          "empty": 0,
+          "match_n": 21,
+          "match_ge95": 7,
+          "match_mean": 0.8773
+        },
+        "adversarial": {
+          "n": 44,
+          "leak": 0,
+          "drop": 8,
+          "error": 0,
+          "empty": 0,
+          "match_n": 22,
+          "match_ge95": 6,
+          "match_mean": 0.8749
+        },
+        "foreign_names": {
+          "n": 40,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        },
+        "numbers": {
+          "n": 80,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        },
+        "loanwords": {
+          "n": 26,
+          "leak": 0,
+          "drop": 0,
+          "error": 0,
+          "empty": 0,
+          "match_n": 0,
+          "match_ge95": 0
+        }
+      },
+      "total": {
+        "n": 1088,
+        "leak": 0,
+        "drop": 103,
+        "error": 0,
+        "empty": 0,
+        "match_n": 426,
+        "match_mean": 0.9066,
+        "match_ge95": 236
+      },
+      "match_worst": [
+        {
+          "idx": 0,
+          "text": "Cuộc họp bắt đầu lúc 13h00 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc mười ba giờ tại phòng họp số 3.",
+          "sim": 0.7593,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        },
+        {
+          "idx": 1,
+          "text": "Chương trình phát sóng lúc 13h00 trên kênh truyền hình quốc gia.",
+          "best_alt": "Chương trình phát sóng lúc mười ba giờ trên kênh truyền hình quốc gia.",
+          "sim": 0.803,
+          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
+        },
+        {
+          "idx": 2,
+          "text": "Tàu rời bến lúc 13h00, hành khách nên có mặt sớm ba mươi phút.",
+          "best_alt": "Tàu rời bến lúc mười ba giờ, hành khách nên có mặt sớm ba mươi phút.",
+          "sim": 0.8116,
+          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
+        },
+        {
+          "idx": 3,
+          "text": "Sự kiện khai mạc lúc 13h00 tại Nhà hát Lớn.",
+          "best_alt": "Sự kiện khai mạc lúc mười ba giờ tại Nhà hát Lớn.",
+          "sim": 0.7593,
+          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
+        },
+        {
+          "idx": 4,
+          "text": "Cuộc họp bắt đầu lúc 8h30 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc tám giờ ba mươi tại phòng họp số 3.",
+          "sim": 0.6949,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        },
+        {
+          "idx": 5,
+          "text": "Chương trình phát sóng lúc 8h30 trên kênh truyền hình quốc gia.",
+          "best_alt": "Chương trình phát sóng lúc tám giờ ba mươi trên kênh truyền hình quốc gia.",
+          "sim": 0.7465,
+          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
+        },
+        {
+          "idx": 6,
+          "text": "Tàu rời bến lúc 8h30, hành khách nên có mặt sớm ba mươi phút.",
+          "best_alt": "Tàu rời bến lúc tám giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.",
+          "sim": 0.7568,
+          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
+        },
+        {
+          "idx": 7,
+          "text": "Sự kiện khai mạc lúc 8h30 tại Nhà hát Lớn.",
+          "best_alt": "Sự kiện khai mạc lúc tám giờ ba mươi tại Nhà hát Lớn.",
+          "sim": 0.6949,
+          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
+        },
+        {
+          "idx": 12,
+          "text": "Cuộc họp bắt đầu lúc 14h45 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc mười bốn giờ bốn mươi lăm tại phòng họp số 3.",
+          "sim": 0.6119,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        },
+        {
+          "idx": 13,
+          "text": "Chương trình phát sóng lúc 14h45 trên kênh truyền hình quốc gia.",
+          "best_alt": "Chương trình phát sóng lúc mười bốn giờ bốn mươi lăm trên kênh truyền hình quốc gia.",
+          "sim": 0.6709,
+          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
+        },
+        {
+          "idx": 14,
+          "text": "Tàu rời bến lúc 14h45, hành khách nên có mặt sớm ba mươi phút.",
+          "best_alt": "Tàu rời bến lúc mười bốn giờ bốn mươi lăm, hành khách nên có mặt sớm ba mươi phút.",
+          "sim": 0.6829,
+          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
+        },
+        {
+          "idx": 15,
+          "text": "Sự kiện khai mạc lúc 14h45 tại Nhà hát Lớn.",
+          "best_alt": "Sự kiện khai mạc lúc mười bốn giờ bốn mươi lăm tại Nhà hát Lớn.",
+          "sim": 0.6119,
+          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
+        },
+        {
+          "idx": 16,
+          "text": "Cuộc họp bắt đầu lúc 21h05 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc hai mươi mốt giờ năm tại phòng họp số 3.",
+          "sim": 0.6667,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        },
+        {
+          "idx": 17,
+          "text": "Chương trình phát sóng lúc 21h05 trên kênh truyền hình quốc gia.",
+          "best_alt": "Chương trình phát sóng lúc hai mươi mốt giờ năm trên kênh truyền hình quốc gia.",
+          "sim": 0.72,
+          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
+        },
+        {
+          "idx": 18,
+          "text": "Tàu rời bến lúc 21h05, hành khách nên có mặt sớm ba mươi phút.",
+          "best_alt": "Tàu rời bến lúc hai mươi mốt giờ năm, hành khách nên có mặt sớm ba mươi phút.",
+          "sim": 0.7308,
+          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
+        },
+        {
+          "idx": 19,
+          "text": "Sự kiện khai mạc lúc 21h05 tại Nhà hát Lớn.",
+          "best_alt": "Sự kiện khai mạc lúc hai mươi mốt giờ năm tại Nhà hát Lớn.",
+          "sim": 0.6667,
+          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
+        },
+        {
+          "idx": 20,
+          "text": "Cuộc họp bắt đầu lúc 7h15 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc bảy giờ mười lăm tại phòng họp số 3.",
+          "sim": 0.7069,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        },
+        {
+          "idx": 21,
+          "text": "Chương trình phát sóng lúc 7h15 trên kênh truyền hình quốc gia.",
+          "best_alt": "Chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia.",
+          "sim": 0.7571,
+          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
+        },
+        {
+          "idx": 22,
+          "text": "Tàu rời bến lúc 7h15, hành khách nên có mặt sớm ba mươi phút.",
+          "best_alt": "Tàu rời bến lúc bảy giờ mười lăm, hành khách nên có mặt sớm ba mươi phút.",
+          "sim": 0.7671,
+          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
+        },
+        {
+          "idx": 23,
+          "text": "Sự kiện khai mạc lúc 7h15 tại Nhà hát Lớn.",
+          "best_alt": "Sự kiện khai mạc lúc bảy giờ mười lăm tại Nhà hát Lớn.",
+          "sim": 0.7069,
+          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
+        },
+        {
+          "idx": 24,
+          "text": "Cuộc họp bắt đầu lúc 16h30 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc mười sáu giờ ba mươi tại phòng họp số 3.",
+          "sim": 0.6508,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        },
+        {
+          "idx": 25,
+          "text": "Chương trình phát sóng lúc 16h30 trên kênh truyền hình quốc gia.",
+          "best_alt": "Chương trình phát sóng lúc mười sáu giờ ba mươi trên kênh truyền hình quốc gia.",
+          "sim": 0.7067,
+          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
+        },
+        {
+          "idx": 26,
+          "text": "Tàu rời bến lúc 16h30, hành khách nên có mặt sớm ba mươi phút.",
+          "best_alt": "Tàu rời bến lúc mười sáu giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.",
+          "sim": 0.7179,
+          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
+        },
+        {
+          "idx": 27,
+          "text": "Sự kiện khai mạc lúc 16h30 tại Nhà hát Lớn.",
+          "best_alt": "Sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn.",
+          "sim": 0.6508,
+          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
+        },
+        {
+          "idx": 28,
+          "text": "Cuộc họp bắt đầu lúc 23h50 tại phòng họp số 3.",
+          "best_alt": "Cuộc họp bắt đầu lúc hai mươi ba giờ năm mươi tại phòng họp số 3.",
+          "sim": 0.6176,
+          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
+        }
+      ]
+    },
+    "sea_g2p_raw": {
+      "per_cat": {
+        "time": {
+          "n": 133,
           "leak": 104,
           "drop": 0,
           "error": 0,
@@ -283,14 +923,14 @@
           "match_mean": 0.6179
         },
         "currency": {
-          "n": 86,
-          "leak": 86,
+          "n": 122,
+          "leak": 122,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 46,
+          "match_n": 82,
           "match_ge95": 0,
-          "match_mean": 0.7266
+          "match_mean": 0.6926
         },
         "units": {
           "n": 81,
@@ -380,13 +1020,13 @@
         }
       },
       "total": {
-        "n": 1052,
-        "leak": 762,
+        "n": 1088,
+        "leak": 798,
         "drop": 0,
         "error": 0,
         "empty": 0,
-        "match_n": 390,
-        "match_mean": 0.6622,
+        "match_n": 426,
+        "match_mean": 0.6611,
         "match_ge95": 0
       },
       "match_worst": [
@@ -564,323 +1204,6 @@
           "best_alt": "Cuộc họp bắt đầu lúc mười sáu giờ ba mươi tại phòng họp số 3.",
           "sim": 0.6667,
           "out": "kˈuə6c hˈɔ6p bˈaɜt̪ ɗˈə2w lˌuɜc 16 ˈeɪtʃ30 t̪ˈaː6j fˈɔ2ŋ hˈɔ6p sˈoɜ 3."
-        }
-      ]
-    },
-    "donglao_g2p": {
-      "per_cat": {
-        "time": {
-          "n": 133,
-          "leak": 0,
-          "drop": 80,
-          "error": 0,
-          "empty": 0,
-          "match_n": 73,
-          "match_ge95": 2,
-          "match_mean": 0.7693
-        },
-        "date": {
-          "n": 104,
-          "leak": 0,
-          "drop": 9,
-          "error": 0,
-          "empty": 0,
-          "match_n": 44,
-          "match_ge95": 35,
-          "match_mean": 0.9541
-        },
-        "percent": {
-          "n": 119,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 79,
-          "match_ge95": 70,
-          "match_mean": 0.9902
-        },
-        "currency": {
-          "n": 86,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 46,
-          "match_ge95": 41,
-          "match_mean": 0.9925
-        },
-        "units": {
-          "n": 81,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 51,
-          "match_ge95": 40,
-          "match_mean": 0.9691
-        },
-        "phone": {
-          "n": 17,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 17,
-          "match_ge95": 8,
-          "match_mean": 0.8413
-        },
-        "email_url": {
-          "n": 26,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 0,
-          "match_ge95": 0
-        },
-        "acronyms": {
-          "n": 157,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 37,
-          "match_ge95": 0,
-          "match_mean": 0.7915
-        },
-        "code_switch": {
-          "n": 139,
-          "leak": 0,
-          "drop": 6,
-          "error": 0,
-          "empty": 0,
-          "match_n": 21,
-          "match_ge95": 7,
-          "match_mean": 0.8773
-        },
-        "adversarial": {
-          "n": 44,
-          "leak": 0,
-          "drop": 8,
-          "error": 0,
-          "empty": 0,
-          "match_n": 22,
-          "match_ge95": 6,
-          "match_mean": 0.8749
-        },
-        "foreign_names": {
-          "n": 40,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 0,
-          "match_ge95": 0
-        },
-        "numbers": {
-          "n": 80,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 0,
-          "match_ge95": 0
-        },
-        "loanwords": {
-          "n": 26,
-          "leak": 0,
-          "drop": 0,
-          "error": 0,
-          "empty": 0,
-          "match_n": 0,
-          "match_ge95": 0
-        }
-      },
-      "total": {
-        "n": 1052,
-        "leak": 0,
-        "drop": 103,
-        "error": 0,
-        "empty": 0,
-        "match_n": 390,
-        "match_mean": 0.9044,
-        "match_ge95": 209
-      },
-      "match_worst": [
-        {
-          "idx": 0,
-          "text": "Cuộc họp bắt đầu lúc 13h00 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc mười ba giờ tại phòng họp số 3.",
-          "sim": 0.7593,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
-        },
-        {
-          "idx": 1,
-          "text": "Chương trình phát sóng lúc 13h00 trên kênh truyền hình quốc gia.",
-          "best_alt": "Chương trình phát sóng lúc mười ba giờ trên kênh truyền hình quốc gia.",
-          "sim": 0.803,
-          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
-        },
-        {
-          "idx": 2,
-          "text": "Tàu rời bến lúc 13h00, hành khách nên có mặt sớm ba mươi phút.",
-          "best_alt": "Tàu rời bến lúc mười ba giờ, hành khách nên có mặt sớm ba mươi phút.",
-          "sim": 0.8116,
-          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
-        },
-        {
-          "idx": 3,
-          "text": "Sự kiện khai mạc lúc 13h00 tại Nhà hát Lớn.",
-          "best_alt": "Sự kiện khai mạc lúc mười ba giờ tại Nhà hát Lớn.",
-          "sim": 0.7593,
-          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
-        },
-        {
-          "idx": 4,
-          "text": "Cuộc họp bắt đầu lúc 8h30 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc tám giờ ba mươi tại phòng họp số 3.",
-          "sim": 0.6949,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
-        },
-        {
-          "idx": 5,
-          "text": "Chương trình phát sóng lúc 8h30 trên kênh truyền hình quốc gia.",
-          "best_alt": "Chương trình phát sóng lúc tám giờ ba mươi trên kênh truyền hình quốc gia.",
-          "sim": 0.7465,
-          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
-        },
-        {
-          "idx": 6,
-          "text": "Tàu rời bến lúc 8h30, hành khách nên có mặt sớm ba mươi phút.",
-          "best_alt": "Tàu rời bến lúc tám giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.",
-          "sim": 0.7568,
-          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
-        },
-        {
-          "idx": 7,
-          "text": "Sự kiện khai mạc lúc 8h30 tại Nhà hát Lớn.",
-          "best_alt": "Sự kiện khai mạc lúc tám giờ ba mươi tại Nhà hát Lớn.",
-          "sim": 0.6949,
-          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
-        },
-        {
-          "idx": 12,
-          "text": "Cuộc họp bắt đầu lúc 14h45 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc mười bốn giờ bốn mươi lăm tại phòng họp số 3.",
-          "sim": 0.6119,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
-        },
-        {
-          "idx": 13,
-          "text": "Chương trình phát sóng lúc 14h45 trên kênh truyền hình quốc gia.",
-          "best_alt": "Chương trình phát sóng lúc mười bốn giờ bốn mươi lăm trên kênh truyền hình quốc gia.",
-          "sim": 0.6709,
-          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
-        },
-        {
-          "idx": 14,
-          "text": "Tàu rời bến lúc 14h45, hành khách nên có mặt sớm ba mươi phút.",
-          "best_alt": "Tàu rời bến lúc mười bốn giờ bốn mươi lăm, hành khách nên có mặt sớm ba mươi phút.",
-          "sim": 0.6829,
-          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
-        },
-        {
-          "idx": 15,
-          "text": "Sự kiện khai mạc lúc 14h45 tại Nhà hát Lớn.",
-          "best_alt": "Sự kiện khai mạc lúc mười bốn giờ bốn mươi lăm tại Nhà hát Lớn.",
-          "sim": 0.6119,
-          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
-        },
-        {
-          "idx": 16,
-          "text": "Cuộc họp bắt đầu lúc 21h05 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc hai mươi mốt giờ năm tại phòng họp số 3.",
-          "sim": 0.6667,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
-        },
-        {
-          "idx": 17,
-          "text": "Chương trình phát sóng lúc 21h05 trên kênh truyền hình quốc gia.",
-          "best_alt": "Chương trình phát sóng lúc hai mươi mốt giờ năm trên kênh truyền hình quốc gia.",
-          "sim": 0.72,
-          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
-        },
-        {
-          "idx": 18,
-          "text": "Tàu rời bến lúc 21h05, hành khách nên có mặt sớm ba mươi phút.",
-          "best_alt": "Tàu rời bến lúc hai mươi mốt giờ năm, hành khách nên có mặt sớm ba mươi phút.",
-          "sim": 0.7308,
-          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
-        },
-        {
-          "idx": 19,
-          "text": "Sự kiện khai mạc lúc 21h05 tại Nhà hát Lớn.",
-          "best_alt": "Sự kiện khai mạc lúc hai mươi mốt giờ năm tại Nhà hát Lớn.",
-          "sim": 0.6667,
-          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
-        },
-        {
-          "idx": 20,
-          "text": "Cuộc họp bắt đầu lúc 7h15 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc bảy giờ mười lăm tại phòng họp số 3.",
-          "sim": 0.7069,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
-        },
-        {
-          "idx": 21,
-          "text": "Chương trình phát sóng lúc 7h15 trên kênh truyền hình quốc gia.",
-          "best_alt": "Chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia.",
-          "sim": 0.7571,
-          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
-        },
-        {
-          "idx": 22,
-          "text": "Tàu rời bến lúc 7h15, hành khách nên có mặt sớm ba mươi phút.",
-          "best_alt": "Tàu rời bến lúc bảy giờ mười lăm, hành khách nên có mặt sớm ba mươi phút.",
-          "sim": 0.7671,
-          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
-        },
-        {
-          "idx": 23,
-          "text": "Sự kiện khai mạc lúc 7h15 tại Nhà hát Lớn.",
-          "best_alt": "Sự kiện khai mạc lúc bảy giờ mười lăm tại Nhà hát Lớn.",
-          "sim": 0.7069,
-          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
-        },
-        {
-          "idx": 24,
-          "text": "Cuộc họp bắt đầu lúc 16h30 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc mười sáu giờ ba mươi tại phòng họp số 3.",
-          "sim": 0.6508,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
-        },
-        {
-          "idx": 25,
-          "text": "Chương trình phát sóng lúc 16h30 trên kênh truyền hình quốc gia.",
-          "best_alt": "Chương trình phát sóng lúc mười sáu giờ ba mươi trên kênh truyền hình quốc gia.",
-          "sim": 0.7067,
-          "out": "tʃɯəŋ1 tʂiɲ2 faːt5 sɔŋ5 luk5 h tʂen1 keɲ1 tʂwiən2 hiɲ2 kwok5 zaː1."
-        },
-        {
-          "idx": 26,
-          "text": "Tàu rời bến lúc 16h30, hành khách nên có mặt sớm ba mươi phút.",
-          "best_alt": "Tàu rời bến lúc mười sáu giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.",
-          "sim": 0.7179,
-          "out": "taw2 zəːj2 ɓen5 luk5 h, haːɲ2 xaːk5 nen1 kɔ5 măt6 səːm5 ɓaː1 mɯəj1 fut5."
-        },
-        {
-          "idx": 27,
-          "text": "Sự kiện khai mạc lúc 16h30 tại Nhà hát Lớn.",
-          "best_alt": "Sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn.",
-          "sim": 0.6508,
-          "out": "sɯ6 kiən6 xaːj1 maːk6 luk5 h taːj6 ɲaː2 haːt5 ləːn5."
-        },
-        {
-          "idx": 28,
-          "text": "Cuộc họp bắt đầu lúc 23h50 tại phòng họp số 3.",
-          "best_alt": "Cuộc họp bắt đầu lúc hai mươi ba giờ năm mươi tại phòng họp số 3.",
-          "sim": 0.6176,
-          "out": "kuək6 hɔp6 ɓăt5 ɗəw2 luk5 h taːj6 fɔŋ2 hɔp6 so5 ɓaː1."
         }
       ]
     }

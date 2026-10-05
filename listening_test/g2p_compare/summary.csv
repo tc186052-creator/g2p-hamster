@@ -1,9 +1,12 @@
 tool,kind,status,error,sents_per_s,p50_ms,p95_ms,ok_pct,error_pct,digit_left_pct,cpu
-g2p (repo này),phoneme,ok,,142.6,5.5,14.8,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
-donglao_g2p,phoneme,ok,,30691.7,0.0,0.1,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
-sea_g2p,phoneme,ok,,16357.2,0.0,0.2,100.0,0.0,29.7,12th Gen Intel(R) Core(TM) i9-12900K
-vietnormalizer,text,ok,,515.3,0.1,7.6,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
-vig2p,phoneme,ok,,2811.8,0.0,1.7,55.0,45.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
-vPhon,phoneme,ok,,42770.1,0.0,0.0,100.0,0.0,28.3,12th Gen Intel(R) Core(TM) i9-12900K
-espeak_ng,phoneme,ok,,81.0,11.6,18.7,99.3,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
-viphoneme,phoneme,ok,,26.3,23.6,86.7,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+g2p (repo này),phoneme,ok,,140.6,5.5,15.5,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+donglao_g2p,phoneme,ok,,30998.0,0.0,0.1,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+sea_g2p,phoneme,ok,,2781.6,0.3,0.6,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+vietnormalizer,text,ok," | KHÔNG chạy được trên máy ở lần đo lại 2026-10-05 — số lần đo cũ, gộp lại để so sánh",515.3,0.1,7.6,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+vig2p,phoneme,ok," | KHÔNG chạy được trên máy ở lần đo lại 2026-10-05 — số lần đo cũ, gộp lại để so sánh",2811.8,0.0,1.7,55.0,45.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+vPhon,phoneme,ok,,43950.6,0.0,0.0,100.0,0.0,28.3,12th Gen Intel(R) Core(TM) i9-12900K
+espeak_ng,phoneme,ok,,69.1,13.8,25.1,99.3,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+viphoneme,phoneme,ok," | KHÔNG chạy được trên máy ở lần đo lại 2026-10-05 — số lần đo cũ, gộp lại để so sánh",26.3,23.6,86.7,100.0,0.0,0.0,12th Gen Intel(R) Core(TM) i9-12900K
+vietnormalizer,,install-fail,ModuleNotFoundError: No module named 'vietnormalizer',,,,,,,12th Gen Intel(R) Core(TM) i9-12900K
+vig2p,,install-fail,ModuleNotFoundError: No module named 'vig2p',,,,,,,12th Gen Intel(R) Core(TM) i9-12900K
+viphoneme,,install-fail,RuntimeError: cần python3.10/3.11 với viphoneme đã cài (hoặc đặt VIPHONEME_PYTHON=…),,,,,,,12th Gen Intel(R) Core(TM) i9-12900K

@@ -1,3 +1,8 @@
+# Python build artifacts (đã từng bị commit — bỏ khỏi git ở 0.2.2)
+build/
+dist/
+*.egg-info/
 __pycache__/
-*.pyc
-so_sanh_ket_qua/
+*.py[cod]
+.venv/
+venv/

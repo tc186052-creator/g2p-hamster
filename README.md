@@ -130,48 +130,65 @@ luồng (i9-12900K). Script + nguyên văn output từng hệ, từng câu:
 [`listening_test/g2p_compare/`](listening_test/g2p_compare) — tự chạy lại
 được bằng `run_g2p_comparison.py`.
 
+> **Đính chính 0.2.2:** ở bản 0.2.0–0.2.1 chúng tôi đo sea_g2p bằng
+> `G2P(lang="vi").convert()` **trần** (chỉ phiên âm, tắt bộ chuẩn hoá của
+> nó) — **sai cấu hình**, phát hiện bởi đánh giá độc lập 2026-10. Bảng
+> dưới đo lại bằng đúng cách sea_g2p tài liệu hoá:
+> `SEAPipeline(lang="vi").run()` (normalizer 17 bước + G2P). Kết luận
+> thay đổi: sea_g2p chuẩn hoá số/ngày **tốt**, không còn "rò rỉ" —
+> khoảng cách với repo này co lại còn ~1,4 điểm khớp-đọc-gold (bảng
+> frozen bên dưới). Số cũ của vietnormalizer/vig2p/viphoneme giữ nguyên
+> vì 3 công cụ này không cài được trên máy đo lại 2026-10 (ghi rõ trong
+> [`summary.csv`](listening_test/g2p_compare/summary.csv)).
+
 | Hệ | Loại ra | Chạy OK | Câu/s | Số còn "rò rỉ" | Ghi chú |
 |---|---|---|---|---|---|
-| donglao_g2p | phôn vị | 100% | **30692** | 0% | wheel native (Rust) — nhanh nhất |
-| sea_g2p | phôn vị | 100% | 16357 | **29,7%** | số/ngày giữ nguyên: "09/11" → "09 11" |
-| vietnormalizer | văn bản chuẩn hóa | 100% | 515 | 0% | ra chữ đã chuẩn hóa, **chưa phải phôn vị** |
-| vig2p | phôn vị | **55%** | 2812 | 0% | lỗi 45% câu (24% vi · 68% anh · 43% mix) |
-| vPhon | phôn vị | 100% | 42770 | **28,3%** | chuyển từng từ, không verbalize: `100` → `[100]` |
-| espeak_ng | phôn vị | 99,3% | 81 | 0% | câu vi nhiều số → IPA sai bét |
-| viphoneme | phôn vị | 100% | 26 | 0% | đầy đủ nhưng chậm nhất + chỉ chạy Python <3.12 |
-| **g2p (repo này)** | phôn vị | **100%** | 143 | **0%** | 100% coverage, 0 nội dung rơi, provenance từng từ |
+| donglao_g2p | phôn vị | 100% | **30998** | 0% | wheel native (Rust) — nhanh nhất, nhưng rơi số ở mẫu giờ (bên dưới) |
+| sea_g2p | phôn vị | 100% | 2782 | **0%** | đo bằng `SEAPipeline.run()` (0.2.0–0.2.1 đo trần → sai) |
+| vietnormalizer | văn bản chuẩn hóa | 100% | 515 | 0% | ra chữ đã chuẩn hóa, **chưa phải phôn vị** — số lần đo cũ |
+| vig2p | phôn vị | **55%** | 2812 | 0% | lỗi 45% câu — số lần đo cũ |
+| vPhon | phôn vị | 100% | 43951 | **28,3%** | chuyển từng từ, không verbalize: `100` → `[100]` |
+| espeak_ng | phôn vị | 99,3% | 69 | 0% | câu vi nhiều số → IPA sai bét |
+| viphoneme | phôn vị | 100% | 26 | 0% | đầy đủ nhưng chậm nhất + chỉ chạy Python <3.12 — số lần đo cũ |
+| **g2p (repo này)** | phôn vị | **100%** | 141 | **0%** | 100% coverage, 0 nội dung rơi, provenance từng từ |
 
 "Số rò rỉ" = câu có chữ số **đứng độc lập** còn sót trong chuỗi ra
-("100", "09/11/2007") — acoustic model không đọc được; chữ số làm thanh
-điệu gắn vào âm tiết (`toj1`, `mot6`) là ký hiệu phiên âm của từng hệ,
-không tính. Một câu đối chiếu thẳng (nguyên văn trong CSV, `mix_easy`
-#48 — "Đại hội bế mạc vào lúc 11h00 ngày 09/11/2007 tại Tp."):
+(regex `\b\d+\b` — "100", "09/11/2007" chưa verbalize → acoustic model
+không đọc được; chữ số làm thanh điệu gắn vào âm tiết (`toj1`, `mot6`)
+là ký hiệu phiên âm của từng hệ, không tính). Chỉ đếm dòng `status=ok`
+— dòng lỗi/rỗng không được tính vào tử số lẫn mẫu số. Một câu đối chiếu
+thẳng (nguyên văn trong CSV, `mix_easy` #48 — "Đại hội bế mạc vào lúc
+11h00 ngày 09/11/2007 tại Tp."):
 
 | Hệ | Xử lý câu này thế nào |
 |---|---|
 | **repo này** | "mười một giờ, ngày chín tháng mười một, năm hai nghìn không trăm lẻ bảy, thành phố" — trọn vẹn |
+| sea_g2p (SEAPipeline) | đọc trọn ngày/giờ/năm — "mười một giờ không, ngày chín tháng mười một, năm hai nghìn không trăm lẻ bảy…" |
 | donglao_g2p | "lúc **h** ngày chín tháng mười một…" — **mất "11" giờ**, sót "tp." |
-| viphoneme | đọc trọn vẹn — nhưng 27 câu/s và không chạy trên Python 3.12 |
-| sea_g2p | "11 ˈeɪtʃ00 … 09 11 2 007 …" — giữ nguyên số, ngày vỡ |
+| vPhon | `[11h00] [09/11/2007]` — số giữ nguyên, không verbalize |
 | espeak_ng | "the stroke letter-one-i-aitch…" — câu vi thành rác IPA |
 
-Nói thẳng: về **tốc độ thuần**, donglao_g2p nhanh hơn repo này ~200 lần
-(mã native, không có strict/coverage/provenance) — repo này 143 câu/s
-vẫn dư real-time (dưới 1% một nhân CPU) và là hệ **duy nhất đồng thời
-đạt 100% coverage + 0 số rò rỉ + provenance từng từ + chế độ strict cho
-dữ liệu train**. viphoneme chất lượng gần nhất nhưng chậm ~5 lần và vỡ
-trên Python 3.12. Không đồng ý bảng trên? Mở
+Nói thẳng: về **tốc độ thuần**, donglao_g2p nhanh hơn repo này ~220 lần
+(mã native, không có strict/coverage/provenance) — repo này 141 câu/s
+vẫn dư real-time (dưới 1% một nhân CPU). Về **chất lượng**, sea_g2p
+đo đúng cấu hình là đối thủ xứng tầm: 0% rò rỉ, đọc trọn ngày/giờ —
+điểm còn phân hóa là **rơi âm thầm** (donglao mất số ở ~44% câu có
+mẫu giờ `13h00`, bảng 100k bên dưới) và **khớp-đọc-gold** (bảng frozen
+bên dưới: 0,985 / 0,972 / 0,907). repo này là hệ **duy nhất đồng thời
+đạt 100% coverage + 0 số rò rỉ + 0 rơi + provenance từng từ + chế độ
+strict cho dữ liệu train**. Không đồng ý bảng trên? Mở
 [`outputs_all_tools.csv`](listening_test/g2p_compare/outputs_all_tools.csv)
 ra tự chấm — output gốc từng hệ, từng câu đều nằm đó.
 
 Tốc độ riêng từng đường của repo (đo trên 400 câu listening_test, script
-[`benchmark_speed.py`](benchmark_speed.py)):
+[`benchmark_speed.py`](benchmark_speed.py) — **đo lại 0.2.2** vì bản cũ
+tính thông lượng bị ×3 do vòng repeat reset mẫu thời gian):
 
 | Đường | Câu/s | p50 | p95 |
 |---|---|---|---|
-| v2 (mặc định, cứu từng từ) | 330 | 6,4 ms | 27 ms |
-| v1 (fail-closed) | 572 | 4,9 ms | 10 ms |
-| espeak-ng (tham khảo) | 168 | 16,9 ms | 30 ms |
+| v2 (mặc định, cứu từng từ) | 113 | 6,2 ms | 26 ms |
+| v1 (fail-closed) | 194 | 4,8 ms | 10 ms |
+| espeak-ng (tham khảo) | 56 | 16,9 ms | 29 ms |
 
 ## Bài test HELD-OUT: 74.760 câu CHƯA TỪNG THẤY, chạy trên gói PyPI đã phát hành
 
@@ -190,30 +207,45 @@ tuyển trước".
 | Số câu | 99.999 | 87.530 → **lọc còn 74.760 câu mới tuyệt đối** (loại 12.770 câu trùng bộ phát triển) |
 | Phân bố | 52.000 vi · 33.000 anh · 15.000 mix (15%) | 24.112 vi · 33.650 anh · **16.998 mix (22,7%)** — nhiều mix hơn hẳn |
 
-**Gói được đo**: `pip install g2p-hamster==0.2.1` (wheel PyPI, import từ
+**Gói được đo**: `pip install g2p-hamster==0.2.2` (wheel PyPI, import từ
 site-packages). Tái lập:
 
 ```bash
-pip install g2p-hamster==0.2.1 sea_g2p donglao_g2p
+pip install g2p-hamster==0.2.2 sea_g2p donglao-g2p
 BENCH_SOURCE=pypi python3 listening_test/g2p_compare_100k/bench_100k.py "dataset_100k (1).tsv"
+python3 listening_test/g2p_compare_100k/patterns_100k.py   # chéo mẫu từ output đã sinh
 ```
 
-Kết quả (cùng phép đo: số rò rỉ / số bị rơi / lỗi — không đo tốc độ):
+> **Đính chính 0.2.2**: sea_g2p trong bảng 0.2.1 dưới đây bị đo sai cấu
+> hình (G2P.convert() trần, tắt normalizer của nó). Đo lại bằng
+> `SEAPipeline(lang="vi").run()`: sea_g2p rò rỉ **0%** — bảng đúng là:
+
+Kết quả (cùng phép đo: số rò rỉ / số bị rơi / lỗi — không đo tốc độ;
+"chữ số độc lập" = regex `\b\d+\b`, chỉ đếm dòng `status=ok`):
 
 | Hệ | Rò rỉ số | vi | anh | mix | Lỗi/rỗng | Rơi số ở mẫu giờ `13h00` |
 |---|---|---|---|---|---|---|
-| **g2p-hamster v0.2.1 (wheel PyPI)** | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | **0 / 236** |
-| donglao_g2p | 0 / 74.760 | 0,00% | 0,00% | 0,00% | 0 | **92 / 236 (39,0%)** |
-| sea_g2p | **28.629 / 74.760 (38,29%)** | 37,16% | 36,52% | **43,41%** | 0 | — (rò sẵn) |
+| **g2p-hamster v0.2.2 (wheel PyPI)** | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | **0 / 239** |
+| donglao_g2p | 0 / 74.760 | 0,00% | 0,00% | 0,00% | 0 | **92 / 239 (38,5%)** |
+| sea_g2p (SEAPipeline — đo đúng từ 0.2.2) | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | 0 / 239 |
 
-Phân mẫu trên held-out (2.664 câu có `a/b`, 1.603 câu có `33%`,
-14.337 câu có viết tắt ALL-CAPS): sea_g2p rò rỉ **100% cả hai mẫu**
-(2.664/2.664 và 1.603/1.603); ours và donglao 0 rò rỉ; viết tắt cả ba
-hệ đều không để sót chữ HOA. Nguyên văn 74.760 output từng hệ nằm trong
+Ba hệ đều đạt **0% rò rỉ** trên held-out khi sea_g2p được cấu hình đúng
+— bài test này không còn phân hóa ba hệ bằng chỉ số rò rỉ. Phân mẫu
+(2.656 câu có `a/b`, 1.603 câu có `33%`, 14.337 câu có ALL-CAPS,
+[`summary_heldout_patterns.json`](listening_test/g2p_compare_100k/summary_heldout_patterns.json)):
+cả ba hệ đều 0 lỗi ở ba mẫu đó; chỉ số còn phân hóa là **rơi âm thầm ở
+mẫu giờ**: donglao_g2p mất mốc giờ ở 92/239 câu (38,5%) — chữ số biến
+mất khỏi đầu ra, nguy hiểm hơn rò rỉ vì không phát hiện được. Nguyên
+văn 74.760 output từng hệ nằm trong
 [`outputs_*.csv.gz`](listening_test/g2p_compare_100k/).
 
-Kết luận không đổi trên dữ liệu chưa từng thấy — và mixed chiếm 22,7%
-thì sea_g2p vẫn rò 43,41%.
+**Bảng 0.2.1 cũ — GIỮ LẠI để minh bạch (sai vì sea bị tắt normalizer):**
+
+| Hệ (đo 0.2.1, sea sai cấu hình) | Rò rỉ số |
+|---|---|
+| g2p-hamster v0.2.1 (wheel PyPI) | 0 / 74.760 |
+| donglao_g2p | 0 / 74.760 |
+| sea_g2p (G2P.convert() trần) | 28.629 / 74.760 (38,29%) |
 
 ## Bài test 100k (bộ phát triển, làm trước khi có held-out)
 
@@ -232,23 +264,36 @@ summary, tự chạy lại được bằng `bench_100k.py`.
 
 Hai chỉ số khách quan, không cần người chấm:
 
-- **Số rò rỉ** — câu còn chữ số đứng độc lập trong chuỗi ra (`13`,
-  `00`, `2026` chưa verbalize → acoustic model không đọc được).
+- **Số rò rỉ** — câu còn chữ số đứng độc lập trong chuỗi ra (regex
+  `\b\d+\b`; `13`, `00`, `2026` chưa verbalize → acoustic model không
+  đọc được). Chỉ đếm dòng `status=ok`.
 - **Số bị rơi** — chữ số **biến mất khỏi đầu ra** (đọc thiếu nội dung
   một cách âm thầm — nguy hiểm hơn rò rỉ vì khó phát hiện).
 
+> **Đính chính 0.2.2**: sea_g2p ở 0.2.0–0.2.1 bị đo sai cấu hình
+> (`G2P.convert()` trần, tắt normalizer của nó). Bảng dưới đo lại bằng
+> `SEAPipeline(lang="vi").run()` — số "30.665 câu rò rỉ" cũ của sea là
+> SAI, số đúng gần như 0.
+
 | Hệ | Rò rỉ số (toàn corpus) | vi | anh | mix | Lỗi / rỗng | Rơi số ở mẫu giờ `13h00` |
 |---|---|---|---|---|---|---|
-| **g2p-hamster (repo này)** | **0 / 99.999 (0,00%)** | 0,00% | 0,00% | 0,00% | 1 rỗng¹ | **0 / 252** |
-| donglao_g2p | 0 / 99.999 (0,00%) | 0,00% | 0,00% | 0,00% | 0 | **114 / 252 (45,2%)** |
-| sea_g2p | **30.665 / 99.999 (30,67%)** | 27,08% | 27,35% | **50,38%** | 0 | — (rò rỉ sẵn) |
+| **g2p-hamster (repo này)** | **0 / 99.999 (0,00%)** | 0,00% | 0,00% | 0,00% | 1 rỗng¹ | **0 / 259** |
+| donglao_g2p | 0 / 99.999 (0,00%) | 0,00% | 0,00% | 0,00% | 0 | **114 / 259 (44,0%)** |
+| sea_g2p (SEAPipeline — đo đúng từ 0.2.2) | **1 / 99.999 (0,00%)** | 0,00% | 0,00% | 0,01% | 0 | 0 / 259 |
 
 ¹ Câu 88974 là tiếng Ba Tư (dữ liệu Wikipedia), repo này trả về rỗng —
 công khai nguyên văn trong CSV, không giấu.
 
+Câu duy nhất sea_g2p rò rỉ là tên tàu biển `LA-99095-TS` — nó đọc
+"99 095" giữ nguyên mã (nguyên văn trong
+[`vi_du_le_sea_g2p.txt`](listening_test/g2p_compare_100k/vi_du_le_sea_g2p.txt)).
+Nói công bằng: sea_g2p dùng đúng pipeline là đối thủ mạnh — bài 100k
+không còn phân hóa bằng rò rỉ; điểm còn lại của nó hụt là ở benchmark
+frozen (khớp-đọc-gold, bảng bên dưới).
+
 Đọc bảng: donglao_g2p **đáng khen** — nó verbalize được phần lớn số
 (ngày/tháng/năm/phần trăm), 0% rò rỉ. Nhưng nó có kiểu lỗi khác tệ hơn:
-**rơi mất con số**. Ví dụ nguyên văn (cùng một câu trong CSV):
+**rơi mất con số** ở mẫu giờ. Ví dụ nguyên văn (cùng một câu trong CSV):
 
 | Câu | Hệ | Đầu ra |
 |---|---|---|
@@ -256,34 +301,27 @@ công khai nguyên văn trong CSV, không giấu.
 | | donglao_g2p | "tɯ2 **h, h** kuŋ2 ŋaj2…" — **cả hai mốc giờ biến mất** |
 | "anh dành 1,5 tiếng tập thể dục" | **repo này** | "một **phẩy** năm" (đúng) |
 | | donglao_g2p | "một **phần** năm" (sai nghĩa — 1/5 thay vì 1,5) |
-| "…năm 2025, chiếm 33% tổng giá trị…" | **repo này** | "hai nghìn không trăm hai mươi lăm, ba mươi ba phần trăm" |
-| | sea_g2p | "…nˈam **2 025**, tʃˈiɛɜm **33** t̪ˈo4ŋ…" — **số nguyên vẹn chưa verbalize, nuốt luôn dấu %** |
 
-Chia nhỏ theo từng mẫu normalization (cùng 100k câu, đếm từ chính
-`outputs_*.csv.gz` — script + số liệu trong
-[`summary_code_switch.json`](listening_test/g2p_compare_100k/summary_code_switch.json)):
+Chia nhỏ theo từng mẫu normalization (đếm từ chính `outputs_*.csv.gz` —
+script + số liệu trong
+[`summary_code_switch.json`](listening_test/g2p_compare_100k/summary_code_switch.json),
+sinh lại bằng `patterns_100k.py`):
 
-| Mẫu normalization | g2p-hamster | donglao_g2p | sea_g2p |
+| Mẫu normalization | g2p-hamster | donglao_g2p | sea_g2p (SEAPipeline) |
 |---|---|---|---|
-| Câu có `33%` — 2.263 câu | **0% rò rỉ** | 0% rò rỉ | **100% rò rỉ (2.263/2.263)** |
-| Câu có `09/11` — 3.033 câu | **0% rò rỉ** | 0% rò rỉ | **100% rò rỉ (3.033/3.033)** |
-| Câu có `13h00` — 252 câu | **0 rơi** | **114 rơi (45,2%)** — số biến mất âm thầm | rò rỉ (số giữ nguyên) |
-| Viết tắt ALL-CAPS — 18.584 câu | không sót chữ HOA | không sót | không sót (nhưng % bị nuốt, số còn nguyên) |
+| Câu có `33%` — 2.263 câu | **0% lỗi** | 0% lỗi | **0% lỗi** |
+| Câu có `09/11` — 3.026 câu | **0% lỗi** | 0% lỗi | **1/3.026** (tên tàu LA-99095-TS) |
+| Câu có `13h00` — 259 câu | **0 rơi** | **114 rơi (44,0%)** — số biến mất âm thầm | 0 rơi |
+| Viết tắt ALL-CAPS — 18.584 câu | không sót chữ HOA | không sót | không sót |
 
-Lớp "viết tắt ALL-CAPS" cả ba hệ đều qua (đều phiên âm/bóc được viết
-tắt, không để lại chữ HOA nguyên trong đầu ra) — ghi để minh bạch, dù
-nó không phân hóa. Chỉ số phân hóa là **số**: sea_g2p thất bại 100% ở
-hai mẫu khó nhất của normalization (`%`, `ngày/tháng`), donglao_g2p
-verbalize được nhưng rơi âm thầm gần một nửa mẫu giờ.
-
-Và đúng điểm "code-switch" mà sea_g2p hụt: câu **mix** của nó rò
-rỉ tới **50,38%** — cứ câu có từ anh lẫn vi là cứ mỗi hai câu nó để
-nguyên một câu số chưa đọc. Toàn bộ 100.000 dòng output từng hệ nằm
-trong `outputs_sea_g2p.csv.gz` /
+Ba hệ hiện đều qua các mẫu normalization phổ biến; chỉ số phân hóa là
+**rơi âm thầm ở mẫu giờ** (donglao) và chất lượng phiên âm chi tiết
+(frozen benchmark). Toàn bộ 100.000 dòng output từng hệ nằm trong
+`outputs_sea_g2p.csv.gz` /
 `outputs_donglao_g2p.csv.gz` /
 `outputs_ours_v2.csv.gz` — mở ra tự chấm, kể cả câu repo này rỗng.
 
-## Benchmark frozen công khai — 1.052 câu, gold viết trước, chấm bằng máy
+## Benchmark frozen công khai — v2, 1.088 câu, gold viết trước, chấm bằng máy
 
 Sau bài 100k ở trên, có góp ý đề xuất cách đo tử tế hơn: **bộ test
 frozen commit sẵn** (kiểu
@@ -292,16 +330,24 @@ gold viết a-priori, **một câu có thể có nhiều cách đọc hợp lệ
 bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 - [`benchmark_frozen/test_set.tsv`](benchmark_frozen/test_set.tsv) —
-  **1.052 câu** (416 synthetic sinh từ template + 636 real từ
-  `dataset_100k`), 12 category: time, date, percent, currency, units,
-  phone, email/URL, acronyms, **code-switch Level 1→6** (Easy →
-  Interleaved → Dense → Ambiguous → Technical → adversarial — các câu
-  "OpenAI GPT-5.6 API v1.2…" lấy nguyên từ đề xuất), numbers,
-  foreign_names, loanwords.
-- [`benchmark_frozen/gold.jsonl`](benchmark_frozen/gold.jsonl) — 390 câu
+  **1.088 câu** (452 synthetic sinh từ template + 636 real từ
+  `dataset_100k`), 12 category: time, date, percent, currency (gồm
+  **big_money** v2), units, phone, email/URL, acronyms, **code-switch
+  Level 1→6** (Easy → Interleaved → Dense → Ambiguous → Technical →
+  adversarial — các câu "OpenAI GPT-5.6 API v1.2…" lấy nguyên từ đề
+  xuất), numbers, foreign_names, loanwords.
+- [`benchmark_frozen/gold.jsonl`](benchmark_frozen/gold.jsonl) — 426 câu
   synthetic có gold là **câu đầy đủ đã verbalize, viết theo template
   trước khi chạy chấm**, mỗi câu cho phép nhiều cách đọc ("một nghìn
   **hoặc** một ngàn" đều đúng).
+- [`benchmark_frozen/frozen_meta.json`](benchmark_frozen/frozen_meta.json)
+  — version + lý do mỗi lần sửa test set. **v2** (2026-10-05) thêm
+  36 câu `currency/big_money` (tiền ≥ 7 chữ số: "1.000.000đ",
+  "1 000 000 đồng", "1.000.000.000 đồng"…) — lớp dữ liệu bị thiếu ở v1;
+  lỗi đọc "1.000.000đ" thành "một chấm không chấm không đồng" của wheel
+  0.2.1 do **đánh giá độc lập** phát hiện, đáng lẽ máy phải bắt được
+  bằng lớp này. Mọi câu/gold khác của v1 giữ nguyên từng ký tự (416
+  synthetic + 636 real, thứ tự không đổi).
 - Cách chấm (vì cả 3 hệ đều xuất **phôn vị**, không thể so string với
   gold text): chạy hệ trên câu gốc **và** trên từng câu gold, so edit
   distance trong **chính không gian phôn vị của hệ đó** — không map IPA
@@ -310,50 +356,55 @@ bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 | Hệ | Leakage (còn số) | Drop giờ (`13h00` → mất số) | Khớp đọc gold (mean / số câu ≥0.95) |
 |---|---|---|---|
-| **g2p-hamster (repo này, v0.2.1)** | **0 / 1.052** | **0** | **0,984** · 343/390 |
-| donglao_g2p | 0 / 1.052 | **103** | 0,904 · 209/390 |
-| sea_g2p | **762 / 1.052 (72%)** | — (leak sẵn) | 0,662 · **0/390** |
+| **g2p-hamster (repo này, v0.2.2)** | **0 / 1.088** | **0** | **0,985** · 375/426 |
+| sea_g2p — `SEAPipeline` (đo đúng từ 0.2.2) | 0 / 1.088 | 0 | 0,972 · 302/426 |
+| donglao_g2p | 0 / 1.088 | **103** | 0,907 · 236/426 |
+| sea_g2p — `G2P.convert()` trần (cấu hình sai của 0.2.0–0.2.1, giữ lại để đối chiếu) | **798 / 1.088 (73%)** | — | 0,661 · **0/426** |
 
-Theo từng category (khớp đọc gold — ours / donglao / sea; leakage ours
-= **0 ở mọi category**, sea rò ở mọi category có số: time 104/133,
-percent 119/119, date 104/104, acronyms 48/157, code-switch 63/139):
+**Kết luận sau khi đo lại sea_g2p đúng cấu hình:** g2p-hamster vẫn
+nhỉnh nhất (0,985 vs 0,972) nhưng **không "bỏ xa"** — chênh lệch thật
+~1,3 điểm khớp-đọc, sea_g2p đạt 0 rò rỉ / 0 rơi. Các tuyên bố "sea rò
+72%", "0/390 câu khớp" của bản 0.2.1 là **sai vì đo sai cấu hình** —
+chúng tôi giữ dòng `sea_g2p_raw` trong
+[`summary_frozen.json`](benchmark_frozen/summary_frozen.json) để ai cũng
+đối chiếu được cả hai cấu hình. Cảm ơn người phản biện đã bắt được lỗi
+này — chính việc công bố output nguyên văn của chúng tôi là thứ cho
+phép audit.
+
+Theo từng category (khớp đọc gold — ours / donglao / sea đúng cấu hình):
 
 | Category | repo này | donglao | sea_g2p |
 |---|---|---|---|
-| time (133) | **1,000** | 0,769 | 0,758 |
-| date (104) | **0,971** | 0,954 | 0,442 |
-| percent (119) | **0,998** | 0,990 | 0,618 |
-| currency (86) | 0,989 | **0,993** | 0,727 |
-| units (81) | 0,966 | **0,969** | 0,758 |
-| phone (17) | **1,000** | 0,841 | 0,527 |
-| acronyms (157) | **0,981** | 0,791 | 0,755 |
-| code-switch (139) | **0,945** | 0,877 | 0,628 |
-| adversarial (44) | **0,946** | 0,875 | 0,567 |
-
-sea_g2p không đạt khớp gold ở **bất kỳ** câu nào trong 390 câu
-(đúng như
-[issue #18 của nó](https://github.com/pnnbao97/sea-g2p/issues/18) tự
-thừa nhận: "Normalizer doesn't accurately detect English substring in
-Viet-Eng codeswitch texts").
+| time (133) | **1,000** | 0,769 | 0,952 |
+| date (104) | **0,971** | 0,954 | 0,955 |
+| percent (119) | **0,998** | 0,990 | 0,998 |
+| currency (122) | **0,991** | 0,965 | 0,985 |
+| units (81) | 0,966 | **0,969** | 0,964 |
+| phone (17) | **1,000** | 0,841 | 1,000 |
+| acronyms (157) | **0,981** | 0,792 | 0,973 |
+| code-switch (139) | **0,945** | 0,877 | 0,942 |
+| adversarial (44) | **0,971** | 0,875 | 0,947 |
 
 **Và công khai cả những chỗ repo này CHƯA hoàn hảo** (nguyên văn trong
 [`outputs_ours_v2.csv`](benchmark_frozen/outputs_ours_v2.csv)):
 
-- Hai lỗi thật mà benchmark bắt được ở v0.2.0 — `v2.1.0-beta`
-  **rơi mất "2.1.0"** và `5 kg` đọc "năm ki lô" **mất "gam"** — **đã sửa
-  trong v0.2.1** (hậu tố version nhận thêm beta/alpha/dev; kg → "ký lô
-  gam"): khớp đọc gold của repo tăng 0,981 → 0,984, units 0,954 → 0,966;
+- Lỗi tiền ≥ 7 chữ số của 0.2.1 — **đã sửa trong 0.2.2** (regex version
+  nuốt số nhóm-nghìn; `RE_MONEY_SUFFIX` chỉ khớp `$`): cả 36 câu
+  big_money giờ đọc đúng thang nghìn/triệu/tỷ, bị chặn hồi quy bằng
+  unit test + frozen v2. Khớp đọc gold của repo 0,984 → **0,985**;
 - `97,8%` trong câu mix được đọc kiểu anh "ninety-seven point eight" —
   có chủ đích hay lỗi, để người nghe quyết;
 - một phần điểm trừ là gold hẹp: `12 GB` đọc "gờ-bê" (cách đọc phổ
   biến) nhưng gold chỉ chấp nhận "gi bai" — ghi để minh bạch.
 
-Số liệu bảng trên chạy trên **wheel PyPI 0.2.1** (`BENCH_SOURCE=pypi`, import từ site-packages) — giống hệt khi chạy trên code repo, số liệu khớp từng chữ số.
+Số liệu bảng trên chạy trên **code 0.2.2** (wheel PyPI 0.2.2 phát hành
+đồng thời; wheel 0.2.1 cho cùng output ours trừ 147 câu tiền ≥7 chữ số
+và câu beta/kg đã sửa — xem [`CHANGELOG.md`](CHANGELOG.md)).
 
 Gold do dự án tự viết, chưa qua người ngoài duyệt — bù lại toàn bộ
 output từng hệ, từng câu, script sinh và script chấm đều nằm trong
 [`benchmark_frozen/`](benchmark_frozen) để ai cũng audit được. Test set
-là frozen v1: muốn sửa câu nào phải bump version và ghi lý do.
+là frozen v2: muốn sửa câu nào phải bump version và ghi lý do.
 
 ## Demo — nghe thử 400 clip + toàn bộ số liệu
 
@@ -553,9 +604,16 @@ print(r["state"])     # complete | partial | empty | rejected (đo coverage)
 Hàm trả về `(profile, errs)` / `(profile, errs, notes)` — lưu ý khác nhau
 giữa bản (đều import được trực tiếp từ `g2p_hamster`):
 
-- `from g2p_hamster import text_to_profile` (v1) → `(profile, errs)`
+- `from g2p_hamster import text_to_profile_v2_full` → dict đầy đủ — **KHUYÊN DÙNG**
 - `from g2p_hamster import text_to_profile_v2` → `(profile, errs, notes)`
-- `from g2p_hamster import text_to_profile_v2_full` → dict đầy đủ (xem trên)
+- `from g2p_hamster import text_to_profile` (v1) → `(profile, errs)`
+
+> ⚠️ **Footgun API (giữ để tương thích, đổi tên sẽ vỡ người dùng cũ):**
+> `text_to_profile` — tên "mặc định" nghe như bản chuẩn — lại là
+> **v1 fail-closed**: câu có từ lạ bị TỪ CHỐI, email/SĐT bị rụng khỏi
+> chuỗi phôn vị (chỉ báo trong `errs`). Bản cứu tối đa, không bao giờ bỏ
+> câu là `text_to_profile_v2` / `_v2_full`. Dùng v1 chỉ khi bạn cần
+> fail-closed cho prep dữ liệu train.
 
 **Chạy test:** `python -m unittest discover -s tests -t .` (88/88).
 
@@ -670,15 +728,29 @@ python3 -m g2p_hamster.so_sanh --input van_ban.txt --procs 22
 
 ## Kết quả đối chứng
 
+Tổng **803 case test, 0 fail** (đo lại 0.2.2 — thêm 1 test hồi quy tiền
+≥7 chữ số). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
+
 | Bộ test | Kết quả |
 |---|---|
-| t0 regression (đã tách tiny2) | 37/37 test OK |
+| t0 regression — tokenize/detect/verbalize (đã tách tiny2) | 38/38 test OK |
+| CLI smoke | 4/4 test OK |
 | G2P v2 (state/strict/contract/scope/espeak mock + thật) | 47/47 test OK |
 | G2P fase D/E (`test_g2p.py`) | 111 PASS, 0 FAIL |
 | vi_rules/vi_syllable | 466 PASS, 0 FAIL |
 | scope_policy mutation probes | 16 PASS, 0 FAIL |
 | cmu_en fase C | 47 PASS, 0 FAIL |
 | tone/coda mapper kokoro178 | 74 PASS, 0 FAIL |
+| Benchmark frozen v2 — 1.088 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,985** khớp-đọc-gold |
+| Bài test 100k dev + 74.760 câu held-out | 0 leak / 0 drop (nguyên văn output trong repo) |
+| Kiểm chứng STT ngược 400 clip (`verify_roundtrip.py`) | ĐẠT — mọi điểm công bố tái lập được |
+
+Ngoài unit test, mức bảo đảm thật của dự án nằm ở các **benchmark dữ
+liệu thật** (300 câu 7-hệ · 99.999 câu dev · 74.760 câu held-out · 1.088
+câu frozen gold) — toàn bộ script + nguyên văn output từng câu nằm
+trong repo để ai cũng audit được. Đánh giá độc lập 2026-10 đã tái lập
+đúng 802/802 case của 0.2.1 trên máy khác và xác nhận held-out không
+trùng dev (0 câu).
 
 So sánh v1 vs v2 trên 5.000 câu Wikipedia tiếng Việt (metric theo
 COVERAGE — KHÔNG phải độ chính xác phát âm): 60,4% giống hệt v1 · 20,5%

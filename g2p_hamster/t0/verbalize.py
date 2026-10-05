@@ -421,7 +421,8 @@ def verbal_token(t, prev_surface: str = "") -> str:
             return _vi_interval(a, b) if route == "vi" else f"{number_to_words(a, 'en')} to {number_to_words(b, 'en')}"
         if kind == "year":
             return number_to_words(s, route, "year")
-        if kind == "cardinal" and s.isdigit() and len(s) >= 7:
+        if kind == "cardinal" and s.isdigit() and len(s) >= 7 \
+                and not t.get("_money_adj"):
             # số dài 7+ chữ số là ID (link, mã bài đăng) -> đọc từng chữ số, không đọc "mười chín triệu..."
             return vi_digits(s) if route == "vi" else en_digits(s)
         if kind == "en_day":
@@ -433,7 +434,11 @@ def verbal_token(t, prev_surface: str = "") -> str:
         if t.get("kind") == "prefix":
             return _verbal_money_prefix(s[0], s[1:], route)
         if t.get("kind") == "suffix":
-            return _verbal_money_prefix("$", s[:-1], route)
+            num, unit_s = t.get("groups") or (s[:-1], "$")
+            if unit_s.lower() in ("đ", "đồng", "vnđ", "vnd"):
+                # "1.250.000đ" -> "một triệu hai trăm năm mươi nghìn đồng"
+                return number_to_words(num, route) + " đồng"
+            return _verbal_money_prefix("$", num, route)
         return number_to_words(s, route)
     if cat == "date":
         return _verbal_date(t, route, prev_surface.lower())

@@ -18,6 +18,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: cài espeak-ng (nguồn cứu phiên âm anh — tuỳ chọn runtime)
         run: sudo apt-get update && sudo apt-get install -y espeak-ng
+      - name: ghi version espeak-ng vào log (provenance — output phụ thuộc bản này)
+        run: espeak-ng --version
       - name: pip install .  (đóng gói phải cài được — chặn regression)
         run: |
           python -m pip install --upgrade pip

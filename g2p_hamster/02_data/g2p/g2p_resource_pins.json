@@ -19,5 +19,10 @@
  "scope_ledger": {
   "path": "02_data/collision/qd57_scope_exclusions.json",
   "sha256": "1930c63ccd231cf3c77347b27c92eea1c12674404f7724f29f57044ae0539472"
+ },
+ "espeak_ng": {
+  "version": "1.51",
+  "provenance": "espeak-ng --version trên máy đo số liệu công bố (2026-10): 'eSpeak NG text-to-speech: 1.51'. Ghi nhận ở đây vì output ~28% câu phụ thuộc espeak-ng; v2_provenance() probe --version lúc chạy — lệch version phải khai báo khi trích số.",
+  "pin_policy": "máy tái lập ghi version vào provenance benchmark; CI in version vào log"
  }
 }

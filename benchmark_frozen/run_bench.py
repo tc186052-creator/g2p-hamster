@@ -84,6 +84,18 @@ def _init(tool):
         def run(s):
             return text_to_profile_v2_full(s)["profile"]
     elif tool == "sea_g2p":
+        # 0.2.2: đo ĐÚNG usage mà sea_g2p tài liệu hoá — SEAPipeline.run()
+        # gồm cả bộ chuẩn hoá 17 bước của nó (bản trước dùng G2P.convert()
+        # trần, tắt normalizer — sai cấu hình, phát hiện bởi đánh giá
+        # độc lập 2026-10 và được vá tại đây)
+        from sea_g2p import SEAPipeline
+        p = SEAPipeline(lang="vi")
+
+        def run(s):
+            return p.run(s)
+    elif tool == "sea_g2p_raw":
+        # giữ lại cấu hình TRẦN (chỉ phiên âm, không normalizer) để đối
+        # chiếu minh bạch với số đã công bố ở 0.2.0–0.2.1
         from sea_g2p import G2P
         g = G2P(lang="vi")
 
@@ -130,10 +142,31 @@ def main():
         for k, alt in enumerate(g.get("gold_readings") or []):
             jobs.append((("g", idx, k), alt))
 
+    # provenance: frozen version + phiên bản resource ảnh hưởng output
+    meta = {}
+    try:
+        meta = json.loads((HERE / "frozen_meta.json").read_text(encoding="utf-8"))
+    except OSError:
+        pass
+    prov = {"frozen_version": meta.get("frozen_version")}
+    try:
+        import importlib.metadata as im
+        for pkg in ("sea_g2p", "donglao-g2p", "g2p-hamster"):
+            prov[pkg.replace("-", "_")] = im.version(pkg)
+    except Exception:
+        pass
+    try:
+        import subprocess
+        prov["espeak_ng"] = subprocess.run(["espeak-ng", "--version"],
+                                           capture_output=True, text=True,
+                                           timeout=10).stdout.strip()[:120]
+    except Exception:
+        prov["espeak_ng"] = None
     summary = {"n": len(tests), "n_gold": len(gold),
                "date": time.strftime("%Y-%m-%d %H:%M %Z"),
+               "provenance": prov,
                "systems": {}}
-    for tool in ("ours_v2", "sea_g2p", "donglao_g2p"):
+    for tool in ("ours_v2", "sea_g2p", "donglao_g2p", "sea_g2p_raw"):
         print(f"=== {tool} ===", flush=True)
         res = run_tool(tool, jobs)
         per_cat = {}

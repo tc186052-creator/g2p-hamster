@@ -2,9 +2,9 @@
   "dataset": "/home/hseomymyi9/01_project/dataset_100k (1).tsv",
   "n": 74760,
   "held_out_excluded": 12770,
-  "source": "wheel PyPI",
+  "source": "repo",
   "nproc": 24,
-  "date": "2026-10-05 21:34 UTC",
+  "date": "2026-10-05 22:54 UTC",
   "metric": "digit_leak = chữ số độc lập sót trong chuỗi ra",
   "speed_note": "KHÔNG đo tốc độ trong bài này; thông lượng chỉ ghi log để biết thời gian chạy",
   "ours_v2": {
@@ -41,26 +41,26 @@
     "per_lang": {
       "en": {
         "n": 33650,
-        "leak": 12290,
+        "leak": 0,
         "error": 0,
         "empty": 0
       },
       "vi": {
         "n": 24112,
-        "leak": 8960,
+        "leak": 0,
         "error": 0,
         "empty": 0
       },
       "mixed": {
         "n": 16998,
-        "leak": 7379,
+        "leak": 0,
         "error": 0,
         "empty": 0
       }
     },
     "total": {
       "n": 74760,
-      "leak": 28629,
+      "leak": 0,
       "error": 0,
       "empty": 0
     }

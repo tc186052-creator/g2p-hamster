@@ -266,5 +266,25 @@ class TestGapGroups(unittest.TestCase):
         self.assertIn("êm xê", ir("nam MC dõi theo.")["read_string"])
 
 
+    def test_money_grouped_7_digits(self):
+        # tiền ≥ 7 chữ số: đọc thang nghìn/triệu/tỷ, KHÔNG "chấm" KHÔNG đọc-ID
+        for text, want in [
+            ("Giá 1.000.000đ", "một triệu đồng"),
+            ("Tôi có 5.000.000 đồng", "năm triệu đồng"),
+            ("Thu về 1.250.000đ mỗi tháng", "một triệu hai trăm năm mươi nghìn đồng"),
+            ("Mã 1000000đ", "một triệu đồng"),
+            ("Tổng 1 000 000 đồng", "một triệu đồng"),
+            ("Ngân sách 1.000.000.000 đồng", "một tỷ đồng"),
+            ("Lương 12.500.000 đồng", "mười hai triệu năm trăm nghìn đồng"),
+        ]:
+            got = ir(text)["read_string"]
+            self.assertIn(want, got, f"{text!r} -> {got!r}")
+        # không đụng ID thật và các dạng đã đọc đúng
+        self.assertIn("chín tám bảy sáu năm bốn ba", ir("Mã đơn 9876543")["read_string"])
+        self.assertIn("hai chấm bốn chấm một", ir("Phiên bản 2.4.1")["read_string"])
+        self.assertIn("chín mươi chín nghìn đồng", ir("Giá 99.000 đồng")["read_string"])
+
+
+
 if __name__ == "__main__":
     unittest.main()
