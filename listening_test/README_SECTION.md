@@ -29,16 +29,26 @@ Vài clip mẫu — bấm là tải:
 
 Đọc: **thuần việt và mix đơn giản ~96% khớp từ**; bộ khó thấp hơn do thiết kế (nhồi tên riêng nước ngoài). Kết quả ai cũng tái lập được bằng cách chạy STT bất kỳ trên các MP3 trong repo.
 
-### So sánh với Kokoro gốc (chưa fine-tune) — cùng câu, cùng G2P, cùng voicepack, chỉ khác trọng số
+### So sánh 3 mô hình — cùng 400 câu, cùng 2 engine STT
 
-| Bộ | Kokoro gốc — khớp hoàn toàn (Pho / v3) | Kokoro gốc — TB (Pho / v3) | Kokoro vi (repo này) — khớp hoàn toàn | Kokoro vi — TB |
-|---|---|---|---|---|
-| `vietnamese` | 1/100 · 1/100 | 29.8% / 23.6% | 68/100 · 68/100 | 96.4% / 96.8% |
-| `english` | 30/100 · 45/100 | 87.4% / 90.2% | 18/100 · 38/100 | 86.4% / 93.3% |
-| `mix_easy` | 1/100 · 0/100 | 37.0% / 24.7% | 69/100 · 66/100 | 96.0% / 92.4% |
-| `mix_hard` | 2/100 · 0/100 | 48.5% / 31.8% | 24/100 · 39/100 | 88.7% / 92.4% |
+Ba hệ chạy **đúng cùng bộ câu**, mỗi hệ dùng nguyên pipeline + giọng riêng của nó (so sánh ở mức hệ thống đầy đủ):
 
-Clip baseline nghe tại [`listening_test/audio_baseline/`](listening_test/audio_baseline) — cùng đánh số với `audio/`. Đây là đo **thuần phần fine-tune**: mọi yếu tố khác đều giữ nguyên.
+| Bộ | Mô hình | Khớp hoàn toàn (Pho / v3) | TB (Pho / v3) |
+|---|---|---|---|
+| `vietnamese` | Kokoro gốc (chưa fine-tune) | 1/100 · 1/100 | 29.8% / 23.6% |
+| `vietnamese` | Kokoro-Vietnamese (iamdinhthuan) | 60/100 · 62/100 | 95.5% / 95.9% |
+| `vietnamese` | Kokoro vi — repo này | 68/100 · 68/100 | 96.4% / 96.8% |
+| `english` | Kokoro gốc (chưa fine-tune) | 30/100 · 45/100 | 87.4% / 90.2% |
+| `english` | Kokoro-Vietnamese (iamdinhthuan) | 12/100 · 26/100 | 81.3% / 88.8% |
+| `english` | Kokoro vi — repo này | 18/100 · 38/100 | 86.4% / 93.3% |
+| `mix_easy` | Kokoro gốc (chưa fine-tune) | 1/100 · 0/100 | 37.0% / 24.7% |
+| `mix_easy` | Kokoro-Vietnamese (iamdinhthuan) | 51/100 · 50/100 | 88.6% / 87.8% |
+| `mix_easy` | Kokoro vi — repo này | 69/100 · 66/100 | 96.0% / 92.4% |
+| `mix_hard` | Kokoro gốc (chưa fine-tune) | 2/100 · 0/100 | 48.5% / 31.8% |
+| `mix_hard` | Kokoro-Vietnamese (iamdinhthuan) | 13/100 · 19/100 | 82.7% / 85.8% |
+| `mix_hard` | Kokoro vi — repo này | 24/100 · 39/100 | 88.7% / 92.4% |
+
+Thư mục audio: [`audio/`](listening_test/audio) (repo này) · [`audio_baseline/`](listening_test/audio_baseline) (Kokoro gốc) · [`audio_kokoro_vietnamese/`](listening_test/audio_kokoro_vietnamese) (iamdinhthuan) — cùng đánh số, bấm đối chứng trực tiếp. Repo này dẫn điểm khớp ở cả 4 bộ. Clip `english` của Kokoro gốc tốt (model gốc là model anh) nhưng tiếng Việt gần như vô dụng (1/100) — đúng lý do dự án tồn tại.
 
 ### Chỗ không khớp — lệch ở đâu, vì sao? (736 chỗ, cả 2 engine)
 

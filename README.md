@@ -65,16 +65,26 @@ Vài clip mẫu — bấm là tải:
 
 Đọc: **thuần việt và mix đơn giản ~96% khớp từ**; bộ khó thấp hơn do thiết kế (nhồi tên riêng nước ngoài). Kết quả ai cũng tái lập được bằng cách chạy STT bất kỳ trên các MP3 trong repo.
 
-### So sánh với Kokoro gốc (chưa fine-tune) — cùng câu, cùng G2P, cùng voicepack, chỉ khác trọng số
+### So sánh 3 mô hình — cùng 400 câu, cùng 2 engine STT
 
-| Bộ | Kokoro gốc — khớp hoàn toàn (Pho / v3) | Kokoro gốc — TB (Pho / v3) | Kokoro vi (repo này) — khớp hoàn toàn | Kokoro vi — TB |
-|---|---|---|---|---|
-| `vietnamese` | 1/100 · 1/100 | 29.8% / 23.6% | 68/100 · 68/100 | 96.4% / 96.8% |
-| `english` | 30/100 · 45/100 | 87.4% / 90.2% | 18/100 · 38/100 | 86.4% / 93.3% |
-| `mix_easy` | 1/100 · 0/100 | 37.0% / 24.7% | 69/100 · 66/100 | 96.0% / 92.4% |
-| `mix_hard` | 2/100 · 0/100 | 48.5% / 31.8% | 24/100 · 39/100 | 88.7% / 92.4% |
+Ba hệ chạy **đúng cùng bộ câu**, mỗi hệ dùng nguyên pipeline + giọng riêng của nó (so sánh ở mức hệ thống đầy đủ):
 
-Clip baseline nghe tại [`listening_test/audio_baseline/`](listening_test/audio_baseline) — cùng đánh số với `audio/`. Đây là đo **thuần phần fine-tune**: mọi yếu tố khác đều giữ nguyên.
+| Bộ | Mô hình | Khớp hoàn toàn (Pho / v3) | TB (Pho / v3) |
+|---|---|---|---|
+| `vietnamese` | Kokoro gốc (chưa fine-tune) | 1/100 · 1/100 | 29.8% / 23.6% |
+| `vietnamese` | Kokoro-Vietnamese (iamdinhthuan) | 60/100 · 62/100 | 95.5% / 95.9% |
+| `vietnamese` | Kokoro vi — repo này | 68/100 · 68/100 | 96.4% / 96.8% |
+| `english` | Kokoro gốc (chưa fine-tune) | 30/100 · 45/100 | 87.4% / 90.2% |
+| `english` | Kokoro-Vietnamese (iamdinhthuan) | 12/100 · 26/100 | 81.3% / 88.8% |
+| `english` | Kokoro vi — repo này | 18/100 · 38/100 | 86.4% / 93.3% |
+| `mix_easy` | Kokoro gốc (chưa fine-tune) | 1/100 · 0/100 | 37.0% / 24.7% |
+| `mix_easy` | Kokoro-Vietnamese (iamdinhthuan) | 51/100 · 50/100 | 88.6% / 87.8% |
+| `mix_easy` | Kokoro vi — repo này | 69/100 · 66/100 | 96.0% / 92.4% |
+| `mix_hard` | Kokoro gốc (chưa fine-tune) | 2/100 · 0/100 | 48.5% / 31.8% |
+| `mix_hard` | Kokoro-Vietnamese (iamdinhthuan) | 13/100 · 19/100 | 82.7% / 85.8% |
+| `mix_hard` | Kokoro vi — repo này | 24/100 · 39/100 | 88.7% / 92.4% |
+
+Thư mục audio: [`audio/`](listening_test/audio) (repo này) · [`audio_baseline/`](listening_test/audio_baseline) (Kokoro gốc) · [`audio_kokoro_vietnamese/`](listening_test/audio_kokoro_vietnamese) (iamdinhthuan) — cùng đánh số, bấm đối chứng trực tiếp. Repo này dẫn điểm khớp ở cả 4 bộ. Clip `english` của Kokoro gốc tốt (model gốc là model anh) nhưng tiếng Việt gần như vô dụng (1/100) — đúng lý do dự án tồn tại.
 
 ### Chỗ không khớp — lệch ở đâu, vì sao? (736 chỗ, cả 2 engine)
 
@@ -104,20 +114,57 @@ LƯU Ý: STT ngược đo **độ dễ hiểu** (nghe ra lại đúng chữ), KH
 - [`listening_test/asr_roundtrip.csv`](listening_test/asr_roundtrip.csv) — nguyên văn 2 engine đọc lại 400 clip
 - [`listening_test/mismatch_analysis.csv`](listening_test/mismatch_analysis.csv) — 736 chỗ lệch, từng chỗ kèm đáp án ↔ text ASR
 
-## Cài đặt & chạy
+## Cài đặt & sử dụng
+
+**Cài đặt** — Python 3.11+:
 
 ```bash
-# không cần cài gì thêm — chỉ Python 3.11+; espeak-ng (tuỳ chọn, cho v2)
-sudo apt install espeak-ng   # hoặc brew install espeak-ng
-
-python3 -c "
-import sys; sys.path.insert(0, 'v2')
-from g2p_v1 import text_to_profile
-p, errs = text_to_profile('Xin chào, hôm nay trời đẹp quá!')
-print(p)
-# → sin caː↘w, hom naj ʈʂəː↘j dɛʔ↓p kwaː↗!
-"
+git clone https://github.com/tc186052-creator/g2p-hamster && cd g2p-hamster
+pip install -r requirements.txt        # torch + numpy (verbalize số/ngày)
+sudo apt install espeak-ng             # tuỳ chọn — nguồn cứu espeak của v2
 ```
+
+**Cách 1 — dòng lệnh** (`cli.py`):
+
+```bash
+python cli.py "Xin chào, hôm nay trời đẹp quá!"          # v2 best_effort
+python cli.py "Tôi dùng cue nhé." --mode strict          # strict: từ chối mất từ
+python cli.py "Xin chào" --v1                            # bản v1 fail-closed
+python cli.py --file van_ban.txt --out ketqua.json       # cả file, 1 câu/dòng
+```
+
+**Cách 2 — Python API:**
+
+```python
+import sys; sys.path.insert(0, 'v2')
+from g2p_v2 import text_to_profile_v2_full
+
+r = text_to_profile_v2_full("Xin chào, hôm nay trời đẹp quá!")
+print(r["profile"])   # sin caː↘w, hom naj ʈʂəː↘j dɛʔ↓p kwaː↗!
+print(r["state"])     # complete | partial | empty | rejected (đo coverage)
+```
+
+API cũ `text_to_profile_v2(text)` / `text_to_profile(text)` trả
+`(profile, errs, notes)` — caller hiện có chạy nguyên không cần sửa.
+
+**Chạy test:** `python -m unittest discover -s tests -t .` (84/84).
+
+**Tái lập kiểm chứng STT ngược** (trang trên): KHÔNG cần tải/khởi chạy
+bất kỳ model TTS nào — 400 clip của cả 3 mô hình đã nằm sẵn trong repo.
+Chỉ cần `pip install faster-whisper` rồi:
+
+```python
+from faster_whisper import WhisperModel
+m = WhisperModel("large-v3")
+segs, _ = m.transcribe("listening_test/audio/vietnamese/001_vietnamese.mp3",
+                       language="vi", beam_size=5)
+print(" ".join(s.text for s in segs))
+# so với cột `sentence` trong listening_test/review_sheet.tsv
+```
+
+Việc render 3 mô hình (Kokoro gốc / Kokoro-Vietnamese của
+iamdinhthuan / Kokoro vi của repo này) đã được chúng tôi thực hiện với
+**cùng câu, cùng điều kiện** và xuất đủ audio để đối chiếu trực tiếp.
 
 ## Bản v2 — cứu EN (nâng cấp khuyến nghị)
 
