@@ -65,9 +65,9 @@ Vài clip mẫu — bấm là tải:
 
 Đọc: **thuần việt và mix đơn giản ~96% khớp từ**; bộ khó thấp hơn do thiết kế (nhồi tên riêng nước ngoài). Kết quả ai cũng tái lập được bằng cách chạy STT bất kỳ trên các MP3 trong repo.
 
-### So sánh 3 mô hình — cùng 400 câu, cùng 2 engine STT
+### So sánh — nguyên tắc: so tiếng Việt với model đọc được tiếng Việt, so tiếng Anh với model đọc được tiếng Anh
 
-Ba hệ chạy **đúng cùng bộ câu**, mỗi hệ dùng nguyên pipeline + giọng riêng của nó (so sánh ở mức hệ thống đầy đủ):
+Ba hệ chạy **đúng cùng bộ câu**, mỗi hệ dùng nguyên pipeline + giọng riêng của nó. Bảng tổng hợp 3 mô hình × 4 bộ (chỉ tham khảo — model anh gốc đọc tiếng Việt thua là hiển nhiên, không tính là chiến thắng):
 
 | Bộ | Mô hình | Khớp hoàn toàn (Pho / v3) | TB (Pho / v3) |
 |---|---|---|---|
@@ -84,7 +84,25 @@ Ba hệ chạy **đúng cùng bộ câu**, mỗi hệ dùng nguyên pipeline + g
 | `mix_hard` | Kokoro-Vietnamese (iamdinhthuan) | 13/100 · 19/100 | 82.7% / 85.8% |
 | `mix_hard` | Kokoro vi — repo này | 24/100 · 39/100 | 88.7% / 92.4% |
 
-Thư mục audio: [`audio/`](listening_test/audio) (repo này) · [`audio_baseline/`](listening_test/audio_baseline) (Kokoro gốc) · [`audio_kokoro_vietnamese/`](listening_test/audio_kokoro_vietnamese) (iamdinhthuan) — cùng đánh số, bấm đối chứng trực tiếp. Repo này dẫn điểm khớp ở cả 4 bộ. Clip `english` của Kokoro gốc tốt (model gốc là model anh) nhưng tiếng Việt gần như vô dụng (1/100) — đúng lý do dự án tồn tại.
+#### 🇻🇳 Solo thuần tiếng Việt — chỉ giữa 2 model đọc được tiếng Việt
+
+(Kokoro gốc loại khỏi cuộc — model tiếng Anh, không đọc được tiếng Việt: 1/100)
+
+| Mô hình | Khớp hoàn toàn (Pho / v3) | TB (Pho / v3) |
+|---|---|---|
+| Kokoro-Vietnamese (iamdinhthuan) | 60/100 · 62/100 | 95.5% / 95.9% |
+| Kokoro vi — repo này ⭐ | 68/100 · 68/100 | 96.4% / 96.8% |
+
+#### 🇬🇧 Solo thuần tiếng Anh — Kokoro gốc với GIỌNG ANH GỐC af_heart (cho model anh cơ hội tốt nhất), không ép giọng vi
+
+(Kokoro-Vietnamese không phải model anh: 12/100 · 26/100)
+
+| Mô hình | Khớp hoàn toàn (Pho / v3) | TB (Pho / v3) |
+|---|---|---|
+| Kokoro gốc + af_heart (giọng native) | 29/100 · 44/100 | 86.2% / 89.7% |
+| Kokoro vi — repo này ⭐ | 18/100 · 38/100 | 86.4% / 93.3% |
+
+Thư mục audio: [`audio/`](listening_test/audio) (repo này) · [`audio_baseline/`](listening_test/audio_baseline) (Kokoro gốc, giọng khanhlinh1) · [`audio_afheart/`](listening_test/audio_afheart) (Kokoro gốc + giọng anh gốc af_heart) · [`audio_kokoro_vietnamese/`](listening_test/audio_kokoro_vietnamese) (iamdinhthuan) — cùng đánh số, bấm đối chứng trực tiếp.
 
 ### Chỗ không khớp — lệch ở đâu, vì sao? (736 chỗ, cả 2 engine)
 
@@ -165,6 +183,24 @@ print(" ".join(s.text for s in segs))
 Việc render 3 mô hình (Kokoro gốc / Kokoro-Vietnamese của
 iamdinhthuan / Kokoro vi của repo này) đã được chúng tôi thực hiện với
 **cùng câu, cùng điều kiện** và xuất đủ audio để đối chiếu trực tiếp.
+
+## Ứng dụng — ngoài train TTS thì dùng làm gì?
+
+| Ứng dụng | Cách dùng | Ai cần |
+|---|---|---|
+| **1. Chuẩn bị dữ liệu train TTS** (chính) | quét corpus qua `--mode strict`: chỉ giữ câu đủ coverage + nguồn cứu theo policy → không có clip câm/mất từ trong tập train | đội train TTS |
+| **2. Front-end vận hành TTS** | `text → phoneme` deterministic (cùng text = cùng profile, kèm policy hash) — cắm trước bất kỳ acoustic model nào nhận vocab kokoro178 | hệ đọc sách, news reader |
+| **3. Chuẩn hóa văn bản đọc** | tầng t0 verbalize **số/tiền/ngày/giờ/email** thành chữ đọc: "1.000.000đ" → "một triệu đồng" — dùng độc lập, không cần TTS | chatbot, IVR, thông báo tự động |
+| **4. Đo độ khó corpus trước khi thu âm/thu mua data** | quét corpus, đếm tỷ lệ complete/partial/empty, từ OOV, từ scope QD57 → biết trước chất lượng dữ liệu và cần thu bổ sung gì | PM dữ liệu, thu mua giọng |
+| **5. Tra/kiểm tra phát âm từng từ** | "histidin" đọc gì? từ nào sẽ bị đánh vần? — công cụ QA cho biên tập viên nội dung đọc | biên tập, QC nội dung |
+| **6. Nghiên cứu/đối chiếu G2P** | provenance hash + trace từng unit → so với vig2p/espeak, audit được từng quyết định | nghiên cứu |
+
+**Chất lượng đặc trưng:** deterministic (cùng text luôn ra cùng phoneme —
+an toàn cho dữ liệu train và reproducibility), fail-closed (không bịa phôn
+vị ngoài inventory, không âm thầm rơi nội dung), 84/84 regression test,
+provenance trong mọi đầu ra. **Ranh giới trung thực:** G2P bảo đảm *đọc
+đủ* (coverage) và *không bịa*; "đọc ĐÚNG" chỉ kết luận được bằng gold đã
+duyệt hoặc đánh giá nghe — xem bộ minh chứng 400 clip phía trên.
 
 ## Bản v2 — cứu EN (nâng cấp khuyến nghị)
 
