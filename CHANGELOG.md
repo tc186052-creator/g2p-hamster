@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.3 — 2026-10-05
+
+- Sửa `g2p_hamster.__version__` — 0.2.2 phát hành với attr còn ghi
+  "0.2.1" (bỏ hardcode, đọc từ package metadata). Không đổi gì khác.
+
 ## 0.2.2 — 2026-10-05
 
 Bản vá theo **đánh giá độc lập 2026-10-05** (bản 2). Số liệu benchmark trong
