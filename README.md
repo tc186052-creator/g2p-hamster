@@ -21,6 +21,9 @@ text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR i
   khôi phục về baseline.
 - **Deterministic**: cùng text luôn ra cùng phoneme — an toàn cho dữ liệu
   train TTS và reproducibility.
+- **Từ điển viết tắt khai mỏ từ 1 triệu câu thật** — 312 entry vi đọc đúng
+  nghĩa (`HLV` → "huấn luyện viên", không đánh vần "H L V"), kèm provenance
+  từng entry (chi tiết phía dưới).
 
 ## Cấu trúc
 
@@ -33,6 +36,37 @@ text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR i
 | `v2/` | Bản **v2 — cứu EN**: từ hở được cứu theo bậc CMUdict → espeak-ng → spell tên chữ; KHÔNG BAO GIỜ bỏ cả câu. Kèm script so sánh v1 vs v2 |
 | `00_docs/` | Hợp đồng đầu vào IR, schema inventory, kế hoạch đánh giá, sơ đồ luồng |
 | `tests/` | Regression test t0 (ví dụ chuẩn + torture set) + regression v2 (state/strict/scope/espeak fail-closed) |
+
+## Từ viết tắt tiếng Việt — bảng khai mỏ từ 1.000.000 câu thật
+
+Vấn đề của mọi pipeline đọc tiếng Việt: gặp `HLV`, `HĐQT`, `UBND` mà không
+có trong từ điển thì rơi vào nhánh đánh vần → đọc "H L V" đúng chữ nhưng
+**sai nghĩa** — người nghe không hiểu.
+
+Repo này giải quyết bằng một bảng viết tắt được **khai mỏ từ corpus thật**:
+quét 1.000.000 câu (22,7 triệu token, trong đó ~148.000 token dạng
+acronym + ~59.000 token dạng viết tắt có chấm) lấy top token ALL-CAPS
+tần suất cao trong câu tiếng Việt, rồi duyệt bổ sung từng entry. Bảng
+hiện có **312 entry** — [`t0/data/abbrev_vi.tsv`](t0/data/abbrev_vi.tsv),
+mỗi entry có cột provenance (ai thêm, khi nào, vì sao); entry mơ hồ được
+đánh dấu `CẦN DUYỆT` chứ không tự tiện chọn nghĩa.
+
+Bảng được dùng ở 3 chỗ, không chỉ tra nghĩa:
+
+| Chỗ dùng | Việc |
+|---|---|
+| **Tách câu** | không cắt câu tại "TP." hay "BS." — biết đấy là viết tắt có chấm, không phải hết câu |
+| **Định tuyến** | token viết tắt vi được route sang nhánh đọc-nghĩa thay vì đánh vần kiểu anh |
+| **Verbalize** | mở rộng sang nghĩa đọc: `HLV` → "huấn luyện viên", `UBND` → "ủy ban nhân dân" |
+
+Ví dụ chạy thật (CLI, output là chuỗi phôn vị được model đọc):
+
+```text
+"HLV của HAGL họp HĐQT tại TP.HCM."
+→ chuỗi phôn vị của: huấn-luyện-viên của Hoàng-Anh-Gia-Lai họp hội-đồng-quản-trị tại thành-phố Hồ-Chí-Minh
+```
+
+Trong khi Kokoro gốc gặp câu này chỉ có thể đánh vần từng chữ hoặc bỏ.
 
 ## Demo — nghe thử 400 clip + toàn bộ số liệu
 
@@ -231,7 +265,7 @@ print(" ".join(s.text for s in segs))
 |---|---|---|
 | **1. Chuẩn bị dữ liệu train TTS** (chính) | quét corpus qua `--mode strict`: chỉ giữ câu đủ coverage + nguồn cứu theo policy → không có clip câm/mất từ trong tập train | đội train TTS |
 | **2. Front-end vận hành TTS** | `text → phoneme` deterministic (cùng text = cùng profile, kèm policy hash) — cắm trước bất kỳ acoustic model nào nhận vocab kokoro178 | hệ đọc sách, news reader |
-| **3. Chuẩn hóa văn bản đọc** | tầng t0 verbalize **số/tiền/ngày/giờ/email** thành chữ đọc: "1.000.000đ" → "một triệu đồng" — dùng độc lập, không cần TTS | chatbot, IVR, thông báo tự động |
+| **3. Chuẩn hóa văn bản đọc** | tầng t0 verbalize **số/tiền/ngày/giờ/email/viết tắt** thành chữ đọc: "1.000.000đ" → "một triệu đồng", "HLV" → "huấn luyện viên" — dùng độc lập, không cần TTS | chatbot, IVR, thông báo tự động |
 | **4. Đo độ khó corpus trước khi thu âm/thu mua data** | quét corpus, đếm tỷ lệ complete/partial/empty, từ OOV, từ scope QD57 → biết trước chất lượng dữ liệu và cần thu bổ sung gì | PM dữ liệu, thu mua giọng |
 | **5. Tra/kiểm tra phát âm từng từ** | "histidin" đọc gì? từ nào sẽ bị đánh vần? — công cụ QA cho biên tập viên nội dung đọc | biên tập, QC nội dung |
 | **6. Nghiên cứu/đối chiếu G2P** | provenance hash + trace từng unit → so với vig2p/espeak, audit được từng quyết định | nghiên cứu |
