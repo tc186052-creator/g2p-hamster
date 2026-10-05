@@ -46,6 +46,54 @@ text thô ──▶ t0: clean/tokenize/detect/verbalize/route vi-en ──▶ IR
   nghĩa (`HLV` → "huấn luyện viên", không đánh vần "H L V"), kèm provenance
   từng entry (chi tiết phía dưới).
 
+## Kết quả trong 30 giây — 3 hệ cuối cùng, một bảng
+
+Chỉ còn 3 hệ đạt "0 rò rỉ số + 0 lỗi" ở mọi bài test dữ liệu thật
+(300 câu · 99.999 câu dev · 74.760 câu held-out · 1.088 câu frozen).
+Bảng dưới chốt tất cả số liệu của README — mỗi ô có bài test gốc để
+tự audit:
+
+| Tiêu chí | **g2p-hamster** | sea_g2p¹ | donglao_g2p |
+|---|---|---|---|
+| **Khớp-đọc-gold** (frozen v2, 426 gold viết a-priori) | **0,985** | 0,972 | 0,907 |
+| Rò rỉ số — 99.999 câu dev | **0** | 1 câu (tên tàu) | **0** |
+| Rò rỉ số — 74.760 câu held-out | **0** | **0** | **0** |
+| Rơi âm thầm ở mẫu giờ `13h00` (held-out) | **0 / 239** | 0 / 239 | **92 / 239 — số biến mất khỏi đầu ra** |
+| Đọc tiền ≥ 7 chữ số (`1.000.000đ`) | ✅ một triệu đồng | ✅ | ✅ |
+| Coverage 100% câu + strict mode + provenance từng từ | ✅ duy nhất | ❌ | ❌ |
+| **Tốc độ (câu/s, 1 luồng i9-12900K)** | 141 | 2.782 | **30.998** |
+
+¹ sea_g2p đo bằng `SEAPipeline.run()` đúng như nó tài liệu hoá — các bảng
+0.2.0–0.2.1 của chúng tôi đo nó bằng API trần (sai cấu hình), đã đính
+chính công khai ([CHANGELOG](CHANGELOG.md)).
+
+**Nói thẳng cả hai chiều:**
+
+- **Chúng ta THUA tốc độ** — donglao_g2p nhanh hơn ~220 lần (native Rust,
+  không có strict/coverage/provenance). Nếu bạn chỉ cần phiên âm nhanh và
+  chấp nhận thỉnh thoảng mất mốc giờ `13h00` (92/239 câu, mất mà không
+  báo) — dùng [donglao_g2p](https://pypi.org/project/donglao-g2p/). Nếu
+  cần chuẩn hoá tốt + nhanh hơn chúng ta ~20 lần — dùng
+  [sea_g2p](https://pypi.org/project/sea-g2p/). Đó là lựa chọn hợp lý,
+  không phải chê.
+- **Chúng ta thắng ở chỗ khác**: khớp-đọc-gold cao nhất mọi category,
+  **0 rơi âm thầm**, coverage/strict/provenance từng từ (an toàn khi
+  prep dữ liệu train TTS), đọc đúng tiền lớn. 141 câu/s = dưới 1% một
+  nhân CPU — vẫn dư real-time.
+- **Không tin?** Mọi số liệu trên có nguyên văn output từng câu trong
+  repo ([300 câu](listening_test/g2p_compare/outputs_all_tools.csv) ·
+  [held-out 74.760](listening_test/g2p_compare_100k/)) — script tái lập
+  cũng nằm đó. Đánh giá độc lập 2026-10 đã tái lập đúng 802/802 case
+  trên máy khác và là người phát hiện lỗi đo sea_g2p của chúng tôi (đã
+  sửa + đính chính công khai).
+
+**Mục lục:** [Cấu trúc](#cấu-trúc) · [7 hệ trên 300 câu](#so-sánh-7-hệ-g2pfront-end-trên-cùng-300-câu-thật) ·
+[Held-out 74.760](#bài-test-held-out-74760-câu-chưa-từng-thấy-chạy-trên-gói-pypi-đã-phát-hành) ·
+[100k dev](#bài-test-100k-bộ-phát-triển-làm-trước-khi-có-held-out) ·
+[Frozen v2 + gold](#benchmark-frozen-công-khai--v2-1088-câu-gold-viết-trước-chấm-bằng-máy) ·
+[Demo nghe thử](#demo--nghe-thử-400-clip--toàn-bộ-số-liệu) ·
+[Cài đặt](#cài-đặt--sử-dụng) · [Kết quả đối chứng (803 test)](#kết-quả-đối-chứng)
+
 ## Cấu trúc
 
 | Thư mục | Nội dung |
