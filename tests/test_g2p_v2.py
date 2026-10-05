@@ -6,6 +6,7 @@ Chạy:  python3 -m unittest tests.test_g2p_v2 -v
 espeak-ng và được tách riêng lớp TestEspeakThat.)
 """
 import os
+import re
 import stat
 import sys
 import tempfile
@@ -74,7 +75,7 @@ class TestAPITuongThich(unittest.TestCase):
                   "warnings", "dropped", "units", "sources",
                   "strict_policy", "provenance"):
             self.assertIn(k, r)
-        self.assertEqual(r["schema"], "g2p_v2_result/0.2")
+        self.assertEqual(r["schema"], "g2p_v2_result/0.3")
         self.assertIn("cmu", r["strict_policy"])   # "core" luôn ngầm được phép
 
     def test_units_trace_co_read_complete(self):
@@ -85,11 +86,20 @@ class TestAPITuongThich(unittest.TestCase):
             self.assertIn("read_complete", u)
             self.assertEqual(u["read_complete"], u["outcome"] in
                              ("read", "upgraded"))
-        # đơn vị thống nhất: tổng sources == số UNIT đã đọc (fast path gom
-        # cả record nên phải nhân unit_count, không đếm entry)
+        # đơn vị thống nhất: tổng sources == số UNIT đã đọc (mỗi entry là 1
+        # read unit thật; entry gộp tường minh khai báo unit_count)
         n_read = sum(u.get("unit_count", 1) for u in r["units"]
                      if u["outcome"] in ("read", "upgraded"))
         self.assertEqual(sum(r["sources"].values()), n_read)
+
+    def test_units_fast_path_mo_rong_tung_read_unit(self):
+        # fast path record đọc tốt phải MỞ RA thành từng read unit — câu vi
+        # sạch không được có dòng gộp (merged) mạo danh trace per-unit
+        r = text_to_profile_v2_full("Xin chào thế giới, hôm nay trời đẹp.")
+        self.assertTrue(r["units"])
+        for u in r["units"]:
+            self.assertNotIn("merged", u)
+        self.assertEqual(sum(r["sources"].values()), len(r["units"]))
 
     def test_mode_la_loai_doc_lap(self):
         # best_effort mặc định KHÔNG đụng strict mặc định
@@ -257,6 +267,71 @@ class TestStrictBestEffort(EnvCase):
         # icon/biểu tượng là drop CHỦ Ý (không có gì để đọc) — strict không từ chối
         r2 = text_to_profile_v2_full("Tôi thích 🎉 lắm.", mode="strict")
         self.assertEqual(r2["state"], "complete")
+
+
+class TestStrictContractHopDong(EnvCase):
+    """Fault injection: IR lệch hợp đồng (contract_ok=False) — strict PHẢI
+    từ chối; chỉ loại lỗi tường minh trong STRICT_CONTRACT_ALLOWLIST mới
+    được miễn, không miễn toàn bộ contract_errors."""
+
+    def _inject_contract_errors(self, msgs):
+        """Bơm contract_errors cấp stream vào output của g2p_stream thật."""
+        real = gv2.G.g2p_stream
+
+        def fake(ir):
+            out = real(ir)
+            out["contract_errors"] = (list(out.get("contract_errors", []))
+                                      + list(msgs))
+            return out
+        return mock.patch.object(gv2.G, "g2p_stream", fake)
+
+    def test_strict_tu_choi_khi_contract_ok_false(self):
+        with self._inject_contract_errors(
+                ["tokens[3].i không liên tiếp: 5 → 7"]):
+            r = text_to_profile_v2_full("Xin chào thế giới.", mode="strict")
+        self.assertFalse(r["contract_ok"])
+        self.assertEqual(r["state"], "rejected")
+        self.assertEqual(r["profile"], "")
+        self.assertIn("hợp đồng", r["errs"][-1])
+
+    def test_best_effort_van_complete_va_bao_warning(self):
+        # hành vi render KHÔNG đổi: câu vẫn đọc, chỉ thêm warning
+        with self._inject_contract_errors(
+                ["tokens[3].i không liên tiếp: 5 → 7"]):
+            r = text_to_profile_v2_full("Xin chào thế giới.")
+        self.assertFalse(r["contract_ok"])
+        self.assertTrue(r["warnings"])
+        self.assertEqual(r["state"], "complete")
+
+    def test_allowlist_theo_loai_loi_mien_dung_loai_do(self):
+        kinds = {"i_lech_day": re.compile(r"không liên tiếp")}
+        with mock.patch.object(gv2, "_CONTRACT_KIND_RES", kinds), \
+             mock.patch.object(gv2, "STRICT_CONTRACT_ALLOWLIST",
+                               frozenset({"i_lech_day"})), \
+             self._inject_contract_errors(
+                 ["tokens[3].i không liên tiếp: 5 → 7"]):
+            r = text_to_profile_v2_full("Xin chào thế giới.", mode="strict")
+        self.assertEqual(r["state"], "complete")
+
+    def test_loi_la_khong_duoc_mien_du_allowlist_co_noi_dung(self):
+        # lỗi không nhận diện được loại → luôn từ chối, kể cả khi allowlist
+        # đang có loại khác — không có lỗ hổng "lỗi lạ được miễn"
+        kinds = {"i_lech_day": re.compile(r"không liên tiếp")}
+        with mock.patch.object(gv2, "_CONTRACT_KIND_RES", kinds), \
+             mock.patch.object(gv2, "STRICT_CONTRACT_ALLOWLIST",
+                               frozenset({"i_lech_day"})), \
+             self._inject_contract_errors(["lỗi hoàn toàn lạ không nhận diện"]):
+            r = text_to_profile_v2_full("Xin chào thế giới.", mode="strict")
+        self.assertEqual(r["state"], "rejected")
+        self.assertEqual(r["profile"], "")
+
+    def test_policy_hash_doi_khi_allowlist_doi(self):
+        h1 = v2_policy_hash()
+        with mock.patch.object(gv2, "STRICT_CONTRACT_ALLOWLIST",
+                               frozenset({"i_lech_day"})):
+            gv2._POLICY_HASH = None
+            h2 = v2_policy_hash()
+        self.assertNotEqual(h1, h2)
 
 
 class TestScopeKhongLach(unittest.TestCase):

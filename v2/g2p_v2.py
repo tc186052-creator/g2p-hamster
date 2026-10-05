@@ -57,6 +57,22 @@ _VOCAB178: set | None = None
 # được duyệt ⇒ phải opt-in tường minh: strict_policy={"cmu","spell","espeak"}.
 DEFAULT_STRICT_POLICY = frozenset({"cmu", "spell"})
 
+# strict: lỗi hợp đồng IR (contract_ok=False) ⇒ TỪ CHỐI câu, TRỪ các loại
+# lỗi có trong allowlist này. Allowlist theo TÊN LOẠI (đối chiếu qua bảng
+# regex _CONTRACT_KIND_RES bên dưới) — KHÔNG BAO GIỜ miễn toàn bộ
+# contract_errors. Mặc định RỖNG: chưa có loại nào được chứng minh an toàn
+# (không mất unit). Muốn miễn một loại, phải (1) thêm regex nhận diện loại
+# đó vào _CONTRACT_KIND_RES, (2) thêm tên loại vào đây kèm bằng chứng.
+STRICT_CONTRACT_ALLOWLIST: frozenset = frozenset()
+
+# tên loại lỗi hợp đồng → regex nhận diện trong thông điệp lỗi của tầng 1.
+# Thông điệp lỗi là văn bản tự do — đây là bản ánh xạ DUY NHẤT từ tên loại
+# sang thông điệp, nên phải giữ chặt với message của check_contract().
+_CONTRACT_KIND_RES = {
+    # ví dụ (CHƯA được miễn — chỉ minh họa cách thêm):
+    # "i_lech_day": re.compile(r"không liên tiếp"),
+}
+
 # ---------------------------------------------------------------- IPA → ARPABET
 # Nguồn: espeak-ng voice en-us, --ipa --sep=" " (mỗi phone 1 token, stress ˈ/ˌ
 # đằng trước, độ dài ː). Map về ARPABET (phoneset CMUdict) rồi đi đúng đường
@@ -258,7 +274,9 @@ def _rescue_record(rec, by_id, notes):
     (giống hệt v1, nguồn "core"). Record hụt: đi từng unit — unit đọc được
     giữ đọc đúng (tiếng Việt KHÔNG BAO GIỜ bị đưa qua espeak — tiên đề chủ
     dự án), chỉ unit thật sự hụt mới cứu theo bậc; hụt hết thì bỏ TỪ, không
-    bỏ câu. trace: mỗi unit 1 dòng {word, outcome, source, reason}."""
+    bỏ câu. trace: mỗi unit 1 dòng {word, outcome, source, reason}; fast
+    path record đọc tốt được MỞ RA thành từng read unit (_fast_trace) — chỉ
+    khi không có read_units mới xuất 1 dòng gộp có merged=true + unit_count."""
     trace = []
     st = rec.get("status")
     pd = rec.get("profile_debug") or {}
@@ -268,17 +286,10 @@ def _rescue_record(rec, by_id, notes):
         # fb từ lõi là "OOV cmu — …" (HOA) — .lower() bắt buộc; thiếu nó làm
         # đường nâng cấp CMU/espeak thành dead code (bug có từ bản gốc)
         if not fb.lower().startswith("oov"):
-            trace.append({"word": rec.get("surface", ""), "outcome": "read",
-                          "source": "core", "read_complete": True,
-                          "unit_count": len(rec["master"]["read_units"])})
-            return pd.get("text", "") or None, trace
+            return pd.get("text", "") or None, _fast_trace(rec)
     elif st not in ("unresolved", "no_nucleus"):
         if not pd.get("errors"):
-            trace.append({"word": rec.get("surface", ""), "outcome": "read",
-                          "source": "core", "read_complete": True,
-                          "unit_count": max(1, len(rec.get("master", {})
-                                                  .get("read_units", [])))})
-            return pd.get("text", "") or None, trace
+            return pd.get("text", "") or None, _fast_trace(rec)
     pieces = []
     for u in rec.get("master", {}).get("read_units", []):
         w = (u.get("text") or "").strip()
@@ -361,6 +372,41 @@ def _rescue_record(rec, by_id, notes):
     return (" ".join(pieces) if pieces else None), trace
 
 
+def _contract_kinds(msgs) -> set:
+    """Thông điệp contract error → tập TÊN LOẠI. Loại không nhận diện được
+    trả về là 'khác:…' — không bao giờ khớp allowlist ⇒ strict luôn từ chối
+    (không có lỗ hổng "lỗi lạ được miễn")."""
+    kinds = set()
+    for m in msgs:
+        for kind, rx in _CONTRACT_KIND_RES.items():
+            if rx.search(m):
+                kinds.add(kind)
+                break
+        else:
+            kinds.add("khác:" + m[:40])
+    return kinds
+
+
+def _fast_trace(rec) -> list:
+    """Fast path record đọc tốt → trace. MỞ RA THÀNH TỪNG read unit theo
+    master.read_units — không mạo danh 1 record gộp là trace per-unit; chỉ
+    khi record không có read_units mới xuất 1 DÒNG GỘP tường minh có
+    "merged": true + "unit_count": N."""
+    rus = rec.get("master", {}).get("read_units") or []
+    out = []
+    for u in rus:
+        w = (u.get("text") or "").strip()
+        if not w:
+            continue
+        out.append({"word": w.strip(".,;:!?…\"'()"), "outcome": "read",
+                    "source": "core", "read_complete": True})
+    if out:
+        return out
+    return [{"word": rec.get("surface", ""), "outcome": "read",
+             "source": "core", "read_complete": True,
+             "merged": True, "unit_count": max(1, len(rus))}]
+
+
 def _sha256_file(p: Path) -> str:
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -413,7 +459,7 @@ def v2_policy_hash() -> str:
     global _POLICY_HASH
     if _POLICY_HASH is None:
         payload = {
-            "schema": "g2p_v2_policy/0.2",
+            "schema": "g2p_v2_policy/0.3",
             "code_sha256_v2": _sha256_file(Path(__file__).resolve()),
             "espeak_vowels": _ESPEAK_VOWELS,
             "espeak_cons": _ESPEAK_CONS,
@@ -424,6 +470,7 @@ def v2_policy_hash() -> str:
             "punct_emit": sorted(PUNCT_EMIT),
             "ladder": ["core", "cmu", "espeak", "spell"],
             "default_strict_policy": sorted(DEFAULT_STRICT_POLICY),
+            "strict_contract_allowlist": sorted(STRICT_CONTRACT_ALLOWLIST),
             "core_g2p_policy_hash": G.g2p_policy_hash(),
         }
         h = hashlib.sha256(json.dumps(payload, sort_keys=True,
@@ -446,20 +493,30 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
         TỪ và báo tường minh trong `dropped`/`notes`.
       "strict" (cho prep dữ liệu train) — từ chối cả câu (state="rejected",
         profile="") nếu mất nội dung bất kỳ (không phải drop chủ ý), nếu có
-        unit được cứu bằng nguồn ngoài strict_policy, hoặc nếu profile rỗng
-        trong khi câu có nội dung cần đọc. LƯU Ý: strict chỉ bảo đảm đủ
-        coverage + nguồn theo policy; KHÔNG bảo đảm phát âm đúng.
+        unit được cứu bằng nguồn ngoài strict_policy, nếu IR lệch hợp đồng
+        (contract_ok=False) TRỪ các loại lỗi có tên trong
+        STRICT_CONTRACT_ALLOWLIST, hoặc nếu profile rỗng trong khi câu có
+        nội dung cần đọc. LƯU Ý: strict chỉ bảo đảm đủ coverage + nguồn theo
+        policy; KHÔNG bảo đảm phát âm đúng.
 
     state (coverage, KHÔNG phải correctness):
       complete — mọi unit nội dung được đọc, không mất unit nào (kể cả từ bị
                  scope QD57 cấm phát âm — đó vẫn là mất coverage), profile có
-                 nội dung (≥1 từ). Contract error của IR chỉ là warning
-                 (xử lý per-token không mất unit) và KHÔNG hạ state.
+                 nội dung (≥1 từ), contract_ok. Contract error không được miễn
+                 tùy tiện: chỉ loại đã chứng minh an toàn mới nằm trong
+                 allowlist.
       partial  — câu vẫn đọc nhưng có unit nội dung bị bỏ (scope QD57, chữ
                  số chưa verbalize, từ ngoài phạm vi, validation).
       empty    — profile không còn unit nội dung nào (chỉ dấu câu/rỗng) dù
                  câu CÓ nội dung cần đọc — KHÔNG được tính là cứu thành công.
       rejected — chỉ ở strict: vi phạm policy.
+    units — trace TỪNG read unit {word, outcome(read|upgraded|dropped),
+                 source, read_complete[, reason][, intentional]}. Fast path
+                 (record đọc tốt nguồn core) được MỞ RA thành từng read unit
+                 theo master.read_units; chỉ khi record không có read_units
+                 mới xuất 1 DÒNG GỘP tường minh ("merged": true +
+                 "unit_count": N) — không bao giờ gọi record gộp là
+                 trace per-unit.
     """
     if mode not in ("best_effort", "strict"):
         raise ValueError(f"mode không hợp lệ: {mode!r}")
@@ -551,8 +608,14 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
     if mode == "strict":
         # "core" = đường v1 nguyên bản, LUÔN được phép bất kể policy
         bad_src = sorted(set(sources) - policy - {"core"})
-        if bad_src or lost or state == "empty":
+        # IR lệch hợp đồng: chỉ miễn các LOẠI lỗi tường minh trong allowlist
+        # (mặc định rỗng) — không miễn toàn bộ contract_errors
+        bad_contract = sorted(_contract_kinds(out.get("contract_errors", []))
+                              - STRICT_CONTRACT_ALLOWLIST) if not contract_ok else []
+        if bad_src or bad_contract or lost or state == "empty":
             why = []
+            if bad_contract:
+                why.append("IR lệch hợp đồng: " + "; ".join(bad_contract[:2]))
             if lost:
                 why.append(f"mất {len(lost)} unit nội dung: "
                            + ", ".join("'" + d["word"] + "'" for d in lost[:3]))
@@ -565,7 +628,7 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
             profile = ""
 
     return {
-        "schema": "g2p_v2_result/0.2",
+        "schema": "g2p_v2_result/0.3",
         "mode": mode,
         "state": state,
         "profile": profile,

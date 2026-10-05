@@ -18,7 +18,8 @@ Phân lớp mỗi câu (theo STATE COVERAGE của v2 — KHÔNG phải correctne
   FAIL_CA_HAI    — cả hai cùng từ chối
 Mọi câu ≠ GIONG được ghi vào <out>/lech_duyet.tsv để duyệt từng câu, kèm state,
 số unit bị bỏ và nguồn cứu. Xuất kèm <out>/ket_qua.json (máy đọc được: toàn bộ
-rows + fingerprint policy/config espeak). Báo cáo tách: đọc đủ / đọc thiếu /
+rows, MỖI câu kèm chi_tiet ĐẦY ĐỦ units/dropped/warnings/notes/errs — TSV mới
+rút gọn — + fingerprint policy/config espeak). Báo cáo tách: đọc đủ / đọc thiếu /
 rỗng, số từ bỏ, fallback theo nguồn. ĐÂY LÀ số ĐỘ PHỦ, không phải độ chính xác
 phát âm — muốn kết luận "đọc đúng" cần gold được duyệt hoặc đánh giá nghe.
 """
@@ -74,7 +75,8 @@ def worker(job):
         full = text_to_profile_v2_full(s)
     except Exception as ex:
         full = {"state": "empty", "profile": "", "errs": [f"EXC v2: {ex}"],
-                "notes": [], "dropped": [], "sources": {}, "warnings": []}
+                "notes": [], "dropped": [], "sources": {}, "warnings": [],
+                "units": []}
     if e1:
         cls = _CUU_BY_STATE[full["state"]]
     elif full["state"] != "complete":
@@ -85,9 +87,14 @@ def worker(job):
         cls = "GIONG"
     lost = sum(1 for d in full["dropped"] if not d.get("intentional"))
     src = ",".join(f"{k}:{v}" for k, v in sorted(full["sources"].items()))
+    # 11 trường hiển thị (TSV rút gọn notes/errs) + chi_tiet ĐẦY ĐỦ cho JSON:
+    # notes/warnings/errs/dropped/units nguyên văn, không cắt
+    chi_tiet = {"notes": full["notes"], "warnings": full["warnings"],
+                "errs": list(full["errs"]), "dropped": full["dropped"],
+                "units": full["units"]}
     return (idx, cls, s, p1, "; ".join(e1[:2]), full["profile"],
             "; ".join(full["errs"][:2]), full["state"], lost, src,
-            " | ".join(full["notes"][:6]))
+            " | ".join(full["notes"][:6]), chi_tiet)
 
 
 def main():
@@ -130,7 +137,7 @@ def main():
                 k, v = kv.rsplit(":", 1)
                 src_cnt[k] += int(v)
     lost_total = sum(r[8] for r in rows)
-    contract_warn = sum(1 for r in rows if "hợp đồng" in r[10])
+    contract_warn = sum(1 for r in rows if r[11]["warnings"])
 
     # provenance của TOÀN BỘ lần chạy (worker con kế thừa env sau fork)
     from g2p_v2 import v2_provenance
@@ -141,15 +148,18 @@ def main():
     with open(out / "lech_duyet.tsv", "w", encoding="utf-8") as f:
         f.write("phan_lop\tstt\tcau\tv1_profile\tv1_loi\tv2_profile\tv2_loi"
                 "\tv2_state\tunit_bi_bo\tnguon_cuu\tprovenance_v2\n")
-        for (idx, cls, s, p1, e1, p2, e2, st, lost, sr, notes) in rows:
+        for (idx, cls, s, p1, e1, p2, e2, st, lost, sr, notes, _ct) in rows:
             if cls == "GIONG":
                 continue
             f.write(f"{cls}\t{idx + 1}\t{s}\t{p1}\t{e1}\t{p2}\t{e2}"
                     f"\t{st}\t{lost}\t{sr}\t{notes}\n")
 
-    # kết quả MÁY ĐỌC ĐƯỢC: toàn bộ rows + fingerprint/config để kiểm chứng
+    # kết quả MÁY ĐỌC ĐƯỢC: toàn bộ rows + fingerprint/config để kiểm chứng.
+    # Mỗi câu lưu ĐẦY ĐỦ units/dropped/warnings/notes/errs (chi_tiet) — bản
+    # rút gọn chỉ dành cho TSV hiển thị. Fast-path units là TỪNG read unit
+    # thật; entry có "merged": true + "unit_count": N là dòng GỘP tường minh.
     ket_qua = {
-        "schema": "so_sanh_ket_qua/0.1",
+        "schema": "so_sanh_ket_qua/0.2",
         "meta": {
             "nguon": src, "so_cau_lay_mau": len(rows), "so_cau_nguon": total,
             "thoi_gian_s": round(time.time() - t0, 1), "procs": a.procs,
@@ -162,8 +172,9 @@ def main():
         "rows": [
             {"stt": idx + 1, "phan_lop": cls, "cau": s, "v1_profile": p1,
              "v1_loi": e1, "v2_profile": p2, "v2_loi": e2, "v2_state": st,
-             "unit_bi_bo": lost, "nguon_cuu": sr, "notes": notes}
-            for (idx, cls, s, p1, e1, p2, e2, st, lost, sr, notes) in rows
+             "unit_bi_bo": lost, "nguon_cuu": sr, "notes_rut_gon": notes,
+             "chi_tiet": ct}
+            for (idx, cls, s, p1, e1, p2, e2, st, lost, sr, notes, ct) in rows
         ],
     }
     import json as _json

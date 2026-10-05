@@ -77,7 +77,10 @@ r = text_to_profile_v2_full(text)
 r["state"]     # complete | partial | empty | rejected (đo COVERAGE)
 r["profile"]   # chuỗi phôn vị
 r["dropped"]   # từng unit bị bỏ: {word, reason, intentional}
-r["units"]     # trace TỪNG unit: {word, outcome, source, read_complete, reason?}
+r["units"]     # trace TỪNG read unit: {word, outcome, source, read_complete, reason?}
+               # (record đọc tốt trên fast path được MỞ RA thành từng unit;
+               #  dòng gộp tường minh chỉ khi record không có read_units:
+               #  "merged": true + "unit_count": N)
 r["sources"]   # {"core": n, "cmu": n, "espeak": n, "spell": n} — đếm theo unit
 r["strict_policy"]  # policy strict thực tế của lần gọi này
 r["provenance"]  # policy hash (sha256 code v2 + mapping + pin lõi) + espeak version/voice/options
@@ -94,7 +97,10 @@ r["provenance"]  # policy hash (sha256 code v2 + mapping + pin lõi) + espeak ve
   cấm phát âm** (giữ lệnh cấm, nhưng bỏ một từ nội dung vẫn là mất
   coverage; `intentional` chỉ miễn icon/biểu tượng không có gì để đọc),
   nếu unit được cứu bằng nguồn ngoài `strict_policy` (mặc định nhận
-  `cmu` + `spell`; **espeak phải opt-in** vì là suy diễn chưa duyệt), hoặc
+  `cmu` + `spell`; **espeak phải opt-in** vì là suy diễn chưa duyệt),
+  nếu IR lệch hợp đồng (`contract_ok=False`) — chỉ loại lỗi tường minh
+  trong `STRICT_CONTRACT_ALLOWLIST` mới được miễn (mặc định RỖNG; miễn
+  theo TÊN LOẠI lỗi, không miễn toàn bộ contract_errors), hoặc
   nếu profile rỗng dù câu có nội dung. Lưu ý: strict bảo đảm đủ coverage
   + nguồn theo policy, KHÔNG bảo đảm phát âm đúng.
 
@@ -117,7 +123,7 @@ python3 v2/so_sanh.py --input van_ban.txt --procs 22
 | Bộ test | Kết quả |
 |---|---|
 | t0 regression (đã tách tiny2) | 37/37 test OK |
-| G2P v2 (state/strict/scope/espeak mock + thật) | 37/37 test OK |
+| G2P v2 (state/strict/contract/scope/espeak mock + thật) | 47/47 test OK |
 | G2P fase D/E (`test_g2p.py`) | 111 PASS, 0 FAIL |
 | vi_rules/vi_syllable | 466 PASS, 0 FAIL |
 | scope_policy mutation probes | 16 PASS, 0 FAIL |
@@ -132,7 +138,9 @@ cần duyệt) · 9,9% v1 bỏ câu / v2 đủ coverage · 7,3% v1 bỏ câu / v
 thiếu (đã báo) · 0,2% cả hai hụt · 1,6% v1 đủ mà v2 đọc thiếu (chủ yếu
 markup wiki và từ có dấu ngoài phạm vi — từng câu nằm trong
 `lech_duyet.tsv`). Mỗi lần chạy xuất kèm `ket_qua.json` (máy đọc được:
-toàn bộ rows + policy hash + version/config espeak) để kiểm chứng. Số
+toàn bộ rows, MỖI câu kèm `chi_tiet` đầy đủ units/dropped/warnings/notes/
+errs — bản TSV mới rút gọn — + policy hash + version/config espeak) để
+kiểm chứng. Số
 liệu này đo đọc đủ/thiếu/rỗng; muốn kết luận đọc ĐÚNG cần gold được
 duyệt hoặc đánh giá nghe.
 
