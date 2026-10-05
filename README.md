@@ -1,14 +1,28 @@
-# g2p-hamster — G2P tiếng Việt cho TTS
+# g2p-hamster — Front-end TTS Việt/Anh: text thô → phôn vị, không cần chọn ngôn ngữ
 
-Grapheme-to-phoneme (G2P) **deterministic, fail-closed, có provenance** cho
-pipeline TTS Việt/Anh/mix — lớp thân ở tầng 2: nhận token IR chuẩn `ir/0.1`
-từ tầng 1 (t0), xuất record master `ham/0.2` + chuỗi profile `kokoro178`
-(vocab 178 ký tự của Kokoro).
+**Vấn đề giải quyết:** acoustic model TTS không đọc được chữ thô — nó cần
+chuỗi phôn vị. Trên đường đi có cả rừng vấn đề mà một "G2P" thuần không
+chạm tới: `HLV` phải là "huấn luyện viên" chứ không phải "H-L-V",
+`TP.HCM` là "thành phố Hồ Chí Minh", `05/10/2026` là "ngày năm tháng mười
+năm hai nghìn…", `1.000.000đ` là "một triệu đồng", `100 km/h` đọc "ki-lô-
+mét một giờ" trong câu việt nhưng "kay-pee-aitch" trong câu anh, và câu
+"ĐT Việt Nam vô CK AFF" có 3 ngôn ngữ lồng nhau. Repo này là **front-end
+hoàn chỉnh**: chuẩn hóa → nhận dạng số/tiền/ngày/giờ/email → mở rộng viết
+tắt → định tuyến vi/anh theo từng từ → G2P → chuỗi phôn vị kokoro178.
+**Ném text vào là ra phôn vị — không cần khai báo ngôn ngữ, không cần
+router ngoài.**
+
+Triết lý khác biệt: thay vì chỉ làm router + từ điển, hệ thống được **học
+từ văn bản thật quy mô lớn** (quét tần suất trên hơn 1 tỷ câu, đối chiếu
+thêm 200 triệu câu từ nguồn khác, rồi duyệt + sửa tay từng entry — bảng
+viết tắt 312 entry đều có provenance) và **fail-closed có provenance**:
+không bịa phôn vị ngoài inventory, không âm thầm mất nội dung, mỗi quyết
+định đều truy vết được — an toàn cho dữ liệu train TTS.
 
 ```
-text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR ir/0.1
-      ──▶ 01_g2p (âm tiết vi → CMUdict → fold → spell)      ──▶ ham/0.2
-      ──▶ profiles (record master → chuỗi 178)              ──▶ profile
+text thô ──▶ t0: clean/tokenize/detect/verbalize/route vi-en ──▶ IR ir/0.1
+         ──▶ 01_g2p (âm tiết vi → CMUdict → fold → spell)      ──▶ ham/0.2
+         ──▶ profiles (record master → chuỗi 178)              ──▶ profile
 ```
 
 Đặc trưng thiết kế:
@@ -67,6 +81,90 @@ Ví dụ chạy thật (CLI, output là chuỗi phôn vị được model đọc
 ```
 
 Trong khi Kokoro gốc gặp câu này chỉ có thể đánh vần từng chữ hoặc bỏ.
+
+Ca khó hơn — vẫn chạy thật qua CLI (viết tắt có chấm, lồng số, cùng chữ
+nhưng đọc khác theo ngữ cảnh):
+
+| Câu | Hệ thống đọc |
+|---|---|
+| `GS.TS Nguyễn Văn A` | giáo sư tiến sĩ (viết tắt chồng nhau vẫn tách đúng) |
+| `CMND của P.5 chuyển về TT từ 8h00` | chứng-minh-nhân-dân · phường năm · 8 giờ |
+| `ĐT Việt Nam vô CK AFF 2-2` | **đội tuyển** Việt Nam · chung kết · đọc chữ AFF · hai-hai |
+| `NXB Giáo dục phát hành SGK, BGDĐT duyệt` | nhà-xuất-bản · sách-giáo-khoa · bộ-giáo-dục-đào-tạo |
+| `ThS. Trần B điều trị tại BV Bạch Mai theo QĐ của BCH` | thạc sĩ · bệnh viện · quyết định · ban chấp hành |
+
+Ranh giới trung thực: viết tắt KHÔNG có trong bảng thì **đánh vần từng
+chữ** chứ không đoán (vd `SGTGT` → "S-G-T-G-T") — đoán sai người nghe
+nghe ra ngay, đánh vần thì người nghe còn hiểu; viết tắt đa nghĩa (`TT`,
+`ĐT`) chọn nghĩa theo ngữ cảnh nhưng có thể chọn khác ý bạn.
+
+Đơn vị, ngày giờ, ký hiệu — đọc theo ngữ cảnh, **tự phân biệt vi/anh**:
+`100 km/h` trong câu việt → "một trăm ki-lô-mét một giờ", trong câu anh →
+"one hundred kay-pee-aitch"; `05/10/2026` → "ngày năm tháng mười năm hai
+nghìn không trăm hai mươi sáu"; `10:30` → "mười giờ ba mươi";
+`1.000.000đ` → "một triệu đồng"; `50%` → "năm mươi phần trăm";
+`25°C` → "hai mươi lăm độ xê"; `2k` → "hai nghìn"; `9h30` → "chín giờ ba
+mươi"; `admin@site.com` → "admin a-còng site chấm com"; số điện thoại đọc
+từng chữ số. Dấu `/` được xử theo ngữ cảnh: ngày tháng (05/10), đơn vị
+(km/h), tỷ số (2-2) — mỗi dạng một cách đọc, không nhồi chung.
+
+## So sánh 7 hệ G2P/front-end trên cùng 300 câu thật
+
+Chạy **cùng 300 câu** (100 vi + 100 anh + 100 mix — đúng các câu trong
+`listening_test`, nguồn từng câu công khai) qua các công cụ public:
+[donglao_g2p](https://pypi.org/project/donglao-g2p/),
+[sea_g2p](https://pypi.org/project/sea-g2p/),
+[vietnormalizer](https://pypi.org/project/vietnormalizer/),
+[vig2p](https://github.com/hoang1007/vig2p),
+[vPhon](https://github.com/kirbyj/vPhon),
+[viphoneme](https://github.com/v-nhandt21/Viphoneme),
+espeak-ng. KHÔNG có TTS — so đúng phép đo text → phôn vị + tốc độ 1
+luồng (i9-12900K). Script + nguyên văn output từng hệ, từng câu:
+[`listening_test/g2p_compare/`](listening_test/g2p_compare) — tự chạy lại
+được bằng `run_g2p_comparison.py`.
+
+| Hệ | Loại ra | Chạy OK | Câu/s | Số còn "rò rỉ" | Ghi chú |
+|---|---|---|---|---|---|
+| donglao_g2p | phôn vị | 100% | **30692** | 0% | wheel native (Rust) — nhanh nhất |
+| sea_g2p | phôn vị | 100% | 16357 | **29,7%** | số/ngày giữ nguyên: "09/11" → "09 11" |
+| vietnormalizer | văn bản chuẩn hóa | 100% | 515 | 0% | ra chữ đã chuẩn hóa, **chưa phải phôn vị** |
+| vig2p | phôn vị | **55%** | 2812 | 0% | lỗi 45% câu (24% vi · 68% anh · 43% mix) |
+| vPhon | phôn vị | 100% | 42770 | **28,3%** | chuyển từng từ, không verbalize: `100` → `[100]` |
+| espeak_ng | phôn vị | 99,3% | 81 | 0% | câu vi nhiều số → IPA sai bét |
+| viphoneme | phôn vị | 100% | 26 | 0% | đầy đủ nhưng chậm nhất + chỉ chạy Python <3.12 |
+| **g2p (repo này)** | phôn vị | **100%** | 143 | **0%** | 100% coverage, 0 nội dung rơi, provenance từng từ |
+
+"Số rò rỉ" = câu có chữ số **đứng độc lập** còn sót trong chuỗi ra
+("100", "09/11/2007") — acoustic model không đọc được; chữ số làm thanh
+điệu gắn vào âm tiết (`toj1`, `mot6`) là ký hiệu phiên âm của từng hệ,
+không tính. Một câu đối chiếu thẳng (nguyên văn trong CSV, `mix_easy`
+#48 — "Đại hội bế mạc vào lúc 11h00 ngày 09/11/2007 tại Tp."):
+
+| Hệ | Xử lý câu này thế nào |
+|---|---|
+| **repo này** | "mười một giờ, ngày chín tháng mười một, năm hai nghìn không trăm lẻ bảy, thành phố" — trọn vẹn |
+| donglao_g2p | "lúc **h** ngày chín tháng mười một…" — **mất "11" giờ**, sót "tp." |
+| viphoneme | đọc trọn vẹn — nhưng 27 câu/s và không chạy trên Python 3.12 |
+| sea_g2p | "11 ˈeɪtʃ00 … 09 11 2 007 …" — giữ nguyên số, ngày vỡ |
+| espeak_ng | "the stroke letter-one-i-aitch…" — câu vi thành rác IPA |
+
+Nói thẳng: về **tốc độ thuần**, donglao_g2p nhanh hơn repo này ~200 lần
+(mã native, không có strict/coverage/provenance) — repo này 143 câu/s
+vẫn dư real-time (dưới 1% một nhân CPU) và là hệ **duy nhất đồng thời
+đạt 100% coverage + 0 số rò rỉ + provenance từng từ + chế độ strict cho
+dữ liệu train**. viphoneme chất lượng gần nhất nhưng chậm ~5 lần và vỡ
+trên Python 3.12. Không đồng ý bảng trên? Mở
+[`outputs_all_tools.csv`](listening_test/g2p_compare/outputs_all_tools.csv)
+ra tự chấm — output gốc từng hệ, từng câu đều nằm đó.
+
+Tốc độ riêng từng đường của repo (đo trên 400 câu listening_test, script
+[`benchmark_speed.py`](benchmark_speed.py)):
+
+| Đường | Câu/s | p50 | p95 |
+|---|---|---|---|
+| v2 (mặc định, cứu từng từ) | 330 | 6,4 ms | 27 ms |
+| v1 (fail-closed) | 572 | 4,9 ms | 10 ms |
+| espeak-ng (tham khảo) | 168 | 16,9 ms | 30 ms |
 
 ## Demo — nghe thử 400 clip + toàn bộ số liệu
 
@@ -199,14 +297,23 @@ không cài gì thêm**:
 
 ```bash
 git clone https://github.com/tc186052-creator/g2p-hamster && cd g2p-hamster
-python cli.py "Xin chào"                    # chạy được ngay sau khi clone
-sudo apt install espeak-ng                  # TUỲ CHỌN — nguồn cứu espeak của v2
+./install.sh   # tự cài espeak-ng nếu thiếu + kiểm tra nhanh G2P
+python3 cli.py "HLV của HAGL họp HĐQT tại TP.HCM."   # chạy thử
 ```
+
+`install.sh` làm đúng 2 việc: cài `espeak-ng` qua apt nếu chưa có, rồi
+chạy 1 câu kiểm tra. Không muốn chạy script thì làm tay:
+`sudo apt install espeak-ng` (espeak-ng là nguồn cứu phiên âm anh của v2 —
+**thiếu nó, từ anh ngoài CMUdict vẫn được đọc kiểu vi hóa nhưng không
+chuẩn**; CLI sẽ cảnh báo nếu phát hiện thiếu; đặt `ESPEAK_NG_BIN=""` để
+tắt hẳn nguồn này tường minh).
 
 Không có `requirements.txt` vì không cần: t0 + 01_g2p + v2 đều thuần
 stdlib (torch/numpy chỉ dùng ở demo TTS và train — ngoài phạm vi repo).
 Tái lập phần **đánh giá STT ngược** mới cần thêm:
-`pip install -r listening_test/requirements_eval.txt` (faster-whisper).
+`pip install -r listening_test/requirements_eval.txt` (faster-whisper);
+so sánh 7 hệ G2P ở trên có cài đặt từng tool ngay đầu
+[`run_g2p_comparison.py`](listening_test/g2p_compare/run_g2p_comparison.py).
 
 **Cách 1 — dòng lệnh** (`cli.py`):
 

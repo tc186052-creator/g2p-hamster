@@ -49,6 +49,19 @@ def main() -> int:
     if not texts:
         ap.error("cần text, --file hoặc stdin")
 
+    if not a.v1:
+        # espeak-ng là nguồn cứu phiên âm anh của v2. Thiếu nó từ anh OOV vẫn
+        # được đọc (vi hóa) NHƯNG không có cảnh báo ở thư viện — cảnh báo ở
+        # đây, đúng 1 lần, trừ khi user TẮT tường minh bằng ESPEAK_NG_BIN="".
+        import os
+        if os.environ.get("ESPEAK_NG_BIN", None) is None:
+            from g2p_v2 import _espeak_bin
+            if _espeak_bin() is None:
+                print("!! chưa cài espeak-ng — từ tiếng Anh ngoài từ điển sẽ "
+                      "được đọc kiểu vi hóa thay vì phiên âm chuẩn. Cài: "
+                      "sudo apt install espeak-ng  (hoặc ./install.sh)",
+                      file=sys.stderr)
+
     if a.v1:
         from g2p_v1 import text_to_profile
 
