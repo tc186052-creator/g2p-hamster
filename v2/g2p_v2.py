@@ -494,17 +494,20 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
       "strict" (cho prep dữ liệu train) — từ chối cả câu (state="rejected",
         profile="") nếu mất nội dung bất kỳ (không phải drop chủ ý), nếu có
         unit được cứu bằng nguồn ngoài strict_policy, nếu IR lệch hợp đồng
-        (contract_ok=False) TRỪ các loại lỗi có tên trong
-        STRICT_CONTRACT_ALLOWLIST, hoặc nếu profile rỗng trong khi câu có
-        nội dung cần đọc. LƯU Ý: strict chỉ bảo đảm đủ coverage + nguồn theo
-        policy; KHÔNG bảo đảm phát âm đúng.
+        (contract_ok=False — MẶC ĐỊNH TỪ CHỐI; chỉ loại lỗi có tên trong
+        STRICT_CONTRACT_ALLOWLIST mới được miễn), hoặc nếu profile rỗng
+        trong khi câu có nội dung cần đọc. LƯU Ý: strict chỉ là BỘ LỌC KỸ
+        THUẬT cho prep dữ liệu train — strict pass KHÔNG phải chứng nhận
+        phiên âm đúng; chỉ bảo đảm đủ coverage + nguồn theo policy.
 
     state (coverage, KHÔNG phải correctness):
       complete — mọi unit nội dung được đọc, không mất unit nào (kể cả từ bị
                  scope QD57 cấm phát âm — đó vẫn là mất coverage), profile có
-                 nội dung (≥1 từ), contract_ok. Contract error không được miễn
-                 tùy tiện: chỉ loại đã chứng minh an toàn mới nằm trong
-                 allowlist.
+                 nội dung (≥1 từ). LƯU Ý: best_effort vẫn có thể complete dù
+                 contract_ok=False — lỗi hợp đồng IR chỉ là warning, coverage
+                 không mất; strict thì MẶC ĐỊNH TỪ CHỐI trường hợp đó
+                 (chỉ loại lỗi tường minh trong STRICT_CONTRACT_ALLOWLIST
+                 mới được miễn).
       partial  — câu vẫn đọc nhưng có unit nội dung bị bỏ (scope QD57, chữ
                  số chưa verbalize, từ ngoài phạm vi, validation).
       empty    — profile không còn unit nội dung nào (chỉ dấu câu/rỗng) dù
