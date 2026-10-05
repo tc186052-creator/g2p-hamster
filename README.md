@@ -65,6 +65,17 @@ Vài clip mẫu — bấm là tải:
 
 Đọc: **thuần việt và mix đơn giản ~96% khớp từ**; bộ khó thấp hơn do thiết kế (nhồi tên riêng nước ngoài). Kết quả ai cũng tái lập được bằng cách chạy STT bất kỳ trên các MP3 trong repo.
 
+### So sánh với Kokoro gốc (chưa fine-tune) — cùng câu, cùng G2P, cùng voicepack, chỉ khác trọng số
+
+| Bộ | Kokoro gốc — khớp hoàn toàn (Pho / v3) | Kokoro gốc — TB (Pho / v3) | Kokoro vi (repo này) — khớp hoàn toàn | Kokoro vi — TB |
+|---|---|---|---|---|
+| `vietnamese` | 1/100 · 1/100 | 29.8% / 23.6% | 68/100 · 68/100 | 96.4% / 96.8% |
+| `english` | 30/100 · 45/100 | 87.4% / 90.2% | 18/100 · 38/100 | 86.4% / 93.3% |
+| `mix_easy` | 1/100 · 0/100 | 37.0% / 24.7% | 69/100 · 66/100 | 96.0% / 92.4% |
+| `mix_hard` | 2/100 · 0/100 | 48.5% / 31.8% | 24/100 · 39/100 | 88.7% / 92.4% |
+
+Clip baseline nghe tại [`listening_test/audio_baseline/`](listening_test/audio_baseline) — cùng đánh số với `audio/`. Đây là đo **thuần phần fine-tune**: mọi yếu tố khác đều giữ nguyên.
+
 ### Chỗ không khớp — lệch ở đâu, vì sao? (736 chỗ, cả 2 engine)
 
 Dấu câu đã loại khỏi phép so khớp — **không bao giờ là nguyên nhân**:
