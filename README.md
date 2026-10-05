@@ -34,24 +34,64 @@ text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR i
 | `00_docs/` | Hợp đồng đầu vào IR, schema inventory, kế hoạch đánh giá, sơ đồ luồng |
 | `tests/` | Regression test t0 (ví dụ chuẩn + torture set) + regression v2 (state/strict/scope/espeak fail-closed) |
 
-## Demo — nghe thử 400 clip (thư mục `nghe_thu/`)
+## Demo — nghe thử 400 clip + toàn bộ số liệu
 
-400 clip TTS (4 bộ × 100 câu: thuần việt · thuần anh · mix đơn giản ·
-mix khó, 42 phút audio, 24 kHz) render bằng đúng G2P này, kèm kiểm chứng
-STT ngược kép (PhoWhisper-large + Whisper-large-v3) và phân tích từng chỗ
-không khớp. **Nghe: bấm vào clip bên dưới → GitHub mở trình phát → bấm
-play.** Vài clip mẫu:
+**Nghe: bấm vào clip → trang GitHub → Download raw → tải về nghe ngay** (GitHub không phát audio trực tiếp được — mọi repo đều vậy). 400 clip MP3 (4 bộ × 100 câu, 42 phút, 24 kHz, ~14MB) render bằng đúng G2P này, mỗi clip được **2 engine STT độc lập** (PhoWhisper-large của VinAI + Whisper-large-v3 của OpenAI) nghe ngược lại để kiểm chứng.
+
+| Bộ | Số clip | Nội dung | Thời lượng |
+|---|---|---|---|
+| [thuan_viet](nghe_thu/wav/thuan_viet) | 100 | thuần tiếng Việt (tối đa đơn vị 2 chữ kiểu "km") | 8 phút |
+| [thuan_anh](nghe_thu/wav/thuan_anh) | 100 | thuần tiếng Anh (Wikipedia tiếng Anh) | 16 phút |
+| [mix_de](nghe_thu/wav/mix_de) | 100 | vi pha 1–2 từ latin đơn giản | 6 phút |
+| [mix_kho](nghe_thu/wav/mix_kho) | 100 | vi pha ≥3 từ latin / tên riêng nước ngoài | 11 phút |
+
+Vài clip mẫu — bấm là tải:
 
 | Clip | Đọc câu | Whisper-v3 nghe lại |
 |---|---|---|
-| [▶ thuan_viet #27](nghe_thu/wav/thuan_viet/027_thuan_viet.wav) | Hình tứ giác với độ dài các cạnh a, b, c, d mà có diện tích. | ✅ khớp 100% |
-| [▶ thuan_anh #60](nghe_thu/wav/thuan_anh/060_thuan_anh.wav) | The passageway is also accessible from the stairs at the rear of the auditorium. | ✅ khớp 100% |
-| [▶ mix_kho #46](nghe_thu/wav/mix_kho/046_mix_kho.wav) | Các nguồn cũ khác bao gồm Nihon Ryōiki (810–824) và Wamyō Ruijushō… | tên riêng Nhật — cần tai người |
+| [▶ thuan_viet #27](nghe_thu/wav/thuan_viet/027_thuan_viet.mp3) | Hình tứ giác với độ dài các cạnh a, b, c, d mà có diện tích. | ✅ khớp 100% |
+| [▶ thuan_anh #60](nghe_thu/wav/thuan_anh/060_thuan_anh.mp3) | The passageway is also accessible from the stairs at the rear of the auditorium. | ✅ khớp 100% |
+| [▶ mix_de #3](nghe_thu/wav/mix_de/003_mix_de.mp3) | Chúng tôi dự định sẽ chiến đấu đến cùng. | ✅ khớp 100% |
+| [▶ mix_kho #46](nghe_thu/wav/mix_kho/046_mix_kho.mp3) | Các nguồn cũ khác bao gồm Nihon Ryōiki (810–824)… | tên riêng Nhật — cần tai người |
 
-Nghe cả bộ: [`nghe_thu/wav/`](nghe_thu/wav) (4 thư mục theo bộ). Kết quả
-chấm 2 ASR từng clip: [`nghe_thu/duyet.tsv`](nghe_thu/duyet.tsv) · phân
-tích chỗ không khớp: [`nghe_thu/phan_tich_lech.csv`](nghe_thu/phan_tich_lech.csv)
-· báo cáo đầy đủ: [`nghe_thu/BAO_CAO.md`](nghe_thu/BAO_CAO.md).
+### Kết quả kiểm chứng STT ngược (độ khớp với văn bản được đọc)
+
+| Bộ | Khớp hoàn toàn (PhoWhisper) | Khớp hoàn toàn (Whisper-v3) | ≥95% từ khớp (Pho / v3) | Độ khớp TB (Pho / v3) |
+|---|---|---|---|---|
+| thuan_viet | 68/100 | 68/100 | 71 / 74 | 96,4% / 96,8% |
+| thuan_anh | 18/100 | 38/100 | 29 / 54 | 86,4% / 93,3% |
+| mix_de | 69/100 | 66/100 | 78 / 66 | 96,0% / 92,4% |
+| mix_kho | 24/100 | 39/100 | 40 / 49 | 88,7% / 92,4% |
+
+Đọc: **thuần việt và mix đơn giản ~96% khớp từ**; bộ khó thấp hơn do thiết kế (nhồi tên riêng nước ngoài). Kết quả ai cũng tái lập được bằng cách chạy STT bất kỳ trên các MP3 trong repo.
+
+### Chỗ không khớp — lệch ở đâu, vì sao? (736 chỗ, cả 2 engine)
+
+Dấu câu đã loại khỏi phép so khớp — **không bao giờ là nguyên nhân**:
+
+| Loại lệch | Số chỗ | Ví dụ | Tính chất |
+|---|---|---|---|
+| Chép gần đúng tên riêng | 147 | "Biltmore"→"billmore" | nhiễu đo — ASR chép tên theo chữ nó biết |
+| Liên quan số | 113 | "năm"→"5" | 2 cách viết cùng nội dung |
+| Khác dấu/chính tả | 64 | "hóa"/"hoá" (đều chuẩn) | phần lớn vô hại; vài ca "đày"/"đẩy" cần nghe |
+| ASR bỏ/thừa từ | 48 | ASR bỏ hẳn "gave twelve million dollars" | lỗi của ASR |
+| **Từ nghe khác thật** | **364** | "ra"→"da", "dốc"→"rốc" | **cần tai người** — ASR nhầm hoặc TTS đọc lệch |
+
+Theo bộ, "từ nghe khác thật": thuan_viet 65 · mix_de 43 · mix_kho 125 · thuan_anh 131 (tên riêng nước ngoài).
+
+### Ba điểm ưu tiên cho đánh giá nghe (lớp 2 — chờ người duyệt)
+
+1. **Phụ âm đầu d/r**: "ra" nghe như "da" lặp nhiều lần trong 1 clip (`thuan_viet` #8) — TTS đọc lệch hay ASR nhầm giọng miền Bắc?
+2. **Thanh điệu**: vài ca kiểu "đày"/"đẩy".
+3. **Tên riêng nước ngoài** trong `mix_kho`/`thuan_anh` — 2 engine cùng chép khác nhau và khác cả đáp án.
+
+LƯU Ý: STT ngược đo **độ dễ hiểu** (nghe ra lại đúng chữ), KHÔNG thay thế đánh giá của tai người; **chưa tuyên bố "đọc đúng"** cho đến khi lớp 2 hoàn tất.
+
+### Dữ liệu máy đọc được
+
+- [`nghe_thu/duyet.tsv`](nghe_thu/duyet.tsv) — 400 câu + kết quả 2 ASR + cột chấm tay (nguồn từng câu: Wikipedia vi/en CC BY-SA, Tatoeba CC BY)
+- [`nghe_thu/stt_nguoc.csv`](nghe_thu/stt_nguoc.csv) — nguyên văn 2 engine đọc lại 400 clip
+- [`nghe_thu/phan_tich_lech.csv`](nghe_thu/phan_tich_lech.csv) — 736 chỗ lệch, từng chỗ kèm đáp án ↔ text ASR
 
 ## Cài đặt & chạy
 
