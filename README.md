@@ -207,11 +207,12 @@ tuyển trước".
 | Số câu | 99.999 | 87.530 → **lọc còn 74.760 câu mới tuyệt đối** (loại 12.770 câu trùng bộ phát triển) |
 | Phân bố | 52.000 vi · 33.000 anh · 15.000 mix (15%) | 24.112 vi · 33.650 anh · **16.998 mix (22,7%)** — nhiều mix hơn hẳn |
 
-**Gói được đo**: `pip install g2p-hamster==0.2.2` (wheel PyPI, import từ
-site-packages). Tái lập:
+**Gói được đo**: `pip install g2p-hamster==0.2.3` (wheel PyPI, import từ
+site-packages — tái lập 2026-10-05, output **giống hệt từng byte** như
+khi chạy code repo). Tái lập:
 
 ```bash
-pip install g2p-hamster==0.2.2 sea_g2p donglao-g2p
+pip install g2p-hamster==0.2.3 sea_g2p donglao-g2p
 BENCH_SOURCE=pypi python3 listening_test/g2p_compare_100k/bench_100k.py "dataset_100k (1).tsv"
 python3 listening_test/g2p_compare_100k/patterns_100k.py   # chéo mẫu từ output đã sinh
 ```
@@ -225,7 +226,7 @@ Kết quả (cùng phép đo: số rò rỉ / số bị rơi / lỗi — không 
 
 | Hệ | Rò rỉ số | vi | anh | mix | Lỗi/rỗng | Rơi số ở mẫu giờ `13h00` |
 |---|---|---|---|---|---|---|
-| **g2p-hamster v0.2.2 (wheel PyPI)** | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | **0 / 239** |
+| **g2p-hamster v0.2.3 (wheel PyPI)** | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | **0 / 239** |
 | donglao_g2p | 0 / 74.760 | 0,00% | 0,00% | 0,00% | 0 | **92 / 239 (38,5%)** |
 | sea_g2p (SEAPipeline — đo đúng từ 0.2.2) | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | 0 / 239 |
 
@@ -285,9 +286,9 @@ Hai chỉ số khách quan, không cần người chấm:
 công khai nguyên văn trong CSV, không giấu.
 
 Câu duy nhất sea_g2p rò rỉ là tên tàu biển `LA-99095-TS` — nó đọc
-"99 095" giữ nguyên mã (nguyên văn trong
-[`vi_du_le_sea_g2p.txt`](listening_test/g2p_compare_100k/vi_du_le_sea_g2p.txt)).
-Nói công bằng: sea_g2p dùng đúng pipeline là đối thủ mạnh — bài 100k
+"99 095" giữ nguyên mã (tìm nguyên văn trong output dev bằng lệnh tái
+lập bên trên; held-out thì sea rò **0** câu). Nói công bằng: sea_g2p
+dùng đúng pipeline là đối thủ mạnh — bài 100k
 không còn phân hóa bằng rò rỉ; điểm còn lại của nó hụt là ở benchmark
 frozen (khớp-đọc-gold, bảng bên dưới).
 
@@ -316,10 +317,10 @@ sinh lại bằng `patterns_100k.py`):
 
 Ba hệ hiện đều qua các mẫu normalization phổ biến; chỉ số phân hóa là
 **rơi âm thầm ở mẫu giờ** (donglao) và chất lượng phiên âm chi tiết
-(frozen benchmark). Toàn bộ 100.000 dòng output từng hệ nằm trong
-`outputs_sea_g2p.csv.gz` /
-`outputs_donglao_g2p.csv.gz` /
-`outputs_ours_v2.csv.gz` — mở ra tự chấm, kể cả câu repo này rỗng.
+(frozen benchmark). Output nguyên văn từng hệ của **bài held-out** nằm
+trong `outputs_*.csv.gz` (bộ dev không commit nguyên văn để khỏi phình
+repo — sinh lại bằng `bench_100k.py` không đối số, lệnh ở trên); mở ra
+tự chấm, kể cả câu repo này rỗng.
 
 ## Benchmark frozen công khai — v2, 1.088 câu, gold viết trước, chấm bằng máy
 
@@ -356,7 +357,7 @@ bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 | Hệ | Leakage (còn số) | Drop giờ (`13h00` → mất số) | Khớp đọc gold (mean / số câu ≥0.95) |
 |---|---|---|---|
-| **g2p-hamster (repo này, v0.2.2)** | **0 / 1.088** | **0** | **0,985** · 375/426 |
+| **g2p-hamster (repo này, v0.2.3)** | **0 / 1.088** | **0** | **0,985** · 375/426 |
 | sea_g2p — `SEAPipeline` (đo đúng từ 0.2.2) | 0 / 1.088 | 0 | 0,972 · 302/426 |
 | donglao_g2p | 0 / 1.088 | **103** | 0,907 · 236/426 |
 | sea_g2p — `G2P.convert()` trần (cấu hình sai của 0.2.0–0.2.1, giữ lại để đối chiếu) | **798 / 1.088 (73%)** | — | 0,661 · **0/426** |
@@ -397,9 +398,10 @@ Theo từng category (khớp đọc gold — ours / donglao / sea đúng cấu h
 - một phần điểm trừ là gold hẹp: `12 GB` đọc "gờ-bê" (cách đọc phổ
   biến) nhưng gold chỉ chấp nhận "gi bai" — ghi để minh bạch.
 
-Số liệu bảng trên chạy trên **code 0.2.2** (wheel PyPI 0.2.2 phát hành
-đồng thời; wheel 0.2.1 cho cùng output ours trừ 147 câu tiền ≥7 chữ số
-và câu beta/kg đã sửa — xem [`CHANGELOG.md`](CHANGELOG.md)).
+Số liệu bảng trên đo trên **code 0.2.2** và **tái lập lại bằng wheel PyPI
+0.2.3** (`BENCH_SOURCE=pypi`, import từ site-packages): mọi dòng
+`outputs_*.csv` **giống hệt từng byte** — chỉ provenance trong
+`summary_frozen.json` khác (ghi version wheel + espeak-ng 1.51).
 
 Gold do dự án tự viết, chưa qua người ngoài duyệt — bù lại toàn bộ
 output từng hệ, từng câu, script sinh và script chấm đều nằm trong

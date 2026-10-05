@@ -2,9 +2,9 @@
   "dataset": "/home/hseomymyi9/01_project/dataset_100k (1).tsv",
   "n": 74760,
   "held_out_excluded": 12770,
-  "source": "repo",
+  "source": "wheel PyPI",
   "nproc": 24,
-  "date": "2026-10-05 22:54 UTC",
+  "date": "2026-10-05 23:16 UTC",
   "metric": "digit_leak = chữ số độc lập sót trong chuỗi ra",
   "speed_note": "KHÔNG đo tốc độ trong bài này; thông lượng chỉ ghi log để biết thời gian chạy",
   "ours_v2": {
