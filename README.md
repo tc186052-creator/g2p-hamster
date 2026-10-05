@@ -36,8 +36,9 @@ text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR i
 
 ## Demo — nghe thử 400 clip (repo riêng)
 
-Xem và **nghe trực tiếp trên GitHub** tại
-**[g2p-nghe-thu](https://github.com/tc186052-creator/g2p-nghe-thu)**:
+Xem và **nghe trực tiếp trên trình duyệt** (không cần tải) tại trang demo:
+**<https://tc186052-creator.github.io/g2p-nghe-thu/>** — repo:
+**[g2p-nghe-thu](https://github.com/tc186052-creator/g2p-nghe-thu)**.
 400 clip TTS (4 bộ × 100 câu: thuần việt · thuần anh · mix đơn giản ·
 mix khó, 42 phút audio) render bằng đúng G2P này, kèm kiểm chứng STT
 ngược kép (PhoWhisper-large + Whisper-large-v3) và phân tích từng chỗ
