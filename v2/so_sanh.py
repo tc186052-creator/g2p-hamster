@@ -15,11 +15,15 @@ Phân lớp mỗi câu:
 Mọi câu ≠ GIONG được ghi vào <out>/lech_duyet.tsv để duyệt từng câu.
 """
 import argparse
+import os
 import re
 import time
 from collections import Counter
 from multiprocessing import Pool
 from pathlib import Path
+
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")   # G2P thuần CPU — chặn
+                                                    # tranh chấp GPU gây OOM
 
 SENT_RE = re.compile(r"(?<=[.!?…])\s+")
 _KEEP = re.compile(r"[a-zA-Zăâđêôơưà-ỹÀ-Ỹ]")
