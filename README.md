@@ -32,7 +32,7 @@ text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR i
 | `03_vendor/cmudict/` | CMUdict (BSD-2-Clause) pin commit + sha256 |
 | `v2/` | Bản **v2 — cứu EN**: từ hở được cứu theo bậc CMUdict → espeak-ng → spell tên chữ; KHÔNG BAO GIỜ bỏ cả câu. Kèm script so sánh v1 vs v2 |
 | `00_docs/` | Hợp đồng đầu vào IR, schema inventory, kế hoạch đánh giá, sơ đồ luồng |
-| `tests/` | Regression test t0 (44 ca: ví dụ chuẩn + torture set) |
+| `tests/` | Regression test t0 (ví dụ chuẩn + torture set) + regression v2 (state/strict/scope/espeak fail-closed) |
 
 ## Cài đặt & chạy
 
@@ -52,21 +52,57 @@ print(p)
 ## Bản v2 — cứu EN (nâng cấp khuyến nghị)
 
 Bản v1 fail-closed tuyệt đối: câu chứa một từ không đọc được là bị loại
-cả câu. `v2/g2p_v2.py` giữ tiên đề **cấm bịa phát âm** nhưng không bao giờ
-bỏ câu nữa — từ hở được cứu theo bậc, mỗi lần cứu đều ghi provenance:
+cả câu. `v2/g2p_v2.py` giữ tiên đề **cấm bịa phôn vị ngoài inventory**
+nhưng không bao giờ bỏ câu nữa — từ hở được cứu theo bậc, mỗi lần cứu đều
+ghi provenance:
 
 1. **Thử route ngược lại** — từ việt parse được thì đọc việt, không đẩy qua anh (và ngược lại)
-2. **CMUdict** (135k entry, pin) — phiên âm chính thức US
-3. **espeak-ng** — quy tắc chính tả anh phủ mọi chuỗi chữ latin (IPA → ARPABET → master)
+2. **CMUdict** (135k entry, pin) — phiên âm tra từ điển
+3. **espeak-ng** — SUY DIỄN quy tắc chính tả anh (IPA → ARPABET → master).
+   Mapping tường minh, âm lạ fail-closed — NHƯNG đây là suy diễn, không
+   phải phiên âm chính thức; luôn ghi nguồn `espeak` để duyệt
 4. **Spell tên chữ** — phương án cuối cho từ ≤4 chữ
-5. Hụt hết → bỏ TỪ đó (không bỏ câu), ghi vào notes
+5. Hụt hết → bỏ TỪ đó (không bỏ câu), báo tường minh vào `dropped`
 
-Chuẩn hóa NBSP/ký tự ẩn trước khi vào tầng 1, từ có chữ số không được cứu
+Ba thuộc tính RIÊNG BIỆT — không trộn: (1) không tạo symbol ngoài
+inventory — do mapping + validation; (2) không mất nội dung mà không
+báo — do `state`/`dropped`; (3) phát âm đúng — KHÔNG bảo đảm bằng cơ chế,
+chỉ kết luận được bằng gold đã duyệt hoặc đánh giá nghe. `complete` nghĩa
+ĐỦ COVERAGE, không nghĩa đọc đúng.
+
+**Kết quả có cấu trúc** (`text_to_profile_v2_full`):
+
+```python
+r = text_to_profile_v2_full(text)
+r["state"]     # complete | partial | empty | rejected (đo COVERAGE)
+r["profile"]   # chuỗi phôn vị
+r["dropped"]   # từng unit bị bỏ: {word, reason, intentional}
+r["sources"]   # {"core": n, "cmu": n, "espeak": n, "spell": n}
+r["provenance"]  # policy hash (code+mapping+pin lõi) + espeak version/voice/options
+```
+
+`text_to_profile_v2(text)` giữ nguyên API cũ `(profile, errs, notes)`.
+
+**strict / best_effort**:
+
+- `mode="best_effort"` (mặc định, cho **render**): câu luôn đọc tiếp, từ
+  hụt bị bỏ TỪ và báo tường minh.
+- `mode="strict"` (cho **prep dữ liệu train**): từ chối cả câu
+  (`state="rejected"`) nếu mất unit nội dung, nếu unit được cứu bằng nguồn
+  ngoài `strict_policy` (mặc định nhận `cmu` + `spell`; **espeak phải
+  opt-in** vì là suy diễn chưa duyệt), hoặc nếu profile rỗng dù câu có
+  nội dung. Lưu ý: strict bảo đảm đủ coverage + nguồn theo policy,
+  KHÔNG bảo đảm phát âm đúng.
+
+Môi trường: `ESPEAK_NG_BIN=""` tắt hẳn nguồn espeak; `ESPEAK_NG_TIMEOUT`
+(số giây, mặc định 10). Input espeak ngoài `[A-Za-z']` bị TỪ CHỐI (không
+xóa ký tự âm thầm rồi phát âm từ khác). Chuẩn hóa NBSP/ký tự ẩn trước khi
+vào tầng 1; soft hyphen nằm trong từ bị xóa; từ có chữ số không được cứu
 (verbalize là việc của tầng 1).
 
 ```bash
 python3 v2/g2p_v2.py "Trong hóa sinh học, H là ký hiệu của histidin."
-# • cứu 'histidin' từ espeak: hˈɪstɪdˌɪn
+# • nâng cấp 'histidin' từ espeak: hˈɪstɪdˌɪn
 
 # so sánh v1 vs v2 trên văn bản của bạn (đa tiến trình)
 python3 v2/so_sanh.py --input van_ban.txt --procs 22
@@ -77,14 +113,21 @@ python3 v2/so_sanh.py --input van_ban.txt --procs 22
 | Bộ test | Kết quả |
 |---|---|
 | t0 regression (đã tách tiny2) | 37/37 test OK |
+| G2P v2 (state/strict/scope/espeak mock + thật) | 37/37 test OK |
 | G2P fase D/E (`test_g2p.py`) | 111 PASS, 0 FAIL |
 | vi_rules/vi_syllable | 466 PASS, 0 FAIL |
 | scope_policy mutation probes | 16 PASS, 0 FAIL |
 | cmu_en fase C | 47 PASS, 0 FAIL |
 | tone/coda mapper kokoro178 | 74 PASS, 0 FAIL |
 
-So sánh v1 vs v2 trên 5.000 câu Wikipedia tiếng Việt: **75,9% giống hệt ·
-24% v1 bỏ câu / v2 đọc được · 0 câu cả hai cùng từ chối · 0 hồi quy**.
+So sánh v1 vs v2 trên 5.000 câu Wikipedia tiếng Việt (metric theo
+COVERAGE — KHÔNG phải độ chính xác phát âm): 60,4% giống hệt v1 · 9,9%
+v1 bỏ câu / v2 đủ coverage · 7,3% v1 bỏ câu / v2 đọc thiếu (đã báo) ·
+0,2% cả hai hụt · 1,6% v1 đủ mà v2 đọc thiếu (chủ yếu markup wiki và từ
+có dấu ngoài phạm vi — từng câu nằm trong `lech_duyet.tsv`) · 20,5% đọc
+khác v1 do nâng cấp OOV anh (v1 đánh vần từng chữ → v2 phiên âm thật).
+Số liệu này đo đọc đủ/thiếu/rỗng; muốn kết luận đọc ĐÚNG cần gold được
+duyệt hoặc đánh giá nghe.
 
 ## License
 
