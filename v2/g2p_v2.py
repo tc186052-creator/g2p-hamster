@@ -162,10 +162,13 @@ def rescue_syllables(word: str):
 # khoảng trắng/ký tự ẩn của wiki phá tokenizer tầng 1 (dính từ: "của\xa0New"
 # thành 1 token) — chuẩn hóa TRƯỚC khi vào tầng 1; đây là vệ sinh văn bản,
 # không phải sửa tầng 1
-_WS_FIX = str.maketrans({c: " " for c in
-                         "\u00a0\u2007\u202f\u2009\u200a\u2002\u2003\u2004"
-                         "\u2005\u2006\u2008\u200b\u200c\u3000\u200e\u200f"
-                         "\u000b\u000c\u00ad"})
+# soft hyphen NẰM TRONG từ wiki ("n\u00ad\u00adước") ⇒ XÓA (None), không
+# đổi thành space — space sẽ xé từ thành hai
+_WS_FIX = str.maketrans({"\u00ad": None,
+                         **{c: " " for c in
+                            "\u00a0\u2007\u202f\u2009\u200a\u2002\u2003"
+                            "\u2004\u2005\u2006\u2008\u200b\u200c\u3000"
+                            "\u200e\u200f\u000b\u000c"}})
 
 
 def _unit_profile_text(w, rec, by_id):
