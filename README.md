@@ -215,7 +215,24 @@ công khai nguyên văn trong CSV, không giấu.
 | "anh dành 1,5 tiếng tập thể dục" | **repo này** | "một **phẩy** năm" (đúng) |
 | | donglao_g2p | "một **phần** năm" (sai nghĩa — 1/5 thay vì 1,5) |
 | "…năm 2025, chiếm 33% tổng giá trị…" | **repo này** | "hai nghìn không trăm hai mươi lăm, ba mươi ba phần trăm" |
-| | sea_g2p | "…nam 2025, ciếm 33%…" — **số còn nguyên, chưa verbalize** |
+| | sea_g2p | "…nˈam **2 025**, tʃˈiɛɜm **33** t̪ˈo4ŋ…" — **số nguyên vẹn chưa verbalize, nuốt luôn dấu %** |
+
+Chia nhỏ theo từng mẫu normalization (cùng 100k câu, đếm từ chính
+`outputs_*.csv.gz` — script + số liệu trong
+[`summary_code_switch.json`](listening_test/g2p_compare_100k/summary_code_switch.json)):
+
+| Mẫu normalization | g2p-hamster | donglao_g2p | sea_g2p |
+|---|---|---|---|
+| Câu có `33%` — 2.263 câu | **0% rò rỉ** | 0% rò rỉ | **100% rò rỉ (2.263/2.263)** |
+| Câu có `09/11` — 3.033 câu | **0% rò rỉ** | 0% rò rỉ | **100% rò rỉ (3.033/3.033)** |
+| Câu có `13h00` — 252 câu | **0 rơi** | **114 rơi (45,2%)** — số biến mất âm thầm | rò rỉ (số giữ nguyên) |
+| Viết tắt ALL-CAPS — 18.584 câu | không sót chữ HOA | không sót | không sót (nhưng % bị nuốt, số còn nguyên) |
+
+Lớp "viết tắt ALL-CAPS" cả ba hệ đều qua (đều phiên âm/bóc được viết
+tắt, không để lại chữ HOA nguyên trong đầu ra) — ghi để minh bạch, dù
+nó không phân hóa. Chỉ số phân hóa là **số**: sea_g2p thất bại 100% ở
+hai mẫu khó nhất của normalization (`%`, `ngày/tháng`), donglao_g2p
+verbalize được nhưng rơi âm thầm gần một nửa mẫu giờ.
 
 Và đúng điểm "code-switch" mà sea_g2p hụt: câu **mix** của nó rò
 rỉ tới **50,38%** — cứ câu có từ anh lẫn vi là cứ mỗi hai câu nó để
