@@ -1,0 +1,827 @@
+{
+  "checked": 38,
+  "all_match": true,
+  "checks": [
+    {
+      "word": "hì",
+      "expected": {
+        "onset": [
+          "PHONE_H"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_H"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "hỳ",
+      "expected": {
+        "onset": [
+          "PHONE_H"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_H"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "i",
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "y",
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "iêng",
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I_SCHWA",
+        "coda": [
+          "PHONE_NG"
+        ],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I_SCHWA",
+        "coda": [
+          "PHONE_NG"
+        ],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "yêng",
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I_SCHWA",
+        "coda": [
+          "PHONE_NG"
+        ],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I_SCHWA",
+        "coda": [
+          "PHONE_NG"
+        ],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "ki",
+      "expected": {
+        "onset": [
+          "PHONE_K"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_K"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "ky",
+      "expected": {
+        "onset": [
+          "PHONE_K"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_K"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "lị",
+      "expected": {
+        "onset": [
+          "PHONE_L"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_L"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "match": true
+    },
+    {
+      "word": "lỵ",
+      "expected": {
+        "onset": [
+          "PHONE_L"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_L"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "match": true
+    },
+    {
+      "word": "mi",
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "my",
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "mỉ",
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HOI"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HOI"
+      },
+      "match": true
+    },
+    {
+      "word": "mỷ",
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HOI"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HOI"
+      },
+      "match": true
+    },
+    {
+      "word": "mị",
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "match": true
+    },
+    {
+      "word": "mỵ",
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "match": true
+    },
+    {
+      "word": "ni",
+      "expected": {
+        "onset": [
+          "PHONE_N"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_N"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "ny",
+      "expected": {
+        "onset": [
+          "PHONE_N"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_N"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "rì",
+      "expected": {
+        "onset": [
+          "PHONE_R_VI"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_R_VI"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "rỳ",
+      "expected": {
+        "onset": [
+          "PHONE_R_VI"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_R_VI"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "si",
+      "expected": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "sy",
+      "expected": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "sì",
+      "expected": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "sỳ",
+      "expected": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "thi",
+      "expected": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "thy",
+      "expected": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "thì",
+      "expected": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "thỳ",
+      "expected": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "match": true
+    },
+    {
+      "word": "vi",
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "vy",
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "vĩ",
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGA"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGA"
+      },
+      "match": true
+    },
+    {
+      "word": "vỹ",
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGA"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGA"
+      },
+      "match": true
+    },
+    {
+      "word": "vị",
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "match": true
+    },
+    {
+      "word": "vỵ",
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "match": true
+    },
+    {
+      "word": "xi",
+      "expected": {
+        "onset": [
+          "PHONE_S"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_S"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "xy",
+      "expected": {
+        "onset": [
+          "PHONE_S"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "actual": {
+        "onset": [
+          "PHONE_S"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "match": true
+    },
+    {
+      "word": "í",
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_SAC"
+      },
+      "actual": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_SAC"
+      },
+      "match": true
+    },
+    {
+      "word": "ý",
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_SAC"
+      },
+      "actual": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_SAC"
+      },
+      "match": true
+    }
+  ],
+  "note": "Matching parser is implementation confirmation only, not the basis for linguistic approval."
+}

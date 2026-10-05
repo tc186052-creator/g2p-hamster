@@ -1,0 +1,55 @@
+{
+ "decision_id": "QD57-2026-10-02",
+ "new_exact_approvals": 19,
+ "conditional_v1_exclusion_proposals": 38,
+ "checked_records": 38,
+ "v13_submitted_integrity": "28/28 unchanged",
+ "files": [
+  {
+   "file": "19_fixture_moi.json",
+   "bytes": 8330,
+   "sha256": "c31c840021653987da0b14cac6867db27621ea451d31972a5b9964e2bff0454e"
+  },
+  {
+   "file": "PHAN_QUYET_57_NHOM.md",
+   "bytes": 18048,
+   "sha256": "a67200c55e45879d696f5a9662404f6983e1728f5be2a5f98b14dbf8c650f0fe"
+  },
+  {
+   "file": "PHU_LUC_57_NHOM.md",
+   "bytes": 37193,
+   "sha256": "64491e5e8fbd87377ff15e80ceee78da6fa0a404a6dd44fc82eefdaae6b4b619"
+  },
+  {
+   "file": "README.md",
+   "bytes": 2114,
+   "sha256": "cef1f5552a46bd2a4b96fe6dd325cc7e3b03d49e8ae9cd9bf7b6c89122325adc"
+  },
+  {
+   "file": "kiem_record_19_fixture.json",
+   "bytes": 15573,
+   "sha256": "a1b51acaceddf150c956eb7c9eb013225f57eeff332d0f900fccaa579efb0cef"
+  },
+  {
+   "file": "lap_ledger_review.py",
+   "bytes": 17005,
+   "sha256": "11a03c081b3b7dd5a1abc5f9ff592396ca085d103e728d00086b0b22eabd9e81"
+  },
+  {
+   "file": "ledger_57_quyet_dinh.csv",
+   "bytes": 33669,
+   "sha256": "8e704ba90951d32db12435c466c53631b4cdd810ebcc25800cbb14d4a297bc08"
+  },
+  {
+   "file": "ledger_57_quyet_dinh.json",
+   "bytes": 49150,
+   "sha256": "c86056791fa33297fe5b1f13b9054631d684e62299baa8c51d82bb5495b5968d"
+  },
+  {
+   "file": "scope_expected_members_qd57.json",
+   "bytes": 6809,
+   "sha256": "376c018ba482e5f8f872bb0c0ff2d7f3143ad19b8f54858bc2be56281cfdc6c7"
+  }
+ ],
+ "vong_6_5_note": "thêm scope_expected_members_qd57.json (vòng 6.5, R14-01): đáp án thành viên exact của 38 cặp QD57 do reviewer giao ở hậu kiểm v14 — pin byte-exact; các entry cũ giữ nguyên"
+}

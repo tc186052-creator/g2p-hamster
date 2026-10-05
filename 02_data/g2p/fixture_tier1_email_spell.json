@@ -1,0 +1,81 @@
+{
+ "_doc": "Fixture VERBAL TẦNG 1 THẬT cho D20-04a (hậu kiểm v20): token email route=vi read='spell' — tier-1 đã spell-out trong verbal, tầng D giữ đường từ (delegate), unit không đọc được → unresolved tường minh. Chụp 02/10/2026 từ pipeline.normalize — nguồn sự thật 01_tiny_model/02_rules/t0/pipeline.py (ir/0.1). Chỉ ĐỌC IR tầng 1, không sửa tầng 1. Tier-1 không thuộc pin tài nguyên của D; byte envelope tự định danh qua ir_sha256.",
+ "schema": "g2p_fixture_tier1/0.1",
+ "captured_at": "2026-10-02",
+ "command": "cd 01_tiny_model && ../venv/bin/python -c \"import sys; sys.path.insert(0,'02_rules'); from t0 import pipeline, Config; print(json.dumps(pipeline.normalize('Liên hệ vuhoanplus@gmail.com nhé', Config()), ensure_ascii=False))\"",
+ "ir_sha256": "03db282ef1be1bdcc35ef5095acaf556eb85020c9e203250b6b4894b3e76d0b5",
+ "expected": {
+  "note": "D tiêu thụ verbal đã cấp; KHÔNG spell-out lại ở tầng 2. 'vuhoanplus'/'gmail' ngoài khả năng → unresolved (trung thực, không bịa); aggregate token = unresolved, read_complete=false.",
+  "token_index_email": 2,
+  "token_status": "unresolved",
+  "read_complete": false,
+  "unit_statuses": [
+   "unresolved",
+   "ok",
+   "ok",
+   "unresolved",
+   "ok",
+   "ok"
+  ],
+  "contract_errors": []
+ },
+ "ir": {
+  "schema": "ir/0.1",
+  "text": "Liên hệ vuhoanplus@gmail.com nhé",
+  "clean": "Liên hệ vuhoanplus@gmail.com nhé",
+  "sent_lang": "mixed",
+  "tokens": [
+   {
+    "i": 0,
+    "surface": "Liên",
+    "cat": "word",
+    "origin": "vi",
+    "route": "vi",
+    "read": "word",
+    "verbal": "Liên",
+    "group": -1,
+    "break": null,
+    "review": null
+   },
+   {
+    "i": 1,
+    "surface": "hệ",
+    "cat": "word",
+    "origin": "vi",
+    "route": "vi",
+    "read": "word",
+    "verbal": "hệ",
+    "group": -1,
+    "break": null,
+    "review": null
+   },
+   {
+    "i": 2,
+    "surface": "vuhoanplus@gmail.com",
+    "cat": "email",
+    "origin": "neu",
+    "route": "vi",
+    "read": "spell",
+    "verbal": "vuhoanplus a còng gmail chấm com",
+    "group": -1,
+    "break": null,
+    "review": null
+   },
+   {
+    "i": 3,
+    "surface": "nhé",
+    "cat": "word",
+    "origin": "vi",
+    "route": "vi",
+    "read": "word",
+    "verbal": "nhé",
+    "group": -1,
+    "break": null,
+    "review": null
+   }
+  ],
+  "review": [],
+  "logs": [],
+  "read_string": "Liên hệ vuhoanplus a còng gmail chấm com nhé"
+ }
+}

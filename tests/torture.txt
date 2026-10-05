@@ -1,0 +1,57 @@
+# Torture set T0 — mỗi dòng một câu ác. Luật: không được crash, mọi token phải có route vi/en.
+# Bug mới phát hiện ở bất kỳ đâu → nhập ngũ vào file này (thêm dòng + thêm test nếu cần assert).
+Xin chào, tôi là người Việt Nam.
+The accused is a legal term.
+tính từ ngày 29/4/2021 cho đến nay là hơn 1,59 triệu ca, trong đó có 1.335 ca tử vong.
+Gọi ĐT: (04) 3783 3688 - Fax: (04) 3783 3699 để biết thêm chi tiết.
+Liên hệ nhQuang&associates tại Biệt thự B23, Trung Hòa - Nhân Chính.
+"The accused" is a legal term.
+Email cho tôi qua contact@fpt.vn hoặc hotline 1900 6600 nhé!
+Truy cập https://vnexpress.net/thoi-su?t=1#top để đọc tin.
+Vào www.google.com/search?q=tts&hl=vi là ra liền.
+Tài khoản VGA12345678 nhận 500k thưởng, còn lại 1.5 tỷ.
+lãi suất 9,1%/năm, vay 200tr trả góp 12 tháng, hạn mức $5,000.
+Họp lúc 9h30p ngày 15/8 tại phòng họp A.
+Meeting starts at 9:30 AM sharp, don't be late.
+Năm 1990 dân số là 66 triệu, năm 2021 là 98.51 triệu người.
+In the year 1990, the population was about 66 million.
+Man United thắng Man City 2-1 ở trận derby.
+Tỉ số chung cuộc 3-2, hai đội hòa 2-2 trước đó.
+GS. TS. Nguyễn Văn A, PGS. Trần B và thầy Nguyễn V. A. sẽ chấm.
+UBND TP. HCM và HĐND vừa ban hành Quyết định 123/QĐ-TTg.
+CLB Hà Nội ĐT Việt Nam gặp CLB TP.HCM chiều nay.
+ko biết đc j nữa, fen ơi :((
+hôm qua tui看 báo rồi, Ko có j đâu =))
+Hôm nay buồn quá T_T, ko ai hiểu cho e cả :(
+Love you <3, miss u so much 😢
+OPPO Reno11 F 5G giá 7.49 triệu, giảm còn 6.99tr.
+iPhone 15 Pro Max 256GB giá 29.990.000đ, mua trả góp 0%.
+Máy chạy chip A17 Pro, RAM 8GB, màn hình 6.1 inch.
+Đường Nguyễn Thị Định, phường Nhân Chính, quận Thanh Xuân, Hà Nội.
+No. 1, Đường Láng, Đống Đa, Hà Nội 100000, Việt Nam.
+Ông Nguyễn Phú Trọng (1944-2024) mất ngày 19/7/2024.
+Chiến dịch Điện Biên Phủ (1954) kết thúc năm đó.
+COVID-19 bùng phát từ cuối 2019, vaccine Pfizer-BioNTech hiệu quả 95%.
+Wi-Fi 6E nhanh hơn Wi-Fi 5, chuẩn IEEE 802.11ax.
+FPT Telecom và VNPT cạnh tranh gay gắt về băng thông.
+ĐT Việt Nam dự Asian Cup 2023 vào đầu năm 2024.
+BTC thông báo: 60% vé đã bán, còn lại giá 2tr5 - 5tr.
+Giá xăng E5 RON92 tăng 500đ/lít, RON95 tăng 480đ.
+pH của nước cất là 7.0, axit HCl 0.1M có pH ~1.
+Kiểm tra A/B test với p-value < 0.05, confidence 95%.
+Máy {'status': 'ok', 'code': 200} trả về JSON như vậy.
+ZaloPay, Momo và VNPay là 3 ví điện tử phổ biến nhất VN.
+T_T thôi xong, file 100MB mà upload = error 413 :v
+Cầu Thủ diện 1m83 cân nặng 74kg sút phạt chuẩn 32.5m.
+Trận đấu 90+4 phút, bóng dừng 5'47", PCR test 3 vòng.
+Hóa đơn VAT 10% gồm 1.210.000đ tiền thuế GTGT.
+Seq2seq Attention Transformer giảm loss từ 4.2 xuống 1.8 sau 10 epochs.
+Ông bố nói: "Con phải học hành đàng hoàng", rồi... im lặng!!!
+Cô ấy hỏi "Đi đâu đấy?", tôi đáp "Đi chơi!" — hết chuyện.
+Xe 7 chỗ chạy 120km/h trên cao tốc TP.HCM - Long Thành - Dầu Giây.
+GPS bắt được tín hiệu tại 21.0278°N, 105.8342°E.
+Nhiệt độ hôm nay 38°C, nóng lịch sử từ 1976.
+Đốt cháy giai đoạn 2-0 rồi thua ngược 2-3, đau đớn!!!
+E la con gai quen qua mang xa hoi, chi lam quen nhe!
+This is a mixed câu with English words like deadline, team building.
+Vibe check ok không? Aura của tụi mình âm quá T_T

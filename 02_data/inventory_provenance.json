@@ -1,0 +1,355 @@
+{
+ "_doc": "inventory_provenance.json — bằng chứng quyết định chia sẻ ID (inventory_schema.md §3). Trả lời câu hỏi 'tại sao hai âm này dùng chung embedding?' bằng tài liệu, không phải lịch sử chat. Cập nhật mỗi khi thêm ID chia sẻ hoặc tách ID.",
+ "semantic_version": "ham/0.2",
+ "shared_ids": [
+  {
+   "semantic_id": "PHONE_S",
+   "unicode": "s",
+   "sources": {
+    "vi": "chữ 'x'",
+    "en": "CMUdict S"
+   },
+   "reason": "Một acoustic-phonetic category chủ đích: /s/ alveolar, không đối lập vi/en",
+   "decided": "A1, duyệt đặc tả vòng 2-3 (2026-09)",
+   "contrast_note": "khác PHONE_S_RETRO (vi 's' = ʂ) — đối lập s/x được bảo toàn"
+  },
+  {
+   "semantic_id": "PHONE_Z",
+   "unicode": "z",
+   "sources": {
+    "vi": "chữ 'd'",
+    "en": "CMUdict Z"
+   },
+   "reason": "Cùng /z/; đối lập vi được bảo toàn qua PHONE_D_IMP (đ), PHONE_GI (gi), PHONE_R_VI (r)",
+   "decided": "A1, duyệt đặc tả vòng 2-3 (2026-09)"
+  },
+  {
+   "semantic_id": "PHONE_I",
+   "unicode": "i",
+   "sources": {
+    "vi": "chữ 'i' và chữ 'y' (vowel)",
+    "en": "CMUdict IY"
+   },
+   "reason": "i/y chính tả là một acoustic category (không đối lập) — merge rule MR-i-y",
+   "decided": "A1; danh sách đầy đủ qua collision-audit fase B",
+   "merge_rule": "MR-i-y"
+  },
+  {
+   "semantic_id": "PHONE_SCHWA",
+   "unicode": "ə",
+   "sources": {
+    "vi": "'â' + en AH0",
+    "en": "CMUdict AH0"
+   },
+   "reason": "CHƯA CHỐT — ô mở [B]: chung/tách PHONE_SCHWA_VI/EN quyết bằng gold-dev",
+   "decided": null,
+   "status": "OPEN — không được âm thầm coi là đã duyệt để train acoustic"
+  }
+ ],
+ "open_cells": [
+  "PHONE_SCHWA (chung/tách)",
+  "chất IPA chi tiết 'anh'/'ach' ([ɛ] vs [æ]…) — đối lập mác/mách/mắc KHÔNG là [B]: bắt buộc, đã duyệt 02/10 qua phân tích ach=/ɛk/",
+  "coda 'nh' sau nguyên âm sau (PHONE_NH mặc định, thực phát [ŋ])",
+  "'qu' + ô (quốc): convention frontend K,W,PHONE_O vs chuẩn [kuək]"
+ ],
+ "decisions_0210": [
+  "KHÔI PHỤC fixture mác≠mách; ba đối lập mác≠mách≠mắc và khác≠khách≠khắc bắt buộc ở mức master — phân tích vần ach = /ɛk/ (PHONE_OPEN_E, Wikipedia 'Analysis of final ch, nh'); khắc≠khác là fixture bổ sung",
+  "suất ≠ suốt KHÔNG phải ô mở: uâ = glide w + â; uô = nucleus U_SCHWA — chốt khác nhau",
+  "khoét có É (vần oet) — vá W_OK['Ê'] 01/10 là sai bảng, đã revert",
+  "parser không tự phục hồi thanh: 'mach' (không dấu + coda tắc) = ParseError; nhánh fold ủy quyền riêng",
+  "mỗi MERGE_RULES có trường approved + approved_basis; duyệt inventory A1 KHÔNG tự động duyệt rule",
+  "vòng 2 duyệt 02/10: mắc/khắc là thanh SẮC (ắ) — lần trước reference bị đổi sang nặng là đổi đáp theo hệ, đã khôi phục; thêm kiểm segment-bỏ-tone; bổ sung ke/que, kê/quê, que/quê đầy đủ glide; không chấp thuận 'hệ quả trực tiếp nên được merge' (MR-ACH-EC giữ false)",
+  "vòng 3 duyệt 02/10: GỠ DUYỆT MR-tai-tay — yêu cầu lịch sử là đối lập bắt buộc tai ≠ tay, không phải cơ sở duyệt rule fold; rule nếu áp còn phá đối lập (COND_NUC A_SHORT làm tay ≠ tai ở segment); tập rule-đã-duyệt = chỉ MR-I-Y",
+  "vòng 3 duyệt 02/10: reference_diff.md gắn nhãn 'nhật ký tái dựng, chưa đối chiếu snapshot cũ' — không tạo lại file cũ làm bằng chứng; snapshot sha256 lưu từ v4 trong reference_diff.md",
+  "vòng 4 (02/10, theo báo cáo kiểm code reviewer): parser vá F01 uy=composite glide (tuy≠tui — lỗi thật từng bị MR-I-Y 'đã duyệt' che), F02 onset gi=PHONE_GI (i dùng chung onset/nguyên âm; gi+ê→iê), F03 Uə+m + uy+u (buồm/muỗm/khuỷu), F05 parse() thuần bỏ fold, F07 cờ B qu+ô gắn đúng quốc, F08 namespace validator",
+  "vòng 4: matcher MERGE_RULES đổi sang structural trên parsed parts (role/composite/onset_glide/rhyme); MR-I-Y HẠ CỜ approved (đã che lỗi tui/tuy) — 0 rule approved ở tầng matcher; MR-tai-tay rút khỏi catalog (WITHDRAWN_RULES); explain phân tầng approved→proposal→unexplained",
+  "vòng 4: miền sinh phân lớp core/stress (onset bổ túc c/k, gh/ngh; coda k loại; ya/yê trực tiếp loại; coda y chỉ sau vần a) — chỉ nhóm ≥2 core spelling là gate; điều 7: 2.602 nhóm gate (0 approved · 2.602 proposal · 0 unexplained), 4.014 nhóm stress-only không gate, PENDING_APPROVAL",
+  "vòng 4: bỏ câu nói duyệt đã duyệt phân tích ach=/ɛk toàn miền — chỉ yêu cầu BẢO TOÀN ba đối lập được duyệt; lựa chọn biểu diễn chờ kiểm chứng độc lập",
+  "vòng 5 (02/10, theo review v5 V5-01…05): renderer gi hợp nhất chữ i dùng chung (render 'gìn'/'giết' đúng, không giìn/giiết) — generator sinh spelling canonical rồi parse ngược; reference gold KHÔNG đổi",
+  "vòng 5: is_core theo NGỮ CẢNH (yê chỉ khi không onset hoặc sau qu; ây nhận coda y; ng mất e/ê; c/k+glide-o viết qu ở lõi) + kiểm ĐỘC LẬP core_acceptance_check() (27 accept / 18 reject) — sai → FAIL",
+  "vòng 5: matcher engine worklist fixpoint theo thứ tự catalog (không hoán vị); mỗi bước phải wellformed + BẢO TOÀN record phát âm (chặn cao/cau, kue/que, nối 'kua' giữa qua/koa); tier mới identity (gi/gii — parts vốn giống); thêm rule đề xuất MR-CODA-I-Y (âi=ây) — tổng 10 rule đề xuất, 0 approved",
+  "vòng 5: compute_status() một nơi từ mọi điều kiện lỗi (contrast/core fail → FAIL bất kể proposal) — JSON/MD/stdout/exit dùng chung; sửa văn bản rule: khoa/khua CÙNG onset kh khác vần oa/ua; bỏ fixture kẻo=kêu (khác thanh)",
+  "vòng 5 nhánh A3: sidecar lưu đơn vị profile sau loss map (thà: θaː↘ cả text và sidecar; master repr traceable qua loss_report); enum đóng TONE_STATES/STRESS_STATES chặn state gõ sai; test synthetic gắn nhãn đúng, từ thật qua parse(); kokoro_vocab_178.tsv pinned (sha256 3dec592f…) đóng gói kèm",
+  "vòng 6 (review vòng 6 §8/§9 — chấp nhận bản vá kỹ thuật V5/A3, chưa nghiệm thu B): căn cứ miền core ĐỘC LẬP — core = is_core(ngữ cảnh) ∩ attestation(freq≥2) từ bảng âm tiết pin 124.934 entry trích corpus IR tầng 1 (build_core_domain.py; sha256 corpus + artifact trong 02_data/core_domain/core_domain_provenance.json); lớp ext mới (core-ngữ-cảnh không attested — miền mở rộng, KHÔNG gate KHÔNG đòi duyệt đồng âm); gate co 2.776 → 98 nhóm core-attested; domain regression câi/mấi/bêo/buâi/buây/gii + cây/mấy/bêu… vi phạm → FAIL; markdown điều 7 có dòng Status tổng thể (§8.1); sửa đuôi hash trình bày f1d2→d8d2 (§8.2, hash runtime không đổi); bảng scope 10 rule + freq từng thành viên + độ nhạy ngưỡng 2/5/10 trong rule_scope_vong6.md — KHÔNG rule nào được bật approved, quyết thuộc reviewer",
+  "vòng 6.1 (theo phản hồi reviewer trên nhật ký v7 — chấp nhận attestation làm lớp bằng chứng + cách giới hạn miền đánh giá, KHÔNG chấp nhận thay xác nhận chính tả lõi): (1) đặt tên đúng 'dạng token' — không gọi 124.932 là 'âm tiết chuẩn đã thẩm định'; kết luận giới hạn ở 'audit trên miền ứng viên có chứng thực corpus phiên bản pin, ngưỡng tần suất 2'; (2) nguồn attestation = CHỈ corpus chính 1M — supplement 108 records edge-case bị loại (sha256 + kiểm 0 hit từ chẩn đoán gold khai trong provenance); (3) nhóm ngoài gate lưu dấu ĐẦY ĐỦ dieu7_ext_groups.jsonl (4.978) + dieu7_stress_groups.jsonl (1.568) — thu hẹp gate ≠ giải quyết ngôn ngữ; (4) domain_config_hash pin hành vi miền (TSV + builder + ngưỡng + list regression) — inventory_contract_hash không đại diện cho hành vi miền mới; (5) field_spec đếm token chi tiết (cat=word route=vi, verbal, NFC+lower, tách tham lam)",
+  "vòng 6.2 (review R61-01/02/03 — sửa TẬP TRUNG builder/fingerprint/scope doc, không đụng G2P/gold/ca đã đóng): R61-01 builder đếm TOKEN NGUYÊN DẠNG literal (bỏ hẳn tách theo số dấu thanh — 'lựch' do tách 'lựchọc' có freq literal=0 và biến mất; builder không import parser nữa); R61-02 domain_config_hash phủ SNAPSHOT RUNTIME classifier (CORE_ONSET_FIRST/CORE_TAILS) + source hash các hàm phân lớp + hash module vi_rules/vi_syllable — mutation in-memory làm hash đổi; R61-03 rule_scope_vong6.md SINH TỰ ĐỘNG từ JSON pin (gen_rule_scope.py) — hết số liệu tay lệch artifact (cấo/cấu đúng theo JSON, seq record hiện PHONE_I, câu compose sửa thành 'trace dùng nhiều rule — chưa chứng minh tối thiểu'); thêm gate_member_trace.jsonl (210 dạng, locator + ngữ cảnh, khớp TSV 100%); 8 cặp fixture i/y reviewer xác nhận (kí/ký, lí/lý, kì/kỳ, kĩ/kỹ, mĩ/mỹ, sĩ/sỹ, tỉ/tỷ, qui/quy) vào test_vi_rules ở MỨC FIXTURE, KHÔNG suy rộng thành duyệt matcher; gate 98 → 95 nhóm (báo trung thực theo dữ liệu mới)",
+  "vòng 6.2 hậu kiểm (review v9: chấp nhận R61-01/02/03, chốt vòng vá kỹ thuật; 2 chỉnh nhỏ): T62-01 — trace_vocab_members.py ghi token_index GỐC trong ir.tokens[] (trước đây là index sau lọc — tra ngược trúng token khác); ngữ cảnh dựng từ ir.tokens[] nguyên bản; field token_index_scope khai phạm vi; phép đếm không đổi, freq vẫn khớp TSV 100%; test hồi quy test_trace_locator_original_index. Chỉnh chú thích lệc/lẹc: đúng theo bảng lựch=0, ếc=0, lệc 2→1 (dưới ngưỡng, không phải 0; lẹc không thuộc nhóm cũ) — ba nhóm lực/lựch, lệc/lệch, ếc/ếch rời gate; gen_rule_scope.py đọc số chú thích từ bảng pin lúc sinh. Điều 7 giữ 95 nhóm PENDING_APPROVAL; bước tiếp theo là quyết định ngôn ngữ có phạm vi (ach/ec, coda-ch/c), không sửa builder thêm",
+  "gói quyết định ngôn ngữ v11 (yêu cầu reviewer v9 §8.1 / v10 §5): gen_decision_doc.py sinh 02_data/core_domain/de_xuat_quyet_dinh_95nhom.md — phân loại 95 nhóm gate thành A/B/C: A=8 fixture i/y đã xác nhận (chờ chỉ định hiệu lực cờ approved), C=15 cặp từ thật cần quyết phát âm (MR-ACH-EC 11 + compose cạch/kẹc + MR-CODA-CH-C 3 — chờ E6/quyết ngôn ngữ), B=72 token literal không đủ căn cứ đồng âm (không dấu/tên riêng/lỗi gõ — đề xuất giữ pending). Mỗi nhóm kèm freq literal + ngữ cảnh trace. Không flag approved nào được bật. Kèm sửa biên tập dòng 9 rule_scope_vong6.md (lệc=1, đọc số từ bảng pin). Fase C khởi động song song: CMUdict pin (sha256 81917843…, commit 7479086, BSD-2, provenance 03_vendor/cmudict/) — coverage en-route full corpus: 48.267/82.738 = 58,3% unique, 97,9% freq (khảo sát cũ 37.689 là mẫu 200K câu)",
+  "vòng 6.3 (áp quyết reviewer v11 2026-10-02 — 95 nhóm có phán quyết cụ thể): (1) ham/0.2 — vần 'ach' → PHONE_OPEN_E_PREVELAR (shared ɛ khai SHARED_UNICODE_REPR; ID PHONE_OPEN_E bất biến; gold mách/khách cập nhật theo với nguồn quyết); 10 cặp ach/ec (sách/séc, mách/méc + 8 policy bảo toàn lớp vần) là ĐỐI LẬP bắt buộc trong SYLLABLE_LEVEL_CONTRASTS; MR-ACH-EC rút khỏi catalog (withdrawn — KHÔNG DUYỆT, không treo). (2) Lớp duyệt EXACT_FIXTURE: 26 cặp i/y đầy đủ dấu (8 vòng 6.1 + 18 mới v11 §5.2) — explain_exact_fixture duyệt ở MỨC NHÓM (đúng cặp NFC-lower giữ tone + đúng tone + record khớp expected); negative tests: ki/ky, sai tone, superset; MR-I-Y.approved vẫn False (probe reviewer: flag rộng nâng 52 nhóm). (3) gen_decision_doc trình bày ledger reviewer (không tự kết luận theo tên rule); helper has_tone_mark chỉ nhận 5 dấu thanh. Kết quả điều 7: 83 nhóm = 26 approved + 57 proposal → PENDING_APPROVAL; 12 nhóm ach/ec hết collision do thay đổi biểu diễn. Fase C tạm dừng theo yêu cầu reviewer v11 §1 (CMUdict đã pin giữ lại chưa dùng)"
+ ],
+ "phase_b_audit": {
+  "date": "2026-10-02",
+  "result": {
+   "date": "2026-10-02",
+   "status": "QD57 scope v1 đã áp — collision audit PASS (exit 0)",
+   "summary": "QD57-2026-10-02 (reviewer phán quyết per-group) + chủ dự án chấp thuận phạm vi: 19 fixture exact duyệt mới (tổng 45 = 26 + 19), 38 nhóm excluded_v1 đúng đối tượng (subject bị giới hạn, protected không bị loại), 0 proposal/unresolved. Gate 83 ứng viên → 45 approved + 38 excluded_v1. approval_policy_hash đổi khỏi 6eee24db… (catalog 45 + decision_source QD57); domain_config_hash phủ thêm ledger qd57_scope_exclusions.json. Ranh giới contract (không tự phục hồi dấu/đổi route/ghép tách token, fold/spell chỉ khi ủy quyền) trong ledger + collision_audit.scope_exclusion_status — tiêu thụ fase D phải tuân theo. Bộ kiểm: 458 test VI · 74 profile · 45 gold-dev · static PASS · 21/21 đối chứng.",
+   "figures": {
+    "gate_candidate_groups": 83,
+    "approved": 45,
+    "excluded_v1": 38,
+    "unresolved": 0,
+    "ext_groups": 5010,
+    "stress_groups": 1557
+   }
+  },
+  "gold_dev_diagnostic": "0 bất đồng trên 45 từ chẩn đoán (không đổi ở vòng 5/6; đối lập kiểm trên record parser — 02_data/gold_dev/; nhật ký: reference_diff.md — tái dựng, snapshot hash v4/v5/v6/v7/v8)",
+  "merge_rules_approved": [],
+  "merge_rules_proposed": [
+   "MR-I-Y",
+   "MR-ONSET-GH-G",
+   "MR-ONSET-C-K",
+   "MR-CODA-CH-C",
+   "MR-CODA-O-U",
+   "MR-CODA-I-Y",
+   "MR-GLIDE-O-U",
+   "MR-UE-UÊ",
+   "MR-QU-K-GLIDE"
+  ],
+  "merge_rules_withdrawn": [
+   "MR-tai-tay",
+   "MR-ACH-EC"
+  ],
+  "review_zip": "faseB_kiem_tra.zip",
+  "report": "02_data/collision/dieu7_bao_cao.json",
+  "core_domain_basis": {
+   "artifact": "02_data/core_domain/vi_syllable_vocab.tsv",
+   "sha256": "b920363a160b",
+   "attest_min_freq": 2,
+   "builder": "01_g2p/build_core_domain.py",
+   "scope_doc": "02_data/core_domain/rule_scope_vong6.md",
+   "note": "attestation là lớp bằng chứng + cách giới hạn miền đánh giá; KHÔNG thay xác nhận chính tả lõi; đếm literal vòng 6.2 (R61-01) — gate 95 nhóm ≠ giải quyết các nhóm còn lại; domain_config_hash phủ runtime classifier + source hash (R61-02); scope doc sinh tự động từ JSON pin (R61-03) | vòng 6.3: 83 nhóm gate; approval exact 26 cặp pin bằng approval_policy_hash (R12-01); số nhóm ext/stress cập nhật theo ham/0.2 | vòng 6.3.1: đồng bộ domain_config_hash về giá trị hiện hành từ collision report (giá trị v11 giữ lại ở domain_config_hash_vong6_3 — mục biên tập hậu kiểm v13 §5) | vòng 6.4.1 (02/10, sau khi đóng gói v14): đồng bộ domain_config_hash 6b9fcc95… (giá trị v13 — trước khi hash phủ ledger) → 2ca687ab… (hiện hành, report dieu7_bao_cao). ERRATUM v14: bundle v14 gửi reviewer còn 6b9fcc95… ở trường này (đồng bộ chạy trước khi thêm ledger qd57_scope_exclusions.json vào hash); bản đã sửa này theo kèm bundle kế tiếp (v15+). | vòng 6.5 (02/10, sửa R14-01/R14-02 theo hậu kiểm v14): domain_config_hash 2ca687ab… → 8d46700f… (hash nay gộp thêm scope_policy_hash 3ea6fa8d… — fingerprint logic scope: ledger bytes + đáp án thành viên pin qd57/scope_expected_members_qd57.json 376c018b… + source hash loader/validator/boundary/status; ledger qd57_scope_exclusions.json thêm excluded_members/protected_members exact NFC+lower giữ dấu, sha256 mới 1930c63c…); mutation probe 01_g2p/test_scope_policy.py 16/16 PASS (đổi logic/dữ liệu → hash đổi, khôi phục → về cũ).",
+   "sha256_provenance": "ef10f03e809fc9d9007b5755f4907a05e638918dd2b39e882887b11777adb0bb",
+   "n_unique_token_forms": 124971,
+   "n_token_occurrences": 16538824,
+   "unit": "dạng token NGUYÊN DẠNG (verbal NFC+lower+strip, toàn chữ) — tần suất LITERAL, không tách, không mảnh suy diễn (vòng 6.2 R61-01)",
+   "domain_config_hash": "8d46700fd03ffde123a53b3d571fa29e81bbb69dbfdfe623ba333962113e02d8",
+   "trace_files": [
+    "02_data/collision/dieu7_ext_groups.jsonl",
+    "02_data/collision/dieu7_stress_groups.jsonl",
+    "02_data/collision/gate_member_trace.jsonl"
+   ],
+   "source": "corpus_ir_1M.jsonl.gz (1.000.000 records) — supplement edge-case bị loại",
+   "domain_config_hash_vong6_3": "5d0e89f542601aeb903c1ebbf7b35d113871af366d907c1fd335d17874687ad2",
+   "scope_policy_hash": "3ea6fa8d5827beff9e06fec091b3f59d8eab32496f93d9d9935806e5f7a8e131"
+  },
+  "history": [
+   {
+    "version": "vòng 6 (v11-cũ)",
+    "result": "điều 7 PENDING_APPROVAL (vòng 6.2) — 27.210 dạng = core-attested 6.801 · ext 13.299 (không gate) · stress 7.110 theo is_core ngữ cảnh ∩ attestation LITERAL token nguyên dạng corpus tầng 1 (min_freq=2; accept/reject 0 lỗi + domain regression 0 lỗi) → nhóm GATE ≥2 core-attested: 95 (0 approved · 95 proposal · 0 identity · 0 unexplained) · nhóm ext 4.997 · stress-only 1.552; 11/11 đối chứng phân biệt; sensitivity ngưỡng (thông tin): 65 @min_freq=5, 51 @min_freq=10"
+   },
+   {
+    "version": "vòng 6.3.1 (metadata sync)",
+    "result": "R12-01/R12-02 đóng (hậu kiểm v13): 401 test VI · 74 profile · 45 gold-dev · 161 probe độc lập 0 FAIL; gate 83 = 26 approved + 57 proposal, exit 2 PENDING_APPROVAL; domain_config_hash provenance đồng bộ 5d0e89f5…(v11) → 6b9fcc95… (hiện hành), profile kokoro178/0.2 khai loss PHONE_OPEN_E_PREVELAR"
+   },
+   {
+    "version": "vòng 6.4 (QD57 áp dụng)",
+    "result": "trước khi áp: v13 hậu kiểm PASS kỹ thuật, gate 83 = 26 approved + 57 proposal, exit 2 PENDING_APPROVAL; QD57-2026-10-02 phán quyết 19 duyệt mới + 38 không duyệt merge (giới hạn v1 có điều kiện); chủ dự án chấp thuận 19+38 cùng ngày → audit PASS exit 0"
+   },
+   {
+    "version": "vòng 6.4.1 (erratum v14 — đồng bộ domain_config_hash sau đóng gói)",
+    "result": "phát hiện khi rà soát hậu đóng gói v14: core_domain_basis.domain_config_hash còn giá trị v13 (6b9fcc95…) trong khi report hiện hành 2ca687ab… (hash đã phủ ledger qd57_scope_exclusions.json từ vòng 6.4). Sửa trên đĩa ngày 02/10; bundle v14 như đã gửi giữ nguyên (sha256 78c15058…); không đổi kết quả audit — chỉ metadata. Chuỗi hash: 5d0e89f5…(v11, giữ ở domain_config_hash_vong6_3) → 6b9fcc95…(v13) → 2ca687ab…(hiện hành)."
+   },
+   {
+    "version": "vòng 6.5 (R14-01/R14-02 — hậu kiểm v14 §6)",
+    "result": "R14-01: scope_exclusion_status so khớp EXACT NFC+lower giữ dấu trên thành viên máy đọc (39 excluded/37 protected; hết lỗi chuỗi con chếc/níc/tíc); scope_boundary_check đưa lỗi nhất quán ledger↔boundary về FAIL exit≠0. R14-02: scope_policy_hash ghi trong report + gộp vào domain_config_hash (8d46700f…), mutation probe 16/16 PASS. Renderer gen_rule_scope/gen_decision_doc + note provenance + log static đồng bộ 45 approved + 38 excluded_v1 → PASS exit 0."
+   },
+   {
+    "version": "fase C v16 (nhánh en — CMUdict pin → master; ngay sau CHOT_FASE_B_V15)",
+    "result": "cmu_en.py: ARPABET 39 âm → master ham/0.2 (AH0→SCHWA/AH1-2→AH, ER0→ER/ER1-2→ER_STRESS), syllabify maxonset_v1, EnSyllable profiles.EnSyllable; pin cmudict.dict sha 81917843… verify lúc nạp (lệch → SystemExit); OOV → spell tên chữ (LETTER_NAMES pin, ký tự không tên liệt kê có cấu trúc); mục từ không nucleus (hmm/psst) → status no_nucleus, không bịa. en_policy_hash 1873ac63422b… (cmudict sha + bảng map + tên chữ + luật cắt + code sha — mutation đổi hash, khôi phục về baseline; probe test_cmu_en.py G7). Coverage route-en full corpus 1M (cmu_coverage.py, token literal nguyên dạng): 93.589 unique → 50.504 in-cmu = 54,0% unique / 96,6% freq; miss: alpha_oov 34.471 unique (62.251 freq), not_alpha 5.526, has_digit 3.088; pin 02_data/en_branch/. Số 58,3%/97,9% cũ là khảo sát không-pin đơn vị khác — không dùng đối chiếu. VI domain không đổi: domain_config_hash 8d46700f… giữ nguyên; approval_policy_hash giữ nguyên."
+   },
+   {
+    "version": "fase C v17 (hậu kiểm HAU_KIEM_FASE_C_V16 — đóng C16-01/C16-02)",
+    "result": "C16-01: vendor bàn giao đủ — 03_vendor/cmudict gồm cmudict.dict + LICENSE + cmudict_provenance.json (đã có từ đầu, v16 thiếu trong bundle) + fetch_cmudict.py (recipe tải đúng commit 7479086, kiểm sha256 đối chiếu provenance trước khi ghi — lệch pin không ghi file; script không tự sửa provenance). C16-02: cmu_coverage.py tách miss 4 nhóm ascii_alpha_oov 33.851 unique/59.038 freq=1,94% (nhóm duy nhất spell trọn token) · unicode_alpha_oov 620/3.213=0,11% · has_digit 3.088/6.894 =0,23% · not_alpha 5.526/35.478=1,17%; mẫu số tần suất = 3.040.018 token không rỗng (sửa sai mẫu số 0,66% của v16); 50.504 dictionary hit = 53,96% unique/96,56% freq, gồm 7 key no_nucleus (nhãn hit ≠ phát âm hoàn tất). Corpus content-pin: sha256 tính tại mỗi lần chạy, đối chiếu pin core_domain_provenance (cb9df5eb…) — lệch → SystemExit. Biên tập v16 §6: bỏ con số probe lịch sử '52 nhóm, 45 ngoài bộ 45' khỏi gen_decision_doc.py + doc regen (1 dòng). test_cmu_en.py 47/47 PASS (thêm G8 corpus-pin/taxonomy, G9 qqz/á/ít/digit). en_policy_hash giữ 1873ac63… (cmu_en.py không đổi); hash liên quan đổi có chủ đích đồng bộ artifact.",
+    "files": [
+     "01_g2p/cmu_coverage.py",
+     "01_g2p/test_cmu_en.py",
+     "01_g2p/gen_decision_doc.py",
+     "02_data/core_domain/de_xuat_quyet_dinh_95nhom.md",
+     "02_data/en_branch/en_coverage_provenance.json",
+     "02_data/inventory_schema.md",
+     "03_vendor/cmudict/fetch_cmudict.py"
+    ],
+    "en_coverage_pct": {
+     "unique_in_cmu": 53.9636,
+     "freq_in_cmu": 96.5585,
+     "freq_ascii_alpha_oov": 1.942
+    }
+   },
+   {
+    "version": "fase D v18 (tầng tiêu thụ g2p/0.1 — CHƯA đạt hậu kiểm)",
+    "result": "[SIÊU THẾ BỞI v19 — hậu kiểm HAU_KIEM_FASE_D_V18: D18-01 fold đi vòng scope; D18-02 chưa tiêu thụ read/break + JSON thiếu master; D18-03 invariant thiếu; D18-04 thiếu fingerprint D. Chi tiết v19 ở entry sau.] (v18: g2p.py: token IR ir/0.1 → G2PToken (schema 02_data/g2p/schema_g2p_0.1.md) — status enum ĐÓNG 8 giá trị (ok/fold/spell/no_nucleus/scope_excluded/unresolved/not_word/unknown_route) + read_complete tường minh. VI: scope TRƯỚC đường phát âm (chếc parse được vẫn scope_excluded) → parse thuần → fold nhóm (b) pin fold_vi.tsv (tone_state=fold, detail provenance) → spell seed spell_vi.tsv → unresolved không bịa. EN: cmu_en.pronounce map 1-1, spell có unsupported_chars → read_complete=False. Profile: transform_vi/en, unresolved TỪ CHỐI serialize, conformance 178 tại to_profile. Vocab từ master (đảo chiều): emit_vocab_config.py → vocab_config_from_master.tsv 78 entry + provenance. Không đổi policy: domain/scope/approval/en_policy hash giữ nguyên từ v17. test_g2p.py 38/38 PASS (determinism byte-giữ; 200 record corpus thật 0 crash, conformance sạch).)",
+    "files": [
+     "01_g2p/g2p.py",
+     "01_g2p/emit_vocab_config.py",
+     "01_g2p/test_g2p.py",
+     "02_data/g2p/schema_g2p_0.1.md",
+     "02_data/g2p/vocab_config_from_master.tsv",
+     "02_data/g2p/vocab_config_provenance.json",
+     "02_data/inventory_schema.md"
+    ],
+    "hashes_unchanged": [
+     "domain_config_hash 8d46700f…",
+     "scope_policy_hash 3ea6fa8d…",
+     "approval_policy_hash 46659a0c…",
+     "en_policy_hash 1873ac63…"
+    ]
+   },
+   {
+    "version": "fase D v19 (hậu kiểm v19: D18-01 ĐÓNG; §3-5 còn mở)",
+    "result": "D18-01: scope kiểm INPUT và ỨNG VIÊN FOLD (nic/tic → níc/tíc bị chặn, detail input→candidate→policy; không lách protected/spell). D18-02: tiêu thụ đủ hợp đồng 00_docs/G2P_00_hop_dong_dau_vao.md — read/break/intonation/origin giữ nguyên; punct → control giữ break; number/abbr/unit… tiêu thụ read unit tầng 1 đã cấp; contract_errors có cấu trúc (shape/version/field + đồng thuận read_string; CLI exit 1); serializer master.read_units[] giữ record đầy đủ + source_token_id/read_unit_index/syllable_index; profile kokoro178 tách profile_debug; en spell lưu fallback_reason. D18-03: invariant tương quan (unit cấm phát âm không syllables; roll-up nhất quán; spell rỗng → unresolved; en verbal rỗng → unresolved); serializer gate qua validate; test bỏ 'or True', loss mach bắt buộc, H8 tách smoke SKIP. D18-04: g2p_policy_hash (code+fold+spell+cmudict+ledger+inventory_hash+contract_hash+profile version); load_fold/load_spell_vi kiểm sha resource pins (fail-closed); fold_provenance.md khai nguồn thực; emitter chạy inventory.audit() trước khi ghi. Không đổi policy B/C: 4 hash giữ nguyên. test_g2p.py 65 PASS / 0 FAIL (H11 smoke SKIP khi thiếu corpus).",
+    "files": [
+     "01_g2p/g2p.py",
+     "01_g2p/emit_vocab_config.py",
+     "01_g2p/test_g2p.py",
+     "02_data/g2p/schema_g2p_0.1.md",
+     "02_data/g2p/g2p_resource_pins.json",
+     "02_data/g2p/vocab_config_from_master.tsv",
+     "02_data/g2p/vocab_config_provenance.json",
+     "02_data/fold/fold_provenance.md",
+     "02_data/inventory_schema.md"
+    ],
+    "hashes_unchanged": [
+     "domain_config_hash 8d46700f…",
+     "scope_policy_hash 3ea6fa8d…",
+     "approval_policy_hash 46659a0c…",
+     "en_policy_hash 1873ac63…"
+    ]
+   },
+   {
+    "version": "fase D v20 (đóng §3.1-3.4, §4, §5 của HAU_KIEM_FASE_D_V19)",
+    "result": "§3.1 read=spell được thực thi: en per-letter LETTER_NAMES (US→you-ess, A→EY primary — dictionary hit không bỏ qua mode); vi giữ đường từ (tier-1 đã spell-out), unit đơn chữ đi seed (chờ duyệt). §3.2 read_unit_index phân biệt từng unit — leaf identity duy nhất. §3.3 type guard trước membership/dispatch — malformed IR (null/[]/tokens[null]/cat[]/break{}) → contract_errors, CLI exit 1 JSON không traceback. §3.4 read_string đối chiếu dãy mảnh chữ-số theo thứ tự (bất khả tri punct renderer tầng 1; bắt thừa/thiếu/sai thứ tự + rỗng khi có reading; corpus còn ~1,2% lệch picked≠tokens — consensus báo đúng). §4 aggregate parent/child: status/read_complete/unsupported parent phải khớp derive từ units — fault injection bị validate BẮT + serializer TỪ CHỐI. §5 g2p_policy_hash v0.2 mang b_c_dependencies (4 hash B/C — mutation cmu_en đổi hash D); resource_snapshot cache-aware định danh snapshot; override test-only có resource_override marker. Không đổi policy B/C: 4 hash giữ nguyên. test_g2p.py 98 PASS / 0 FAIL.",
+    "files": [
+     "01_g2p/g2p.py",
+     "01_g2p/test_g2p.py",
+     "02_data/g2p/schema_g2p_0.1.md",
+     "02_data/inventory_schema.md"
+    ],
+    "hashes_unchanged": [
+     "domain_config_hash 8d46700f…",
+     "scope_policy_hash 3ea6fa8d…",
+     "approval_policy_hash 46659a0c…",
+     "en_policy_hash 1873ac63…"
+    ]
+   },
+   {
+    "version": "fase D v21 (hậu kiểm HAU_KIEM_FASE_D_V20: đóng D20-01/02/03 + khai báo D20-04/05)",
+    "result": "D20-01 (regression v20): cache spell chuyển khuôn fold — _SPELL_VI_CACHE = {tab, sha256} đã kiểm pin; effective_resource_shas()/resource_snapshot CHỈ trả str sha256 (hết dict bảng); g2p_policy_hash() cold == warm trong cùng process (hash baseline đổi một lần nữa: e4977605… — code_sha256 đổi). D20-02: route guard nhánh read='spell' — route ngoài {vi,en} → unknown_route fail-loud đối xứng nhánh từ (4 ca neu/jp × word/spell). D20-03: H8 phủ đủ 3 trường resource_snapshot (type str + giá trị == pin); H9-M5 THẬT: một process stream warm → mutation ĐĨA cả fold lẫn spell → stream lại giữ reading + snapshot sha; cold load tường minh fail-closed; bỏ mode 'hash2' không tồn tại. D20-04a: fixture verbal TẦNG 1 THẬT 02_data/g2p/fixture_tier1_email_spell.json (email route=vi read=spell, ir_sha256 03db282e…, chỉ ĐỌC IR tầng 1) — delegate tier-1: D giữ đường từ, vuhoanplus/gmail → unresolved tường minh, contract sạch. D20-04b: khai báo quy ước case read_string consensus = so NGUYÊN VĂN (case-sensitive) — tier-1 giữ case giữa verbal và read_string; schema §9. D20-05: cải chính đếm delta v19→v20 = 6 sửa/53 không đổi (reference_diff v20 + schema §9; bundle cũ giữ nguyên byte); đồng bộ tên khóa payload §6 (fold_tsv/spell_tsv vs resource_snapshot *_sha256). Không đổi policy B/C: 4 hash giữ nguyên. Chuỗi bằng chứng: static PASS · 466 VI · 74 profile · 16 scope · 45 gold-dev · audit exit 0 · test_cmu_en 47 · test_g2p 110 PASS/0 FAIL (có corpus; 106+1 SKIP khi thiếu) · 8 artifact tái sinh byte-giữ · probe reviewer v20 chạy lại toàn PASS.",
+    "files": [
+     "01_g2p/g2p.py",
+     "01_g2p/test_g2p.py",
+     "02_data/g2p/schema_g2p_0.1.md",
+     "02_data/g2p/fixture_tier1_email_spell.json",
+     "02_data/inventory_schema.md"
+    ]
+   },
+   {
+    "version": "fase E v22 (FASE D ĐÓNG v21 → bắt đầu fase E: E1/E2/E3/E5 có bằng chứng)",
+    "result": "D ĐÓNG theo HAU_KIEM_FASE_D_V21 (4 điều kiện §4 đạt, D20-04 đóng bằng fixture, không thoái trào). v22: (1) cache hiệu năng tầng D cho corpus full — cmu dict nạp 1 lần/process qua pronounce(cmu=) (cmu_en.py KHÔNG đổi → en_policy_hash giữ nguyên 1873ac63…), _cmudict_sha + b_c_dependencies memo khuôn snapshot (M5); g2p_policy_hash baseline mới a24db1ab…; (2) H12 torture 6 check (A×100 spell / TRTRTR / token 10k ký tự / 150 cat hỗn hợp) → test_g2p 115 PASS / 0 FAIL; (3) E2 corpus 1M FULL — runner fail-closed (content-pin corpus cb9df5eb… + resource pins), 24 worker song song: 1.000.000 record / 22.853.017 token, 0 crash, 0 pronounceable-thiếu-syllable, 0 profile rỗng, 0 conformance, 0 validation, 0 vi phạm coda-tắc-thanh, control im lặng, contract_errors 12.231/1M (1,22% — TOÀN BỘ nhóm read_string-consensus khớp khai báo); status: ok 19.354.093 · control 2.452.284 · unresolved 861.431 · spell 159.965 · fold 24.613 · scope_excluded 578 · no_nucleus 35 · not_word 18; spell trên word token 0,49% (viết hoa 70.413 / thường 24.893); report ALL_PASS=true; (4) E5 determinism byte-identical mẫu 1.000 record ×2 lượt; throughput 4.233 câu/phút/worker (sum-CPU; đối chứng tuần tự 153 rec/s ≈ 9.200 câu/phút) — vượt ngưỡng kế hoạch ≥2.000; (5) E3 differential sea-g2p 0.10.0 (Apache-2.0) qua wrapper vig2p 0.1.0, mẫu 2.000 word-token systematic: equal 1.236 / phoneme_lech 646 / no_pron 88 / tone_lech 30 (chủ yếu artifact ER→'↗' của tool), 0 tool error; bộ judge 500 token dựng xong; (6) kế hoạch fase E + pin (sea-g2p/vig2p/kokoro checkpoint) tại 00_docs/G2P_KE_HOACH_FASE_E.md — xin chốt tiêu chí E4/E6 với chủ dự án. README byte-frozen.",
+    "files": [
+     "01_g2p/g2p.py",
+     "01_g2p/test_g2p.py",
+     "01_g2p/fase_e_corpus_run.py",
+     "01_g2p/fase_e_diff_sample.py",
+     "00_docs/G2P_KE_HOACH_FASE_E.md",
+     "02_data/g2p/schema_g2p_0.1.md",
+     "02_data/g2p/fase_e_corpus_1M_report.json",
+     "02_data/g2p/fase_e_diff_report.json",
+     "02_data/g2p/fase_e_judge_set.jsonl",
+     "02_data/inventory_schema.md"
+    ]
+   },
+   {
+    "version": "fase E v23 (preflight + vét cạn reviewer vào repo — E1–E5 bằng chứng đủ, chờ chốt)",
+    "result": "Nhánh nhanh reviewer đề xuất (duyệt v22: 90/90 hash OK, cross-check E2 24 shard khớp tuyệt đối, vét cạn reviewer 126.932 khóa/0 vi phạm, negative-control đạt; 2 finding nhỏ không chặn). v23: (1) ADOPT 2 script của reviewer byte-chính xác — 01_g2p/exhaustive_sweep.py (3d7617fd40641f9a…) + preflight.sh (8b8b821d6aa6d6ca…) — chạy THẬT trên máy tác giả (i9-12900K, 16 worker): preflight 10/10 PASS trong 3s (inventory 6 điều + vi_rules 466 + scope 16 + coda 74 + gold-dev 45 + audit exit 0 + cmu_en 47 + test_g2p 115 + vét cạn + probe reviewer v20 TOÀN PASS); vét cạn toàn không gian khóa: 126.932 khóa (698 fold + 28 spell + 76 scope ×3 dạng + 78 inventory + 126.052 cmudict) — 0 vi phạm, 0,65s, identity_stable=true, policy hash a24db1ab… trước==sau; log + report JSON kèm bundle (02_data/g2p/preflight_v23.log, preflight_summary.json, exhaustive_sweep_report.json). (2) Finding (a) đóng: fase_e_judge_sample.py THẬT (prepare/spotcheck) — sinh phiên chấm mù E4 theo 7 điều kiện reviewer chốt: fase_e_judge_session.jsonl 500 item MÙ (A/B xáo seed 20261002, cân bằng 248/500, không nhãn mình/tool — đã kiểm 'group'/'my_text'/'tool_text' không lọt), fase_e_judge_session_key.json (KHÓA — không cho judge), fase_e_judge_de_bai.md (luật phiên); bộ judge đóng băng sha b8743e90544ad1d7…. (3) Finding (b) đóng: quy ước dấu nhấn ˈˌ (artifact tool — judge KHÔNG chấm) ghi trong đề bài phiên + kế hoạch E §E4. (4) Tiêu chí E4 (7 điều kiện) + E6 (5 điều kiện) reviewer chốt vòng v22 lưu chính thức tại G2P_KE_HOACH_FASE_E.md §6 — không bổ sung/sửa khi chạy. Còn lại: E4 session (cùng chủ dự án) + E6 pin revision checkpoint — chờ chủ dự án. README byte-frozen.",
+    "files": [
+     "01_g2p/exhaustive_sweep.py",
+     "01_g2p/fase_e_judge_sample.py",
+     "00_docs/G2P_KE_HOACH_FASE_E.md",
+     "02_data/g2p/exhaustive_sweep_report.json",
+     "02_data/g2p/fase_e_judge_session.jsonl",
+     "02_data/g2p/fase_e_judge_session_key.json",
+     "02_data/g2p/fase_e_judge_de_bai.md",
+     "02_data/g2p/preflight_v23.log",
+     "02_data/g2p/preflight_summary.json",
+     "02_data/inventory_schema.md",
+     "preflight.sh"
+    ]
+   },
+   {
+    "version": "fase E v24 (E4 chạy thật theo runbook reviewer + spot-check: judge không đủ tin cậy — lưu hồ sơ theo điều kiện 5)",
+    "result": "E4 theo runbook §3 (CHOT_FASE_E_E1E5_V23): (1) nit v23-01 đóng đường (a) — session strip status/verbal + key mang session_sha256; judge_set sha b8743e90… nguyên. (2) Engine: transformers 5.17 + bitsandbytes NF4 (compute bf16), batch 24 pin, greedy, max_new_tokens=160, seed 20261002 — vLLM loại (chưa cài; bf16 19,3GB không vừa 12GB nên vẫn phải 4-bit; không có AWQ/GPTQ sẵn, tự quantize = copy model (đụng ràng buộc); kiến trúc qwen3_5 VL có thể chưa hỗ trợ). Model giữ nguyên chỗ (06_models/qwen/qwen3_5_9b_base — không copy/di dời); provenance sha256 11 file model (4 shard) + prompt template sha c216c8e8… + 1 ghi chú OOM warning (allocator tự phục hồi). (3) PHIÊN v1 (stress nguyên): judge fixación dấu nhấn — 126 cặp chỉ-khác-stress chỉ 10 hoa; 68 identical → 68/68 hoa; lưu *_v1 làm bằng chứng hành vi. PHIÊN v2 (chốt): strip ˈˌ CẢ HAI phía theo quy ước so sánh E3 — identical trình bày 194 → 185 hoa + 9 judge_notation_reject; phân bố hoa 268 / ca_hai_sai 155 / B 41 / A 36; parse 490 first + 10 retry + 0 fail (186,2s — 372 ms/item) [đính chính v25: số 485/15/0/210s là của phiên v1, dán nhầm vào mô tả v2 — Nit v24-01]. (4) Regression 'G2P mình sai': 186/500 net (runbook literal 195) — HẠ CẤP thành candidate flags sau spot-check. (5) SPOT-CHECK 25 phiếu (điều kiện 7) — người kiểm = agent (LLM) theo ỦY QUYỀN chủ dự án (caveat LLM-kiểm-LLM minh bạch): 14/25 ĐẠT · 11/25 KHÔNG ĐẠT → judge KHÔNG đủ tin cậy làm người phân xử phát âm; mọi phiếu KHÔNG ĐẠT là lỗi phía judge (đọc sai input, sai âm vị học, tự mâu thuẫn, áp ký hiệu ngoài quy ước); KHÔNG phát hiện lỗi G2P mới; đúng điều kiện 5 — judge không oracle; chất lượng phát âm thật = E6 (tai người) + policy [B]. Bằng chứng kiểm: identity 25/25 qua production stream; CMUdict 4/4 (EN); NFD audit — agent từng nghi hệ rơi thanh hàng loạt nhưng chính chuỗi probe của agent thiếu/sai dấu; hệ đúng 14/14 chuỗi dựng-NFD → KHÔNG bug thanh điệu. (6) 1 mục policy [B] mới: token corpus không dấu ('tiêu','Bây') đọc ngang trung thực — fold theo tần suất chờ chủ dự án. (7) E6: đề xuất pin checkpoint contextboxai/Kokoro-Vietnamese revision 9f210d622209… (Apache-2.0) + sha256 LFS từng file — chờ chủ dự án chốt trước khi tải. README byte-frozen.",
+    "files": [
+     "01_g2p/fase_e_judge_run.py",
+     "01_g2p/fase_e_judge_summary.py",
+     "02_data/g2p/fase_e_judge_session.jsonl",
+     "02_data/g2p/fase_e_judge_session_key.json",
+     "02_data/g2p/fase_e_judge_de_bai.md",
+     "02_data/g2p/fase_e_judge_raw_log.jsonl",
+     "02_data/g2p/fase_e_judge_provenance.json",
+     "02_data/g2p/fase_e_judge_summary.json",
+     "02_data/g2p/fase_e_judge_regression.json",
+     "02_data/g2p/fase_e_judge_spotcheck.jsonl",
+     "02_data/g2p/fase_e_judge_spotcheck_agent_results.json",
+     "02_data/g2p/fase_e_judge_spotcheck_bien_ban.md",
+     "02_data/g2p/fase_e_judge_session_v1.jsonl",
+     "02_data/g2p/fase_e_judge_raw_log_v1.jsonl",
+     "02_data/g2p/fase_e_judge_provenance_v1.json",
+     "02_data/g2p/fase_e_judge_summary_v1.json",
+     "02_data/g2p/fase_e_judge_regression_v1.json",
+     "02_data/g2p/fase_e_judge_spotcheck_v1.jsonl",
+     "02_data/g2p/e6_checkpoint_pin_de_xuat.md",
+     "00_docs/G2P_KE_HOACH_FASE_E.md",
+     "02_data/inventory_schema.md"
+    ]
+   },
+   {
+    "version": "fase E v25 (PHÁN QUYẾT E4 ĐẠT — khép E4; 2 đính chính văn bản Nit v24-01/02; chờ chủ dự án chốt pin E6)",
+    "result": "Reviewer duyệt v24: 115/115 hash OK; 7/7 điều kiện E4 đạt — tái lập độc lập: session sha blank dfde81cd…, 186 regression khớp tuyệt đối, prompt sha c216c8e8… recompute khớp, raw_log attempts {1:490, 2:9, 3:1}; spot-check 5 ca chính tự xác minh + identity 25/25 chạy lại PASS. E4 ĐẠT/KHÉP theo điều kiện 5 (judge không oracle — 186 candidate flags → policy [B]). v25 = 2 đính chính văn bản (KHÔNG chạy lại GPU): (1) Nit v24-01 — số parse dán nhầm: mô tả v2 ghi 485/15/0/210s (số của phiên v1) → đúng v2 = 490 first / 10 retry / 0 fail / 186,2s (372 ms/item); sửa tại kế hoạch E §E4, schema §12, provenance (entry v24), reference_diff v24 (cải chính inline); hồ sơ *_v1 giữ nguyên. (2) Nit v24-02 — literal 'batch=12' trong trường decoding của provenance v1/v2 là template lỗi thời của runner; batch thực thi = 24 (BATCH dòng 156, khớp ghi chú OOM + header); runner sửa sang nội suy batch={BATCH} từ v25; KHÔNG sửa lén file provenance của phiên — đính chính minh bạch tại 02_data/g2p/fase_e_judge_provenance_dinh_chinh.md. Reviewer xác nhận sống HF API: revision 9f210d622209… tồn tại, apache-2.0, size + LFS sha256 khớp 100% từng file đề xuất → recipe fail-closed ĐẠT điều kiện 1 §6. Còn chờ CHỦ DỰ ÁN: (a) chốt revision 9f210d62…, (b) giọng chính demo (my_yen đề xuất), (c) chấp nhận Apache-2.0 (chạy nội bộ) → recipe tải → demo A/B → FASE E ĐÓNG. Treo ngoài E (chờ chủ dự án): decision spell_vi seed; policy [B] (spell-rate + mục mới token không dấu 'tiêu'/'Bây' đọc ngang). Preflight v25: 10/10 PASS (3s); vét cạn ALL_PASS 126.932 khóa/0 vi phạm/0,64s. README byte-frozen.",
+    "files": [
+     "01_g2p/fase_e_judge_run.py",
+     "02_data/g2p/fase_e_judge_provenance_dinh_chinh.md",
+     "00_docs/G2P_KE_HOACH_FASE_E.md",
+     "02_data/inventory_schema.md",
+     "02_data/g2p/exhaustive_sweep_report.json",
+     "02_data/gold_dev/reference_diff.md"
+    ],
+    "files_note": "bổ sung v26 (Nit v25-01): thiếu reference_diff.md trong liệt kê; chính file này không tự liệt kê được trong snapshot nhưng nằm trong bundle"
+   },
+   {
+    "version": "fase E v26 (E4 giữ ĐẠT/KHÉP theo PHAN_QUYẾT v25; 3 nit v25 vá; CHỦ DỰ ÁN ĐỔI HƯỚNG E6 — model gốc EN làm base fine-tune; fase E khép E1–E5)",
+    "result": "(1) PHAN_QUYẾT v25: ĐẠT — nit v24-01/02 đóng sạch (reviewer tái lập độc lập; giải thích dứt điểm 115 vs 111+1 SKIP: H11 chạy 4 check thật khi corpus có trên máy). (2) Vá 3 nit v25 (cosmetic): v25-01 số học 6 sửa + files list entry v25; v25-02 persist 01_g2p/preflight_summary.py schema 0.2 (run_id + date_utc) + preflight_v25.log 10/10 PASS; nice-to-have nối 2 sha runner 09832d36…→2a1f642c… trong file đính chính. (3) CHỦ DỰ ÁN ĐỔI HƯỚNG E6 (quyết 02/10/2026): bỏ checkpoint Việt hóa contextboxai (đề xuất pin cũ lưu hồ sơ — chưa từng tải/chạy); tải MODEL GỌI hexgrad/Kokoro-82M @ f3ff3571791e39611d31c381e3a41a3af07b4987 (Apache-2.0) fail-closed — config.json + kokoro-v1_0.pth 327.212.226 B (sha 496dba118d1a58f5… khớp LFS pin) + voices/af_heart.pt (sha 0ab5709b…) → 03_vendor/kokoro_en_weights/ + provenance. Chương trình: fine-tune model gốc theo G2P mới — EN trước, VI sau; hạ tầng StyleTTS2 (train_finetune_accelerate) có sẵn trong fork. (4) ĐO FIT: bảng 114 symbol của mình == vocab tường minh model gốc (diff = 0); profile EN phủ 100% (37 ký hiệu), VI phủ 100% (39 ký hiệu, mũi tên thanh ↗↘↓→ có sẵn cho giọng zh) — kokoro_en_fit_report.json → KHÔNG cần đụng vocab, chỉ fine-tune acoustic; 82M tham số — 3080 12GB dư sức. (5) Fase E: E1–E5 ĐÁNG TIN CHỐT; gate nghe (WAV A/B + phiếu) chuyển thành mốc tầng 3 (baseline model gốc đọc chuỗi G2P mình → fine-tune → nghe đối chiếu). README byte-frozen.",
+    "files": [
+     "01_g2p/fetch_kokoro_en.py",
+     "01_g2p/preflight_summary.py",
+     "02_data/g2p/kokoro_en_weights_provenance.json",
+     "02_data/g2p/kokoro_en_fit_report.json",
+     "02_data/g2p/preflight_v25.log",
+     "02_data/g2p/preflight_summary.json",
+     "00_docs/G2P_KE_HOACH_FASE_E.md",
+     "02_data/gold_dev/reference_diff.md",
+     "02_data/g2p/fase_e_judge_provenance_dinh_chinh.md",
+     "02_data/g2p/exhaustive_sweep_report.json"
+    ],
+    "files_note": "bổ sung v27 (Nit v26-01): thiếu 2 file sửa nêu trên"
+   },
+   {
+    "version": "fase E v27 (PHAN_QUYẾT v26: XÁC NHẬN KHÉP FASE E Ở E1–E5 + phê chuẩn pin model gốc + fit report; vá 4 nit v26; KẾ HOẠCH TẦNG 3 gửi chốt)",
+    "result": "(1) PHAN_QUYẾT v26: reviewer xác nhận khép fase E ở E1–E5 theo hướng đổi của chủ dự án (4 điều kiện chuyển tiếp §2 — đã nhúng vào kế hoạch tầng 3); phê chuẩn pin hexgrad/Kokoro-82M@f3ff357… (verify sống); phê chuẩn fit report + tìm ra thông tin MẠNH HƠN: 114/114 token ID trùng khít (không cần remap embedding). (2) Vá 4 nit v26: v26-01 sổ sách (ref_diff cải chính inline + files list provenance đủ + plan §3 gắn RÚT contextboxai + đổi tên preflight_v25.log → preflight_v26.log); v26-02 fix micro-bug đường lỗi fetch_kokoro_en.py (lưu size trước unlink); v26-03 fit report v0.2 — phủ ĐẦY ĐỦ qua production stream (126.052 từ cmudict + 124.971 dòng vi_syllable_vocab, 16 worker, 13s): EN 38 ký hiệu (khớp đếm của reviewer) + VI 39 — cả hai 100%, thêm cột id_mapping 114/114; v26-04 BẢNG THANH runner judge sửa đúng hệ thật (↘=huyền, ↓=hỏi, ngã=ʔ↗, nặng=ʔ↓, → không phát sinh) + ghi đính chính: các phiên E4 cũ bị dạy sai bảng — củng cố, không đảo kết luận 'judge không đáng tin'. (3) KE_HOACH_TANG_3.md viết theo công thức B/C/D/E: T3-A baseline WAV (model gốc đọc chuỗi G2P mình, không qua misaki) → T3-B data EN (đề xuất LibriTTS-R, pin khi tải) → T3-C fine-tune + gate nghe EN (3 nhánh, phiếu CSV, không MOS) → T3-D VI (CHỜ chủ dự án chốt nguồn audio) → T3-E báo cáo; mang 4 điều kiện §2 + 2 quyết treo (spell_vi seed, policy [B]); ràng buộc test-data-không-train giữ nguyên. Xin reviewer chốt kế hoạch tầng 3. README byte-frozen.",
+    "files": [
+     "01_g2p/fase_e_judge_run.py",
+     "01_g2p/fetch_kokoro_en.py",
+     "00_docs/KE_HOACH_TANG_3.md",
+     "00_docs/G2P_KE_HOACH_FASE_E.md",
+     "02_data/g2p/kokoro_en_fit_report.json",
+     "02_data/g2p/fase_e_judge_provenance_dinh_chinh.md",
+     "02_data/g2p/preflight_v26.log",
+     "02_data/g2p/preflight_summary.json",
+     "02_data/inventory_provenance.json"
+    ]
+   }
+  ],
+  "merge_rules_approved_note": "0 rule approved ở tầng matcher; 45 cặp được duyệt qua LỚP EXACT_FIXTURE riêng (26 v11 + 19 QD57-2026-10-02 — approval_policy_hash), không qua flag matcher; 38 nhóm excluded_v1 theo QD57 (ledger qd57_scope_exclusions.json, thành viên máy đọc exact pin từ đáp án reviewer — R14-01; scope_policy_hash — R14-02)"
+ },
+ "pending_provenance": "Các ID dùng chung khác (F/V/L/M/N/H/K/NG/W/J/U/OPEN_E/OPEN_O…) theo cùng pattern 'cùng acoustic category chủ đích' — bổ sung dòng chi tiết khi reviewer yêu cầu mở rộng; mặc định kế thừa quyết định A1.",
+ "semantic_version_note": "vòng 6.3 (v12): thêm PHONE_OPEN_E_PREVELAR cho vần 'ach' — RÀNG BUỘC giữ đối lập sách/Séc, mách/méc từ quyết reviewer v11 (2026-10-02); tên ID và mức nucleus là LỰA CHỌN TÁC GIẢ v12, được duyệt có điều kiện ở hậu kiểm v12 §3.1 (lớp nucleus theo ngữ cảnh vần — không phải xác nhận hiện thực âm học mọi từ, không mở rộng ID sang nguyên âm khác); ID PHONE_OPEN_E bất biến, registry ổn định là cam kết thiết kế (chưa kiểm mapping số — registry số thuộc bước sau). Lịch sử ham/0.1 giữ trong provenance + reference_diff."
+}

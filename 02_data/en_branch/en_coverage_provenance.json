@@ -1,0 +1,51 @@
+{
+ "artifact": "02_data/en_branch/en_coverage.tsv",
+ "date": "2026-10-02",
+ "corpus": {
+  "path": "<workspace>/02_project/05_TTS/01_tiny_model/01_data/silver/corpus_ir_1M.jsonl.gz",
+  "tag": "tier1_silver_1M chính (stats_1M.json: 1.000.000 records, 22.723.901 tokens) — nguồn attestation duy nhất đã verify; supplement bị LOẠI như build_core_domain",
+  "sha256_verified_at_run": "cb9df5eb3b0a24f1ad4569d531743b6603a12b01057212a065fba3a116a47789",
+  "pin_source": "02_data/core_domain/core_domain_provenance.json",
+  "n_records_seen": 1000000
+ },
+ "method": "token literal nguyên dạng (cat=word route=en, NFC+lower+strip), không tách; exact lookup key cmudict pin (cmu_en.load_cmu, verify sha256); biến thể (2) gộp về 1 key; đơn vị đếm tần suất = token nguyên dạng; miss tách ascii a-z (spell trọn) khỏi unicode alphabetic (không đảm bảo spell trọn) — C16-02",
+ "cmudict": {
+  "sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+  "provenance": "03_vendor/cmudict/cmudict_provenance.json",
+  "n_keys_lowercased": 126052
+ },
+ "en_policy_hash": "1873ac63422bf2d60f0b6ffee6cf34b48745dd21ce423f9fb6b3e8adf1c621ff",
+ "counts": {
+  "n_records": 1000000,
+  "n_en_tokens": 3041869,
+  "n_empty_dropped": 1851,
+  "n_nonempty_tokens": 3040018,
+  "n_unique": 93589,
+  "n_unique_in_cmu": 50504,
+  "pct_unique_in_cmu": 53.9636,
+  "n_freq_in_cmu": 2935395,
+  "pct_freq_in_cmu": 96.5585,
+  "n_unique_no_nucleus_in_cmu": 7,
+  "label_hit": "dictionary hit (exact key) — KHÔNG đồng nghĩa phát âm hoàn tất: no_nucleus trả status riêng",
+  "n_unique_has_digit": 3088,
+  "freq_has_digit": 6894,
+  "pct_freq_has_digit": 0.2268,
+  "n_unique_ascii_alpha_oov": 33851,
+  "freq_ascii_alpha_oov": 59038,
+  "pct_freq_ascii_alpha_oov": 1.942,
+  "n_unique_unicode_alpha_oov": 620,
+  "freq_unicode_alpha_oov": 3213,
+  "pct_freq_unicode_alpha_oov": 0.1057,
+  "n_unique_not_alpha": 5526,
+  "freq_not_alpha": 35478,
+  "pct_freq_not_alpha": 1.167,
+  "n_unique_spell_complete_oov": 33851,
+  "freq_spell_complete_oov": 59038,
+  "pct_freq_spell_complete_oov": 1.942
+ },
+ "code_sha256": {
+  "cmu_en.py": "d85d963d205248229710f4429f550a7db5de1a11ed6bd33a7f77ac4a5208c8df",
+  "cmu_coverage.py": "83e4d651f8f8f31221dbfe567c62ca38c8773875fa0f074547ea8c787c8cadb2"
+ },
+ "tsv_sha256": "13852f3521a86678e528cd6750e013936f00d667bae7248d47103ed39ad77495"
+}
