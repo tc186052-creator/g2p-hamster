@@ -1,0 +1,289 @@
+char	codepoint	freq	unicode_cat	action	note
+,	U+002C	25492254	Po	keep	dấu câu chuẩn
+.	U+002E	21422892	Po	keep	dấu câu chuẩn
+-	U+002D	3389346	Pd	keep	dấu câu chuẩn
+""""	U+0022	2275919	Po	keep	dấu câu chuẩn
+(	U+0028	2190024	Ps	keep	dấu câu chuẩn
+)	U+0029	2154922	Pe	keep	dấu câu chuẩn
+/	U+002F	1618095	Po	read	symbol có luật đọc theo route
+:	U+003A	1377401	Po	keep	dấu câu chuẩn
+“	U+201C	1316891	Pi	"normalize:'""'"	dấu gần chuẩn
+”	U+201D	1226652	Pf	"normalize:'""'"	dấu gần chuẩn
+’	U+2019	780228	Pf	"normalize:""'"""	dấu gần chuẩn
+'	U+0027	766922	Po	keep	dấu câu chuẩn
+%	U+0025	695386	Po	read	symbol có luật đọc theo route
+?	U+003F	648997	Po	keep	dấu câu chuẩn
+;	U+003B	492523	Po	keep	dấu câu chuẩn
+–	U+2013	373450	Pd	normalize:'-'	dấu gần chuẩn
+…	U+2026	264766	Po	keep	dấu gần chuẩn
+!	U+0021	210096	Po	keep	dấu câu chuẩn
+$	U+0024	174090	Sc	read	symbol có luật đọc theo route
+&	U+0026	170541	Po	read	symbol có luật đọc theo route
+—	U+2014	81329	Pd	normalize:'-'	dấu gần chuẩn
+‘	U+2018	76754	Pi	"normalize:""'"""	dấu gần chuẩn
++	U+002B	69175	Sm	read	symbol có luật đọc theo route
+#	U+0023	52512	Po	read	symbol có luật đọc theo route
+ּ	U+05BC	33271	Mn	drop	vô hình / điều khiển — xóa âm thầm
+€	U+20AC	32184	Sc	read	symbol có luật đọc theo route
+£	U+00A3	22192	Sc	read	symbol có luật đọc theo route
+™	U+2122	20201	So	drop	trang trí — bỏ
+>	U+003E	19485	Sm	read	symbol có luật đọc theo route
+​	U+200B	18640	Cf	normalize:' '	dấu gần chuẩn
+*	U+002A	17099	Po	drop_log	chưa rõ — bỏ + log review
+‏	U+200F	13772	Cf	drop	vô hình / điều khiển — xóa âm thầm
+°	U+00B0	12692	So	read	symbol có luật đọc theo route
+@	U+0040	12689	Po	read	symbol có luật đọc theo route
+♪	U+266A	10882	So	drop	trang trí — bỏ
+•	U+2022	9593	Po	drop	trang trí — bỏ
+®	U+00AE	7766	So	drop	trang trí — bỏ
+»	U+00BB	7311	Pf	keep	dấu câu chuẩn
+}	U+007D	7173	Pe	keep	dấu câu chuẩn
+~	U+007E	5313	Sm	read	symbol có luật đọc theo route
+<	U+003C	4676	Sm	read	symbol có luật đọc theo route
+­	U+00AD	3780	Cf	drop	vô hình / điều khiển — xóa âm thầm
+]	U+005D	3472	Pe	keep	dấu câu chuẩn
+·	U+00B7	3409	Po	drop_log	chưa rõ — bỏ + log review
+×	U+00D7	3328	Sm	read	symbol có luật đọc theo route
+[	U+005B	3320	Ps	keep	dấu câu chuẩn
+\	U+005C	3002	Po	read	symbol có luật đọc theo route
+，	U+FF0C	2658	Po	drop_log	chưa rõ — bỏ + log review
+=	U+003D	2625	Sm	read	symbol có luật đọc theo route
+{	U+007B	2179	Ps	keep	dấu câu chuẩn
+˜	U+02DC	1590	Sk	drop_log	chưa rõ — bỏ + log review
+«	U+00AB	1442	Pi	keep	dấu câu chuẩn
+″	U+2033	1433	Po	drop_log	chưa rõ — bỏ + log review
+》	U+300B	1279	Pe	drop_log	chưa rõ — bỏ + log review
+`	U+0060	1248	Sk	drop_log	chưa rõ — bỏ + log review
+−	U+2212	1226	Sm	drop_log	chưa rõ — bỏ + log review
+《	U+300A	1187	Ps	drop_log	chưa rõ — bỏ + log review
+♫	U+266B	1142	So	drop	trang trí — bỏ
+：	U+FF1A	1088	Po	drop_log	chưa rõ — bỏ + log review
+。	U+3002	1007	Po	drop_log	chưa rõ — bỏ + log review
+﻿	U+FEFF	991	Cf	drop	vô hình / điều khiển — xóa âm thầm
+±	U+00B1	969	Sm	drop_log	chưa rõ — bỏ + log review
+₹	U+20B9	928	Sc	drop_log	chưa rõ — bỏ + log review
+¿	U+00BF	886	Po	drop	trang trí — bỏ
+‎	U+200E	823	Cf	drop	vô hình / điều khiển — xóa âm thầm
+→	U+2192	796	Sm	drop	trang trí — bỏ
+′	U+2032	784	Po	drop_log	chưa rõ — bỏ + log review
+÷	U+00F7	749	Sm	read	symbol có luật đọc theo route
+」	U+300D	682	Pe	drop_log	chưa rõ — bỏ + log review
+_	U+005F	627	Pc	keep	dấu câu chuẩn
+「	U+300C	606	Ps	drop_log	chưa rõ — bỏ + log review
+≥	U+2265	502	Sm	drop_log	chưa rõ — bỏ + log review
+§	U+00A7	493	Po	drop	trang trí — bỏ
+¦	U+00A6	491	So	drop_log	chưa rõ — bỏ + log review
+⁄	U+2044	427	Sm	drop_log	chưa rõ — bỏ + log review
+☆	U+2606	402	So	drop	trang trí — bỏ
+、	U+3001	398	Po	drop_log	chưa rõ — bỏ + log review
+️	U+FE0F	396	Mn	drop_log	chưa rõ — bỏ + log review
+・	U+30FB	386	Po	drop_log	chưa rõ — bỏ + log review
+|	U+007C	365	Sm	read	symbol có luật đọc theo route
+^	U+005E	363	Sk	read	symbol có luật đọc theo route
+¡	U+00A1	358	Po	drop	trang trí — bỏ
+̷	U+0337	356	Mn	drop_log	chưa rõ — bỏ + log review
+›	U+203A	354	Pf	drop_log	chưa rõ — bỏ + log review
+¬	U+00AC	297	Sm	drop_log	chưa rõ — bỏ + log review
+★	U+2605	278	So	drop	trang trí — bỏ
+„	U+201E	272	Ps	"normalize:'""'"	dấu gần chuẩn
+´	U+00B4	271	Sk	drop_log	chưa rõ — bỏ + log review
+́	U+0301	269	Mn	drop_log	chưa rõ — bỏ + log review
+‰	U+2030	258	Po	drop_log	chưa rõ — bỏ + log review
+～	U+FF5E	249	Sm	drop_log	chưa rõ — bỏ + log review
+ั	U+0E31	246	Mn	drop_log	chưa rõ — bỏ + log review
+▻	U+25BB	246	So	drop_log	chưa rõ — bỏ + log review
+©	U+00A9	229	So	drop	trang trí — bỏ
+（	U+FF08	228	Ps	drop_log	chưa rõ — bỏ + log review
+℃	U+2103	227	So	drop_log	chưa rõ — bỏ + log review
+♭	U+266D	223	So	drop_log	chưa rõ — bỏ + log review
+¶	U+00B6	222	Po	drop	trang trí — bỏ
+†	U+2020	222	Po	drop	trang trí — bỏ
+【	U+3010	206	Ps	drop_log	chưa rõ — bỏ + log review
+】	U+3011	206	Pe	drop_log	chưa rõ — bỏ + log review
+）	U+FF09	205	Pe	drop_log	chưa rõ — bỏ + log review
+✓	U+2713	204	So	drop_log	chưa rõ — bỏ + log review
+་	U+0F0B	200	Po	drop_log	chưa rõ — bỏ + log review
+้	U+0E49	199	Mn	drop_log	chưa rõ — bỏ + log review
+┬	U+252C	191	So	drop_log	chưa rõ — bỏ + log review
+▪	U+25AA	189	So	drop	trang trí — bỏ
+≈	U+2248	182	Sm	drop_log	chưa rõ — bỏ + log review
+¥	U+00A5	175	Sc	read	symbol có luật đọc theo route
+≤	U+2264	172	Sm	drop_log	chưa rõ — bỏ + log review
+☃	U+2603	172	So	drop_log	chưa rõ — bỏ + log review
+	U+0089	171	Cc	drop	vô hình / điều khiển — xóa âm thầm
+―	U+2015	171	Pd	drop_log	chưa rõ — bỏ + log review
+‚	U+201A	163	Ps	drop_log	chưa rõ — bỏ + log review
+‑	U+2011	160	Pd	normalize:'-'	dấu gần chuẩn
+♘	U+2658	152	So	drop_log	chưa rõ — bỏ + log review
+♯	U+266F	151	Sm	drop_log	chưa rõ — bỏ + log review
+˚	U+02DA	150	Sk	drop_log	chưa rõ — bỏ + log review
+✔	U+2714	141	So	drop_log	chưa rõ — bỏ + log review
+ิ	U+0E34	139	Mn	drop_log	chưa rõ — bỏ + log review
+¸	U+00B8	139	Sk	drop_log	chưa rõ — bỏ + log review
+	U+0091	131	Cc	drop	vô hình / điều khiển — xóa âm thầm
+	U+F077	120	Co	drop_log	chưa rõ — bỏ + log review
+̉	U+0309	120	Mn	drop_log	chưa rõ — bỏ + log review
+ⓒ	U+24D2	120	So	drop_log	chưa rõ — bỏ + log review
+่	U+0E48	119	Mn	drop_log	chưa rõ — bỏ + log review
+	U+F0D8	113	Co	drop_log	chưa rõ — bỏ + log review
+？	U+FF1F	112	Po	drop_log	chưa rõ — bỏ + log review
+̀	U+0300	112	Mn	drop_log	chưa rõ — bỏ + log review
+̣	U+0323	110	Mn	drop_log	chưa rõ — bỏ + log review
+─	U+2500	108	So	drop_log	chưa rõ — bỏ + log review
+ี	U+0E35	101	Mn	drop_log	chưa rõ — bỏ + log review
+₦	U+20A6	100	Sc	drop_log	chưa rõ — bỏ + log review
+	U+0099	99	Cc	drop	vô hình / điều khiển — xóa âm thầm
+์	U+0E4C	94	Mn	drop_log	chưa rõ — bỏ + log review
+〜	U+301C	92	Pd	drop_log	chưa rõ — bỏ + log review
+☛	U+261B	87	So	drop_log	chưa rõ — bỏ + log review
+↔	U+2194	83	Sm	drop_log	chưa rõ — bỏ + log review
+▃	U+2583	82	So	drop_log	chưa rõ — bỏ + log review
+▅	U+2585	82	So	drop_log	chưa rõ — bỏ + log review
+▆	U+2586	82	So	drop_log	chưa rõ — bỏ + log review
+❤	U+2764	81	So	drop_log	chưa rõ — bỏ + log review
+；	U+FF1B	78	Po	drop_log	chưa rõ — bỏ + log review
+ा	U+093E	77	Mc	drop_log	chưa rõ — bỏ + log review
+♗	U+2657	76	So	drop_log	chưa rõ — bỏ + log review
+	U+F09F	76	Co	drop_log	chưa rõ — bỏ + log review
+‐	U+2010	74	Pd	drop_log	chưa rõ — bỏ + log review
+¢	U+00A2	73	Sc	drop_log	chưa rõ — bỏ + log review
+⌘	U+2318	69	So	drop_log	chưa rõ — bỏ + log review
+▲	U+25B2	68	So	drop_log	chưa rõ — bỏ + log review
+̇	U+0307	66	Mn	drop_log	chưa rõ — bỏ + log review
+✿	U+273F	66	So	drop_log	chưa rõ — bỏ + log review
+♦	U+2666	65	So	drop_log	chưa rõ — bỏ + log review
+－	U+FF0D	64	Pd	drop_log	chưa rõ — bỏ + log review
+	U+F0FC	64	Co	drop_log	chưa rõ — bỏ + log review
+	U+F02D	63	Co	drop_log	chưa rõ — bỏ + log review
+♣	U+2663	63	So	drop_log	chưa rõ — bỏ + log review
+ိ	U+102D	62	Mn	drop_log	chưa rõ — bỏ + log review
+ု	U+102F	62	Mn	drop_log	chưa rõ — bỏ + log review
+်	U+103A	62	Mn	drop_log	chưa rõ — bỏ + log review
+‧	U+2027	58	Po	drop_log	chưa rõ — bỏ + log review
+	U+F0A7	57	Co	drop_log	chưa rõ — bỏ + log review
+ི	U+0F72	56	Mn	drop_log	chưa rõ — bỏ + log review
+¤	U+00A4	54	Sc	drop	trang trí — bỏ
+̱	U+0331	52	Mn	drop_log	chưa rõ — bỏ + log review
+	U+008B	51	Cc	drop	vô hình / điều khiển — xóa âm thầm
+≠	U+2260	50	Sm	drop_log	chưa rõ — bỏ + log review
+ֵ	U+05B5	50	Mn	drop_log	chưa rõ — bỏ + log review
+ֹ	U+05B9	50	Mn	drop_log	chưa rõ — bỏ + log review
+∧	U+2227	50	Sm	drop_log	chưa rõ — bỏ + log review
+	U+F061	49	Co	drop_log	chưa rõ — bỏ + log review
+း	U+1038	48	Mc	drop_log	chưa rõ — bỏ + log review
+₫	U+20AB	47	Sc	read	symbol có luật đọc theo route
+∞	U+221E	46	Sm	drop_log	chưa rõ — bỏ + log review
+⁣	U+2063	46	Cf	drop	vô hình / điều khiển — xóa âm thầm
+∩	U+2229	44	Sm	drop_log	chưa rõ — bỏ + log review
+ु	U+0941	44	Mn	drop_log	chưa rõ — bỏ + log review
+	U+F0AE	43	Co	drop_log	chưa rõ — bỏ + log review
+	U+0093	43	Cc	drop	vô hình / điều khiển — xóa âm thầm
+⌂	U+2302	43	So	drop_log	chưa rõ — bỏ + log review
+✛	U+271B	43	So	drop_log	chưa rõ — bỏ + log review
+ื	U+0E37	43	Mn	drop_log	chưa rõ — bỏ + log review
+	U+F062	43	Co	drop_log	chưa rõ — bỏ + log review
+्	U+094D	42	Mn	drop_log	chưa rõ — bỏ + log review
+ि	U+093F	42	Mc	drop_log	chưa rõ — bỏ + log review
+☻	U+263B	42	So	drop_log	chưa rõ — bỏ + log review
+	U+0086	41	Cc	drop	vô hình / điều khiển — xóa âm thầm
+∆	U+2206	40	Sm	drop_log	chưa rõ — bỏ + log review
+ྒ	U+0F92	39	Mn	drop_log	chưa rõ — bỏ + log review
+ྱ	U+0FB1	39	Mn	drop_log	chưa rõ — bỏ + log review
+ြ	U+103C	38	Mc	drop_log	chưa rõ — bỏ + log review
+ဲ	U+1032	38	Mn	drop_log	chưa rõ — bỏ + log review
+̓	U+0313	38	Mn	drop_log	chưa rõ — bỏ + log review
+े	U+0947	38	Mn	drop_log	chưa rõ — bỏ + log review
+	U+008D	37	Cc	drop	vô hình / điều khiển — xóa âm thầm
+	U+F04A	37	Co	drop_log	chưa rõ — bỏ + log review
+☉	U+2609	35	So	drop_log	chưa rõ — bỏ + log review
+‡	U+2021	35	Po	drop	trang trí — bỏ
+	U+008A	33	Cc	drop	vô hình / điều khiển — xóa âm thầm
+⬇	U+2B07	32	So	drop_log	chưa rõ — bỏ + log review
+⇔	U+21D4	31	Sm	drop_log	chưa rõ — bỏ + log review
+	U+009D	31	Cc	drop	vô hình / điều khiển — xóa âm thầm
+	U+008F	31	Cc	drop	vô hình / điều khiển — xóa âm thầm
+ึ	U+0E36	31	Mn	drop_log	chưa rõ — bỏ + log review
+⚠	U+26A0	30	So	drop_log	chưa rõ — bỏ + log review
+‭	U+202D	30	Cf	drop	vô hình / điều khiển — xóa âm thầm
+ุ	U+0E38	30	Mn	drop_log	chưa rõ — bỏ + log review
+	U+F0D2	29	Co	drop_log	chưa rõ — bỏ + log review
+	U+F0E8	29	Co	drop_log	chưa rõ — bỏ + log review
+□	U+25A1	29	So	drop_log	chưa rõ — bỏ + log review
+↦	U+21A6	28	Sm	drop_log	chưa rõ — bỏ + log review
+ོ	U+0F7C	28	Mn	drop_log	chưa rõ — bỏ + log review
+ེ	U+0F7A	28	Mn	drop_log	chưa rõ — bỏ + log review
+ུ	U+0F74	28	Mn	drop_log	chưa rõ — bỏ + log review
+˘	U+02D8	27	Sk	drop_log	chưa rõ — bỏ + log review
+⊥	U+22A5	27	Sm	drop_log	chưa rõ — bỏ + log review
+̃	U+0303	27	Mn	drop_log	chưa rõ — bỏ + log review
+⌫	U+232B	27	So	drop_log	chưa rõ — bỏ + log review
+←	U+2190	27	Sm	drop	trang trí — bỏ
+℮	U+212E	26	So	drop_log	chưa rõ — bỏ + log review
+！	U+FF01	26	Po	drop_log	chưa rõ — bỏ + log review
+↑	U+2191	26	Sm	drop	trang trí — bỏ
+ं	U+0902	26	Mn	drop_log	chưa rõ — bỏ + log review
+ो	U+094B	26	Mc	drop_log	chưa rõ — bỏ + log review
+✯	U+272F	25	So	drop_log	chưa rõ — bỏ + log review
+ᷣ	U+1DE3	25	Mn	drop_log	chưa rõ — bỏ + log review
+╕	U+2555	24	So	drop_log	chưa rõ — bỏ + log review
+ာ	U+102C	24	Mc	drop_log	chưa rõ — bỏ + log review
+ꪸ	U+AAB8	24	Mn	drop_log	chưa rõ — bỏ + log review
+ྰ	U+0FB0	23	Mn	drop_log	chưa rõ — bỏ + log review
+₲	U+20B2	23	Sc	drop_log	chưa rõ — bỏ + log review
+№	U+2116	22	So	drop_log	chưa rõ — bỏ + log review
+‹	U+2039	22	Pi	drop_log	chưa rõ — bỏ + log review
+	U+008C	21	Cc	drop	vô hình / điều khiển — xóa âm thầm
+	U+009F	21	Cc	drop	vô hình / điều khiển — xóa âm thầm
+ྲ	U+0FB2	20	Mn	drop_log	chưa rõ — bỏ + log review
+∀	U+2200	20	Sm	drop_log	chưa rõ — bỏ + log review
+➡	U+27A1	19	So	drop_log	chưa rõ — bỏ + log review
+☺	U+263A	19	So	drop_log	chưa rõ — bỏ + log review
+✡	U+2721	18	So	drop_log	chưa rõ — bỏ + log review
+ู	U+0E39	18	Mn	drop_log	chưa rõ — bỏ + log review
+្	U+17D2	18	Mn	drop_log	chưa rõ — bỏ + log review
+ា	U+17B6	18	Mc	drop_log	chưa rõ — bỏ + log review
+ំ	U+17C6	18	Mn	drop_log	chưa rõ — bỏ + log review
+	U+F050	17	Co	drop_log	chưa rõ — bỏ + log review
+℠	U+2120	17	So	drop_log	chưa rõ — bỏ + log review
+̖	U+0316	17	Mn	drop_log	chưa rõ — bỏ + log review
+̥	U+0325	17	Mn	drop_log	chưa rõ — bỏ + log review
+็	U+0E47	16	Mn	drop_log	chưa rõ — bỏ + log review
+ְ	U+05B0	16	Mn	drop_log	chưa rõ — bỏ + log review
+ָ	U+05B8	16	Mn	drop_log	chưa rõ — bỏ + log review
+ೇ	U+0CC7	16	Mc	drop_log	chưa rõ — bỏ + log review
+ಿ	U+0CBF	16	Mn	drop_log	chưa rõ — bỏ + log review
+‬	U+202C	15	Cf	drop	vô hình / điều khiển — xóa âm thầm
+ៀ	U+17C0	15	Mc	drop_log	chưa rõ — bỏ + log review
+ូ	U+17BC	15	Mn	drop_log	chưa rõ — bỏ + log review
+¯	U+00AF	14	Sk	drop_log	chưa rõ — bỏ + log review
+➣	U+27A3	14	So	drop_log	chưa rõ — bỏ + log review
+😂	U+1F602	14	So	drop_log	chưa rõ — bỏ + log review
+✍	U+270D	14	So	drop_log	chưa rõ — bỏ + log review
+❏	U+274F	13	So	drop_log	chưa rõ — bỏ + log review
+	U+F043	12	Co	drop_log	chưa rõ — bỏ + log review
+₤	U+20A4	12	Sc	drop_log	chưa rõ — bỏ + log review
+	U+F0DF	12	Co	drop_log	chưa rõ — bỏ + log review
+╗	U+2557	12	So	drop_log	chưa rõ — bỏ + log review
+▼	U+25BC	12	So	drop_log	chưa rõ — bỏ + log review
+㎢	U+33A2	12	So	drop_log	chưa rõ — bỏ + log review
+♡	U+2661	11	So	drop_log	chưa rõ — bỏ + log review
+﴿	U+FD3F	10	Ps	drop_log	chưa rõ — bỏ + log review
+﴾	U+FD3E	10	Pe	drop_log	chưa rõ — bỏ + log review
+☁	U+2601	10	So	drop_log	chưa rõ — bỏ + log review
+✭	U+272D	10	So	drop_log	chưa rõ — bỏ + log review
+	U+0095	9	Cc	drop	vô hình / điều khiển — xóa âm thầm
+✩	U+2729	8	So	drop_log	chưa rõ — bỏ + log review
+	U+0096	8	Cc	drop	vô hình / điều khiển — xóa âm thầm
+〈	U+3008	6	Ps	drop_log	chưa rõ — bỏ + log review
+〉	U+3009	6	Pe	drop_log	chưa rõ — bỏ + log review
+🌶	U+1F336	6	So	drop_log	chưa rõ — bỏ + log review
+█	U+2588	4	So	drop_log	chưa rõ — bỏ + log review
+	U+F076	4	Co	drop_log	chưa rõ — bỏ + log review
+	U+0090	3	Cc	drop	vô hình / điều khiển — xóa âm thầm
+√	U+221A	3	Sm	drop_log	chưa rõ — bỏ + log review
+↓	U+2193	3	Sm	drop	trang trí — bỏ
+🌍	U+1F30D	2	So	drop_log	chưa rõ — bỏ + log review
+🇵	U+1F1F5	2	So	drop_log	chưa rõ — bỏ + log review
+🇹	U+1F1F9	2	So	drop_log	chưa rõ — bỏ + log review
+ʼ	U+02BC	0	Lm	keep	 nháy đơn giữa từ (he'll)
+±	U+00B1	0	Sm	keep	dấu cộng trừ

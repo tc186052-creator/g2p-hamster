@@ -85,9 +85,7 @@ def digits_left(s):
 def make_ours():
     repo = HERE.parent.parent
     sys.path.insert(0, str(repo))
-    sys.path.insert(0, str(repo / "01_g2p"))
-    sys.path.insert(0, str(repo / "v2"))
-    from g2p_v2 import text_to_profile_v2_full
+    from g2p_hamster.g2p_v2 import text_to_profile_v2_full
 
     def run(s):
         return text_to_profile_v2_full(s)["profile"]

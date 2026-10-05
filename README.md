@@ -28,7 +28,7 @@ không bịa phôn vị ngoài inventory, không âm thầm mất nội dung, m�
 
 ```
 text thô ──▶ t0: clean/tokenize/detect/verbalize/route vi-en ──▶ IR ir/0.1
-         ──▶ 01_g2p (âm tiết vi → CMUdict → fold → spell)      ──▶ ham/0.2
+         ──▶ core (âm tiết vi → CMUdict → fold → spell)         ──▶ ham/0.2
          ──▶ profiles (record master → chuỗi 178)              ──▶ profile
 ```
 
@@ -50,11 +50,11 @@ text thô ──▶ t0: clean/tokenize/detect/verbalize/route vi-en ──▶ IR
 
 | Thư mục | Nội dung |
 |---|---|
-| `t0/` | Tầng 1 luật thuần: clean, tokenize, detect (số/tiền/giờ/ngày/email…), verbalize, gán route vi/en → IR `ir/0.1` |
-| `01_g2p/` | Lõi G2P: `vi_syllable.py` (luật âm tiết vi), `vi_rules.py` (chữ → master), `cmu_en.py` (CMUdict → master), `g2p.py` (pipeline + validate gate), `profiles.py` (kokoro178) + bộ tests |
-| `02_data/` | Bảng từ điển có pin: fold vi không dấu, spell, scope ledger QD57, inventory master `ham/0.2`, schema, provenance |
-| `03_vendor/cmudict/` | CMUdict (BSD-2-Clause) pin commit + sha256 |
-| `v2/` | Bản **v2 — cứu EN**: từ hở được cứu theo bậc CMUdict → espeak-ng → spell tên chữ; KHÔNG BAO GIỜ bỏ cả câu. Kèm script so sánh v1 vs v2 |
+| `g2p_hamster/t0/` | Tầng 1 luật thuần: clean, tokenize, detect (số/tiền/giờ/ngày/email…), verbalize, gán route vi/en → IR `ir/0.1` |
+| `g2p_hamster/core/` | Lõi G2P: `vi_syllable.py` (luật âm tiết vi), `vi_rules.py` (chữ → master), `cmu_en.py` (CMUdict → master), `g2p.py` (pipeline + validate gate), `profiles.py` (kokoro178) + bộ tests |
+| `g2p_hamster/02_data/` | Bảng từ điển có pin: fold vi không dấu, spell, scope ledger QD57, inventory master `ham/0.2`, schema, provenance |
+| `g2p_hamster/03_vendor/cmudict/` | CMUdict (BSD-2-Clause) pin commit + sha256 |
+| `g2p_hamster/g2p_v2.py` | Bản **v2 — cứu EN**: từ hở được cứu theo bậc CMUdict → espeak-ng → spell tên chữ; KHÔNG BAO GIỜ bỏ cả câu. Kèm script so sánh v1 vs v2 |
 | `00_docs/` | Hợp đồng đầu vào IR, schema inventory, kế hoạch đánh giá, sơ đồ luồng |
 | `tests/` | Regression test t0 (ví dụ chuẩn + torture set) + regression v2 (state/strict/scope/espeak fail-closed) |
 
@@ -68,7 +68,7 @@ Repo này giải quyết bằng một bảng viết tắt được **khai mỏ t
 quét 1.000.000 câu (22,7 triệu token, trong đó ~148.000 token dạng
 acronym + ~59.000 token dạng viết tắt có chấm) lấy top token ALL-CAPS
 tần suất cao trong câu tiếng Việt, rồi duyệt bổ sung từng entry. Bảng
-hiện có **312 entry** — [`t0/data/abbrev_vi.tsv`](t0/data/abbrev_vi.tsv),
+hiện có **312 entry** — [`g2p_hamster/t0/data/abbrev_vi.tsv`](g2p_hamster/t0/data/abbrev_vi.tsv),
 mỗi entry có cột provenance (ai thêm, khi nào, vì sao); entry mơ hồ được
 đánh dấu `CẦN DUYỆT` chứ không tự tiện chọn nghĩa.
 
@@ -303,9 +303,36 @@ Chưa ghi nhận được (nói thẳng là thiếu): revision/commit cụ thể
 không cài gì thêm**:
 
 ```bash
+# cách 1 — cài như một package (khuyên dùng):
+pip install g2p-hamster            # nếu đã lên PyPI
+# hoặc từ nguồn:
 git clone https://github.com/tc186052-creator/g2p-hamster && cd g2p-hamster
-./install.sh   # tự cài espeak-ng nếu thiếu + kiểm tra nhanh G2P
-python3 cli.py "HLV của HAGL họp HĐQT tại TP.HCM."   # chạy thử
+pip install .                      # cài + lệnh `g2p-hamster`
+
+# cách 2 — chạy ngay không cài:
+./install.sh                       # tự cài espeak-ng nếu thiếu + kiểm tra nhanh
+python3 cli.py "HLV của HAGL họp HĐQT tại TP.HCM."
+```
+
+**Dùng sau khi cài:**
+
+```bash
+g2p-hamster "Tôi chạy 100 km/h ngày 05/10/2026."        # CLI
+g2p-hamster --file van_ban.txt --out ketqua.json        # cả file
+```
+
+```python
+from g2p_hamster import text_to_profile_v2_full
+r = text_to_profile_v2_full("HLV của HAGL họp HĐQT tại TP.HCM.")
+print(r["profile"], r["state"])
+```
+
+**HTTP API / Docker** (nhúng vào hệ khác, không cần Python cùng máy):
+
+```bash
+python3 -m g2p_hamster.serve --port 8080       # hoặc: docker build -t g2p-hamster . && docker run -p 8080:8080 g2p-hamster
+curl -s localhost:8080/g2p -d '{"text":"HLV của HAGL họp HĐQT tại TP.HCM."}'
+curl -s localhost:8080/health
 ```
 
 `install.sh` làm đúng 2 việc: cài `espeak-ng` qua apt nếu chưa có, rồi
@@ -315,7 +342,7 @@ chạy 1 câu kiểm tra. Không muốn chạy script thì làm tay:
 chuẩn**; CLI sẽ cảnh báo nếu phát hiện thiếu; đặt `ESPEAK_NG_BIN=""` để
 tắt hẳn nguồn này tường minh).
 
-Không có `requirements.txt` vì không cần: t0 + 01_g2p + v2 đều thuần
+Không có `requirements.txt` runtime vì không cần: toàn bộ lõi thuần
 stdlib (torch/numpy chỉ dùng ở demo TTS và train — ngoài phạm vi repo).
 Tái lập phần **đánh giá STT ngược** mới cần thêm:
 `pip install -r listening_test/requirements_eval.txt` (faster-whisper);
@@ -334,8 +361,7 @@ python cli.py --file van_ban.txt --out ketqua.json       # cả file, 1 câu/dò
 **Cách 2 — Python API:**
 
 ```python
-import sys; sys.path.insert(0, 'v2')
-from g2p_v2 import text_to_profile_v2_full
+from g2p_hamster import text_to_profile_v2_full
 
 r = text_to_profile_v2_full("Xin chào, hôm nay trời đẹp quá!")
 print(r["profile"])   # sin caː↘w, hom naj ʈʂəː↘j dɛʔ↓p kwaː↗!
@@ -343,11 +369,11 @@ print(r["state"])     # complete | partial | empty | rejected (đo coverage)
 ```
 
 Hàm trả về `(profile, errs)` / `(profile, errs, notes)` — lưu ý khác nhau
-giữa bản:
+giữa bản (đều import được trực tiếp từ `g2p_hamster`):
 
-- `text_to_profile(text)` (v1) → `(profile, errs)`
-- `text_to_profile_v2(text)` → `(profile, errs, notes)`
-- `text_to_profile_v2_full(text)` → dict đầy đủ (xem trên)
+- `from g2p_hamster import text_to_profile` (v1) → `(profile, errs)`
+- `from g2p_hamster import text_to_profile_v2` → `(profile, errs, notes)`
+- `from g2p_hamster import text_to_profile_v2_full` → dict đầy đủ (xem trên)
 
 **Chạy test:** `python -m unittest discover -s tests -t .` (88/88).
 
@@ -394,7 +420,7 @@ duyệt hoặc đánh giá nghe — xem bộ minh chứng 400 clip phía trên.
 ## Bản v2 — cứu EN (nâng cấp khuyến nghị)
 
 Bản v1 fail-closed tuyệt đối: câu chứa một từ không đọc được là bị loại
-cả câu. `v2/g2p_v2.py` giữ tiên đề **cấm bịa phôn vị ngoài inventory**
+cả câu. `g2p_hamster/g2p_v2.py` giữ tiên đề **cấm bịa phôn vị ngoài inventory**
 nhưng không bao giờ bỏ câu nữa — từ hở được cứu theo bậc, mỗi lần cứu đều
 ghi provenance:
 
@@ -453,11 +479,11 @@ vào tầng 1; soft hyphen nằm trong từ bị xóa; từ có chữ số khôn
 (verbalize là việc của tầng 1).
 
 ```bash
-python3 v2/g2p_v2.py "Trong hóa sinh học, H là ký hiệu của histidin."
+python3 -m g2p_hamster.g2p_v2 "Trong hóa sinh học, H là ký hiệu của histidin."
 # • nâng cấp 'histidin' từ espeak: hˈɪstɪdˌɪn
 
 # so sánh v1 vs v2 trên văn bản của bạn (đa tiến trình)
-python3 v2/so_sanh.py --input van_ban.txt --procs 22
+python3 -m g2p_hamster.so_sanh --input van_ban.txt --procs 22
 ```
 
 ## Kết quả đối chứng
@@ -489,5 +515,5 @@ duyệt hoặc đánh giá nghe.
 ## License
 
 - Code + bảng từ điển tự soạn: **Apache-2.0**
-- `03_vendor/cmudict/`: BSD-2-Clause (giữ nguyên LICENSE)
+- `g2p_hamster/03_vendor/cmudict/`: BSD-2-Clause (giữ nguyên LICENSE)
 - Wiki sentences dùng làm dữ liệu test: CC BY-SA 3.0 (nguồn Wikimedia)

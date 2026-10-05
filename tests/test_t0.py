@@ -9,8 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from t0 import Config, normalize  # noqa: E402
-from t0.numbers import en_year, vi_cardinal  # noqa: E402
+from g2p_hamster.t0 import Config, normalize  # noqa: E402
+from g2p_hamster.t0.numbers import en_year, vi_cardinal  # noqa: E402
 
 
 def ir(text, **cfg):

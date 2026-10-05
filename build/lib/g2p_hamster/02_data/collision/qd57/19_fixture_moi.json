@@ -1,0 +1,305 @@
+{
+  "scope": "Exact NFC+lower full-toned strings; literal Vietnamese word/syllable reading under vi_chinh_ta, as authorized by upstream contract. NOT letter naming, abbreviation expansion, original foreign-name pronunciation, accent restoration or routing correction. Does not certify spelling standardness or all corpus occurrences.",
+  "fixtures": [
+    {
+      "words": [
+        "hì",
+        "hỳ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_H"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "basis_vi": "Đọc VI hì/hỳ với /i/, huyền; trace hỳ hỳ và Nà Hỳ. Không tuyên bố hỳ là cách viết chuẩn cho mọi từ."
+    },
+    {
+      "words": [
+        "i",
+        "y"
+      ],
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Chỉ đọc âm tiết VI nguyên dạng /i/, ngang. Không tên chữ i/y, English I, biến/ký hiệu hoặc đọc tắt. Trace i trong mẫu hiện có là English I, KHÔNG dùng mẫu đó làm chứng thực từ VI."
+    },
+    {
+      "words": [
+        "iêng",
+        "yêng"
+      ],
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I_SCHWA",
+        "coda": [
+          "PHONE_NG"
+        ],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Duyệt riêng hai dạng đọc vần VI /iəŋ/, ngang: Iêng Xary/yêng hùng trong trace và quan hệ vần iêng/yêng. Không duyệt iên/yên, iểu/yểu hay matcher yê/iê toàn miền."
+    },
+    {
+      "words": [
+        "ki",
+        "ky"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_K"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Phán quyết mới cho ki/ky đọc VI /ki/, ngang; biến thể ky cóp. Không suy từ approval kí/ký và không chứng nhận mọi tên Ki nước ngoài."
+    },
+    {
+      "words": [
+        "lị",
+        "lỵ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_L"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "basis_vi": "Có ngữ cảnh tỉnh lị/tỉnh lỵ, trấn lị/huyện lỵ; cùng âm tiết VI /li/, nặng. Không dùng ví dụ ma lị chưa dẫn chứng."
+    },
+    {
+      "words": [
+        "mi",
+        "my"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Đọc VI mi và tên My theo chính tả Việt, /mi/, ngang. Không English my hoặc phát âm nguyên ngữ của tên ngoại."
+    },
+    {
+      "words": [
+        "mỉ",
+        "mỷ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HOI"
+      },
+      "basis_vi": "Đọc nguyên dạng biến thể tỉ mỉ/tỷ mỷ và tên Mỷ với /mi/, hỏi; không tuyên bố cả hai là chuẩn biên tập."
+    },
+    {
+      "words": [
+        "mị",
+        "mỵ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_M"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "basis_vi": "Đọc VI thùy mị/Mỵ Châu với /mi/, nặng; không tự sửa tên riêng."
+    },
+    {
+      "words": [
+        "ni",
+        "ny"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_N"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Đọc âm tiết VI /ni/, ngang, như ni/ny-lông và tên Ny đã được đưa vào chế độ đọc VI nguyên dạng. KHÔNG áp cho ny viết tắt người yêu, NY hay bất kỳ phép mở rộng viết tắt."
+    },
+    {
+      "words": [
+        "rì",
+        "rỳ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_R_VI"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "basis_vi": "Rì và tên Gò Rỳ/Lũng Rỳ có trong trace; đọc theo chính tả Việt với /i/, huyền. Không loại vì tần suất 2 hay một danh sách phụ âm được viết y."
+    },
+    {
+      "words": [
+        "si",
+        "sy"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Đọc nguyên dạng VI si/Sy. Giữ PHONE_S_RETRO theo profile vi_chinh_ta, không gộp s/x; không chứng nhận Sy nguyên ngữ nước ngoài."
+    },
+    {
+      "words": [
+        "sì",
+        "sỳ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_S_RETRO"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "basis_vi": "Đen sì và tên Sỳ trong trace; đọc VI với nucleus /i/, huyền. Không dựa vào ví dụ sỳ sụp chưa được xác minh."
+    },
+    {
+      "words": [
+        "thi",
+        "thy"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Thi và tên Thy có âm chính /i/; PHONE_TH, không T+H. Chỉ đọc tên theo chính tả Việt."
+    },
+    {
+      "words": [
+        "thì",
+        "thỳ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_TH"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_HUYEN"
+      },
+      "basis_vi": "Thỳ là biến thể viết phi chuẩn của thì trong các ngữ cảnh VI đã dẫn (Trường Y thỳ sao...); duyệt cách đọc nguyên dạng /tʰi/ huyền, không xác nhận chuẩn chính tả hay mọi y sau th."
+    },
+    {
+      "words": [
+        "vi",
+        "vy"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Vi và tên Vy đọc VI /vi/, ngang. Quy định tên riêng không bắt đổi Vy thành Vi."
+    },
+    {
+      "words": [
+        "vĩ",
+        "vỹ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGA"
+      },
+      "basis_vi": "Vĩ và tên Vỹ có âm chính /i/, ngã; không khẳng định vỹ đại là chính tả chuẩn phổ thông."
+    },
+    {
+      "words": [
+        "vị",
+        "vỵ"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_V"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NANG"
+      },
+      "basis_vi": "Vị và các tên Vỵ trong trace đọc VI /vi/, nặng; không có quy tắc tổng quát v+y cấp phép mọi chính tả."
+    },
+    {
+      "words": [
+        "xi",
+        "xy"
+      ],
+      "expected": {
+        "onset": [
+          "PHONE_S"
+        ],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_NGANG"
+      },
+      "basis_vi": "Âm tiết xi/xy trong xi măng, ô xy, xy lanh được đọc VI với PHONE_S + I. Không gọi xy-lanh là từ Hán-Việt, không áp cho biến x,y hoặc tên chữ."
+    },
+    {
+      "words": [
+        "í",
+        "ý"
+      ],
+      "expected": {
+        "onset": [],
+        "glide": [],
+        "nucleus": "PHONE_I",
+        "coda": [],
+        "tone": "TONE_SAC"
+      },
+      "basis_vi": "Đọc âm tiết/thán từ VI nguyên dạng /i/, sắc. Không tự sửa í thành ý định về nghĩa, không dùng mọi occurrence lỗi làm chứng thực."
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+ "seed": 20261001,
+ "ghi_chu": "tự đánh giá trên corpus build — KHÔNG phải gold (gold-dev fase B, 4.11)",
+ "sample": 19996,
+ "nhom_a_doc_nguyen_dang": 14740,
+ "nhom_a_giu_nguyen_am_doan": 7865,
+ "nhom_b_fold_dung": 3598,
+ "sai_hoac_spell": 1658,
+ "ty_le_dung": 0.9171,
+ "ty_le_dung_nhom_b": 0.6846,
+ "do_phu_ung_vien_theo_margin": {
+  "0.0": 526,
+  "0.1": 101,
+  "0.2": 125,
+  "0.3": 201,
+  "0.4": 342,
+  "0.5": 374,
+  "0.6": 119,
+  "0.7": 215,
+  "0.8": 412,
+  "0.9": 673,
+  "1.0": 2146
+ },
+ "vd_fail": [
+  {
+   "goc": "được",
+   "ascii": "duoc",
+   "fold": "duốc"
+  },
+  {
+   "goc": "hiểu",
+   "ascii": "hieu",
+   "fold": "hiệu"
+  },
+  {
+   "goc": "đáp",
+   "ascii": "dap",
+   "fold": "dập"
+  },
+  {
+   "goc": "đặc",
+   "ascii": "dac",
+   "fold": "dặc"
+  },
+  {
+   "goc": "trước",
+   "ascii": "truoc",
+   "fold": "truóc"
+  },
+  {
+   "goc": "miễn",
+   "ascii": "mien",
+   "fold": "miền"
+  },
+  {
+   "goc": "biệt",
+   "ascii": "biet",
+   "fold": "biết"
+  },
+  {
+   "goc": "mục",
+   "ascii": "muc",
+   "fold": "mức"
+  },
+  {
+   "goc": "tiểu",
+   "ascii": "tieu",
+   "fold": "tiêu"
+  },
+  {
+   "goc": "tiền",
+   "ascii": "tien",
+   "fold": "tiên"
+  },
+  {
+   "goc": "đáp",
+   "ascii": "dap",
+   "fold": "dập"
+  },
+  {
+   "goc": "niềm",
+   "ascii": "niem",
+   "fold": "niệm"
+  },
+  {
+   "goc": "sốc",
+   "ascii": "soc",
+   "fold": "sóc"
+  },
+  {
+   "goc": "hạt",
+   "ascii": "hat",
+   "fold": "hát"
+  },
+  {
+   "goc": "vọt",
+   "ascii": "vot",
+   "fold": "vợt"
+  },
+  {
+   "goc": "độc",
+   "ascii": "doc",
+   "fold": "dọc"
+  },
+  {
+   "goc": "điện",
+   "ascii": "dien",
+   "fold": "diễn"
+  },
+  {
+   "goc": "được",
+   "ascii": "duoc",
+   "fold": "duốc"
+  },
+  {
+   "goc": "trước",
+   "ascii": "truoc",
+   "fold": "truóc"
+  },
+  {
+   "goc": "tuyến",
+   "ascii": "tuyen",
+   "fold": "tuyển"
+  },
+  {
+   "goc": "lévodopa",
+   "ascii": "levodopa",
+   "fold": null
+  },
+  {
+   "goc": "chập",
+   "ascii": "chap",
+   "fold": "chấp"
+  },
+  {
+   "goc": "nhắc",
+   "ascii": "nhac",
+   "fold": "nhạc"
+  },
+  {
+   "goc": "bất",
+   "ascii": "bat",
+   "fold": "bắt"
+  },
+  {
+   "goc": "trước",
+   "ascii": "truoc",
+   "fold": "truóc"
+  },
+  {
+   "goc": "mọc",
+   "ascii": "moc",
+   "fold": "mốc"
+  },
+  {
+   "goc": "tiến",
+   "ascii": "tien",
+   "fold": "tiên"
+  },
+  {
+   "goc": "nguyễn",
+   "ascii": "nguyen",
+   "fold": "nguyên"
+  },
+  {
+   "goc": "thắp",
+   "ascii": "thap",
+   "fold": "thấp"
+  },
+  {
+   "goc": "tiền",
+   "ascii": "tien",
+   "fold": "tiên"
+  }
+ ],
+ "fold_vi": {
+  "n_entries": 698,
+  "khong_ung_vien": 0,
+  "uncertain": 321
+ },
+ "fold_key_violation": []
+}

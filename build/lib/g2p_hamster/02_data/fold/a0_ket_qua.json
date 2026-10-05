@@ -1,0 +1,217 @@
+{
+ "nguon": "<workspace>/02_project/05_TTS/01_tiny_model/01_data/silver/corpus_ir_1M.jsonl.gz",
+ "so_cau": 1000000,
+ "so_token_word_vi": 16563317,
+ "thoi_gian_sec": 52.5,
+ "luu_y": "SỐ SƠ BỘ — validator vỏ; chạy lại sau fase B (đặc tả 4.8.1)",
+ "ascii_route_vi": {
+  "unique": 101308,
+  "tong_lan_gap": 2865586
+ },
+ "nhom": {
+  "a": {
+   "unique": 1133,
+   "lan_gap": 2067245,
+   "co_viet_hoa": 367716,
+   "toan_hoa": 15767
+  },
+  "b": {
+   "unique": 698,
+   "lan_gap": 27823,
+   "co_viet_hoa": 16717,
+   "toan_hoa": 0
+  },
+  "c": {
+   "unique": 99477,
+   "lan_gap": 770518,
+   "co_viet_hoa": 631888,
+   "toan_hoa": 22766
+  }
+ },
+ "shadow": {
+  "so_unique": 599,
+  "lan_gap": 788943,
+  "top10": [
+   [
+    "co",
+    1144,
+    285779
+   ],
+   [
+    "va",
+    824,
+    227954
+   ],
+   [
+    "cua",
+    733,
+    224739
+   ],
+   [
+    "la",
+    3618,
+    195340
+   ],
+   [
+    "khong",
+    150,
+    133259
+   ],
+   [
+    "da",
+    5468,
+    136844
+   ],
+   [
+    "voi",
+    712,
+    129658
+   ],
+   [
+    "tu",
+    1219,
+    124986
+   ],
+   [
+    "nhung",
+    566,
+    120369
+   ],
+   [
+    "dong",
+    617,
+    115423
+   ]
+  ]
+ },
+ "ambiguous_b": {
+  "so_unique": 698,
+  "lan_gap": 27823
+ },
+ "acc_co_dau_foldkey_unique": 12922,
+ "shadow_theo_cau": {
+  "so_cau_quet": 1000000,
+  "tong_lan_gap_shadow": 11451,
+  "trong_cau_co_dau": 777492,
+  "trong_cau_ascii": 11451,
+  "ghi_chu": "ca trong_cau_co_dau ≈ từ bóng đa nghĩa thật; trong_cau_ascii = văn mất dấu (nguy cơ cao hơn) — NHƯNG chưa phải nhãn đúng/sai, chỉ là phân tầng nguy cơ",
+  "top10": [
+   [
+    "nam",
+    42538,
+    112
+   ],
+   [
+    "gia",
+    39284,
+    97
+   ],
+   [
+    "con",
+    37416,
+    102
+   ],
+   [
+    "quan",
+    35192,
+    54
+   ],
+   [
+    "qua",
+    28945,
+    69
+   ],
+   [
+    "do",
+    27062,
+    303
+   ],
+   [
+    "nay",
+    20037,
+    99
+   ],
+   [
+    "thu",
+    17771,
+    41
+   ],
+   [
+    "ban",
+    15465,
+    241
+   ],
+   [
+    "thi",
+    15444,
+    97
+   ]
+  ]
+ },
+ "verbal_ky_tu_dac_biet": {
+  "token_word_bi_anh_huong": 24380,
+  "tren_tong_word": 16563317,
+  "top15": [
+   [
+    ".",
+    8351
+   ],
+   [
+    "0",
+    5222
+   ],
+   [
+    "1",
+    3917
+   ],
+   [
+    "-",
+    3154
+   ],
+   [
+    "2",
+    3030
+   ],
+   [
+    ",",
+    2679
+   ],
+   [
+    "&",
+    1964
+   ],
+   [
+    "5",
+    1862
+   ],
+   [
+    "3",
+    1820
+   ],
+   [
+    "²",
+    1781
+   ],
+   [
+    ":",
+    1732
+   ],
+   [
+    "4",
+    1630
+   ],
+   [
+    ")",
+    1267
+   ],
+   [
+    "(",
+    1246
+   ],
+   [
+    "\"",
+    1102
+   ]
+  ]
+ }
+}

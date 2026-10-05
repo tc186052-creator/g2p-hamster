@@ -1,0 +1,20 @@
+{
+ "schema": "g2p_kokoro_en_fit/0.2",
+ "model": "hexgrad/Kokoro-82M @ f3ff3571791e39611d31c381e3a41a3af07b4987",
+ "coverage_source": {
+  "en": "TOÀN BỘ cmudict (126.052 key) → g2p_token → stream_json (production)",
+  "vi": "TOÀN BỘ vi_syllable_vocab.tsv (124.971 dòng) → g2p_token → stream_json"
+ },
+ "orig_n_vocab_declared": 178,
+ "orig_n_vocab_explicit": 114,
+ "ours_n_vocab": 114,
+ "identical_symbol_sets": true,
+ "id_mapping_114_114_khit": true,
+ "id_mismatch": [],
+ "en_n_chars_full": 38,
+ "en_missing_in_orig": [],
+ "en_coverage_pct": 100.0,
+ "vi_n_chars_full": 39,
+ "vi_missing_in_orig": [],
+ "vi_coverage_pct": 100.0
+}

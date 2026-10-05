@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "g2p-hamster"
+version = "0.2.0"
+description = "Context-aware Vietnamese/English TTS front-end: text normalization, abbreviation/date/number verbalization, VI-EN code-switching, G2P — throw text in, get phonemes out."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "g2p-hamster contributors" }]
+keywords = ["tts", "g2p", "phonemizer", "vietnamese", "english",
+            "text-normalization", "kokoro", "speech-synthesis",
+            "grapheme-to-phoneme", "text-to-speech"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[project.scripts]
+g2p-hamster = "g2p_hamster.cli:main"
+
+[project.optional-dependencies]
+serve = []          # HTTP server thuần stdlib — không cần gì thêm
+eval = ["faster-whisper"]
+
+[tool.setuptools.packages.find]
+include = ["g2p_hamster*"]
+exclude = ["g2p_hamster/core/__pycache__*"]
+
+[tool.setuptools.package-data]
+g2p_hamster = ["02_data/**/*", "03_vendor/**/*"]
+"g2p_hamster.t0" = ["data/*"]

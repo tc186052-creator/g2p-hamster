@@ -1,0 +1,32 @@
+# spell_vi.tsv — seed bảng đọc-lệch-tên cho token không parse được thành âm tiết (fase B)
+# Cột: letter<TAB>âm tiết (cách nhau dấu cách) — âm tiết phải parse được bằng vi_rules.
+# Đây là SEED tối thiểu (fase D ghép vào spell.py tổng, bổ sung viết tắt/ acronym).
+# Lưu ý trung thực: tên chữ cái mang tính quy ước/khu vực — chờ duyệt cùng anh ở fase D.
+a	a
+ă	a
+â	ơ
+b	bờ
+c	cờ
+d	dờ
+đ	đờ
+e	ê
+ê	ê
+g	gờ
+h	hờ
+i	i
+k	ka
+l	lờ
+m	mờ
+n	nờ
+o	o
+ô	ô
+ơ	ơ
+p	pờ
+q	quy
+r	rờ
+t	tờ
+u	u
+ư	ư
+v	vờ
+x	xờ
+y	i

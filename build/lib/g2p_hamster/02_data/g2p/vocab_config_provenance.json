@@ -1,0 +1,17 @@
+{
+ "artifact": "02_data/g2p/vocab_config_from_master.tsv",
+ "date": "2026-10-02",
+ "generator": "01_g2p/emit_vocab_config.py",
+ "inventory": {
+  "path": "02_data/inventory_ham.tsv",
+  "sha256": "f63586e8f4bdd7f0aad0e3050d58c2c89e3b7416a36c7d73d15b1a21e5f712bf",
+  "n_entries": 78
+ },
+ "note": "vocab sinh TỪ master (đảo chiều) — frontend Kokoro viết lại dùng vocab này; kokoro178 tạm thời vẫn là adapter debug có loss khai báo (SEGMENT_MAP_KOKORO178)",
+ "counts": {
+  "segment": 62,
+  "prosody": 8,
+  "control": 8
+ },
+ "tsv_sha256": "bdc952aaea9ce6f172a62d760176da179072e0dbea179db6db88b0b17fba9529"
+}

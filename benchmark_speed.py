@@ -79,16 +79,15 @@ def main() -> int:
     print(f"{'đường':18} {'câu/s':>8} {'ký tự/s':>9} "
           f"{'p50 ms':>8} {'p95 ms':>8} ghi chú")
 
-    sys.path.insert(0, str(HERE / "01_g2p"))
-    sys.path.insert(0, str(HERE / "v2"))
+    sys.path.insert(0, str(HERE))
 
-    from g2p_v2 import text_to_profile_v2_full as v2_full
+    from g2p_hamster.g2p_v2 import text_to_profile_v2_full as v2_full
     r = bench(v2_full, sents)
     print(f"{'v2 (mặc định)':18} {r['sents_per_s']:>8.0f} "
           f"{r['chars_per_s']:>9.0f} {pct(r['lat'], .5):>8.1f} "
           f"{pct(r['lat'], .95):>8.1f} cứu từng từ (cmu→espeak→spell)")
 
-    from g2p_v1 import text_to_profile as v1
+    from g2p_hamster.g2p_v1 import text_to_profile as v1
     n_reject = sum(1 for s in sents if v1(s)[1])
     r = bench(v1, sents)
     print(f"{'v1 (fail-closed)':18} {r['sents_per_s']:>8.0f} "

@@ -16,12 +16,12 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "v2"))
 
-import g2p_v2 as gv2  # noqa: E402
-from g2p_v1 import text_to_profile  # noqa: E402
-from g2p_v2 import (espeak_arpabet, text_to_profile_v2,  # noqa: E402
-                    text_to_profile_v2_full, v2_policy_hash, v2_provenance)
+from g2p_hamster import g2p_v2 as gv2  # noqa: E402
+from g2p_hamster.g2p_v1 import text_to_profile  # noqa: E402
+from g2p_hamster.g2p_v2 import (espeak_arpabet, text_to_profile_v2,  # noqa: E402
+                                text_to_profile_v2_full, v2_policy_hash,
+                                v2_provenance)
 
 
 def reset_caches():

@@ -1,0 +1,39 @@
+key	verbal_vi	verbal_en	kind
+tỷ	tỷ	billion	money
+triệu	triệu	million	money
+nghìn	nghìn	thousand	money
+k	nghìn	thousand	money
+tr	triệu	million	money
+đồng	đồng	dong	money
+đ	đồng	dong	money
+usd	đô la	dollars	money
+eur	euro	euros	money
+vnd	đồng	dong	money
+$	đô la	dollars	money
+kg	ký lô	kilos	unit
+km	ki lô mét	kilometers	unit
+km/h	ki lô mét một giờ	kph	unit
+cm	xăng ti mét	centimeters	unit
+mm	mi li mét	millimeters	unit
+%	phần trăm	percent	unit
+°C	độ xê	degrees celsius	unit
+°	độ	degrees	unit
+ml	mi lít	milliliters	unit
+mg	mi gam	milligrams	unit
+meq	mi đương lượng	milliequivalents	unit
+dl	đê-xi-lít	deciliters	unit
+h	giờ	hours	unit
+s	giây	seconds	unit
+ms	mi giây	milliseconds	unit
+mbps	mega bit trên giây	megabits per second	unit
+m	mét	meters	unit
+kw	ki lô oát	kilowatts	unit
+hz	hertz	hertz	unit
+w	oát	watts	unit
+mah	mili ampe giờ	milliamp hours	unit
+fps	khung hình trên giây	frames per second	unit
+l	lít	liters	unit
+gbp	bảng anh	pounds	money
+jpy	yên	yen	money
+km²	ki lô mét vuông	square kilometers	unit
+m²	mét vuông	square meters	unit

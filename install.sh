@@ -26,9 +26,7 @@ fi
 python3 - <<'PY'
 import sys
 sys.path.insert(0, ".")
-sys.path.insert(0, "01_g2p")
-sys.path.insert(0, "v2")
-from g2p_v2 import text_to_profile_v2_full
+from g2p_hamster.g2p_v2 import text_to_profile_v2_full
 r = text_to_profile_v2_full("Xin chào, hello world!")
 assert r["profile"] and r["state"] == "complete", "G2P chạy hỏng"
 print("Kiểm tra nhanh G2P: OK —", r["profile"][:48], "…")

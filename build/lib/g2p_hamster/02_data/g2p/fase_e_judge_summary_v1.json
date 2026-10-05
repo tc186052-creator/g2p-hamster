@@ -1,0 +1,55 @@
+{
+ "schema": "g2p_e4_summary/0.1",
+ "judge_set_sha256": "b8743e90544ad1d7160f24a801bbf4a71f5c220302090c8cbf180b999292f8d2",
+ "session_sha256_filled": "7261b020af0c70f6b988c91488975e0be231c75f387022cd7894cb1534dbb04f",
+ "n_items": 500,
+ "verdict_enum": [
+  "A",
+  "B",
+  "hoa",
+  "ca_hai_sai",
+  "khong_du_tin"
+ ],
+ "distribution": {
+  "ca_hai_sai": 207,
+  "B": 119,
+  "A": 91,
+  "hoa": 83
+ },
+ "by_route": {
+  "vi": {
+   "ca_hai_sai": 175,
+   "B": 98,
+   "A": 70,
+   "hoa": 4
+  },
+  "en": {
+   "A": 21,
+   "B": 21,
+   "ca_hai_sai": 32,
+   "hoa": 79
+  }
+ },
+ "by_group": {
+  "phoneme_lech": {
+   "ca_hai_sai": 159,
+   "B": 78,
+   "A": 48,
+   "hoa": 5
+  },
+  "tone_lech": {
+   "ca_hai_sai": 7,
+   "A": 3,
+   "B": 6
+  },
+  "equal": {
+   "hoa": 78,
+   "A": 40,
+   "ca_hai_sai": 41,
+   "B": 35
+  }
+ },
+ "n_regression": 274,
+ "n_regression_rate": 0.548,
+ "note": "regression = verdict 'G2P mình sai' theo runbook §3.4: judge chọn bên tool (A/B ≠ my_option) hoặc ca_hai_sai; hoa/khong_du_tin không tính. Danh sách: fase_e_judge_regression.json — trong đó nhóm equal chỉ là nghi vấn judge/quy ước, không tự động thành lỗi G2P."
+}
