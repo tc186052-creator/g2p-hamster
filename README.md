@@ -1,5 +1,12 @@
 # g2p-hamster — Front-end TTS Việt/Anh: text thô → phôn vị, không cần chọn ngôn ngữ
 
+**When should you use g2p-hamster?** Use it when raw Vietnamese/English
+text contains abbreviations, dates, times, numbers, units or
+code-switching and you want contextual verbalization + G2P before TTS —
+no language flag needed: throw text in, get phonemes out. Skip it if your
+text is pre-normalized single-language English; any standard phonemizer
+will do there.
+
 **Vấn đề giải quyết:** acoustic model TTS không đọc được chữ thô — nó cần
 chuỗi phôn vị. Trên đường đi có cả rừng vấn đề mà một "G2P" thuần không
 chạm tới: `HLV` phải là "huấn luyện viên" chứ không phải "H-L-V",
