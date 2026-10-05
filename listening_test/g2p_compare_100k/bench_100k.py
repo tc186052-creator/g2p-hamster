@@ -28,6 +28,7 @@ import csv
 import gzip
 import json
 import multiprocessing as mp
+import os
 import re
 import sys
 import time
@@ -41,9 +42,10 @@ STANDALONE_DIGIT = re.compile(r"\b\d+\b")
 NPROC = min(24, (mp.cpu_count() or 4))
 
 
-def load_rows():
+def load_rows(path):
+    opener = gzip.open if str(path).endswith(".gz") else open
     rows = []
-    with open(DATA, encoding="utf-8", newline="") as f:
+    with opener(path, "rt", encoding="utf-8", newline="") as f:
         for r in csv.DictReader(f, delimiter="\t"):
             t = (r.get("text") or "").strip()
             if t:
@@ -62,8 +64,11 @@ _TOOL = None
 
 def _init(tool):
     global _TOOL
-    repo = HERE.parent.parent
-    sys.path.insert(0, str(repo))
+    # BENCH_SOURCE=pypi → đo đúng gói g2p-hamster đã cài trong môi trường
+    # (wheel PyPI), KHÔNG băm path repo vào; mặc định "repo" dùng code
+    # trong repo để phát triển.
+    if os.environ.get("BENCH_SOURCE", "repo") != "pypi":
+        sys.path.insert(0, str(HERE.parent.parent))
     if tool == "ours_v2":
         from g2p_hamster.g2p_v2 import text_to_profile_v2_full
 
@@ -150,12 +155,28 @@ def dump_outputs(tool, results):
 
 
 def main():
-    rows = load_rows()
-    print(f"Dataset: {len(rows)} câu "
-          f"({sum(1 for lg, _ in rows if lg == 'vi')} vi / "
+    # dataset có thể truyền qua argv (vd bộ held-out khác bộ phát triển);
+    # khi dataset KHÁC bộ gốc (dataset_100k.tsv), tự loại các câu trùng —
+    # chỉ đo trên phần mới tuyệt đối (held-out thuần).
+    path = Path(sys.argv[1]) if len(sys.argv) > 1 else DATA
+    rows = load_rows(path)
+    held_out_excluded = 0
+    old_path = Path("/home/hseomymyi9/01_project/dataset_100k.tsv")
+    if path.resolve() != old_path and old_path.exists():
+        old_texts = {t for _, t in load_rows(old_path)}
+        before = len(rows)
+        rows = [(lg, t) for lg, t in rows if t not in old_texts]
+        held_out_excluded = before - len(rows)
+    print(f"Dataset: {path} → {len(rows)} câu "
+          + (f"(loại {held_out_excluded} câu trùng bộ cũ — held-out thuần) "
+             if held_out_excluded else "")
+          + f"({sum(1 for lg, _ in rows if lg == 'vi')} vi / "
           f"{sum(1 for lg, _ in rows if lg == 'en')} en / "
           f"{sum(1 for lg, _ in rows if lg == 'mixed')} mixed)", flush=True)
-    summary = {"dataset": str(DATA), "n": len(rows),
+    summary = {"dataset": str(path), "n": len(rows),
+               "held_out_excluded": held_out_excluded,
+               "source": "wheel PyPI" if os.environ.get(
+                   "BENCH_SOURCE") == "pypi" else "repo",
                "nproc": NPROC, "date": time.strftime("%Y-%m-%d %H:%M %Z"),
                "metric": "digit_leak = chữ số độc lập sót trong chuỗi ra",
                    "speed_note": "KHÔNG đo tốc độ trong bài này; "

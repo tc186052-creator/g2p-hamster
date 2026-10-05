@@ -18,6 +18,7 @@ gold text" không áp dụng được trực tiếp. Thay vào đó:
 Xuất: outputs_<hệ>.csv + summary_frozen.json.
 """
 import csv
+import os
 import json
 import multiprocessing as mp
 import re
@@ -72,8 +73,11 @@ _TOOL = None
 
 def _init(tool):
     global _TOOL
-    repo = HERE.parent          # benchmark_frozen/ nằm ngay gốc repo
-    sys.path.insert(0, str(repo))
+    # BENCH_SOURCE=pypi → đo đúng gói g2p-hamster đã cài trong môi trường
+    # (wheel PyPI), KHÔNG băm path repo vào; mặc định "repo" dùng code
+    # trong repo để phát triển.
+    if os.environ.get("BENCH_SOURCE", "repo") != "pypi":
+        sys.path.insert(0, str(HERE.parent))
     if tool == "ours_v2":
         from g2p_hamster.g2p_v2 import text_to_profile_v2_full
 

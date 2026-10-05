@@ -1,64 +1,66 @@
 {
-  "dataset": "/home/hseomymyi9/01_project/dataset_100k.tsv",
-  "n": 99999,
+  "dataset": "/home/hseomymyi9/01_project/dataset_100k (1).tsv",
+  "n": 74760,
+  "held_out_excluded": 12770,
+  "source": "wheel PyPI",
   "nproc": 24,
-  "date": "2026-10-05 20:22 UTC",
+  "date": "2026-10-05 21:34 UTC",
   "metric": "digit_leak = chữ số độc lập sót trong chuỗi ra",
   "speed_note": "KHÔNG đo tốc độ trong bài này; thông lượng chỉ ghi log để biết thời gian chạy",
   "ours_v2": {
     "tool": "ours_v2",
     "per_lang": {
+      "en": {
+        "n": 33650,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      },
       "vi": {
-        "n": 52000,
+        "n": 24112,
         "leak": 0,
         "error": 0,
         "empty": 0
       },
       "mixed": {
-        "n": 14999,
+        "n": 16998,
         "leak": 0,
         "error": 0,
         "empty": 0
-      },
-      "en": {
-        "n": 33000,
-        "leak": 0,
-        "error": 0,
-        "empty": 1
       }
     },
     "total": {
-      "n": 99999,
+      "n": 74760,
       "leak": 0,
       "error": 0,
-      "empty": 1
+      "empty": 0
     }
   },
   "sea_g2p": {
     "tool": "sea_g2p",
     "per_lang": {
+      "en": {
+        "n": 33650,
+        "leak": 12290,
+        "error": 0,
+        "empty": 0
+      },
       "vi": {
-        "n": 52000,
-        "leak": 14083,
+        "n": 24112,
+        "leak": 8960,
         "error": 0,
         "empty": 0
       },
       "mixed": {
-        "n": 14999,
-        "leak": 7556,
-        "error": 0,
-        "empty": 0
-      },
-      "en": {
-        "n": 33000,
-        "leak": 9026,
+        "n": 16998,
+        "leak": 7379,
         "error": 0,
         "empty": 0
       }
     },
     "total": {
-      "n": 99999,
-      "leak": 30665,
+      "n": 74760,
+      "leak": 28629,
       "error": 0,
       "empty": 0
     }
@@ -66,27 +68,27 @@
   "donglao_g2p": {
     "tool": "donglao_g2p",
     "per_lang": {
+      "en": {
+        "n": 33650,
+        "leak": 0,
+        "error": 0,
+        "empty": 0
+      },
       "vi": {
-        "n": 52000,
+        "n": 24112,
         "leak": 0,
         "error": 0,
         "empty": 0
       },
       "mixed": {
-        "n": 14999,
-        "leak": 0,
-        "error": 0,
-        "empty": 0
-      },
-      "en": {
-        "n": 33000,
+        "n": 16998,
         "leak": 0,
         "error": 0,
         "empty": 0
       }
     },
     "total": {
-      "n": 99999,
+      "n": 74760,
       "leak": 0,
       "error": 0,
       "empty": 0

@@ -173,7 +173,49 @@ Tốc độ riêng từng đường của repo (đo trên 400 câu listening_tes
 | v1 (fail-closed) | 572 | 4,9 ms | 10 ms |
 | espeak-ng (tham khảo) | 168 | 16,9 ms | 30 ms |
 
-## Bài test 100.000 câu thật — normalization VI/EN code-switch: ai ăn ai?
+## Bài test HELD-OUT: 74.760 câu CHƯA TỪNG THẤY, chạy trên gói PyPI đã phát hành
+
+Sau khi phát hành v0.2.1, bài 100k được làm lại đúng quy trình:
+**một là**, chạy trên **bộ test KHÁC** bộ đã dùng khi phát triển;
+**hai là**, chạy trên **đúng wheel đã phát hành trên PyPI** chứ không
+phải code trong repo — không ai có cớ nói "test gói cũ" hay "test data
+tuyển trước".
+
+**Bộ test khác như nào** (minh bạch đầy đủ):
+
+| | Bộ phát triển (bài 100k bên dưới) | **Bộ held-out (bài này)** |
+|---|---|---|
+| File | `dataset_100k.tsv` | `dataset_100k (1).tsv` |
+| Nguồn | wiki + báo vi/anh (lấy trước) | **tin tức + wiki 2026**: vie_news_2026 (39.589) · eng_news_2026 (24.059) · eng_wiki_2026 (13.213) · vie_wiki_2026 (10.669) |
+| Số câu | 99.999 | 87.530 → **lọc còn 74.760 câu mới tuyệt đối** (loại 12.770 câu trùng bộ phát triển) |
+| Phân bố | 52.000 vi · 33.000 anh · 15.000 mix (15%) | 24.112 vi · 33.650 anh · **16.998 mix (22,7%)** — nhiều mix hơn hẳn |
+
+**Gói được đo**: `pip install g2p-hamster==0.2.1` (wheel PyPI, import từ
+site-packages). Tái lập:
+
+```bash
+pip install g2p-hamster==0.2.1 sea_g2p donglao_g2p
+BENCH_SOURCE=pypi python3 listening_test/g2p_compare_100k/bench_100k.py "dataset_100k (1).tsv"
+```
+
+Kết quả (cùng phép đo: số rò rỉ / số bị rơi / lỗi — không đo tốc độ):
+
+| Hệ | Rò rỉ số | vi | anh | mix | Lỗi/rỗng | Rơi số ở mẫu giờ `13h00` |
+|---|---|---|---|---|---|---|
+| **g2p-hamster v0.2.1 (wheel PyPI)** | **0 / 74.760** | 0,00% | 0,00% | 0,00% | 0 | **0 / 236** |
+| donglao_g2p | 0 / 74.760 | 0,00% | 0,00% | 0,00% | 0 | **92 / 236 (39,0%)** |
+| sea_g2p | **28.629 / 74.760 (38,29%)** | 37,16% | 36,52% | **43,41%** | 0 | — (rò sẵn) |
+
+Phân mẫu trên held-out (2.664 câu có `a/b`, 1.603 câu có `33%`,
+14.337 câu có viết tắt ALL-CAPS): sea_g2p rò rỉ **100% cả hai mẫu**
+(2.664/2.664 và 1.603/1.603); ours và donglao 0 rò rỉ; viết tắt cả ba
+hệ đều không để sót chữ HOA. Nguyên văn 74.760 output từng hệ nằm trong
+[`outputs_*.csv.gz`](listening_test/g2p_compare_100k/).
+
+Kết luận không đổi trên dữ liệu chưa từng thấy — và mixed chiếm 22,7%
+thì sea_g2p vẫn rò 43,41%.
+
+## Bài test 100k (bộ phát triển, làm trước khi có held-out)
 
 Có ý kiến cho rằng phía normalization VI/EN code-switch repo này thua
 sea_g2p. Thôi thì lấy **99.999 câu thật** (52.000 vi · 33.000 anh ·
@@ -305,6 +347,8 @@ Viet-Eng codeswitch texts").
   có chủ đích hay lỗi, để người nghe quyết;
 - một phần điểm trừ là gold hẹp: `12 GB` đọc "gờ-bê" (cách đọc phổ
   biến) nhưng gold chỉ chấp nhận "gi bai" — ghi để minh bạch.
+
+Số liệu bảng trên chạy trên **wheel PyPI 0.2.1** (`BENCH_SOURCE=pypi`, import từ site-packages) — giống hệt khi chạy trên code repo, số liệu khớp từng chữ số.
 
 Gold do dự án tự viết, chưa qua người ngoài duyệt — bù lại toàn bộ
 output từng hệ, từng câu, script sinh và script chấm đều nằm trong
