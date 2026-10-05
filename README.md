@@ -241,6 +241,74 @@ trong `outputs_sea_g2p.csv.gz` /
 `outputs_donglao_g2p.csv.gz` /
 `outputs_ours_v2.csv.gz` — mở ra tự chấm, kể cả câu repo này rỗng.
 
+## Benchmark frozen công khai — 1.052 câu, gold viết trước, chấm bằng máy
+
+Sau bài 100k ở trên, có góp ý đề xuất cách đo tử tế hơn: **bộ test
+frozen commit sẵn** (kiểu
+[ViTTS-Bench](https://github.com/yoonjae26/vietnamese-tts/blob/main/docs/RESULTS.md)),
+gold viết a-priori, **một câu có thể có nhiều cách đọc hợp lệ**, chấm
+bằng máy thay vì chấm cảm tính. Repo này làm theo:
+
+- [`benchmark_frozen/test_set.tsv`](benchmark_frozen/test_set.tsv) —
+  **1.052 câu** (416 synthetic sinh từ template + 636 real từ
+  `dataset_100k`), 12 category: time, date, percent, currency, units,
+  phone, email/URL, acronyms, **code-switch Level 1→6** (Easy →
+  Interleaved → Dense → Ambiguous → Technical → adversarial — các câu
+  "OpenAI GPT-5.6 API v1.2…" lấy nguyên từ đề xuất), numbers,
+  foreign_names, loanwords.
+- [`benchmark_frozen/gold.jsonl`](benchmark_frozen/gold.jsonl) — 390 câu
+  synthetic có gold là **câu đầy đủ đã verbalize, viết theo template
+  trước khi chạy chấm**, mỗi câu cho phép nhiều cách đọc ("một nghìn
+  **hoặc** một ngàn" đều đúng).
+- Cách chấm (vì cả 3 hệ đều xuất **phôn vị**, không thể so string với
+  gold text): chạy hệ trên câu gốc **và** trên từng câu gold, so edit
+  distance trong **chính không gian phôn vị của hệ đó** — không map IPA
+  chéo giữa các hệ, công bằng tuyệt đối. sim = 1 ⟺ hệ đọc đúng như một
+  cách đọc gold. 0 ⟺ đọc khác hoàn toàn.
+
+| Hệ | Leakage (còn số) | Drop giờ (`13h00` → mất số) | Khớp đọc gold (mean / số câu ≥0.95) |
+|---|---|---|---|
+| **g2p-hamster (repo này)** | **0 / 1.052** | **0** | **0,981** · 335/390 |
+| donglao_g2p | 0 / 1.052 | **103** | 0,904 · 209/390 |
+| sea_g2p | **762 / 1.052 (72%)** | — (leak sẵn) | 0,662 · **0/390** |
+
+Theo từng category (khớp đọc gold — ours / donglao / sea; leakage ours
+= **0 ở mọi category**, sea rò ở mọi category có số: time 104/133,
+percent 119/119, date 104/104, acronyms 48/157, code-switch 63/139):
+
+| Category | repo này | donglao | sea_g2p |
+|---|---|---|---|
+| time (133) | **1,000** | 0,769 | 0,758 |
+| date (104) | **0,971** | 0,954 | 0,442 |
+| percent (119) | **0,998** | 0,990 | 0,618 |
+| currency (86) | 0,989 | **0,993** | 0,727 |
+| units (81) | 0,954 | **0,969** | 0,758 |
+| phone (17) | **1,000** | 0,841 | 0,527 |
+| acronyms (157) | **0,981** | 0,791 | 0,755 |
+| code-switch (139) | **0,945** | 0,877 | 0,628 |
+| adversarial (44) | **0,946** | 0,875 | 0,567 |
+
+sea_g2p không đạt khớp gold ở **bất kỳ** câu nào trong 390 câu
+(đúng như
+[issue #18 của nó](https://github.com/pnnbao97/sea-g2p/issues/18) tự
+thừa nhận: "Normalizer doesn't accurately detect English substring in
+Viet-Eng codeswitch texts").
+
+**Và công khai cả những chỗ repo này CHƯA hoàn hảo** (nguyên văn trong
+[`outputs_ours_v2.csv`](benchmark_frozen/outputs_ours_v2.csv)):
+
+- `Phiên bản v2.1.0-beta…` → **rơi mất "2.1.0"** — lỗi thật, sẽ sửa;
+- `5 kg` → "năm ki lô" — **mất "gam"**;
+- `97,8%` trong câu mix được đọc kiểu anh "ninety-seven point eight" —
+  có chủ đích hay lỗi, để người nghe quyết;
+- một phần điểm trừ là gold hẹp: `12 GB` đọc "gờ-bê" (cách đọc phổ
+  biến) nhưng gold chỉ chấp nhận "gi bai" — ghi để minh bạch.
+
+Gold do dự án tự viết, chưa qua người ngoài duyệt — bù lại toàn bộ
+output từng hệ, từng câu, script sinh và script chấm đều nằm trong
+[`benchmark_frozen/`](benchmark_frozen) để ai cũng audit được. Test set
+là frozen v1: muốn sửa câu nào phải bump version và ghi lý do.
+
 ## Demo — nghe thử 400 clip + toàn bộ số liệu
 
 **Nghe: bấm vào clip → trang GitHub → Download raw → tải về nghe ngay** (GitHub không phát audio trực tiếp được — mọi repo đều vậy). 400 clip MP3 (4 bộ × 100 câu, 42 phút, 24 kHz, ~14MB) render bằng đúng G2P này, mỗi clip được **2 engine STT độc lập** (PhoWhisper-large của VinAI + Whisper-large-v3 của OpenAI) nghe ngược lại để kiểm chứng.

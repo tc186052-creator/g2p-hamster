@@ -1,0 +1,416 @@
+{"idx": 0, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc mười ba giờ tại phòng họp số 3.", "Cuộc họp bắt đầu lúc mười ba giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 1, "category": "time", "gold_readings": ["Chương trình phát sóng lúc mười ba giờ trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc mười ba giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 2, "category": "time", "gold_readings": ["Tàu rời bến lúc mười ba giờ, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc mười ba giờ không, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 3, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc mười ba giờ tại Nhà hát Lớn.", "Sự kiện khai mạc lúc mười ba giờ không tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 4, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc tám giờ ba mươi tại phòng họp số 3.", "Cuộc họp bắt đầu lúc tám giờ ba mươi tại phòng họp số 3."], "en_spans": []}
+{"idx": 5, "category": "time", "gold_readings": ["Chương trình phát sóng lúc tám giờ ba mươi trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc tám giờ ba mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 6, "category": "time", "gold_readings": ["Tàu rời bến lúc tám giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc tám giờ ba mươi, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 7, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc tám giờ ba mươi tại Nhà hát Lớn.", "Sự kiện khai mạc lúc tám giờ ba mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 8, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc chín giờ tại phòng họp số 3.", "Cuộc họp bắt đầu lúc chín giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 9, "category": "time", "gold_readings": ["Chương trình phát sóng lúc chín giờ trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc chín giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 10, "category": "time", "gold_readings": ["Tàu rời bến lúc chín giờ, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc chín giờ không, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 11, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc chín giờ tại Nhà hát Lớn.", "Sự kiện khai mạc lúc chín giờ không tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 12, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc mười bốn giờ bốn mươi lăm tại phòng họp số 3.", "Cuộc họp bắt đầu lúc mười bốn giờ bốn mươi lăm tại phòng họp số 3."], "en_spans": []}
+{"idx": 13, "category": "time", "gold_readings": ["Chương trình phát sóng lúc mười bốn giờ bốn mươi lăm trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc mười bốn giờ bốn mươi lăm trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 14, "category": "time", "gold_readings": ["Tàu rời bến lúc mười bốn giờ bốn mươi lăm, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc mười bốn giờ bốn mươi lăm, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 15, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc mười bốn giờ bốn mươi lăm tại Nhà hát Lớn.", "Sự kiện khai mạc lúc mười bốn giờ bốn mươi lăm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 16, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc hai mươi mốt giờ năm tại phòng họp số 3.", "Cuộc họp bắt đầu lúc hai mươi mốt giờ lẻ năm tại phòng họp số 3."], "en_spans": []}
+{"idx": 17, "category": "time", "gold_readings": ["Chương trình phát sóng lúc hai mươi mốt giờ năm trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc hai mươi mốt giờ lẻ năm trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 18, "category": "time", "gold_readings": ["Tàu rời bến lúc hai mươi mốt giờ năm, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc hai mươi mốt giờ lẻ năm, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 19, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc hai mươi mốt giờ năm tại Nhà hát Lớn.", "Sự kiện khai mạc lúc hai mươi mốt giờ lẻ năm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 20, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc bảy giờ mười lăm tại phòng họp số 3.", "Cuộc họp bắt đầu lúc bảy giờ mười lăm tại phòng họp số 3."], "en_spans": []}
+{"idx": 21, "category": "time", "gold_readings": ["Chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 22, "category": "time", "gold_readings": ["Tàu rời bến lúc bảy giờ mười lăm, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc bảy giờ mười lăm, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 23, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc bảy giờ mười lăm tại Nhà hát Lớn.", "Sự kiện khai mạc lúc bảy giờ mười lăm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 24, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc mười sáu giờ ba mươi tại phòng họp số 3.", "Cuộc họp bắt đầu lúc mười sáu giờ ba mươi tại phòng họp số 3."], "en_spans": []}
+{"idx": 25, "category": "time", "gold_readings": ["Chương trình phát sóng lúc mười sáu giờ ba mươi trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc mười sáu giờ ba mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 26, "category": "time", "gold_readings": ["Tàu rời bến lúc mười sáu giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc mười sáu giờ ba mươi, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 27, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn.", "Sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 28, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc hai mươi ba giờ năm mươi tại phòng họp số 3.", "Cuộc họp bắt đầu lúc hai mươi ba giờ năm mươi tại phòng họp số 3."], "en_spans": []}
+{"idx": 29, "category": "time", "gold_readings": ["Chương trình phát sóng lúc hai mươi ba giờ năm mươi trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc hai mươi ba giờ năm mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 30, "category": "time", "gold_readings": ["Tàu rời bến lúc hai mươi ba giờ năm mươi, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc hai mươi ba giờ năm mươi, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 31, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc hai mươi ba giờ năm mươi tại Nhà hát Lớn.", "Sự kiện khai mạc lúc hai mươi ba giờ năm mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 32, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc sáu giờ tại phòng họp số 3.", "Cuộc họp bắt đầu lúc sáu giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 33, "category": "time", "gold_readings": ["Chương trình phát sóng lúc sáu giờ trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc sáu giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 34, "category": "time", "gold_readings": ["Tàu rời bến lúc sáu giờ, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc sáu giờ không, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 35, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc sáu giờ tại Nhà hát Lớn.", "Sự kiện khai mạc lúc sáu giờ không tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 36, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc mười giờ tại phòng họp số 3.", "Cuộc họp bắt đầu lúc mười giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 37, "category": "time", "gold_readings": ["Chương trình phát sóng lúc mười giờ trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc mười giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 38, "category": "time", "gold_readings": ["Tàu rời bến lúc mười giờ, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc mười giờ không, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 39, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc mười giờ tại Nhà hát Lớn.", "Sự kiện khai mạc lúc mười giờ không tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 40, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc mười tám giờ hai mươi tại phòng họp số 3.", "Cuộc họp bắt đầu lúc mười tám giờ hai mươi tại phòng họp số 3."], "en_spans": []}
+{"idx": 41, "category": "time", "gold_readings": ["Chương trình phát sóng lúc mười tám giờ hai mươi trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc mười tám giờ hai mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 42, "category": "time", "gold_readings": ["Tàu rời bến lúc mười tám giờ hai mươi, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc mười tám giờ hai mươi, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 43, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc mười tám giờ hai mươi tại Nhà hát Lớn.", "Sự kiện khai mạc lúc mười tám giờ hai mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 44, "category": "time", "gold_readings": ["Cuộc họp bắt đầu lúc mười một giờ năm mươi lăm tại phòng họp số 3.", "Cuộc họp bắt đầu lúc mười một giờ năm mươi lăm tại phòng họp số 3."], "en_spans": []}
+{"idx": 45, "category": "time", "gold_readings": ["Chương trình phát sóng lúc mười một giờ năm mươi lăm trên kênh truyền hình quốc gia.", "Chương trình phát sóng lúc mười một giờ năm mươi lăm trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 46, "category": "time", "gold_readings": ["Tàu rời bến lúc mười một giờ năm mươi lăm, hành khách nên có mặt sớm ba mươi phút.", "Tàu rời bến lúc mười một giờ năm mươi lăm, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 47, "category": "time", "gold_readings": ["Sự kiện khai mạc lúc mười một giờ năm mươi lăm tại Nhà hát Lớn.", "Sự kiện khai mạc lúc mười một giờ năm mươi lăm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 48, "category": "date", "gold_readings": ["Hóa đơn được lập ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu tại chi nhánh Quận 1.", "Hóa đơn được lập ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 49, "category": "date", "gold_readings": ["Sự kiện lịch sử đó diễn ra vào ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Sự kiện lịch sử đó diễn ra vào ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 50, "category": "date", "gold_readings": ["Kỳ sát hạch bắt đầu từ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Kỳ sát hạch bắt đầu từ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 51, "category": "date", "gold_readings": ["Báo cáo tài chính phải nộp trước ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Báo cáo tài chính phải nộp trước ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 52, "category": "date", "gold_readings": ["Chương trình bế mạc vào lúc mười một giờ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Chương trình bế mạc vào lúc mười một giờ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 53, "category": "date", "gold_readings": ["Hóa đơn được lập ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu tại chi nhánh Quận 1.", "Hóa đơn được lập ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 54, "category": "date", "gold_readings": ["Sự kiện lịch sử đó diễn ra vào ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Sự kiện lịch sử đó diễn ra vào ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 55, "category": "date", "gold_readings": ["Kỳ sát hạch bắt đầu từ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Kỳ sát hạch bắt đầu từ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 56, "category": "date", "gold_readings": ["Báo cáo tài chính phải nộp trước ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Báo cáo tài chính phải nộp trước ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 57, "category": "date", "gold_readings": ["Chương trình bế mạc vào lúc mười một giờ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Chương trình bế mạc vào lúc mười một giờ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 58, "category": "date", "gold_readings": ["Hóa đơn được lập ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm tại chi nhánh Quận 1.", "Hóa đơn được lập ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 59, "category": "date", "gold_readings": ["Sự kiện lịch sử đó diễn ra vào ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm.", "Sự kiện lịch sử đó diễn ra vào ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm."], "en_spans": []}
+{"idx": 60, "category": "date", "gold_readings": ["Kỳ sát hạch bắt đầu từ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm.", "Kỳ sát hạch bắt đầu từ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm."], "en_spans": []}
+{"idx": 61, "category": "date", "gold_readings": ["Báo cáo tài chính phải nộp trước ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm.", "Báo cáo tài chính phải nộp trước ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm."], "en_spans": []}
+{"idx": 62, "category": "date", "gold_readings": ["Chương trình bế mạc vào lúc mười một giờ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm.", "Chương trình bế mạc vào lúc mười một giờ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm."], "en_spans": []}
+{"idx": 63, "category": "date", "gold_readings": ["Hóa đơn được lập ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư tại chi nhánh Quận 1.", "Hóa đơn được lập ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 64, "category": "date", "gold_readings": ["Sự kiện lịch sử đó diễn ra vào ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Sự kiện lịch sử đó diễn ra vào ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
+{"idx": 65, "category": "date", "gold_readings": ["Kỳ sát hạch bắt đầu từ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Kỳ sát hạch bắt đầu từ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
+{"idx": 66, "category": "date", "gold_readings": ["Báo cáo tài chính phải nộp trước ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Báo cáo tài chính phải nộp trước ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
+{"idx": 67, "category": "date", "gold_readings": ["Chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
+{"idx": 68, "category": "date", "gold_readings": ["Hóa đơn được lập ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba tại chi nhánh Quận 1.", "Hóa đơn được lập ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 69, "category": "date", "gold_readings": ["Sự kiện lịch sử đó diễn ra vào ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.", "Sự kiện lịch sử đó diễn ra vào ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba."], "en_spans": []}
+{"idx": 70, "category": "date", "gold_readings": ["Kỳ sát hạch bắt đầu từ ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.", "Kỳ sát hạch bắt đầu từ ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba."], "en_spans": []}
+{"idx": 71, "category": "date", "gold_readings": ["Báo cáo tài chính phải nộp trước ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.", "Báo cáo tài chính phải nộp trước ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba."], "en_spans": []}
+{"idx": 72, "category": "date", "gold_readings": ["Chương trình bế mạc vào lúc mười một giờ ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.", "Chương trình bế mạc vào lúc mười một giờ ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba."], "en_spans": []}
+{"idx": 73, "category": "date", "gold_readings": ["Hóa đơn được lập ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy tại chi nhánh Quận 1.", "Hóa đơn được lập ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 74, "category": "date", "gold_readings": ["Sự kiện lịch sử đó diễn ra vào ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy.", "Sự kiện lịch sử đó diễn ra vào ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy."], "en_spans": []}
+{"idx": 75, "category": "date", "gold_readings": ["Kỳ sát hạch bắt đầu từ ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy.", "Kỳ sát hạch bắt đầu từ ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy."], "en_spans": []}
+{"idx": 76, "category": "date", "gold_readings": ["Báo cáo tài chính phải nộp trước ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy.", "Báo cáo tài chính phải nộp trước ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy."], "en_spans": []}
+{"idx": 77, "category": "date", "gold_readings": ["Chương trình bế mạc vào lúc mười một giờ ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy.", "Chương trình bế mạc vào lúc mười một giờ ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy."], "en_spans": []}
+{"idx": 78, "category": "percent", "gold_readings": ["Doanh thu quý này tăng ba phẩy năm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 79, "category": "percent", "gold_readings": ["Pin còn ba phẩy năm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 80, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt ba phẩy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 81, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới ba phẩy năm phần trăm một năm."], "en_spans": []}
+{"idx": 82, "category": "percent", "gold_readings": ["Khoảng ba phẩy năm phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 83, "category": "percent", "gold_readings": ["Doanh thu quý này tăng mười hai phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 84, "category": "percent", "gold_readings": ["Pin còn mười hai phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 85, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt mười hai phần trăm trong tháng."], "en_spans": []}
+{"idx": 86, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới mười hai phần trăm một năm."], "en_spans": []}
+{"idx": 87, "category": "percent", "gold_readings": ["Khoảng mười hai phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 88, "category": "percent", "gold_readings": ["Doanh thu quý này tăng không phẩy năm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 89, "category": "percent", "gold_readings": ["Pin còn không phẩy năm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 90, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt không phẩy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 91, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới không phẩy năm phần trăm một năm."], "en_spans": []}
+{"idx": 92, "category": "percent", "gold_readings": ["Khoảng không phẩy năm phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 93, "category": "percent", "gold_readings": ["Doanh thu quý này tăng một trăm năm mươi phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 94, "category": "percent", "gold_readings": ["Pin còn một trăm năm mươi phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 95, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt một trăm năm mươi phần trăm trong tháng."], "en_spans": []}
+{"idx": 96, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới một trăm năm mươi phần trăm một năm."], "en_spans": []}
+{"idx": 97, "category": "percent", "gold_readings": ["Khoảng một trăm năm mươi phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 98, "category": "percent", "gold_readings": ["Doanh thu quý này tăng bốn mươi lăm phẩy hai mươi lăm phần trăm so với cùng kỳ.", "Doanh thu quý này tăng bốn mươi lăm phẩy hai lăm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 99, "category": "percent", "gold_readings": ["Pin còn bốn mươi lăm phẩy hai mươi lăm phần trăm sau ba ngày sử dụng.", "Pin còn bốn mươi lăm phẩy hai lăm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 100, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt bốn mươi lăm phẩy hai mươi lăm phần trăm trong tháng.", "Tỷ lệ hoàn thành đạt bốn mươi lăm phẩy hai lăm phần trăm trong tháng."], "en_spans": []}
+{"idx": 101, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới bốn mươi lăm phẩy hai mươi lăm phần trăm một năm.", "Lãi suất tiết kiệm lên tới bốn mươi lăm phẩy hai lăm phần trăm một năm."], "en_spans": []}
+{"idx": 102, "category": "percent", "gold_readings": ["Khoảng bốn mươi lăm phẩy hai mươi lăm phần trăm người dùng chọn gói trả phí.", "Khoảng bốn mươi lăm phẩy hai lăm phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 103, "category": "percent", "gold_readings": ["Doanh thu quý này tăng sáu mươi tám phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 104, "category": "percent", "gold_readings": ["Pin còn sáu mươi tám phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 105, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt sáu mươi tám phần trăm trong tháng."], "en_spans": []}
+{"idx": 106, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới sáu mươi tám phần trăm một năm."], "en_spans": []}
+{"idx": 107, "category": "percent", "gold_readings": ["Khoảng sáu mươi tám phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 108, "category": "percent", "gold_readings": ["Doanh thu quý này tăng một phẩy năm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 109, "category": "percent", "gold_readings": ["Pin còn một phẩy năm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 110, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt một phẩy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 111, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới một phẩy năm phần trăm một năm."], "en_spans": []}
+{"idx": 112, "category": "percent", "gold_readings": ["Khoảng một phẩy năm phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 113, "category": "percent", "gold_readings": ["Doanh thu quý này tăng chín mươi chín phẩy chín phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 114, "category": "percent", "gold_readings": ["Pin còn chín mươi chín phẩy chín phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 115, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt chín mươi chín phẩy chín phần trăm trong tháng."], "en_spans": []}
+{"idx": 116, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới chín mươi chín phẩy chín phần trăm một năm."], "en_spans": []}
+{"idx": 117, "category": "percent", "gold_readings": ["Khoảng chín mươi chín phẩy chín phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 118, "category": "percent", "gold_readings": ["Doanh thu quý này tăng ba mươi ba phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 119, "category": "percent", "gold_readings": ["Pin còn ba mươi ba phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 120, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt ba mươi ba phần trăm trong tháng."], "en_spans": []}
+{"idx": 121, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới ba mươi ba phần trăm một năm."], "en_spans": []}
+{"idx": 122, "category": "percent", "gold_readings": ["Khoảng ba mươi ba phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 123, "category": "percent", "gold_readings": ["Doanh thu quý này tăng bảy phẩy bảy năm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 124, "category": "percent", "gold_readings": ["Pin còn bảy phẩy bảy năm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 125, "category": "percent", "gold_readings": ["Tỷ lệ hoàn thành đạt bảy phẩy bảy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 126, "category": "percent", "gold_readings": ["Lãi suất tiết kiệm lên tới bảy phẩy bảy năm phần trăm một năm."], "en_spans": []}
+{"idx": 127, "category": "percent", "gold_readings": ["Khoảng bảy phẩy bảy năm phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 128, "category": "currency", "gold_readings": ["Gói cước này có giá hai trăm năm mươi nghìn đồng mỗi tháng."], "en_spans": []}
+{"idx": 129, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là hai trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 130, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán hai trăm năm mươi nghìn đồng ngay tại quầy."], "en_spans": []}
+{"idx": 131, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính hai trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 132, "category": "currency", "gold_readings": ["Gói cước này có giá một phẩy hai triệu đồng mỗi tháng."], "en_spans": []}
+{"idx": 133, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là một phẩy hai triệu đồng."], "en_spans": []}
+{"idx": 134, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán một phẩy hai triệu đồng ngay tại quầy."], "en_spans": []}
+{"idx": 135, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính một phẩy hai triệu đồng."], "en_spans": []}
+{"idx": 136, "category": "currency", "gold_readings": ["Gói cước này có giá chín mươi chín nghìn đồng mỗi tháng.", "Gói cước này có giá chín mươi chín nghìn v n đ mỗi tháng."], "en_spans": []}
+{"idx": 137, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là chín mươi chín nghìn đồng.", "Tổng ngân sách dự kiến cho dự án là chín mươi chín nghìn v n đ."], "en_spans": []}
+{"idx": 138, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán chín mươi chín nghìn đồng ngay tại quầy.", "Khách hàng đã thanh toán chín mươi chín nghìn v n đ ngay tại quầy."], "en_spans": []}
+{"idx": 139, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính chín mươi chín nghìn đồng.", "Chi phí sửa chữa ước tính chín mươi chín nghìn v n đ."], "en_spans": []}
+{"idx": 140, "category": "currency", "gold_readings": ["Gói cước này có giá hai tỷ mỗi tháng.", "Gói cước này có giá hai tỉ mỗi tháng."], "en_spans": []}
+{"idx": 141, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là hai tỷ.", "Tổng ngân sách dự kiến cho dự án là hai tỉ."], "en_spans": []}
+{"idx": 142, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán hai tỷ ngay tại quầy.", "Khách hàng đã thanh toán hai tỉ ngay tại quầy."], "en_spans": []}
+{"idx": 143, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính hai tỷ.", "Chi phí sửa chữa ước tính hai tỉ."], "en_spans": []}
+{"idx": 144, "category": "currency", "gold_readings": ["Gói cước này có giá bảy trăm năm mươi nghìn đồng mỗi tháng."], "en_spans": []}
+{"idx": 145, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là bảy trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 146, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán bảy trăm năm mươi nghìn đồng ngay tại quầy."], "en_spans": []}
+{"idx": 147, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính bảy trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 148, "category": "currency", "gold_readings": ["Gói cước này có giá mười lăm nghìn năm trăm đồng mỗi tháng."], "en_spans": []}
+{"idx": 149, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là mười lăm nghìn năm trăm đồng."], "en_spans": []}
+{"idx": 150, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán mười lăm nghìn năm trăm đồng ngay tại quầy."], "en_spans": []}
+{"idx": 151, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính mười lăm nghìn năm trăm đồng."], "en_spans": []}
+{"idx": 152, "category": "currency", "gold_readings": ["Gói cước này có giá một phẩy năm tỷ mỗi tháng.", "Gói cước này có giá một phẩy năm tỉ mỗi tháng."], "en_spans": []}
+{"idx": 153, "category": "currency", "gold_readings": ["Tổng ngân sách dự kiến cho dự án là một phẩy năm tỷ.", "Tổng ngân sách dự kiến cho dự án là một phẩy năm tỉ."], "en_spans": []}
+{"idx": 154, "category": "currency", "gold_readings": ["Khách hàng đã thanh toán một phẩy năm tỷ ngay tại quầy.", "Khách hàng đã thanh toán một phẩy năm tỉ ngay tại quầy."], "en_spans": []}
+{"idx": 155, "category": "currency", "gold_readings": ["Chi phí sửa chữa ước tính một phẩy năm tỷ.", "Chi phí sửa chữa ước tính một phẩy năm tỉ."], "en_spans": []}
+{"idx": 156, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng mười hai ki lô mét.", "Quãng đường còn lại khoảng mười hai cây số."], "en_spans": []}
+{"idx": 157, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng mười hai ki lô mét, phù hợp mang theo máy bay.", "Sản phẩm này nặng đúng mười hai cây số, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 158, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng mười hai ki lô mét.", "Thiết bị hỗ trợ dung lượng mười hai cây số."], "en_spans": []}
+{"idx": 159, "category": "units", "gold_readings": ["Băng tải chạy tối đa mười hai ki lô mét.", "Băng tải chạy tối đa mười hai cây số."], "en_spans": []}
+{"idx": 160, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng ba phẩy năm ki lô mét.", "Quãng đường còn lại khoảng ba phẩy năm cây số."], "en_spans": []}
+{"idx": 161, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng ba phẩy năm ki lô mét, phù hợp mang theo máy bay.", "Sản phẩm này nặng đúng ba phẩy năm cây số, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 162, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng ba phẩy năm ki lô mét.", "Thiết bị hỗ trợ dung lượng ba phẩy năm cây số."], "en_spans": []}
+{"idx": 163, "category": "units", "gold_readings": ["Băng tải chạy tối đa ba phẩy năm ki lô mét.", "Băng tải chạy tối đa ba phẩy năm cây số."], "en_spans": []}
+{"idx": 164, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng năm ki lô gam."], "en_spans": []}
+{"idx": 165, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng năm ki lô gam, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 166, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng năm ki lô gam."], "en_spans": []}
+{"idx": 167, "category": "units", "gold_readings": ["Băng tải chạy tối đa năm ki lô gam."], "en_spans": []}
+{"idx": 168, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng một trăm hai mươi ki lô mét một giờ."], "en_spans": []}
+{"idx": 169, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng một trăm hai mươi ki lô mét một giờ, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 170, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng một trăm hai mươi ki lô mét một giờ."], "en_spans": []}
+{"idx": 171, "category": "units", "gold_readings": ["Băng tải chạy tối đa một trăm hai mươi ki lô mét một giờ."], "en_spans": []}
+{"idx": 172, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng hai lít."], "en_spans": []}
+{"idx": 173, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng hai lít, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 174, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng hai lít."], "en_spans": []}
+{"idx": 175, "category": "units", "gold_readings": ["Băng tải chạy tối đa hai lít."], "en_spans": []}
+{"idx": 176, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng ba mươi bảy độ xê.", "Quãng đường còn lại khoảng ba mươi bảy độ."], "en_spans": []}
+{"idx": 177, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng ba mươi bảy độ xê, phù hợp mang theo máy bay.", "Sản phẩm này nặng đúng ba mươi bảy độ, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 178, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng ba mươi bảy độ xê.", "Thiết bị hỗ trợ dung lượng ba mươi bảy độ."], "en_spans": []}
+{"idx": 179, "category": "units", "gold_readings": ["Băng tải chạy tối đa ba mươi bảy độ xê.", "Băng tải chạy tối đa ba mươi bảy độ."], "en_spans": []}
+{"idx": 180, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng năm trăm em bai."], "en_spans": []}
+{"idx": 181, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng năm trăm em bai, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 182, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng năm trăm em bai."], "en_spans": []}
+{"idx": 183, "category": "units", "gold_readings": ["Băng tải chạy tối đa năm trăm em bai."], "en_spans": []}
+{"idx": 184, "category": "units", "gold_readings": ["Quãng đường còn lại khoảng mười hai gi bai.", "Quãng đường còn lại khoảng mười hai gi ga bai."], "en_spans": []}
+{"idx": 185, "category": "units", "gold_readings": ["Sản phẩm này nặng đúng mười hai gi bai, phù hợp mang theo máy bay.", "Sản phẩm này nặng đúng mười hai gi ga bai, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 186, "category": "units", "gold_readings": ["Thiết bị hỗ trợ dung lượng mười hai gi bai.", "Thiết bị hỗ trợ dung lượng mười hai gi ga bai."], "en_spans": []}
+{"idx": 187, "category": "units", "gold_readings": ["Băng tải chạy tối đa mười hai gi bai.", "Băng tải chạy tối đa mười hai gi ga bai."], "en_spans": []}
+{"idx": 188, "category": "phone", "gold_readings": ["Hotline của tổng đài là một chín không không sáu tám không không, nhấn phím một để gặp tổng đài viên."], "en_spans": []}
+{"idx": 189, "category": "phone", "gold_readings": ["Anh ấy để lại số một chín không không sáu tám không không, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 190, "category": "phone", "gold_readings": ["Số điện thoại đặt vé: một chín không không sáu tám không không."], "en_spans": []}
+{"idx": 191, "category": "phone", "gold_readings": ["Hotline của tổng đài là không chín tám bảy sáu năm bốn ba hai một, nhấn phím một để gặp tổng đài viên."], "en_spans": []}
+{"idx": 192, "category": "phone", "gold_readings": ["Anh ấy để lại số không chín tám bảy sáu năm bốn ba hai một, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 193, "category": "phone", "gold_readings": ["Số điện thoại đặt vé: không chín tám bảy sáu năm bốn ba hai một."], "en_spans": []}
+{"idx": 194, "category": "phone", "gold_readings": ["Hotline của tổng đài là một tám không không sáu chín sáu ba, nhấn phím một để gặp tổng đài viên."], "en_spans": []}
+{"idx": 195, "category": "phone", "gold_readings": ["Anh ấy để lại số một tám không không sáu chín sáu ba, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 196, "category": "phone", "gold_readings": ["Số điện thoại đặt vé: một tám không không sáu chín sáu ba."], "en_spans": []}
+{"idx": 197, "category": "phone", "gold_readings": ["Hotline của tổng đài là không hai bốn một hai ba bốn năm sáu bảy, nhấn phím một để gặp tổng đài viên."], "en_spans": []}
+{"idx": 198, "category": "phone", "gold_readings": ["Anh ấy để lại số không hai bốn một hai ba bốn năm sáu bảy, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 199, "category": "phone", "gold_readings": ["Số điện thoại đặt vé: không hai bốn một hai ba bốn năm sáu bảy."], "en_spans": []}
+{"idx": 200, "category": "email_url", "gold_readings": [], "en_spans": []}
+{"idx": 201, "category": "email_url", "gold_readings": [], "en_spans": []}
+{"idx": 202, "category": "email_url", "gold_readings": [], "en_spans": []}
+{"idx": 203, "category": "email_url", "gold_readings": [], "en_spans": []}
+{"idx": 204, "category": "email_url", "gold_readings": [], "en_spans": []}
+{"idx": 205, "category": "email_url", "gold_readings": [], "en_spans": []}
+{"idx": 206, "category": "acronyms", "gold_readings": ["hội đồng quản trị công bố kế hoạch kinh doanh quý tư.", "hờ đê quy tê công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 207, "category": "acronyms", "gold_readings": ["Đại diện hội đồng quản trị xác nhận thông tin trên.", "Đại diện hờ đê quy tê xác nhận thông tin trên."], "en_spans": []}
+{"idx": 208, "category": "acronyms", "gold_readings": ["Văn phòng hội đồng quản trị đóng cửa vào cuối tuần.", "Văn phòng hờ đê quy tê đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 209, "category": "acronyms", "gold_readings": ["thành phố Hồ Chí Minh công bố kế hoạch kinh doanh quý tư.", "tê pê hồ chí minh công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 210, "category": "acronyms", "gold_readings": ["Đại diện thành phố Hồ Chí Minh xác nhận thông tin trên.", "Đại diện tê pê hồ chí minh xác nhận thông tin trên."], "en_spans": []}
+{"idx": 211, "category": "acronyms", "gold_readings": ["Văn phòng thành phố Hồ Chí Minh đóng cửa vào cuối tuần.", "Văn phòng tê pê hồ chí minh đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 212, "category": "acronyms", "gold_readings": ["nhà xuất bản công bố kế hoạch kinh doanh quý tư.", "ên xê bê công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 213, "category": "acronyms", "gold_readings": ["Đại diện nhà xuất bản xác nhận thông tin trên.", "Đại diện ên xê bê xác nhận thông tin trên."], "en_spans": []}
+{"idx": 214, "category": "acronyms", "gold_readings": ["Văn phòng nhà xuất bản đóng cửa vào cuối tuần.", "Văn phòng ên xê bê đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 215, "category": "acronyms", "gold_readings": ["giáo sư tiến sĩ công bố kế hoạch kinh doanh quý tư.", "gờ sờ tê sờ công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 216, "category": "acronyms", "gold_readings": ["Đại diện giáo sư tiến sĩ xác nhận thông tin trên.", "Đại diện gờ sờ tê sờ xác nhận thông tin trên."], "en_spans": []}
+{"idx": 217, "category": "acronyms", "gold_readings": ["Văn phòng giáo sư tiến sĩ đóng cửa vào cuối tuần.", "Văn phòng gờ sờ tê sờ đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 218, "category": "acronyms", "gold_readings": ["trung học phổ thông công bố kế hoạch kinh doanh quý tư.", "tê hờ pê tê công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 219, "category": "acronyms", "gold_readings": ["Đại diện trung học phổ thông xác nhận thông tin trên.", "Đại diện tê hờ pê tê xác nhận thông tin trên."], "en_spans": []}
+{"idx": 220, "category": "acronyms", "gold_readings": ["Văn phòng trung học phổ thông đóng cửa vào cuối tuần.", "Văn phòng tê hờ pê tê đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 221, "category": "acronyms", "gold_readings": ["đội tuyển Việt Nam công bố kế hoạch kinh doanh quý tư.", "đê tê Việt Nam công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 222, "category": "acronyms", "gold_readings": ["Đại diện đội tuyển Việt Nam xác nhận thông tin trên.", "Đại diện đê tê Việt Nam xác nhận thông tin trên."], "en_spans": []}
+{"idx": 223, "category": "acronyms", "gold_readings": ["Văn phòng đội tuyển Việt Nam đóng cửa vào cuối tuần.", "Văn phòng đê tê Việt Nam đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 224, "category": "acronyms", "gold_readings": ["ngày năm tháng mười, hội đồng quản trị có thông báo chính thức.", "ngày năm tháng mười, hờ đê quy tê có thông báo chính thức."], "en_spans": []}
+{"idx": 225, "category": "acronyms", "gold_readings": ["ngày năm tháng mười, thành phố Hồ Chí Minh có thông báo chính thức.", "ngày năm tháng mười, tê pê hồ chí minh có thông báo chính thức."], "en_spans": []}
+{"idx": 226, "category": "acronyms", "gold_readings": ["ngày năm tháng mười, nhà xuất bản có thông báo chính thức.", "ngày năm tháng mười, ên xê bê có thông báo chính thức."], "en_spans": []}
+{"idx": 227, "category": "acronyms", "gold_readings": ["ngày năm tháng mười, giáo sư tiến sĩ có thông báo chính thức.", "ngày năm tháng mười, gờ sờ tê sờ có thông báo chính thức."], "en_spans": []}
+{"idx": 228, "category": "acronyms", "gold_readings": ["ngày năm tháng mười, trung học phổ thông có thông báo chính thức.", "ngày năm tháng mười, tê hờ pê tê có thông báo chính thức."], "en_spans": []}
+{"idx": 229, "category": "acronyms", "gold_readings": ["ngày năm tháng mười, đội tuyển Việt Nam có thông báo chính thức.", "ngày năm tháng mười, đê tê Việt Nam có thông báo chính thức."], "en_spans": []}
+{"idx": 230, "category": "code_switch", "gold_readings": [], "en_spans": ["ChatGPT"]}
+{"idx": 231, "category": "code_switch", "gold_readings": [], "en_spans": ["code", "Python"]}
+{"idx": 232, "category": "code_switch", "gold_readings": [], "en_spans": ["Google", "Android"]}
+{"idx": 233, "category": "code_switch", "gold_readings": [], "en_spans": ["ChatGPT", "code", "Python", "project"]}
+{"idx": 234, "category": "code_switch", "gold_readings": [], "en_spans": ["ChatGPT", "debug", "Python"]}
+{"idx": 235, "category": "code_switch", "gold_readings": [], "en_spans": ["deploy", "model", "server"]}
+{"idx": 236, "category": "code_switch", "gold_readings": [], "en_spans": ["Team", "review", "PR"]}
+{"idx": 237, "category": "code_switch", "gold_readings": [], "en_spans": ["email", "team", "review", "PR", "release"]}
+{"idx": 238, "category": "code_switch", "gold_readings": [], "en_spans": ["Python", "PyTorch", "fine-tune", "model", "CUDA", "deploy", "Docker"]}
+{"idx": 239, "category": "code_switch", "gold_readings": [], "en_spans": ["Startup", "Kubernetes", "scale", "microservices", "AWS"]}
+{"idx": 240, "category": "code_switch", "gold_readings": [], "en_spans": ["check", "account"]}
+{"idx": 241, "category": "code_switch", "gold_readings": [], "en_spans": ["test", "service", "release"]}
+{"idx": 242, "category": "code_switch", "gold_readings": [], "en_spans": ["meeting", "office"]}
+{"idx": 243, "category": "code_switch", "gold_readings": [], "en_spans": ["job", "maternity leave"]}
+{"idx": 244, "category": "code_switch", "gold_readings": [], "en_spans": ["penalty"]}
+{"idx": 245, "category": "code_switch", "gold_readings": ["CPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai và API latency là bốn ba mi li giây.", "CPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gi ga bai và API latency là bốn mươi ba mi li giây."], "en_spans": ["CPU", "GPU", "API"]}
+{"idx": 246, "category": "code_switch", "gold_readings": ["Model đạt accuracy chín bảy phẩy tám phần trăm trên tập test mười nghìn câu.", "Model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test một vạn câu."], "en_spans": ["Model", "accuracy", "test"]}
+{"idx": 247, "category": "code_switch", "gold_readings": ["Tốc độ upload chỉ đạt hai lăm em e p e s trong khi gói quảng cáo là ba trăm em e p e s.", "Tốc độ upload chỉ đạt hai mươi lăm megabit một giây trong khi gói quảng cáo là ba trăm megabit một giây."], "en_spans": ["upload", "Mbps"]}
+{"idx": 248, "category": "code_switch", "gold_readings": [], "en_spans": ["OpenAI", "GPT", "API", "H100"]}
+{"idx": 249, "category": "code_switch", "gold_readings": [], "en_spans": ["deploy", "AWS"]}
+{"idx": 250, "category": "code_switch", "gold_readings": [], "en_spans": ["Email"]}
+{"idx": 251, "category": "code_switch", "gold_readings": ["Từ mười ba giờ, mười bốn giờ cùng ngày sẽ là hoạt động đón khách mời.", "Từ mười ba giờ đến mười bốn giờ cùng ngày sẽ là hoạt động đón khách mời."], "en_spans": []}
+{"idx": 252, "category": "code_switch", "gold_readings": ["Nâng cấp lên phiên bản hai chấm một chấm không mất khoảng bốn lăm phút downtime.", "Nâng cấp lên phiên bản hai phẩy một phẩy không mất khoảng bốn mươi lăm phút downtime."], "en_spans": ["downtime"]}
+{"idx": 253, "category": "code_switch", "gold_readings": ["Deadline dự án là ngày hai mươi tám tháng hai năm hai nghìn không trăm hai mươi lăm, budget còn lại mười lăm phần trăm."], "en_spans": ["Deadline", "budget"]}
+{"idx": 254, "category": "code_switch", "gold_readings": ["Tôi hẹn call với team lúc chín giờ ba mươi để review sprint này.", "Tôi hẹn call với team lúc chín giờ ba mươi để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
+{"idx": 255, "category": "code_switch", "gold_readings": ["Tôi hẹn call với team lúc mười lăm giờ bốn mươi lăm để review sprint này.", "Tôi hẹn call với team lúc mười lăm giờ bốn mươi lăm để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
+{"idx": 256, "category": "code_switch", "gold_readings": ["Tôi hẹn call với team lúc hai mươi giờ để review sprint này.", "Tôi hẹn call với team lúc hai mươi giờ không để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
+{"idx": 257, "category": "code_switch", "gold_readings": ["Sprint review và planning sẽ diễn ra ngày ngày mười hai tháng ba năm hai nghìn không trăm lẻ hai mươi sáu.", "Sprint review và planning sẽ diễn ra ngày mười hai tháng ba năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": ["Sprint", "review", "planning"]}
+{"idx": 258, "category": "code_switch", "gold_readings": ["Sprint review và planning sẽ diễn ra ngày ngày bảy tháng mười hai năm hai nghìn không trăm lẻ hai mươi bảy.", "Sprint review và planning sẽ diễn ra ngày bảy tháng mười hai năm hai nghìn không trăm lẻ hai mươi bảy."], "en_spans": ["Sprint", "review", "planning"]}
+{"idx": 259, "category": "code_switch", "gold_readings": ["Server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gi bai RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
+{"idx": 260, "category": "code_switch", "gold_readings": ["Server hiện tại chạy ổn định ở mức bốn mươi tám phần trăm CPU với tám gi bai RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
+{"idx": 261, "category": "adversarial", "gold_readings": ["Phiên bản v hai chấm một chấm không beta đã được triển khai lên máy chủ nội bộ.", "Phiên bản v hai phẩy một phẩy không beta đã được triển khai lên máy chủ nội bộ."], "en_spans": []}
+{"idx": 262, "category": "adversarial", "gold_readings": ["Chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất.", "Chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất."], "en_spans": []}
+{"idx": 263, "category": "adversarial", "gold_readings": ["Cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ tất cả các ngày trong tuần.", "Cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ không tất cả các ngày trong tuần."], "en_spans": []}
+{"idx": 264, "category": "adversarial", "gold_readings": ["Đường dây nóng tiếp nhận trong giờ hành chính từ tám giờ đến mười bảy giờ ba mươi.", "Đường dây nóng tiếp nhận trong giờ hành chính từ tám giờ đến mười bảy giờ ba mươi."], "en_spans": []}
+{"idx": 265, "category": "adversarial", "gold_readings": ["Mã giảm giá giảm năm mươi phần trăm cho đơn hàng trên năm trăm nghìn đồng."], "en_spans": []}
+{"idx": 266, "category": "adversarial", "gold_readings": ["Tỷ giá hôm nay: một USD bằng hai mươi lăm nghìn bốn trăm năm mươi đồng."], "en_spans": []}
+{"idx": 267, "category": "adversarial", "gold_readings": [], "en_spans": []}
+{"idx": 268, "category": "adversarial", "gold_readings": ["Sổ đỏ cấp ngày mười hai tháng bảy năm một nghìn chín trăm chín mươi tám, diện tích một trăm hai mươi phẩy năm mét vuông.", "Sổ đỏ cấp mười hai tháng bảy năm một nghìn chín trăm chín mươi tám, diện tích một trăm hai mươi phẩy năm mét vuông."], "en_spans": []}
+{"idx": 269, "category": "adversarial", "gold_readings": ["Kỳ hạn gửi tiết kiệm sáu tháng, lãi suất năm phẩy sáu phần trăm một năm."], "en_spans": []}
+{"idx": 270, "category": "adversarial", "gold_readings": ["Cập nhật bản vá một chấm hai chấm ba chấm bốn vào hai giờ sáng nay.", "Cập nhật bản vá một chấm hai chấm ba chấm bốn vào hai giờ không sáng nay."], "en_spans": []}
+{"idx": 271, "category": "adversarial", "gold_readings": ["Khoảng cách từ Trái Đất tới Mặt Trời khoảng một trăm bốn mươi chín phẩy sáu triệu ki lô mét."], "en_spans": []}
+{"idx": 272, "category": "adversarial", "gold_readings": ["Thuốc uống ngày hai lần, mỗi lần một viên sau ăn ba mươi phút."], "en_spans": []}
+{"idx": 273, "category": "adversarial", "gold_readings": ["Phim chiếu rạp từ hai mươi mốt giờ, giá vé một trăm hai mươi nghìn đồng mỗi suất.", "Phim chiếu rạp từ hai mươi mốt giờ không, giá vé một trăm hai mươi nghìn đồng mỗi suất."], "en_spans": []}
+{"idx": 274, "category": "adversarial", "gold_readings": [], "en_spans": []}
+{"idx": 275, "category": "adversarial", "gold_readings": ["Bệnh nhân bốn mươi lăm tuổi, số điện thoại không chín một hai ba bốn năm sáu bảy tám, khám lúc chín giờ mười lăm."], "en_spans": []}
+{"idx": 276, "category": "date", "gold_readings": ["Anh cho biết: chương trình bế mạc vào lúc mười một giờ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Anh cho biết: chương trình bế mạc vào lúc mười một giờ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 277, "category": "code_switch", "gold_readings": ["Riêng trong tháng này, cPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai và API latency là bốn ba mi li giây.", "Riêng trong tháng này, cPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gi ga bai và API latency là bốn mươi ba mi li giây."], "en_spans": ["CPU", "GPU", "API"]}
+{"idx": 278, "category": "percent", "gold_readings": ["Theo đề án, doanh thu quý này tăng bốn mươi lăm phẩy hai mươi lăm phần trăm so với cùng kỳ.", "Theo đề án, doanh thu quý này tăng bốn mươi lăm phẩy hai lăm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 279, "category": "time", "gold_readings": ["Theo đề án, sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn.", "Theo đề án, sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 280, "category": "code_switch", "gold_readings": ["Theo thông báo mới, server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gi bai RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
+{"idx": 281, "category": "units", "gold_readings": ["Theo đề án, quãng đường còn lại khoảng ba mươi bảy độ xê.", "Theo đề án, quãng đường còn lại khoảng ba mươi bảy độ."], "en_spans": []}
+{"idx": 282, "category": "time", "gold_readings": ["Theo thông báo mới, chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia.", "Theo thông báo mới, chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 283, "category": "units", "gold_readings": ["Hôm qua, thiết bị hỗ trợ dung lượng mười hai gi bai.", "Hôm qua, thiết bị hỗ trợ dung lượng mười hai gi ga bai."], "en_spans": []}
+{"idx": 284, "category": "units", "gold_readings": ["Riêng trong tháng này, sản phẩm này nặng đúng năm trăm em bai, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 285, "category": "units", "gold_readings": ["Riêng trong tháng này, thiết bị hỗ trợ dung lượng ba mươi bảy độ xê.", "Riêng trong tháng này, thiết bị hỗ trợ dung lượng ba mươi bảy độ."], "en_spans": []}
+{"idx": 286, "category": "percent", "gold_readings": ["Hôm qua, lãi suất tiết kiệm lên tới sáu mươi tám phần trăm một năm."], "en_spans": []}
+{"idx": 287, "category": "percent", "gold_readings": ["Theo thông báo mới, tỷ lệ hoàn thành đạt bốn mươi lăm phẩy hai mươi lăm phần trăm trong tháng.", "Theo thông báo mới, tỷ lệ hoàn thành đạt bốn mươi lăm phẩy hai lăm phần trăm trong tháng."], "en_spans": []}
+{"idx": 288, "category": "acronyms", "gold_readings": ["Anh cho biết: đại diện đội tuyển Việt Nam xác nhận thông tin trên.", "Anh cho biết: đại diện đê tê Việt Nam xác nhận thông tin trên."], "en_spans": []}
+{"idx": 289, "category": "percent", "gold_readings": ["Theo thông báo mới, pin còn không phẩy năm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 290, "category": "units", "gold_readings": ["Hôm qua, thiết bị hỗ trợ dung lượng một trăm hai mươi ki lô mét một giờ."], "en_spans": []}
+{"idx": 291, "category": "percent", "gold_readings": ["Anh cho biết: pin còn bảy phẩy bảy năm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 292, "category": "adversarial", "gold_readings": ["Anh cho biết: phim chiếu rạp từ hai mươi mốt giờ, giá vé một trăm hai mươi nghìn đồng mỗi suất.", "Anh cho biết: phim chiếu rạp từ hai mươi mốt giờ không, giá vé một trăm hai mươi nghìn đồng mỗi suất."], "en_spans": []}
+{"idx": 293, "category": "percent", "gold_readings": ["Riêng trong tháng này, pin còn chín mươi chín phẩy chín phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 294, "category": "adversarial", "gold_readings": ["Theo đề án, đường dây nóng tiếp nhận trong giờ hành chính từ tám giờ đến mười bảy giờ ba mươi.", "Theo đề án, đường dây nóng tiếp nhận trong giờ hành chính từ tám giờ đến mười bảy giờ ba mươi."], "en_spans": []}
+{"idx": 295, "category": "acronyms", "gold_readings": ["Theo đề án, văn phòng giáo sư tiến sĩ đóng cửa vào cuối tuần.", "Theo đề án, văn phòng gờ sờ tê sờ đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 296, "category": "percent", "gold_readings": ["Hôm qua, lãi suất tiết kiệm lên tới bốn mươi lăm phẩy hai mươi lăm phần trăm một năm.", "Hôm qua, lãi suất tiết kiệm lên tới bốn mươi lăm phẩy hai lăm phần trăm một năm."], "en_spans": []}
+{"idx": 297, "category": "currency", "gold_readings": ["Hôm qua, chi phí sửa chữa ước tính mười lăm nghìn năm trăm đồng."], "en_spans": []}
+{"idx": 298, "category": "units", "gold_readings": ["Riêng trong tháng này, sản phẩm này nặng đúng ba mươi bảy độ xê, phù hợp mang theo máy bay.", "Riêng trong tháng này, sản phẩm này nặng đúng ba mươi bảy độ, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 299, "category": "time", "gold_readings": ["Hôm qua, chương trình phát sóng lúc hai mươi ba giờ năm mươi trên kênh truyền hình quốc gia.", "Hôm qua, chương trình phát sóng lúc hai mươi ba giờ năm mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 300, "category": "time", "gold_readings": ["Theo thông báo mới, chương trình phát sóng lúc sáu giờ trên kênh truyền hình quốc gia.", "Theo thông báo mới, chương trình phát sóng lúc sáu giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 301, "category": "units", "gold_readings": ["Riêng trong tháng này, sản phẩm này nặng đúng ba phẩy năm ki lô mét, phù hợp mang theo máy bay.", "Riêng trong tháng này, sản phẩm này nặng đúng ba phẩy năm cây số, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 302, "category": "code_switch", "gold_readings": ["Hôm qua, tôi hẹn call với team lúc hai mươi giờ để review sprint này.", "Hôm qua, tôi hẹn call với team lúc hai mươi giờ không để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
+{"idx": 303, "category": "units", "gold_readings": ["Anh cho biết: băng tải chạy tối đa ba phẩy năm ki lô mét.", "Anh cho biết: băng tải chạy tối đa ba phẩy năm cây số."], "en_spans": []}
+{"idx": 304, "category": "currency", "gold_readings": ["Theo đề án, khách hàng đã thanh toán chín mươi chín nghìn đồng ngay tại quầy.", "Theo đề án, khách hàng đã thanh toán chín mươi chín nghìn v n đ ngay tại quầy."], "en_spans": []}
+{"idx": 305, "category": "percent", "gold_readings": ["Anh cho biết: lãi suất tiết kiệm lên tới bảy phẩy bảy năm phần trăm một năm."], "en_spans": []}
+{"idx": 306, "category": "acronyms", "gold_readings": ["Hôm qua, đại diện giáo sư tiến sĩ xác nhận thông tin trên.", "Hôm qua, đại diện gờ sờ tê sờ xác nhận thông tin trên."], "en_spans": []}
+{"idx": 307, "category": "time", "gold_readings": ["Theo đề án, chương trình phát sóng lúc mười sáu giờ ba mươi trên kênh truyền hình quốc gia.", "Theo đề án, chương trình phát sóng lúc mười sáu giờ ba mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 308, "category": "percent", "gold_readings": ["Hôm qua, lãi suất tiết kiệm lên tới một phẩy năm phần trăm một năm."], "en_spans": []}
+{"idx": 309, "category": "time", "gold_readings": ["Anh cho biết: sự kiện khai mạc lúc tám giờ ba mươi tại Nhà hát Lớn.", "Anh cho biết: sự kiện khai mạc lúc tám giờ ba mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 310, "category": "adversarial", "gold_readings": ["Anh cho biết: sổ đỏ cấp ngày mười hai tháng bảy năm một nghìn chín trăm chín mươi tám, diện tích một trăm hai mươi phẩy năm mét vuông.", "Anh cho biết: sổ đỏ cấp mười hai tháng bảy năm một nghìn chín trăm chín mươi tám, diện tích một trăm hai mươi phẩy năm mét vuông."], "en_spans": []}
+{"idx": 311, "category": "percent", "gold_readings": ["Anh cho biết: khoảng sáu mươi tám phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 312, "category": "percent", "gold_readings": ["Theo đề án, doanh thu quý này tăng ba phẩy năm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 313, "category": "percent", "gold_readings": ["Theo thông báo mới, pin còn sáu mươi tám phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 314, "category": "currency", "gold_readings": ["Anh cho biết: chi phí sửa chữa ước tính một phẩy năm tỷ.", "Anh cho biết: chi phí sửa chữa ước tính một phẩy năm tỉ."], "en_spans": []}
+{"idx": 315, "category": "time", "gold_readings": ["Anh cho biết: tàu rời bến lúc bảy giờ mười lăm, hành khách nên có mặt sớm ba mươi phút.", "Anh cho biết: tàu rời bến lúc bảy giờ mười lăm, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 316, "category": "percent", "gold_readings": ["Anh cho biết: tỷ lệ hoàn thành đạt một trăm năm mươi phần trăm trong tháng."], "en_spans": []}
+{"idx": 317, "category": "units", "gold_readings": ["Hôm qua, quãng đường còn lại khoảng ba phẩy năm ki lô mét.", "Hôm qua, quãng đường còn lại khoảng ba phẩy năm cây số."], "en_spans": []}
+{"idx": 318, "category": "date", "gold_readings": ["Theo thông báo mới, sự kiện lịch sử đó diễn ra vào ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Theo thông báo mới, sự kiện lịch sử đó diễn ra vào ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 319, "category": "date", "gold_readings": ["Theo thông báo mới, báo cáo tài chính phải nộp trước ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Theo thông báo mới, báo cáo tài chính phải nộp trước ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 320, "category": "percent", "gold_readings": ["Theo thông báo mới, doanh thu quý này tăng mười hai phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 321, "category": "currency", "gold_readings": ["Hôm qua, chi phí sửa chữa ước tính hai trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 322, "category": "percent", "gold_readings": ["Riêng trong tháng này, tỷ lệ hoàn thành đạt bảy phẩy bảy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 323, "category": "percent", "gold_readings": ["Theo thông báo mới, khoảng ba mươi ba phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 324, "category": "code_switch", "gold_readings": ["Anh cho biết: tôi hẹn call với team lúc chín giờ ba mươi để review sprint này.", "Anh cho biết: tôi hẹn call với team lúc chín giờ ba mươi để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
+{"idx": 325, "category": "time", "gold_readings": ["Theo đề án, sự kiện khai mạc lúc mười bốn giờ bốn mươi lăm tại Nhà hát Lớn.", "Theo đề án, sự kiện khai mạc lúc mười bốn giờ bốn mươi lăm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 326, "category": "units", "gold_readings": ["Theo đề án, thiết bị hỗ trợ dung lượng mười hai ki lô mét.", "Theo đề án, thiết bị hỗ trợ dung lượng mười hai cây số."], "en_spans": []}
+{"idx": 327, "category": "percent", "gold_readings": ["Riêng trong tháng này, lãi suất tiết kiệm lên tới chín mươi chín phẩy chín phần trăm một năm."], "en_spans": []}
+{"idx": 328, "category": "time", "gold_readings": ["Anh cho biết: sự kiện khai mạc lúc hai mươi mốt giờ năm tại Nhà hát Lớn.", "Anh cho biết: sự kiện khai mạc lúc hai mươi mốt giờ lẻ năm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 329, "category": "percent", "gold_readings": ["Theo đề án, pin còn mười hai phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 330, "category": "units", "gold_readings": ["Theo đề án, quãng đường còn lại khoảng hai lít."], "en_spans": []}
+{"idx": 331, "category": "time", "gold_readings": ["Theo đề án, cuộc họp bắt đầu lúc mười bốn giờ bốn mươi lăm tại phòng họp số 3.", "Theo đề án, cuộc họp bắt đầu lúc mười bốn giờ bốn mươi lăm tại phòng họp số 3."], "en_spans": []}
+{"idx": 332, "category": "currency", "gold_readings": ["Theo đề án, chi phí sửa chữa ước tính hai tỷ.", "Theo đề án, chi phí sửa chữa ước tính hai tỉ."], "en_spans": []}
+{"idx": 333, "category": "code_switch", "gold_readings": ["Riêng trong tháng này, tôi hẹn call với team lúc mười lăm giờ bốn mươi lăm để review sprint này.", "Riêng trong tháng này, tôi hẹn call với team lúc mười lăm giờ bốn mươi lăm để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
+{"idx": 334, "category": "date", "gold_readings": ["Theo đề án, chương trình bế mạc vào lúc mười một giờ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Theo đề án, chương trình bế mạc vào lúc mười một giờ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 335, "category": "time", "gold_readings": ["Theo thông báo mới, cuộc họp bắt đầu lúc bảy giờ mười lăm tại phòng họp số 3.", "Theo thông báo mới, cuộc họp bắt đầu lúc bảy giờ mười lăm tại phòng họp số 3."], "en_spans": []}
+{"idx": 336, "category": "time", "gold_readings": ["Theo đề án, chương trình phát sóng lúc mười giờ trên kênh truyền hình quốc gia.", "Theo đề án, chương trình phát sóng lúc mười giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 337, "category": "units", "gold_readings": ["Theo thông báo mới, thiết bị hỗ trợ dung lượng hai lít."], "en_spans": []}
+{"idx": 338, "category": "time", "gold_readings": ["Theo đề án, tàu rời bến lúc mười sáu giờ ba mươi, hành khách nên có mặt sớm ba mươi phút.", "Theo đề án, tàu rời bến lúc mười sáu giờ ba mươi, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 339, "category": "date", "gold_readings": ["Hôm qua, sự kiện lịch sử đó diễn ra vào ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.", "Hôm qua, sự kiện lịch sử đó diễn ra vào ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba."], "en_spans": []}
+{"idx": 340, "category": "units", "gold_readings": ["Anh cho biết: băng tải chạy tối đa hai lít."], "en_spans": []}
+{"idx": 341, "category": "phone", "gold_readings": ["Riêng trong tháng này, anh ấy để lại số một chín không không sáu tám không không, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 342, "category": "currency", "gold_readings": ["Riêng trong tháng này, khách hàng đã thanh toán một phẩy năm tỷ ngay tại quầy.", "Riêng trong tháng này, khách hàng đã thanh toán một phẩy năm tỉ ngay tại quầy."], "en_spans": []}
+{"idx": 343, "category": "acronyms", "gold_readings": ["Theo đề án, hội đồng quản trị công bố kế hoạch kinh doanh quý tư.", "Theo đề án, hờ đê quy tê công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 344, "category": "percent", "gold_readings": ["Theo đề án, khoảng chín mươi chín phẩy chín phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 345, "category": "percent", "gold_readings": ["Hôm qua, tỷ lệ hoàn thành đạt không phẩy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 346, "category": "percent", "gold_readings": ["Hôm qua, pin còn ba mươi ba phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 347, "category": "currency", "gold_readings": ["Theo đề án, khách hàng đã thanh toán một phẩy hai triệu đồng ngay tại quầy."], "en_spans": []}
+{"idx": 348, "category": "currency", "gold_readings": ["Theo thông báo mới, khách hàng đã thanh toán hai trăm năm mươi nghìn đồng ngay tại quầy."], "en_spans": []}
+{"idx": 349, "category": "adversarial", "gold_readings": ["Theo đề án, khoảng cách từ Trái Đất tới Mặt Trời khoảng một trăm bốn mươi chín phẩy sáu triệu ki lô mét."], "en_spans": []}
+{"idx": 350, "category": "time", "gold_readings": ["Theo đề án, sự kiện khai mạc lúc sáu giờ tại Nhà hát Lớn.", "Theo đề án, sự kiện khai mạc lúc sáu giờ không tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 351, "category": "date", "gold_readings": ["Riêng trong tháng này, hóa đơn được lập ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu tại chi nhánh Quận 1.", "Riêng trong tháng này, hóa đơn được lập ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu tại chi nhánh Quận 1."], "en_spans": []}
+{"idx": 352, "category": "units", "gold_readings": ["Theo thông báo mới, thiết bị hỗ trợ dung lượng năm ki lô gam."], "en_spans": []}
+{"idx": 353, "category": "units", "gold_readings": ["Theo thông báo mới, sản phẩm này nặng đúng hai lít, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 354, "category": "time", "gold_readings": ["Riêng trong tháng này, sự kiện khai mạc lúc chín giờ tại Nhà hát Lớn.", "Riêng trong tháng này, sự kiện khai mạc lúc chín giờ không tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 355, "category": "percent", "gold_readings": ["Theo thông báo mới, tỷ lệ hoàn thành đạt mười hai phần trăm trong tháng."], "en_spans": []}
+{"idx": 356, "category": "date", "gold_readings": ["Hôm qua, kỳ sát hạch bắt đầu từ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm.", "Hôm qua, kỳ sát hạch bắt đầu từ ngày một tháng một năm hai nghìn không trăm lẻ hai mươi lăm."], "en_spans": []}
+{"idx": 357, "category": "time", "gold_readings": ["Theo thông báo mới, chương trình phát sóng lúc mười ba giờ trên kênh truyền hình quốc gia.", "Theo thông báo mới, chương trình phát sóng lúc mười ba giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 358, "category": "currency", "gold_readings": ["Hôm qua, chi phí sửa chữa ước tính bảy trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 359, "category": "acronyms", "gold_readings": ["Riêng trong tháng này, văn phòng hội đồng quản trị đóng cửa vào cuối tuần.", "Riêng trong tháng này, văn phòng hờ đê quy tê đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 360, "category": "date", "gold_readings": ["Anh cho biết: báo cáo tài chính phải nộp trước ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba.", "Anh cho biết: báo cáo tài chính phải nộp trước ngày mười lăm tháng tám năm hai nghìn không trăm lẻ hai mươi ba."], "en_spans": []}
+{"idx": 361, "category": "time", "gold_readings": ["Theo thông báo mới, cuộc họp bắt đầu lúc chín giờ tại phòng họp số 3.", "Theo thông báo mới, cuộc họp bắt đầu lúc chín giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 362, "category": "acronyms", "gold_readings": ["Theo thông báo mới, văn phòng thành phố Hồ Chí Minh đóng cửa vào cuối tuần.", "Theo thông báo mới, văn phòng tê pê hồ chí minh đóng cửa vào cuối tuần."], "en_spans": []}
+{"idx": 363, "category": "currency", "gold_readings": ["Theo đề án, gói cước này có giá bảy trăm năm mươi nghìn đồng mỗi tháng."], "en_spans": []}
+{"idx": 364, "category": "adversarial", "gold_readings": ["Anh cho biết: chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất.", "Anh cho biết: chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất."], "en_spans": []}
+{"idx": 365, "category": "currency", "gold_readings": ["Anh cho biết: tổng ngân sách dự kiến cho dự án là một phẩy năm tỷ.", "Anh cho biết: tổng ngân sách dự kiến cho dự án là một phẩy năm tỉ."], "en_spans": []}
+{"idx": 366, "category": "date", "gold_readings": ["Hôm qua, chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Hôm qua, chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
+{"idx": 367, "category": "currency", "gold_readings": ["Riêng trong tháng này, tổng ngân sách dự kiến cho dự án là hai trăm năm mươi nghìn đồng."], "en_spans": []}
+{"idx": 368, "category": "code_switch", "gold_readings": ["Hôm qua, model đạt accuracy chín bảy phẩy tám phần trăm trên tập test mười nghìn câu.", "Hôm qua, model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test một vạn câu."], "en_spans": ["Model", "accuracy", "test"]}
+{"idx": 369, "category": "currency", "gold_readings": ["Hôm qua, gói cước này có giá một phẩy năm tỷ mỗi tháng.", "Hôm qua, gói cước này có giá một phẩy năm tỉ mỗi tháng."], "en_spans": []}
+{"idx": 370, "category": "phone", "gold_readings": ["Theo đề án, số điện thoại đặt vé: một tám không không sáu chín sáu ba."], "en_spans": []}
+{"idx": 371, "category": "percent", "gold_readings": ["Theo đề án, khoảng mười hai phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 372, "category": "acronyms", "gold_readings": ["Hôm qua, ngày năm tháng mười, trung học phổ thông có thông báo chính thức.", "Hôm qua, ngày năm tháng mười, tê hờ pê tê có thông báo chính thức."], "en_spans": []}
+{"idx": 373, "category": "acronyms", "gold_readings": ["Theo thông báo mới, trung học phổ thông công bố kế hoạch kinh doanh quý tư.", "Theo thông báo mới, tê hờ pê tê công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 374, "category": "phone", "gold_readings": ["Hôm qua, anh ấy để lại số một tám không không sáu chín sáu ba, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 375, "category": "currency", "gold_readings": ["Hôm qua, gói cước này có giá hai trăm năm mươi nghìn đồng mỗi tháng."], "en_spans": []}
+{"idx": 376, "category": "adversarial", "gold_readings": ["Theo thông báo mới, cập nhật bản vá một chấm hai chấm ba chấm bốn vào hai giờ sáng nay.", "Theo thông báo mới, cập nhật bản vá một chấm hai chấm ba chấm bốn vào hai giờ không sáng nay."], "en_spans": []}
+{"idx": 377, "category": "percent", "gold_readings": ["Anh cho biết: doanh thu quý này tăng ba mươi ba phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 378, "category": "time", "gold_readings": ["Anh cho biết: sự kiện khai mạc lúc mười tám giờ hai mươi tại Nhà hát Lớn.", "Anh cho biết: sự kiện khai mạc lúc mười tám giờ hai mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 379, "category": "adversarial", "gold_readings": ["Hôm qua, kỳ hạn gửi tiết kiệm sáu tháng, lãi suất năm phẩy sáu phần trăm một năm."], "en_spans": []}
+{"idx": 380, "category": "code_switch", "gold_readings": ["Anh cho biết: sprint review và planning sẽ diễn ra ngày ngày mười hai tháng ba năm hai nghìn không trăm lẻ hai mươi sáu.", "Anh cho biết: sprint review và planning sẽ diễn ra ngày mười hai tháng ba năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": ["Sprint", "review", "planning"]}
+{"idx": 381, "category": "currency", "gold_readings": ["Hôm qua, gói cước này có giá một phẩy hai triệu đồng mỗi tháng."], "en_spans": []}
+{"idx": 382, "category": "acronyms", "gold_readings": ["Anh cho biết: đại diện nhà xuất bản xác nhận thông tin trên.", "Anh cho biết: đại diện ên xê bê xác nhận thông tin trên."], "en_spans": []}
+{"idx": 383, "category": "units", "gold_readings": ["Riêng trong tháng này, sản phẩm này nặng đúng mười hai gi bai, phù hợp mang theo máy bay.", "Riêng trong tháng này, sản phẩm này nặng đúng mười hai gi ga bai, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 384, "category": "acronyms", "gold_readings": ["Hôm qua, ngày năm tháng mười, nhà xuất bản có thông báo chính thức.", "Hôm qua, ngày năm tháng mười, ên xê bê có thông báo chính thức."], "en_spans": []}
+{"idx": 385, "category": "percent", "gold_readings": ["Theo thông báo mới, tỷ lệ hoàn thành đạt ba mươi ba phần trăm trong tháng."], "en_spans": []}
+{"idx": 386, "category": "date", "gold_readings": ["Theo thông báo mới, kỳ sát hạch bắt đầu từ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Theo thông báo mới, kỳ sát hạch bắt đầu từ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
+{"idx": 387, "category": "time", "gold_readings": ["Riêng trong tháng này, tàu rời bến lúc hai mươi ba giờ năm mươi, hành khách nên có mặt sớm ba mươi phút.", "Riêng trong tháng này, tàu rời bến lúc hai mươi ba giờ năm mươi, hành khách nên có mặt sớm ba mươi phút."], "en_spans": []}
+{"idx": 388, "category": "time", "gold_readings": ["Riêng trong tháng này, chương trình phát sóng lúc chín giờ trên kênh truyền hình quốc gia.", "Riêng trong tháng này, chương trình phát sóng lúc chín giờ không trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 389, "category": "time", "gold_readings": ["Hôm qua, chương trình phát sóng lúc mười tám giờ hai mươi trên kênh truyền hình quốc gia.", "Hôm qua, chương trình phát sóng lúc mười tám giờ hai mươi trên kênh truyền hình quốc gia."], "en_spans": []}
+{"idx": 390, "category": "phone", "gold_readings": ["Theo đề án, anh ấy để lại số không chín tám bảy sáu năm bốn ba hai một, gọi lại bất cứ lúc nào."], "en_spans": []}
+{"idx": 391, "category": "units", "gold_readings": ["Hôm qua, băng tải chạy tối đa mười hai gi bai.", "Hôm qua, băng tải chạy tối đa mười hai gi ga bai."], "en_spans": []}
+{"idx": 392, "category": "time", "gold_readings": ["Theo thông báo mới, sự kiện khai mạc lúc mười một giờ năm mươi lăm tại Nhà hát Lớn.", "Theo thông báo mới, sự kiện khai mạc lúc mười một giờ năm mươi lăm tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 393, "category": "date", "gold_readings": ["Theo đề án, sự kiện lịch sử đó diễn ra vào ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Theo đề án, sự kiện lịch sử đó diễn ra vào ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 394, "category": "date", "gold_readings": ["Hôm qua, báo cáo tài chính phải nộp trước ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Hôm qua, báo cáo tài chính phải nộp trước ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
+{"idx": 395, "category": "time", "gold_readings": ["Anh cho biết: sự kiện khai mạc lúc hai mươi ba giờ năm mươi tại Nhà hát Lớn.", "Anh cho biết: sự kiện khai mạc lúc hai mươi ba giờ năm mươi tại Nhà hát Lớn."], "en_spans": []}
+{"idx": 396, "category": "time", "gold_readings": ["Theo thông báo mới, cuộc họp bắt đầu lúc sáu giờ tại phòng họp số 3.", "Theo thông báo mới, cuộc họp bắt đầu lúc sáu giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 397, "category": "currency", "gold_readings": ["Theo đề án, chi phí sửa chữa ước tính một phẩy hai triệu đồng."], "en_spans": []}
+{"idx": 398, "category": "acronyms", "gold_readings": ["Theo đề án, ngày năm tháng mười, hội đồng quản trị có thông báo chính thức.", "Theo đề án, ngày năm tháng mười, hờ đê quy tê có thông báo chính thức."], "en_spans": []}
+{"idx": 399, "category": "currency", "gold_readings": ["Riêng trong tháng này, gói cước này có giá hai tỷ mỗi tháng.", "Riêng trong tháng này, gói cước này có giá hai tỉ mỗi tháng."], "en_spans": []}
+{"idx": 400, "category": "percent", "gold_readings": ["Riêng trong tháng này, pin còn bốn mươi lăm phẩy hai mươi lăm phần trăm sau ba ngày sử dụng.", "Riêng trong tháng này, pin còn bốn mươi lăm phẩy hai lăm phần trăm sau ba ngày sử dụng."], "en_spans": []}
+{"idx": 401, "category": "units", "gold_readings": ["Hôm qua, sản phẩm này nặng đúng một trăm hai mươi ki lô mét một giờ, phù hợp mang theo máy bay."], "en_spans": []}
+{"idx": 402, "category": "code_switch", "gold_readings": ["Theo đề án, nâng cấp lên phiên bản hai chấm một chấm không mất khoảng bốn lăm phút downtime.", "Theo đề án, nâng cấp lên phiên bản hai phẩy một phẩy không mất khoảng bốn mươi lăm phút downtime."], "en_spans": ["downtime"]}
+{"idx": 403, "category": "currency", "gold_readings": ["Riêng trong tháng này, khách hàng đã thanh toán hai tỷ ngay tại quầy.", "Riêng trong tháng này, khách hàng đã thanh toán hai tỉ ngay tại quầy."], "en_spans": []}
+{"idx": 404, "category": "percent", "gold_readings": ["Riêng trong tháng này, khoảng một phẩy năm phần trăm người dùng chọn gói trả phí."], "en_spans": []}
+{"idx": 405, "category": "units", "gold_readings": ["Theo đề án, băng tải chạy tối đa năm ki lô gam."], "en_spans": []}
+{"idx": 406, "category": "percent", "gold_readings": ["Theo thông báo mới, doanh thu quý này tăng bảy phẩy bảy năm phần trăm so với cùng kỳ."], "en_spans": []}
+{"idx": 407, "category": "acronyms", "gold_readings": ["Theo thông báo mới, ngày năm tháng mười, giáo sư tiến sĩ có thông báo chính thức.", "Theo thông báo mới, ngày năm tháng mười, gờ sờ tê sờ có thông báo chính thức."], "en_spans": []}
+{"idx": 408, "category": "acronyms", "gold_readings": ["Theo thông báo mới, đội tuyển Việt Nam công bố kế hoạch kinh doanh quý tư.", "Theo thông báo mới, đê tê Việt Nam công bố kế hoạch kinh doanh quý tư."], "en_spans": []}
+{"idx": 409, "category": "date", "gold_readings": ["Anh cho biết: kỳ sát hạch bắt đầu từ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu.", "Anh cho biết: kỳ sát hạch bắt đầu từ ngày năm tháng mười năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": []}
+{"idx": 410, "category": "percent", "gold_readings": ["Theo đề án, tỷ lệ hoàn thành đạt ba phẩy năm phần trăm trong tháng."], "en_spans": []}
+{"idx": 411, "category": "adversarial", "gold_readings": ["Anh cho biết: phiên bản v hai chấm một chấm không beta đã được triển khai lên máy chủ nội bộ.", "Anh cho biết: phiên bản v hai phẩy một phẩy không beta đã được triển khai lên máy chủ nội bộ."], "en_spans": []}
+{"idx": 412, "category": "date", "gold_readings": ["Theo thông báo mới, sự kiện lịch sử đó diễn ra vào ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy.", "Theo thông báo mới, sự kiện lịch sử đó diễn ra vào ngày chín tháng mười một năm hai nghìn không trăm lẻ bảy."], "en_spans": []}
+{"idx": 413, "category": "time", "gold_readings": ["Anh cho biết: cuộc họp bắt đầu lúc mười giờ tại phòng họp số 3.", "Anh cho biết: cuộc họp bắt đầu lúc mười giờ không tại phòng họp số 3."], "en_spans": []}
+{"idx": 414, "category": "phone", "gold_readings": ["Anh cho biết: hotline của tổng đài là không chín tám bảy sáu năm bốn ba hai một, nhấn phím một để gặp tổng đài viên."], "en_spans": []}
+{"idx": 415, "category": "adversarial", "gold_readings": ["Theo đề án, cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ tất cả các ngày trong tuần.", "Theo đề án, cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ không tất cả các ngày trong tuần."], "en_spans": []}
