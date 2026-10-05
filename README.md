@@ -36,21 +36,22 @@ text ──▶ t0 (luật: clean/tokenize/detect/verbalize/route) ──▶ IR i
 
 ## Demo — nghe thử 400 clip (thư mục `nghe_thu/`)
 
-Nghe trực tiếp trên trình duyệt (không cần tải) tại trang demo:
-**<https://tc186052-creator.github.io/g2p-hamster/nghe_thu/>** — hoặc xem
-trong repo: thư mục [`nghe_thu/`](nghe_thu/). 400 clip TTS (4 bộ × 100 câu:
-thuần việt · thuần anh · mix đơn giản · mix khó, 42 phút audio) render bằng
-đúng G2P này, kèm kiểm chứng STT ngược kép (PhoWhisper-large +
-Whisper-large-v3) và phân tích từng chỗ không khớp. Vài clip mẫu:
+400 clip TTS (4 bộ × 100 câu: thuần việt · thuần anh · mix đơn giản ·
+mix khó, 42 phút audio, 24 kHz) render bằng đúng G2P này, kèm kiểm chứng
+STT ngược kép (PhoWhisper-large + Whisper-large-v3) và phân tích từng chỗ
+không khớp. **Nghe: bấm vào clip bên dưới → GitHub mở trình phát → bấm
+play.** Vài clip mẫu:
 
 | Clip | Đọc câu | Whisper-v3 nghe lại |
 |---|---|---|
-| [thuan_viet #27](nghe_thu/wav/thuan_viet/027_thuan_viet.wav) | Hình tứ giác với độ dài các cạnh a, b, c, d mà có diện tích. | ✅ khớp 100% |
-| [thuan_anh #60](nghe_thu/wav/thuan_anh/060_thuan_anh.wav) | The passageway is also accessible from the stairs at the rear of the auditorium. | ✅ khớp 100% |
-| [mix_kho #46](nghe_thu/wav/mix_kho/046_mix_kho.wav) | Các nguồn cũ khác bao gồm Nihon Ryōiki (810–824) và Wamyō Ruijushō… | tên riêng Nhật — cần tai người |
+| [▶ thuan_viet #27](nghe_thu/wav/thuan_viet/027_thuan_viet.wav) | Hình tứ giác với độ dài các cạnh a, b, c, d mà có diện tích. | ✅ khớp 100% |
+| [▶ thuan_anh #60](nghe_thu/wav/thuan_anh/060_thuan_anh.wav) | The passageway is also accessible from the stairs at the rear of the auditorium. | ✅ khớp 100% |
+| [▶ mix_kho #46](nghe_thu/wav/mix_kho/046_mix_kho.wav) | Các nguồn cũ khác bao gồm Nihon Ryōiki (810–824) và Wamyō Ruijushō… | tên riêng Nhật — cần tai người |
 
-Chi tiết phương pháp + số liệu:
-[`nghe_thu/BAO_CAO.md`](nghe_thu/BAO_CAO.md).
+Nghe cả bộ: [`nghe_thu/wav/`](nghe_thu/wav) (4 thư mục theo bộ). Kết quả
+chấm 2 ASR từng clip: [`nghe_thu/duyet.tsv`](nghe_thu/duyet.tsv) · phân
+tích chỗ không khớp: [`nghe_thu/phan_tich_lech.csv`](nghe_thu/phan_tich_lech.csv)
+· báo cáo đầy đủ: [`nghe_thu/BAO_CAO.md`](nghe_thu/BAO_CAO.md).
 
 ## Cài đặt & chạy
 
