@@ -1,0 +1,3 @@
+# chỉ cần khi TÁI LẬP phần đánh giá STT ngược — lõi G2P KHÔNG cần gì
+# (Python 3.11+ stdlib là đủ; espeak-ng binary là tuỳ chọn cho v2)
+faster-whisper

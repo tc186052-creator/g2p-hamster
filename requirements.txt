@@ -1,8 +1,0 @@
-# lõi G2P + t0 — tầng verbalize (số/ngày) dùng tiny model
-torch>=2.0
-numpy
-
-# tuỳ chọn — nguồn cứu espeak-ng cho v2 (cài binary, không phải pip):
-#   sudo apt install espeak-ng
-# tuỳ chọn — tái lập kiểm chứng STT ngược trong listening_test/:
-faster-whisper

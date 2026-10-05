@@ -57,8 +57,11 @@ def main() -> int:
             return {"profile": p, "errs": errs}
     else:
         from g2p_v2 import text_to_profile_v2_full
-        policy = ({frozenset(t.strip() for t in a.policy.split(","))}
-                  if a.policy else None)
+        policy = None
+        if a.policy:
+            names = frozenset(t.strip() for t in a.policy.split(",")
+                              if t.strip())
+            policy = names
 
         def run(s):
             return text_to_profile_v2_full(s, mode=a.mode,
