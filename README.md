@@ -492,8 +492,8 @@ python3 -m g2p_hamster.so_sanh --input van_ban.txt --procs 22
 
 ## Kết quả đối chứng
 
-Tổng **809 case test, 0 fail** (0.2.5 — thêm test đơn vị HOA, mã tiền,
-mã chuyến bay, t1_review, label spell). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
+Tổng **810 case test, 0 fail** (0.2.6 — thêm test đơn vị HOA, mã tiền,
+mã chuyến bay, t1_review, label spell, API mặc định v2). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
 
 | Bộ test | Kết quả |
 |---|---|
