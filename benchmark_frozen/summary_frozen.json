@@ -1,9 +1,9 @@
 {
   "n": 1127,
   "n_gold": 491,
-  "date": "2026-10-06 11:19 UTC",
+  "date": "2026-10-06 11:41 UTC",
   "provenance": {
-    "frozen_version": 4,
+    "frozen_version": 5,
     "sea_g2p": "0.10.0",
     "donglao_g2p": "1.0.0",
     "g2p_hamster": "0.2.7",
@@ -98,8 +98,8 @@
           "error": 0,
           "empty": 0,
           "match_n": 36,
-          "match_ge95": 34,
-          "match_mean": 0.9845
+          "match_ge95": 36,
+          "match_mean": 0.992
         },
         "adversarial": {
           "n": 44,
@@ -146,8 +146,8 @@
         "error": 0,
         "empty": 0,
         "match_n": 465,
-        "match_mean": 0.988,
-        "match_ge95": 424
+        "match_mean": 0.9886,
+        "match_ge95": 426
       },
       "match_worst": [
         {
@@ -198,13 +198,6 @@
           "best_alt": "Băng tải chạy tối đa mười hai gi ga bai.",
           "sim": 0.8421,
           "out": "baŋ taː↓j caʔ↓j to↗j daː mɨə↘jhaːj ɣəː↘bəː↘."
-        },
-        {
-          "idx": 247,
-          "text": "Tốc độ upload chỉ đạt 25 Mbps trong khi gói quảng cáo là 300 Mbps.",
-          "best_alt": "Tốc độ upload chỉ đạt hai mươi lăm megabit một giây trong khi gói quảng cáo là ba trăm megabit một giây.",
-          "sim": 0.8367,
-          "out": "to↗k doʔ↓ ˈʌplˌoʊd ci↓ daːʔ↓t haːjmɨəjlam mˈɛɡə biʔ↓t ʈʂen ʝəj ʈʂɔŋ xi ɣɔ↗j kwaː↓ŋ kaː↗w laː↘ baːʈʂam mˈɛɡə biʔ↓t ʈʂen ʝəj."
         },
         {
           "idx": 262,
@@ -331,8 +324,8 @@
           "error": 0,
           "empty": 0,
           "match_n": 36,
-          "match_ge95": 24,
-          "match_mean": 0.9662
+          "match_ge95": 25,
+          "match_mean": 0.969
         },
         "adversarial": {
           "n": 44,
@@ -379,8 +372,8 @@
         "error": 0,
         "empty": 0,
         "match_n": 465,
-        "match_mean": 0.9667,
-        "match_ge95": 324
+        "match_mean": 0.967,
+        "match_ge95": 325
       },
       "match_worst": [
         {
@@ -649,7 +642,7 @@
           "empty": 0,
           "match_n": 36,
           "match_ge95": 16,
-          "match_mean": 0.9087
+          "match_mean": 0.9106
         },
         "adversarial": {
           "n": 44,
@@ -696,7 +689,7 @@
         "error": 0,
         "empty": 0,
         "match_n": 465,
-        "match_mean": 0.9071,
+        "match_mean": 0.9072,
         "match_ge95": 248
       },
       "match_worst": [

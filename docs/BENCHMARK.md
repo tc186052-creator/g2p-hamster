@@ -1,7 +1,7 @@
 # BENCHMARK — bằng chứng đầy đủ (tách từ README 0.2.6)
 
 Tài liệu này chứa TOÀN BỘ bài test chất lượng của g2p-hamster: 300 câu
-7 hệ · 100k dev · 74.760 held-out · frozen v4 gold. Mọi số liệu có nguyên
+7 hệ · 100k dev · 74.760 held-out · frozen v5 gold. Mọi số liệu có nguyên
 văn output từng câu + script tái lập trong repo. Tóm tắt một bảng:
 [README → "Kết quả trong 30 giây"](../README.md#kết-quả-trong-30-giây--3-hệ-cuối-cùng-một-bảng).
 
@@ -66,7 +66,7 @@ vẫn dư real-time (dưới 1% một nhân CPU). Về **chất lượng**, sea_
 đo đúng cấu hình là đối thủ xứng tầm: 0% rò rỉ, đọc trọn ngày/giờ —
 điểm còn phân hóa là **rơi âm thầm** (donglao mất số ở ~44% câu có
 mẫu giờ `13h00`, bảng 100k bên dưới) và **khớp-đọc-gold** (bảng frozen
-bên dưới: 0,988 / 0,967 / 0,907). repo này là hệ **duy nhất đồng thời
+bên dưới: 0,989 / 0,967 / 0,907). repo này là hệ **duy nhất đồng thời
 đạt 100% coverage + 0 số rò rỉ + 0 rơi + provenance từng từ + chế độ
 strict cho dữ liệu train**. Không đồng ý bảng trên? Mở
 [`outputs_all_tools.csv`](listening_test/g2p_compare/outputs_all_tools.csv)
@@ -215,7 +215,7 @@ trong `outputs_*.csv.gz` (bộ dev không commit nguyên văn để khỏi phìn
 repo — sinh lại bằng `bench_100k.py` không đối số, lệnh ở trên); mở ra
 tự chấm, kể cả câu repo này rỗng.
 
-## Benchmark frozen công khai — v4, 1.127 câu, gold viết trước, chấm bằng máy
+## Benchmark frozen công khai — v5, 1.127 câu, gold viết trước, chấm bằng máy
 
 Sau bài 100k ở trên, có góp ý đề xuất cách đo tử tế hơn: **bộ test
 frozen commit sẵn** (kiểu
@@ -250,14 +250,14 @@ bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 | Hệ | Leakage (còn số) | Drop giờ (`13h00` → mất số) | Khớp đọc gold (mean / số câu ≥0.95) |
 |---|---|---|---|
-| **g2p-hamster (repo này, v0.2.8)** | **0 / 1.127** | **0** | **0,988** · 424/465 |
-| sea_g2p — `SEAPipeline` (đo đúng từ 0.2.2) | 0 / 1.127 | 0 | 0,967 · 324/465 |
+| **g2p-hamster (repo này, v0.2.8)** | **0 / 1.127** | **0** | **0,989** · 426/465 |
+| sea_g2p — `SEAPipeline` (đo đúng từ 0.2.2) | 0 / 1.127 | 0 | 0,967 · 325/465 |
 | donglao_g2p | 0 / 1.127 | **103** | 0,907 · 248/465 |
 | sea_g2p — `G2P.convert()` trần (cấu hình sai của 0.2.0–0.2.1, giữ lại để đối chiếu) | **837 / 1.127 (74%)** | — | 0,656 · **0/465** |
 
 **Kết luận sau khi đo lại sea_g2p đúng cấu hình + vá gold bất công
-(v4):** g2p-hamster nhỉnh nhất (0,988 vs 0,967) và **thắng MỌI category**
-— kể cả code-switch (0,985 vs 0,966), trước đây sea nhỉnh vì gold chỉ
+(v4):** g2p-hamster nhỉnh nhất (0,989 vs 0,967) và **thắng MỌI category**
+— kể cả code-switch (0,992 vs 0,969), trước đây sea nhỉnh vì gold chỉ
 nhận 1 cách đọc ở những câu có 2 cách đọc đều hợp lệ. sea_g2p đạt
 0 rò rỉ / 0 rơi — vẫn là đối thủ xứng tầm. Các tuyên bố "sea rò
 72%", "0/390 câu khớp" của bản 0.2.1 là **sai vì đo sai cấu hình** —
@@ -278,7 +278,7 @@ Theo từng category (khớp đọc gold — ours / donglao / sea đúng cấu h
 | units (60) | **0,965** | 0,958 | 0,959 |
 | phone (17) | **1,000** | 0,841 | 1,000 |
 | acronyms (37) | **0,981** | 0,791 | 0,973 |
-| code-switch (36) | **0,985** | 0,909 | 0,966 |
+| code-switch (36) | **0,992** | 0,909 | 0,969 |
 | adversarial (22) | **0,965** | 0,875 | 0,948 |
 
 **Và công khai cả những chỗ repo này CHƯA hoàn hảo** (nguyên văn trong
@@ -304,9 +304,13 @@ Theo từng category (khớp đọc gold — ours / donglao / sea đúng cấu h
   "VN123" đọc "vờ nờ"; cửa sổ ngữ cảnh mã vận tải nới 3 → 6 token
   ("Mã đặt chỗ của tôi là VN123" trước đây bỏ sót). Sau vá repo thắng
   mọi category, kể cả code-switch (0,985 vs 0,966);
-- **còn lại thật sự chưa đạt**: `25 Mbps` đọc "hai mươi lăm megabit"
-  thiếu "một giây" (mất thông tin tốc độ) — gold không chấp nhận, điểm
-  L5 0,956 phản ánh đúng điều đó; ghi để minh bạch.
+- **v5 (0.2.8, cùng ngày) — đính chính + 3 alt cuối**: ours đọc `25 Mbps`
+  = "megabit TRÊN giây" (đúng cách dịch chuẩn của Mbps) nhưng tôi từng
+  ghi nhầm ở dòng dưới đây là "thiếu một giây, mất thông tin" — SAI, hai
+  cách nói tương đương; gold chỉ ghi một. v5 nhận cả "trên giây" lẫn
+  "một giây" + chính tả "mega bit" theo unit-table; nhận tổ hợp
+  "chấm + bốn mươi lăm" ở câu `2.1.0` (chấm/phẩy và bốn lăm/bốn mươi lăm
+  là hai trục độc lập). Code-switch: ours 0,992 vs sea 0,969.
 
 Số liệu bảng trên đo trên **code 0.2.2** và **tái lập lại bằng wheel PyPI
 0.2.3** (`BENCH_SOURCE=pypi`, import từ site-packages): mọi dòng

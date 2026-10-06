@@ -251,7 +251,7 @@ idx	category	text	output	status	leak	drop	match_sim
 249	code_switch	Ngày 05/10/2026 tôi deploy v2.1.0-beta lên AWS us-east-1.	ŋaj2 năm1 tʰaːŋ5 mɯəj2 năm1 haːj1 ŋin2 xoŋ1 tʂăm1 haːj1 mɯəj1 saw5 toj1 dɪplɔɪ ve1 haːj1 tʃəm5 mot6 tʃəm5 xoŋ1 beɪtə len1 əj1 ɗăp5 ɓo2 ziw1 ɛt5 ʌs iːst mot6.	ok	False	False	
 250	code_switch	Email support@example.com lúc 14h30, mã đơn ORD-2026-001.	iːmeɪl səpɔɹt ə kɔŋ2 ɪɡzæmpəl tʃəm5 kɔm1 luk5 h, maː4 ɗəːn1 ɔɹd haːj1 ŋin2 xoŋ1 tʂăm1 haːj1 mɯəj1 saw5 ɗen5 mot6.	ok	False	True	
 251	code_switch	Từ 13h00 - 14h00 cùng ngày sẽ là hoạt động đón khách mời.	tɯ2 h, h kuŋ2 ŋaj2 sɛ4 laː2 hwaːt6 ɗoŋ6 ɗɔn5 xaːk5 məːj2.	ok	False	True	0.6176
-252	code_switch	Nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	nəŋ1 kəp5 len1 fiən1 ɓaːn3 haːj1 mɯəj1 mot5 tʃəm5 xoŋ1 mət5 xwaːŋ3 ɓon5 mɯəj1 lăm1 fut5 daʊntaɪm.	ok	False	False	0.9
+252	code_switch	Nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	nəŋ1 kəp5 len1 fiən1 ɓaːn3 haːj1 mɯəj1 mot5 tʃəm5 xoŋ1 mət5 xwaːŋ3 ɓon5 mɯəj1 lăm1 fut5 daʊntaɪm.	ok	False	False	0.9375
 253	code_switch	Deadline dự án là 28/02/2025, budget còn lại 15%.	dɛdlaɪn zɯ6 aːn5 laː2 ŋaj2 haːj1 mɯəj1 taːm5 tʰaːŋ5 haːj1 năm1 haːj1 ŋin2 xoŋ1 tʂăm1 haːj1 mɯəj1 lăm1, bʌdʒɪt kɔn2 laːj6 mɯəj2 lăm1 fən2 tʂăm1.	ok	False	False	1.0
 254	code_switch	Tôi hẹn call với team lúc 9h30 để review sprint này.	toj1 hɛn6 kɔl vəːj5 tiːm luk5 h ɗe3 ɹiːvjuː spɹɪnt naj2.	ok	False	True	0.7097
 255	code_switch	Tôi hẹn call với team lúc 15h45 để review sprint này.	toj1 hɛn6 kɔl vəːj5 tiːm luk5 h ɗe3 ɹiːvjuː spɹɪnt naj2.	ok	False	True	0.6286
@@ -401,7 +401,7 @@ idx	category	text	output	status	leak	drop	match_sim
 399	currency	Riêng trong tháng này, gói cước này có giá 2 tỷ mỗi tháng.	ziəŋ1 tʂɔŋ1 tʰaːŋ5 naj2, ɣɔj5 kɯək5 naj2 kɔ5 zaː5 haːj1 ti3 moj4 tʰaːŋ5.	ok	False	False	1.0
 400	percent	Riêng trong tháng này, pin còn 45,25% sau ba ngày sử dụng.	ziəŋ1 tʂɔŋ1 tʰaːŋ5 naj2, pin1 kɔn2 ɓon5 mɯəj1 lăm1 fəj3 haːj1 mɯəj1 lăm1 fən2 tʂăm1 saw1 ɓaː1 ŋaj2 sɯ3 zuŋ6.	ok	False	False	1.0
 401	units	Hôm qua, sản phẩm này nặng đúng 120 km/h, phù hợp mang theo máy bay.	hom1 kwaː1, saːn3 fəm3 naj2 năŋ6 ɗuŋ5 mot6 tʂăm1 haːj1 mɯəj1 ki1 lo1 mɛ5, fu2 həːp6 maːŋ1 tʰɛw1 maj5 ɓaj1.	ok	False	False	0.9032
-402	code_switch	Theo đề án, nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	tʰɛw1 ɗe2 aːn5, nəŋ1 kəp5 len1 fiən1 ɓaːn3 haːj1 mɯəj1 mot5 tʃəm5 xoŋ1 mət5 xwaːŋ3 ɓon5 mɯəj1 lăm1 fut5 daʊntaɪm.	ok	False	False	0.913
+402	code_switch	Theo đề án, nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	tʰɛw1 ɗe2 aːn5, nəŋ1 kəp5 len1 fiən1 ɓaːn3 haːj1 mɯəj1 mot5 tʃəm5 xoŋ1 mət5 xwaːŋ3 ɓon5 mɯəj1 lăm1 fut5 daʊntaɪm.	ok	False	False	0.9457
 403	currency	Riêng trong tháng này, khách hàng đã thanh toán 2 tỷ ngay tại quầy.	ziəŋ1 tʂɔŋ1 tʰaːŋ5 naj2, xaːk5 haːŋ2 ɗaː4 tʰaːɲ1 twaːn5 haːj1 ti3 ŋaj1 taːj6 kwəj2.	ok	False	False	1.0
 404	percent	Riêng trong tháng này, khoảng 1,5% người dùng chọn gói trả phí.	ziəŋ1 tʂɔŋ1 tʰaːŋ5 naj2, xwaːŋ3 mot6 fəj3 năm1 fən2 tʂăm1 ŋɯəj2 zuŋ2 tʃɔn6 ɣɔj5 tʂaː3 fi5.	ok	False	False	1.0
 405	units	Theo đề án, băng tải chạy tối đa 5 kg.	tʰɛw1 ɗe2 aːn5, ɓăŋ1 taːj3 tʃaj6 toj5 ɗaː1 năm1 ki1 lo1 ɣaːm1.	ok	False	False	1.0

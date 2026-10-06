@@ -246,12 +246,12 @@ idx	category	text	output	status	leak	drop	match_sim
 244	code_switch	Đội tuyển ghi bàn ở phút bù giờ nhờ penalty bằng tay.	doʔ↓j twiə↓n ɣi baː↘n əː↓ fu↗t bu↘ ʝəː↘ ɲəː↘ pˈɛnəlti ba↘ŋ taj.	ok	False	False	
 245	code_switch	CPU load lên 85%, GPU memory khoảng 12 GB và API latency là 43 ms.	kəː↘pəː↘u lˈoʊd len taː↗mmɨəjlam fə↘nʈʂam, ɣəː↘pəː↘u mˈɛmɚi xwaː↓ŋ mɨə↘jhaːj ɣəː↘bəː↘ vaː↘ aːpəː↘i lˈeɪtənsi laː↘ bo↗nmɨəjbaː miʝəj.	ok	False	False	0.9643
 246	code_switch	Model đạt accuracy 97,8% trên tập test 10.000 câu.	mˈɑdəl daːʔ↓t ˈækjɚəsi nˈaɪntisˈɛvənpˈɔɪntˈeɪt fə↘nʈʂam ʈʂen təʔ↓p tˈɛst mɨə↘jŋi↘n kəw.	ok	False	False	1.0
-247	code_switch	Tốc độ upload chỉ đạt 25 Mbps trong khi gói quảng cáo là 300 Mbps.	to↗k doʔ↓ ˈʌplˌoʊd ci↓ daːʔ↓t haːjmɨəjlam mˈɛɡə biʔ↓t ʈʂen ʝəj ʈʂɔŋ xi ɣɔ↗j kwaː↓ŋ kaː↗w laː↘ baːʈʂam mˈɛɡə biʔ↓t ʈʂen ʝəj.	ok	False	False	0.8367
+247	code_switch	Tốc độ upload chỉ đạt 25 Mbps trong khi gói quảng cáo là 300 Mbps.	to↗k doʔ↓ ˈʌplˌoʊd ci↓ daːʔ↓t haːjmɨəjlam mˈɛɡə biʔ↓t ʈʂen ʝəj ʈʂɔŋ xi ɣɔ↗j kwaː↓ŋ kaː↗w laː↘ baːʈʂam mˈɛɡə biʔ↓t ʈʂen ʝəj.	ok	False	False	1.0
 248	code_switch	OpenAI GPT-5.6 API v1.2 chạy trên server H100 80GB.	ˈoʊpən aːi dipiti namfə↓jʂa↗w aːpəː↘i vəː↘moʔ↓tfə↓jhaːj caʔ↓j ʈʂen sˈɚvɚ həː↘ moʔ↓tʈʂam taː↗mmɨəj ɣəː↘bəː↘.	ok	False	False	
 249	code_switch	Ngày 05/10/2026 tôi deploy v2.1.0-beta lên AWS us-east-1.	ŋa↘j namθaː↗ŋmɨə↘jnamhaːjŋi↘nxoŋʈʂamhaːjmɨəjʂa↗w toj dɪplˈɔɪ vˈi haːj cə↗m moʔ↓t cə↗m xoŋ be taː len e ɛ↗t ˈʌs ˈist wˈʌn.	ok	False	False	
 250	code_switch	Email support@example.com lúc 14h30, mã đơn ORD-2026-001.	imˈeɪl səpˈɔɹt aː kɔ↘ŋ ɪɡzˈæmpəl cə↗m kɔm lu↗k mɨə↘jbo↗nʝəː↘baːmɨəj, maːʔ↗ dəːn ɔʒəː↘zəː↘ haːjŋi↘nxoŋʈʂamhaːjmɨəjʂa↗w moʔ↓t.	ok	False	False	
 251	code_switch	Từ 13h00 - 14h00 cùng ngày sẽ là hoạt động đón khách mời.	tɨ↘ mɨə↘jbaːʝəː↘ mɨə↘jbo↗nʝəː↘ ku↘ŋ ŋa↘j ʂɛʔ↗ laː↘ hwaːʔ↓t doʔ↓ŋ dɔ↗n xɛ↗k məː↘j.	ok	False	False	1.0
-252	code_switch	Nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	nəŋ kə↗p len fiən baː↓n haːjcə↗mmoʔ↓tcə↗mxoŋ mə↗t xwaː↓ŋ bo↗nmɨəjlam fu↗t dˈaʊntˌaɪm.	ok	False	False	0.9444
+252	code_switch	Nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	nəŋ kə↗p len fiən baː↓n haːjcə↗mmoʔ↓tcə↗mxoŋ mə↗t xwaː↓ŋ bo↗nmɨəjlam fu↗t dˈaʊntˌaɪm.	ok	False	False	1.0
 253	code_switch	Deadline dự án là 28/02/2025, budget còn lại 15%.	dˈɛdlˌaɪn zɨʔ↓ aː↗n laː↘ ŋa↘jhaːjmɨəjtaː↗mθaː↗ŋhaːjnamhaːjŋi↘nxoŋʈʂamhaːjmɨəjlam, bˈʌdʒɪt kɔ↘n laːʔ↓j mɨə↘jlam fə↘nʈʂam.	ok	False	False	1.0
 254	code_switch	Tôi hẹn call với team lúc 9h30 để review sprint này.	toj hɛʔ↓n kˈɔl vəː↗j tˈim lu↗k ci↗nʝəː↘baːmɨəj de↓ ɹˌivjˈu spɹˈɪnt na↘j.	ok	False	False	1.0
 255	code_switch	Tôi hẹn call với team lúc 15h45 để review sprint này.	toj hɛʔ↓n kˈɔl vəː↗j tˈim lu↗k mɨə↘jlamʝəː↘bo↗nmɨəjlam de↓ ɹˌivjˈu spɹˈɪnt na↘j.	ok	False	False	1.0
@@ -401,7 +401,7 @@ idx	category	text	output	status	leak	drop	match_sim
 399	currency	Riêng trong tháng này, gói cước này có giá 2 tỷ mỗi tháng.	ʒiəŋ ʈʂɔŋ θaː↗ŋ na↘j, ɣɔ↗j kɨə↗k na↘j kɔ↗ ʝaː↗ haːj ti↓ moʔ↗j θaː↗ŋ.	ok	False	False	1.0
 400	percent	Riêng trong tháng này, pin còn 45,25% sau ba ngày sử dụng.	ʒiəŋ ʈʂɔŋ θaː↗ŋ na↘j, pin kɔ↘n bo↗nmɨəjlamfə↓jhaːjnam fə↘nʈʂam ʂaw baː ŋa↘j ʂɨ↓ zuʔ↓ŋ.	ok	False	False	0.9861
 401	units	Hôm qua, sản phẩm này nặng đúng 120 km/h, phù hợp mang theo máy bay.	hom kwaː, ʂaː↓n fə↓m na↘j naʔ↓ŋ du↗ŋ moʔ↓tʈʂamhaːjmɨəj kilomɛ↗tmoʔ↓tʝəː↘, fu↘ həːʔ↓p maːŋ θɛw ma↗j baj.	ok	False	False	1.0
-402	code_switch	Theo đề án, nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	θɛw de↘ aː↗n, nəŋ kə↗p len fiən baː↓n haːjcə↗mmoʔ↓tcə↗mxoŋ mə↗t xwaː↓ŋ bo↗nmɨəjlam fu↗t dˈaʊntˌaɪm.	ok	False	False	0.9512
+402	code_switch	Theo đề án, nâng cấp lên phiên bản 2.1.0 mất khoảng 45 phút downtime.	θɛw de↘ aː↗n, nəŋ kə↗p len fiən baː↓n haːjcə↗mmoʔ↓tcə↗mxoŋ mə↗t xwaː↓ŋ bo↗nmɨəjlam fu↗t dˈaʊntˌaɪm.	ok	False	False	1.0
 403	currency	Riêng trong tháng này, khách hàng đã thanh toán 2 tỷ ngay tại quầy.	ʒiəŋ ʈʂɔŋ θaː↗ŋ na↘j, xɛ↗k haː↘ŋ daːʔ↗ θaːɲ twaː↗n haːj ti↓ ŋaj taːʔ↓j kwə↘j.	ok	False	False	1.0
 404	percent	Riêng trong tháng này, khoảng 1,5% người dùng chọn gói trả phí.	ʒiəŋ ʈʂɔŋ θaː↗ŋ na↘j, xwaː↓ŋ moʔ↓tfə↓jnam fə↘nʈʂam ŋɨə↘j zu↘ŋ cɔʔ↓n ɣɔ↗j ʈʂaː↓ fi↗.	ok	False	False	1.0
 405	units	Theo đề án, băng tải chạy tối đa 5 kg.	θɛw de↘ aː↗n, baŋ taː↓j caʔ↓j to↗j daː nam ki↗loɣaːm.	ok	False	False	0.9762

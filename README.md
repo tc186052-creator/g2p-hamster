@@ -55,7 +55,7 @@ tự audit:
 
 | Tiêu chí | **g2p-hamster** | sea_g2p¹ | donglao_g2p |
 |---|---|---|---|
-| **Khớp-đọc-gold** (frozen v4, 465 gold viết a-priori) | **0,988** | 0,967 | 0,907 |
+| **Khớp-đọc-gold** (frozen v5, 465 gold viết a-priori) | **0,989** | 0,967 | 0,907 |
 | Rò rỉ số — 99.999 câu dev | **0** | 1 câu (tên tàu) | **0** |
 | Rò rỉ số — 74.760 câu held-out | **0** | **0** | **0** |
 | Rơi âm thầm ở mẫu giờ `13h00` (held-out) | **0 / 239** | 0 / 239 | **92 / 239 — số biến mất khỏi đầu ra** |
@@ -77,7 +77,7 @@ chính công khai ([CHANGELOG](CHANGELOG.md)).
   [sea_g2p](https://pypi.org/project/sea-g2p/). Đó là lựa chọn hợp lý,
   không phải chê.
 - **Chúng ta thắng ở chỗ khác**: khớp-đọc-gold cao nhất MỌI category
-  (kể cả code-switch: 0,985 vs 0,966 của sea — frozen v4, gold công bằng
+  (kể cả code-switch: 0,992 vs 0,969 của sea — frozen v5, gold công bằng
   cho cả hai chiều đọc),
   **0 rơi âm thầm**, coverage/strict/provenance từng từ (an toàn khi
   prep dữ liệu train TTS), đọc đúng tiền lớn. 141 câu/s = dưới 1% một
@@ -100,7 +100,7 @@ tiền tệ đứng sau số đọc **NGHĨA** bất kể chữ hoa/thường �
 [Demo nghe thử](#demo--nghe-thử-400-clip--toàn-bộ-số-liệu) · [Cài đặt](#cài-đặt--sử-dụng) ·
 [Kết quả đối chứng](#kết-quả-đối-chứng) ·
 **Bằng chứng chi tiết:** [docs/BENCHMARK.md](docs/BENCHMARK.md) — 300 câu 7 hệ ·
-100k dev · held-out 74.760 · frozen v4 gold (nguyên văn output + script tái lập)
+100k dev · held-out 74.760 · frozen v5 gold (nguyên văn output + script tái lập)
 
 ## Cấu trúc
 
@@ -513,7 +513,7 @@ tuyến code-switch từ bộ test độc lập). Bảng đầy đủ, kèm các
 | scope_policy mutation probes | 16 PASS, 0 FAIL |
 | cmu_en fase C | 47 PASS, 0 FAIL |
 | tone/coda mapper kokoro178 | 74 PASS, 0 FAIL |
-| Benchmark frozen v4 — 1.127 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,988** khớp-đọc-gold (thắng mọi category, kể cả code-switch) |
+| Benchmark frozen v5 — 1.127 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,989** khớp-đọc-gold (thắng mọi category, kể cả code-switch 0,992 vs 0,969) |
 | Bài test 100k dev + 74.760 câu held-out | 0 leak / 0 drop (nguyên văn output trong repo) |
 | Kiểm chứng STT ngược 400 clip (`verify_roundtrip.py`) | ĐẠT — mọi điểm công bố tái lập được |
 

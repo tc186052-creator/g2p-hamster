@@ -1,8 +1,13 @@
 {
-  "frozen_version": 4,
+  "frozen_version": 5,
   "seed": 20261005,
   "date": "2026-10-06",
   "changes": [
+    {
+      "from": 4,
+      "to": 5,
+      "reason": "thêm 2 alt gold còn thiếu ở code_switch (không đổi câu cũ): (1) '25 Mbps' — ours đọc 'megabit TRÊN giây' (cách dịch chuẩn của Mbps) nhưng v4 gold chỉ ghi 'megabit MỘT giây'; đính chính tuyên bố nhầm của 0.2.8 — KHÔNG mất thông tin, chỉ khác cách nói. (2) '2.1.0' + '45' — chấm/phẩy và bốn lăm/bốn mươi lăm là hai trục độc lập, nhận tổ hợp 'chấm + bốn mươi lăm'. Scorer lấy max; câu/gold khác GIỮ NGUYÊN."
+    },
     {
       "from": 3,
       "to": 4,

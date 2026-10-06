@@ -26,9 +26,14 @@ của chủ dự án: "test công bằng liêm chính"):
 - **Kết quả frozen v4**: repo **0,988** (424/465 ≥ 0,95) — sea_g2p
   0,967 (324/465), donglao 0,907 (248/465). Repo thắng MỌI category,
   kể cả code-switch (0,985 vs 0,966) — trước đây sea nhỉnh ở hạng mục
-  này vì gold hẹp, đã công khai số đó ở 0.2.5–0.2.7. Còn thiếu thật sự:
-  "25 Mbps" đọc thiếu "một giây" (L5 0,956) — ghi minh bạch trong
-  docs/BENCHMARK.md.
+  này vì gold hẹp, đã công khai số đó ở 0.2.5–0.2.7.
+- **[ĐÍNH CHÍNH 06/10, frozen v5]** dòng dưới đây của 0.2.8 tôi ghi
+  SAI: "25 Mbps đọc thiếu một giây = mất thông tin" — thật ra ours đọc
+  "megabit TRÊN giây", tương đương "megabit một giây" của gold, không
+  mất thông tin gì; chỉ là gold thiếu alt. v5 nhận cả "trên giây"/"một
+  giây"/chính tả "mega bit", và tổ hợp "chấm + bốn mươi lăm" ở câu
+  `2.1.0`. Kết quả chốt: repo **0,989** (426/465), code-switch
+  **0,992 vs 0,969** — thắng mọi category.
 - Suite 101/101 + core xanh; bộ test độc lập code-switch giữ nguyên
   436/436 + 836/837.
 

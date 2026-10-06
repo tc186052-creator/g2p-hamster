@@ -382,7 +382,16 @@ add("code_switch", "L5",
     ["Tốc độ upload chỉ đạt hai lăm em e p e s trong khi gói quảng cáo "
      "là ba trăm em e p e s.",
      "Tốc độ upload chỉ đạt hai mươi lăm megabit một giây trong khi gói "
-     "quảng cáo là ba trăm megabit một giây."],
+     "quảng cáo là ba trăm megabit một giây.",
+     # v5: "megabit TRÊN giây" là cách dịch chuẩn của Mbps — hai cách nói
+     # đều đúng, gold v4 thiếu alt này (tôi từng ghi nhầm "thiếu một giây
+     # = mất thông tin" — sai, đã đính chính)
+     "Tốc độ upload chỉ đạt hai mươi lăm megabit trên giây trong khi gói "
+     "quảng cáo là ba trăm megabit trên giây.",
+     # v5: chính tả "mega bit" theo đúng unit-table của repo (megabit/mega
+     # bit là một cách đọc, khác nhau chỉ chính tả ghi gold)
+     "Tốc độ upload chỉ đạt hai mươi lăm mega bit trên giây trong khi gói "
+     "quảng cáo là ba trăm mega bit trên giây."],
     ["upload", "Mbps"])
 add("code_switch", "L6",
     "OpenAI GPT-5.6 API v1.2 chạy trên server H100 80GB.",
@@ -402,6 +411,10 @@ add("code_switch", "L6",
     ["Nâng cấp lên phiên bản hai chấm một chấm không mất khoảng bốn lăm "
      "phút downtime.",
      "Nâng cấp lên phiên bản hai phẩy một phẩy không mất khoảng bốn "
+     "mươi lăm phút downtime.",
+     # v5: chấm/phẩy và bốn lăm/bốn mươi lăm là hai trục độc lập — nhận
+     # tổ hợp "chấm + bốn mươi lăm"
+     "Nâng cấp lên phiên bản hai chấm một chấm không mất khoảng bốn "
      "mươi lăm phút downtime."],
     ["downtime"])
 add("code_switch", "L6",
@@ -645,10 +658,12 @@ with open(HERE / "gold.jsonl", "w", encoding="utf-8") as f:
 
 # Frozen versioning: sửa test set = bắt buộc bump version + ghi lý do.
 FROZEN_META = {
-    "frozen_version": 4,
+    "frozen_version": 5,
     "seed": 20261005,
     "date": "2026-10-06",
     "changes": [
+        {"from": 4, "to": 5,
+         "reason": "thêm 2 alt gold còn thiếu ở code_switch (không đổi câu cũ): (1) '25 Mbps' — ours đọc 'megabit TRÊN giây' (cách dịch chuẩn của Mbps) nhưng v4 gold chỉ ghi 'megabit MỘT giây'; đính chính tuyên bố nhầm của 0.2.8 — KHÔNG mất thông tin, chỉ khác cách nói. (2) '2.1.0' + '45' — chấm/phẩy và bốn lăm/bốn mươi lăm là hai trục độc lập, nhận tổ hợp 'chấm + bốn mươi lăm'. Scorer lấy max; câu/gold khác GIỮ NGUYÊN."},
         {"from": 3, "to": 4,
          "reason": "vá gold bất công ở nhóm code-switch (không đổi câu cũ):"
                    " (1) transport_codes — 6 câu template KHÔNG có ngữ cảnh"
