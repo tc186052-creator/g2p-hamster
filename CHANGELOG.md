@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 0.2.7 — 2026-10-06
+
+Theo **bộ test code-switch độc lập do người ngoài viết** (2 × 100 câu,
+1.273 anchor route, vào repo tại `independent_codeswitch_100/`) — trước
+vá: 428/436 route, `sent_lang=mixed` chỉ 63/100:
+
+- **Luật cấu trúc mới cho từ Anh**: từ ASCII không thể âm tiết hóa theo
+  cấu trúc tiếng Việt (cụm phụ âm đầu "scr/str/w…", vần cuối sai
+  "g/x/d…", đa âm tiết không tách được — `webcam`, `config`, `screen`,
+  `stream`, `log`…) route `en` kèm cờ review `khong_am_tiet_vi`, thay vì
+  bị mặc định đọc vi trong câu Việt. Kèm bộ tách âm tiết nghiêm ngặt
+  `dicts.tach_am_tiet_vi()` (backtrack, onset/coda hợp lệ) — phân biệt
+  với `syllables_vi()` nới lỏng (bị nhiễm từ corpus, "webcam" cũng lọt).
+- **"in"/"to" là từ Việt thật** ("in tài liệu", "to tiếng") nhưng nằm
+  trong `kho_quyet_en` nên "mưa to" từng bị đọc "tu" kiểu Anh: chuyển
+  về `kho_bat` cho láng giềng quyết. "I work in Hanoi" vẫn đọc en.
+  Thêm `scan`, `git` vào `kho_quyet_en`.
+- **Bỏ entry "livestream" → "lives tre am"** trong `abbrev_vi.tsv`
+  (phiên âm hóa kiểu Việt, mâu thuẫn chính sách 02/10 "từ Anh đọc Anh").
+- **"May I join cuộc họp…"**: nhánh "I" tiếng Anh tính thêm bằng chứng
+  từ kề là từ `kq_en` kể cả khi ước lượng cấp câu nói vi.
+- **`sent_lang` chốt sau pass 3**: có wordish route vi lẫn route en →
+  `mixed` (nhãn cũ tính trước pass 1 chỉ đếm `kq_en`, sai 37/100 câu
+  code-switch).
+- Token `mention` (`@handle`) và `filename` không bị luật cấu trúc
+  re-route — "@"/"chấm" đọc theo ngữ cảnh Việt ("a còng handle",
+  "final report chấm P D F").
+- Kết quả sau vá: bộ chính **436/436 route = 100%**, sent_lang mixed
+  100/100; bộ overlap **836/837** (giới hạn đã biết: "me" ~ "mẹ").
+  Benchmark frozen: sim khớp-đọc **0,9818 giữ nguyên**, 396/456 ≥ 0,95,
+  0 câu có gold bị đổi output. Suite pytest 101/101.
+
 ## 0.2.6 — 2026-10-06
 
 **BREAKING** (chưa có người dùng package nên đổi thẳng theo chuẩn dự án

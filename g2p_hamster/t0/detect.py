@@ -608,6 +608,9 @@ WORDISH = ("word", "abbr", "acronym", "slang")
 
 def assign_routes(toks, config):
     """Gán origin + route cho word token. Số/punct/symbol -> origin=neu, route kế thừa."""
+    # token EN MỚI do luật/heuristic chốt (không phải kq_en cũ): KHÔNG được làm
+    # nguồn kế thừa ở pass 2/3 — "Arsenal 2-1" phải giữ "hai, một".
+    _NGUON_EN_MOI = {"cmudict_en", "khong_am_tiet_vi"}
     kq_vi, kq_en, kbat = dicts.kho_quyet_vi(), dicts.kho_quyet_en(), dicts.kho_bat()
     syll = dicts.syllables_vi()
     cmu = dicts.kho_en_cmudict()
@@ -634,6 +637,22 @@ def assign_routes(toks, config):
                 t["origin"], t["route"] = "vi", "vi"
             elif fl in kq_en:
                 t["origin"], t["route"] = "en", "en"
+            elif t["cat"] == "word" and s.isascii() and fl not in kq_vi \
+                    and t.get("kind") not in ("mention", "filename") \
+                    and s[:1].isalpha() \
+                    and not any(ch.isdigit() for ch in s) \
+                    and not dicts.tach_am_tiet_vi(
+                        fl.replace("'", "").replace("\u02bc", "")):
+                # [VA 05/10/2026] từ ASCII KHÔNG thể âm tiết hóa theo cấu trúc
+                # tiếng Việt (cụm phụ âm đầu "scr/str/w/…", vần cuối sai
+                # "g/x/d/…", hoặc đa âm tiết không tách được: "webcam",
+                # "config", "livestream", "screen", "stream", "log") — không
+                # thể đọc vi nên chốt route en kèm cờ review riêng. Phân biệt
+                # với "cmudict_en" ở nhánh dưới: flag này KHÔNG được làm nguồn
+                # kế thừa ở pass 2/3 (lý do như cmudict_en — không kéo số/ký
+                # hiệu trung tính).
+                t["origin"], t["route"] = "en", "en"
+                t["review"] = t.get("review") or "khong_am_tiet_vi"
             elif t["cat"] == "word" and s.isascii() and fl not in syll \
                     and (fl in cmu or (len(s) > 1 and s[:1].isupper())):
                 # [VA 02/10/2026] NHÁNH TRA CỨU cmudict + tên riêng — vá nhóm lỗi
@@ -661,8 +680,17 @@ def assign_routes(toks, config):
                 # mạo từ tiếng Anh "a" trong câu en/mixed — không phải "a" tiếng Việt
                 if fl == "a" and sent != "vi":
                     t["origin"], t["route"] = "en", "en"
-                # "i" trước một từ không-thể-là-âm-tiết-Việt ("i dont know") là I tiếng Anh
-                elif fl == "i" and sent != "vi":
+                # "i" trước một từ không-thể-là-âm-tiết-Việt ("i dont know") là I tiếng Anh;
+                # [VA 05/10/2026] từ kq_en kế tiếp cũng là bằng chứng EN ("May I join…")
+                # dù syllables nới lỏng vẫn nhận "join"; và bằng chứng này tính cả khi
+                # ước lượng pass-0 nói câu vi ("May I join cuộc họp chiều nay?").
+                elif fl == "i" and (sent != "vi" or any(
+                        toks[j]["cat"] in WORDISH
+                        and not has_diacritic(toks[j]["surface"])
+                        and (fold(toks[j]["surface"]).lower() in kq_en
+                             or (fold(toks[j]["surface"]).lower() not in syll
+                                 and fold(toks[j]["surface"]).lower() not in kq_vi))
+                        for j in range(pi + 1, min(pi + 3, n)))):
                     for j in range(pi + 1, min(pi + 3, n)):
                         nt = toks[j]
                         if nt["cat"] not in WORDISH:
@@ -670,7 +698,7 @@ def assign_routes(toks, config):
                         nf = fold(nt["surface"]).lower()
                         if has_diacritic(nt["surface"]):
                             break
-                        if nf not in syll and nf not in kq_vi:
+                        if nf in kq_en or nf not in syll and nf not in kq_vi:
                             t["origin"], t["route"] = "en", "en"
                             break
                 if t.get("route") is None:
@@ -698,7 +726,7 @@ def assign_routes(toks, config):
                 for j in (i - d, i + d):
                     if 0 <= j < n and toks[j]["cat"] in WORDISH \
                             and toks[j].get("route") in ("vi", "en") \
-                            and toks[j].get("review") != "cmudict_en":
+                            and toks[j].get("review") not in _NGUON_EN_MOI:
                         pick = toks[j]["route"]
                         break
                 if pick:
@@ -721,7 +749,7 @@ def assign_routes(toks, config):
             for j in (i - d, i + d):
                 if 0 <= j < n and toks[j]["cat"] in WORDISH \
                         and toks[j].get("route") in ("vi", "en") \
-                        and toks[j].get("review") != "cmudict_en":
+                        and toks[j].get("review") not in _NGUON_EN_MOI:
                     pick = toks[j]["route"]
                     break
             if pick:
@@ -746,4 +774,21 @@ def assign_routes(toks, config):
     # đã thử và PHÁ VỠ các đoạn EN cố ý trong câu mixed (ngày "December 25, 2014",
     # "11 point one zero in" — chuẩn khóa đọc EN). Cơ chế đúng là nguồn-skip ở
     # pass 2/3: từ en MỚI (cmudict_en) không kéo láng giềng trung tính.
+    # [VA 05/10/2026] chốt lại nhãn cấp câu SAU khi mọi token đã có route:
+    # vừa có wordish đọc vi (có dấu hoặc route vi) vừa có wordish route en
+    # thì câu là code-switch ("mixed"). Nhãn cũ tính trước pass 1 chỉ đếm từ
+    # kq_en nên các từ en nhờ cmudict/cấu trúc bị bỏ qua — 37/100 câu mixed
+    # trong bộ test độc lập bị dán nhãn vi sai. Pass 1 phía trên vẫn dùng
+    # ước lượng pass-0 (`sent`) cho acronym/a/i — không đổi hành vi đó.
+    if toks:
+        co_vi = any(t["cat"] in WORDISH and (has_diacritic(t["surface"])
+                                             or t.get("route") == "vi")
+                    for t in toks)
+        co_en = any(t["cat"] in WORDISH and t.get("route") == "en" for t in toks)
+        if co_vi and co_en:
+            toks[0]["sent_lang"] = "mixed"
+        elif co_vi:
+            toks[0]["sent_lang"] = "vi"
+        elif co_en:
+            toks[0]["sent_lang"] = "en"
     return toks

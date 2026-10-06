@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "g2p-hamster"
-version = "0.2.6"
+version = "0.2.7"
 description = "Context-aware Vietnamese/English TTS front-end: text normalization, abbreviation/date/number verbalization, VI-EN code-switching, G2P — throw text in, get phonemes out."
 readme = "README.md"
 requires-python = ">=3.11"

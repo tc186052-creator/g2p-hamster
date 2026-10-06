@@ -326,3 +326,44 @@ class TestGapGroups(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestRouteCodeswitch(unittest.TestCase):
+    """Định tuyến vi/en trong câu code-switch (bộ độc lập 100 + overlap)."""
+
+    def test_structural_en_words(self):
+        # từ ASCII không thể âm tiết hóa kiểu tiếng Việt -> route en
+        self.assertEqual(ir("Hãy bật webcam trong config nhé.")["sent_lang"], "mixed")
+        ir_ = ir("Đừng thay đổi config khi backup đang chạy.")
+        self.assertEqual([t["route"] for t in ir_["tokens"] if t["surface"] == "config"], ["en"])
+
+    def test_vi_overlap_words_stay_vi(self):
+        # "in"/"to" là từ Việt thật: theo láng giềng, không ăn ngay nhánh en
+        self.assertIn("in tài liệu", ir("Tôi đang in tài liệu cho khách.")["read_string"])
+        self.assertIn("to tiếng", ir("Tôi có thể to tiếng nhưng không muốn.")["read_string"])
+        # ... nhưng trong khung câu Anh vẫn đọc en
+        ir_ = ir("I work in Hanoi and return tomorrow.")
+        self.assertEqual([t["route"] for t in ir_["tokens"] if t["surface"] == "in"], ["en"])
+
+    def test_may_i_join(self):
+        # "I" kế tiếp từ kq_en ("join") là đại từ Anh, kéo cả "May"
+        ir_ = ir("May I join cuộc họp chiều nay?")
+        got = {t["surface"]: t["route"] for t in ir_["tokens"]}
+        self.assertEqual(got["May"], "en")
+        self.assertEqual(got["I"], "en")
+
+    def test_sent_lang_mixed_counts_all_en_sources(self):
+        # sent_lang chốt SAU khi mọi token có route: từ en nhờ cmudict/cấu trúc
+        # cũng phải biến câu thành mixed (không chỉ từ kq_en)
+        self.assertEqual(ir("Nhân viên mở browser để truy cập tài khoản nội bộ.")["sent_lang"], "mixed")
+        self.assertEqual(ir("Tôi cần một backup trước khi đổi cấu hình.")["sent_lang"], "mixed")
+        self.assertEqual(ir("Hôm nay trời mưa to.")["sent_lang"], "vi")
+
+    def test_mention_and_filename_symbols_follow_sentence(self):
+        # @ và dấu chấm tên file đọc theo ngữ cảnh Việt dù từ kề là EN
+        self.assertIn("a còng handle", ir("inbox theo @handle nhé.")["read_string"])
+        self.assertIn("chấm", ir("gửi kèm final_report.docx.")["read_string"])
+
+
+if __name__ == "__main__":
+    unittest.main()

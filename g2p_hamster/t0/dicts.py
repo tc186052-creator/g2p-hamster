@@ -17,6 +17,55 @@ def _lines(name: str) -> tuple:
     return tuple((DATA / name).read_text(encoding="utf-8").split())
 
 
+# Âm tiết tiếng Việt nghiêm ngặt: onset là MỘT phụ âm (hoặc cụm chính tả thật:
+# gh, gi, kh, ng, ngh, nh, ph, th, tr, qu, ch), không nhận cụm "scr/str/w/ff".
+# Khác _SYLL_RE (nới lỏng để lọc corpus, chấp nhận cụm phụ âm bất kỳ nên
+# "webcam","screen","stream"… đều lọt), bộ này dùng để PHÁN một từ ASCII
+# có thể là tiếng Việt hay không.
+_VI_ONSETS = frozenset(
+    "b c ch d đ g gh gi h k kh l m n ng ngh nh p ph qu r s t th tr v x".split()
+)
+_VI_CODAS = frozenset("c ch m n ng nh p t".split())
+_VI_VOWELS = frozenset("aeiouy")
+
+# các onset theo độ dài giảm dần để greedy khớp "ng" trước "n"
+_VI_ONSETS_BY_LEN = sorted(_VI_ONSETS | {""}, key=len, reverse=True)
+_VI_CODAS_BY_LEN = sorted(_VI_CODAS, key=len, reverse=True)
+
+
+@lru_cache(maxsize=4096)
+def tach_am_tiet_vi(s: str) -> bool:
+    """`s` (đã fold, ASCII) có tách được thành chuỗi âm tiết tiếng Việt hợp lệ?
+
+    Dùng backtrack vì tách âm tiết có nhập nhùng ("config": "con|fig" hỏng ở
+    coda "g" nhưng "co|nfig" cũng hỏng -> từ không thể là tiếng Việt).
+    "khongduoc", "in", "san" -> True; "webcam", "config", "screen" -> False.
+    """
+    if not s:
+        return False
+    return _tach(s, 0, len(s))
+
+
+def _tach(s: str, lo: int, hi: int) -> bool:
+    if lo >= hi:
+        return True
+    for _on in _VI_ONSETS_BY_LEN:
+        if s.startswith(_on, lo):
+            j = lo + len(_on)
+            i = j
+            while i < hi and i - j < 3 and s[i] in _VI_VOWELS:
+                i += 1
+            if i == j:
+                continue
+            # coda dài trước, rồi coda rỗng (backtrack qua mọi cách tách)
+            for _cod in _VI_CODAS_BY_LEN:
+                if s.startswith(_cod, i) and _tach(s, i + len(_cod), hi):
+                    return True
+            if _tach(s, i, hi):
+                return True
+    return False
+
+
 @lru_cache(maxsize=1)
 def _tsv(name: str) -> tuple:
     with open(DATA / name, newline="", encoding="utf-8") as f:

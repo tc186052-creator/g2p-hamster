@@ -379,7 +379,11 @@ giữa bản (đều import được trực tiếp từ `g2p_hamster`):
 > footgun mà cả hai đợt đánh giá độc lập đều bắt. Chưa có người dùng
 > package nên 0.2.6 đổi thẳng: tên mặc định giờ là v2, v1 đổi tên rõ.
 
-**Chạy test:** `python -m unittest discover -s tests -t .` (96/96).
+**Chạy test:** `python -m unittest discover -s tests -t .` (101/101).
+Ngoài ra có **bộ test code-switch độc lập do người ngoài viết**
+(2 × 100 câu, 1.273 anchor route, không dùng gold IPA): sau 0.2.7 đạt
+436/436 + 836/837 — xem
+[`independent_codeswitch_100/README.md`](independent_codeswitch_100/README.md).
 
 **Tái lập kiểm chứng STT ngược** — có 2 mức khác nhau, đừng lẫn:
 
@@ -492,12 +496,13 @@ python3 -m g2p_hamster.so_sanh --input van_ban.txt --procs 22
 
 ## Kết quả đối chứng
 
-Tổng **810 case test, 0 fail** (0.2.6 — thêm test đơn vị HOA, mã tiền,
-mã chuyến bay, t1_review, label spell, API mặc định v2). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
+Tổng **815 case test, 0 fail** (0.2.7 — thêm test đơn vị HOA, mã tiền,
+mã chuyến bay, t1_review, label spell, API mặc định v2, và 5 test định
+tuyến code-switch từ bộ test độc lập). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
 
 | Bộ test | Kết quả |
 |---|---|
-| t0 regression — tokenize/detect/verbalize (đã tách tiny2) | 41/41 test OK |
+| t0 regression — tokenize/detect/verbalize + route code-switch (đã tách tiny2) | 46/46 test OK |
 | CLI smoke | 4/4 test OK |
 | G2P v2 (state/strict/contract/scope/espeak mock + thật) | 49/49 test OK |
 | Báo cáo trung thực v2 (t1_review → notes, label spell) | 2/2 test OK |

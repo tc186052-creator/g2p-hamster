@@ -1,11 +1,12 @@
 {
   "n": 1118,
   "n_gold": 482,
-  "date": "2026-10-06 00:33 UTC",
+  "date": "2026-10-06 05:21 UTC",
   "provenance": {
     "frozen_version": 3,
     "sea_g2p": "0.10.0",
     "donglao_g2p": "1.0.0",
+    "g2p_hamster": "0.2.7",
     "espeak_ng": "eSpeak NG text-to-speech: 1.51  Data at: /usr/lib/x86_64-linux-gnu/espeak-ng-data"
   },
   "systems": {
