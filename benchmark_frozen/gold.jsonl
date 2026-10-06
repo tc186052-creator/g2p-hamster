@@ -450,3 +450,33 @@
 {"idx": 449, "category": "currency", "gold_readings": ["Doanh thu công ty đạt bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng trong quý vừa rồi."], "en_spans": []}
 {"idx": 450, "category": "currency", "gold_readings": ["Chị ấy dành dụm được bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng sau hai năm làm việc."], "en_spans": []}
 {"idx": 451, "category": "currency", "gold_readings": ["Khoản đầu tư ban đầu chiếm bốn triệu chín trăm chín mươi chín nghìn chín trăm chín mươi chín đồng."], "en_spans": []}
+{"idx": 452, "category": "units", "gold_readings": ["sáu mươi ký lô gam tùy nơi bán."], "en_spans": []}
+{"idx": 453, "category": "units", "gold_readings": ["Bảng giá ghi rõ sáu mươi ký lô gam."], "en_spans": []}
+{"idx": 454, "category": "units", "gold_readings": ["Tôi trả đúng sáu mươi ký lô gam cho mỗi phần."], "en_spans": []}
+{"idx": 455, "category": "units", "gold_readings": ["năm trăm mi lít tùy nơi bán."], "en_spans": []}
+{"idx": 456, "category": "units", "gold_readings": ["Bảng giá ghi rõ năm trăm mi lít."], "en_spans": []}
+{"idx": 457, "category": "units", "gold_readings": ["Tôi trả đúng năm trăm mi lít cho mỗi phần."], "en_spans": []}
+{"idx": 458, "category": "units", "gold_readings": ["một trăm ki lô mét một giờ tùy nơi bán."], "en_spans": []}
+{"idx": 459, "category": "units", "gold_readings": ["Bảng giá ghi rõ một trăm ki lô mét một giờ."], "en_spans": []}
+{"idx": 460, "category": "units", "gold_readings": ["Tôi trả đúng một trăm ki lô mét một giờ cho mỗi phần."], "en_spans": []}
+{"idx": 461, "category": "currency", "gold_readings": ["một trăm đô la tùy nơi bán."], "en_spans": []}
+{"idx": 462, "category": "currency", "gold_readings": ["Bảng giá ghi rõ một trăm đô la."], "en_spans": []}
+{"idx": 463, "category": "currency", "gold_readings": ["Tôi trả đúng một trăm đô la cho mỗi phần."], "en_spans": []}
+{"idx": 464, "category": "currency", "gold_readings": ["một trăm euro tùy nơi bán."], "en_spans": []}
+{"idx": 465, "category": "currency", "gold_readings": ["Bảng giá ghi rõ một trăm euro."], "en_spans": []}
+{"idx": 466, "category": "currency", "gold_readings": ["Tôi trả đúng một trăm euro cho mỗi phần."], "en_spans": []}
+{"idx": 467, "category": "currency", "gold_readings": ["một trăm đô la tùy nơi bán."], "en_spans": []}
+{"idx": 468, "category": "currency", "gold_readings": ["Bảng giá ghi rõ một trăm đô la."], "en_spans": []}
+{"idx": 469, "category": "currency", "gold_readings": ["Tôi trả đúng một trăm đô la cho mỗi phần."], "en_spans": []}
+{"idx": 470, "category": "currency", "gold_readings": ["một trăm đồng tùy nơi bán."], "en_spans": []}
+{"idx": 471, "category": "currency", "gold_readings": ["Bảng giá ghi rõ một trăm đồng."], "en_spans": []}
+{"idx": 472, "category": "currency", "gold_readings": ["Tôi trả đúng một trăm đồng cho mỗi phần."], "en_spans": []}
+{"idx": 473, "category": "currency", "gold_readings": ["một trăm v n đ tùy nơi bán.", "một trăm đồng tùy nơi bán."], "en_spans": []}
+{"idx": 474, "category": "currency", "gold_readings": ["Bảng giá ghi rõ một trăm v n đ.", "Bảng giá ghi rõ một trăm đồng."], "en_spans": []}
+{"idx": 475, "category": "currency", "gold_readings": ["Tôi trả đúng một trăm v n đ cho mỗi phần.", "Tôi trả đúng một trăm đồng cho mỗi phần."], "en_spans": []}
+{"idx": 476, "category": "code_switch", "gold_readings": ["V N một hai ba tùy nơi bán."], "en_spans": []}
+{"idx": 477, "category": "code_switch", "gold_readings": ["Bảng giá ghi rõ V N một hai ba."], "en_spans": []}
+{"idx": 478, "category": "code_switch", "gold_readings": ["Tôi trả đúng V N một hai ba cho mỗi phần."], "en_spans": []}
+{"idx": 479, "category": "code_switch", "gold_readings": ["S E tám tùy nơi bán."], "en_spans": []}
+{"idx": 480, "category": "code_switch", "gold_readings": ["Bảng giá ghi rõ S E tám."], "en_spans": []}
+{"idx": 481, "category": "code_switch", "gold_readings": ["Tôi trả đúng S E tám cho mỗi phần."], "en_spans": []}

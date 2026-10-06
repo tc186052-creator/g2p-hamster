@@ -49,13 +49,13 @@ text thô ──▶ t0: clean/tokenize/detect/verbalize/route vi-en ──▶ IR
 ## Kết quả trong 30 giây — 3 hệ cuối cùng, một bảng
 
 Chỉ còn 3 hệ đạt "0 rò rỉ số + 0 lỗi" ở mọi bài test dữ liệu thật
-(300 câu · 99.999 câu dev · 74.760 câu held-out · 1.088 câu frozen).
+(300 câu · 99.999 câu dev · 74.760 câu held-out · 1.118 câu frozen).
 Bảng dưới chốt tất cả số liệu của README — mỗi ô có bài test gốc để
 tự audit:
 
 | Tiêu chí | **g2p-hamster** | sea_g2p¹ | donglao_g2p |
 |---|---|---|---|
-| **Khớp-đọc-gold** (frozen v2, 426 gold viết a-priori) | **0,985** | 0,972 | 0,907 |
+| **Khớp-đọc-gold** (frozen v3, 456 gold viết a-priori) | **0,982** | 0,966 | 0,906 |
 | Rò rỉ số — 99.999 câu dev | **0** | 1 câu (tên tàu) | **0** |
 | Rò rỉ số — 74.760 câu held-out | **0** | **0** | **0** |
 | Rơi âm thầm ở mẫu giờ `13h00` (held-out) | **0 / 239** | 0 / 239 | **92 / 239 — số biến mất khỏi đầu ra** |
@@ -86,6 +86,13 @@ chính công khai ([CHANGELOG](CHANGELOG.md)).
   cũng nằm đó. Đánh giá độc lập 2026-10 đã tái lập đúng 802/802 case
   trên máy khác và là người phát hiện lỗi đo sea_g2p của chúng tôi (đã
   sửa + đính chính công khai).
+
+**Chính sách đọc đơn vị/mã tiền (khai báo rõ, từ 0.2.5):** đơn vị và mã
+tiền tệ đứng sau số đọc **NGHĨA** bất kể chữ hoa/thường — `60 KG` =
+"sáu mươi ký lô gam" như `60 kg`, `100 USD` = "một trăm đô la" như
+`100 usd`. Hai ngoại lệ có chủ đích: **VNĐ HOA** giữ nguyên văn
+"V N Đ" (viết VNĐ thì đọc VNĐ — quyết của chủ dự án), và **chữ cái đơn**
+(`4K`, `4k`) giữ hành vi cũ vì "K" mơ hồ giữa "nghìn" và tên chữ.
 
 **Mục lục:** [Cấu trúc](#cấu-trúc) · [7 hệ trên 300 câu](#so-sánh-7-hệ-g2pfront-end-trên-cùng-300-câu-thật) ·
 [Held-out 74.760](#bài-test-held-out-74760-câu-chưa-từng-thấy-chạy-trên-gói-pypi-đã-phát-hành) ·
@@ -222,7 +229,7 @@ vẫn dư real-time (dưới 1% một nhân CPU). Về **chất lượng**, sea_
 đo đúng cấu hình là đối thủ xứng tầm: 0% rò rỉ, đọc trọn ngày/giờ —
 điểm còn phân hóa là **rơi âm thầm** (donglao mất số ở ~44% câu có
 mẫu giờ `13h00`, bảng 100k bên dưới) và **khớp-đọc-gold** (bảng frozen
-bên dưới: 0,985 / 0,972 / 0,907). repo này là hệ **duy nhất đồng thời
+bên dưới: 0,982 / 0,966 / 0,906). repo này là hệ **duy nhất đồng thời
 đạt 100% coverage + 0 số rò rỉ + 0 rơi + provenance từng từ + chế độ
 strict cho dữ liệu train**. Không đồng ý bảng trên? Mở
 [`outputs_all_tools.csv`](listening_test/g2p_compare/outputs_all_tools.csv)
@@ -250,7 +257,7 @@ tuyển trước".
 
 | | Bộ phát triển (bài 100k bên dưới) | **Bộ held-out (bài này)** |
 |---|---|---|
-| File | `dataset_100k.tsv` | `dataset_100k (1).tsv` |
+| File | `dataset_100k.tsv` | `dataset_heldout_2026.tsv.gz` — **CÔNG KHAI trong repo** (74.760 câu đã lọc trùng, tải về là chạy được) |
 | Nguồn | wiki + báo vi/anh (lấy trước) | **tin tức + wiki 2026**: vie_news_2026 (39.589) · eng_news_2026 (24.059) · eng_wiki_2026 (13.213) · vie_wiki_2026 (10.669) |
 | Số câu | 99.999 | 87.530 → **lọc còn 74.760 câu mới tuyệt đối** (loại 12.770 câu trùng bộ phát triển) |
 | Phân bố | 52.000 vi · 33.000 anh · 15.000 mix (15%) | 24.112 vi · 33.650 anh · **16.998 mix (22,7%)** — nhiều mix hơn hẳn |
@@ -261,7 +268,8 @@ khi chạy code repo). Tái lập:
 
 ```bash
 pip install g2p-hamster==0.2.3 sea_g2p donglao-g2p
-BENCH_SOURCE=pypi python3 listening_test/g2p_compare_100k/bench_100k.py "dataset_100k (1).tsv"
+BENCH_SOURCE=pypi python3 listening_test/g2p_compare_100k/bench_100k.py \
+    listening_test/g2p_compare_100k/dataset_heldout_2026.tsv.gz
 python3 listening_test/g2p_compare_100k/patterns_100k.py   # chéo mẫu từ output đã sinh
 ```
 
@@ -370,7 +378,7 @@ trong `outputs_*.csv.gz` (bộ dev không commit nguyên văn để khỏi phìn
 repo — sinh lại bằng `bench_100k.py` không đối số, lệnh ở trên); mở ra
 tự chấm, kể cả câu repo này rỗng.
 
-## Benchmark frozen công khai — v2, 1.088 câu, gold viết trước, chấm bằng máy
+## Benchmark frozen công khai — v3, 1.118 câu, gold viết trước, chấm bằng máy
 
 Sau bài 100k ở trên, có góp ý đề xuất cách đo tử tế hơn: **bộ test
 frozen commit sẵn** (kiểu
@@ -379,7 +387,7 @@ gold viết a-priori, **một câu có thể có nhiều cách đọc hợp lệ
 bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 - [`benchmark_frozen/test_set.tsv`](benchmark_frozen/test_set.tsv) —
-  **1.088 câu** (452 synthetic sinh từ template + 636 real từ
+  **1.118 câu** (482 synthetic sinh từ template + 636 real từ
   `dataset_100k`), 12 category: time, date, percent, currency (gồm
   **big_money** v2), units, phone, email/URL, acronyms, **code-switch
   Level 1→6** (Easy → Interleaved → Dense → Ambiguous → Technical →
@@ -405,13 +413,13 @@ bằng máy thay vì chấm cảm tính. Repo này làm theo:
 
 | Hệ | Leakage (còn số) | Drop giờ (`13h00` → mất số) | Khớp đọc gold (mean / số câu ≥0.95) |
 |---|---|---|---|
-| **g2p-hamster (repo này, v0.2.3)** | **0 / 1.088** | **0** | **0,985** · 375/426 |
-| sea_g2p — `SEAPipeline` (đo đúng từ 0.2.2) | 0 / 1.088 | 0 | 0,972 · 302/426 |
-| donglao_g2p | 0 / 1.088 | **103** | 0,907 · 236/426 |
-| sea_g2p — `G2P.convert()` trần (cấu hình sai của 0.2.0–0.2.1, giữ lại để đối chiếu) | **798 / 1.088 (73%)** | — | 0,661 · **0/426** |
+| **g2p-hamster (repo này, v0.2.5)** | **0 / 1.118** | **0** | **0,982** · 396/456 |
+| sea_g2p — `SEAPipeline` (đo đúng từ 0.2.2) | 0 / 1.118 | 0 | 0,966 · 315/456 |
+| donglao_g2p | 0 / 1.118 | **103** | 0,906 · 240/456 |
+| sea_g2p — `G2P.convert()` trần (cấu hình sai của 0.2.0–0.2.1, giữ lại để đối chiếu) | **828 / 1.118 (74%)** | — | 0,657 · **0/456** |
 
 **Kết luận sau khi đo lại sea_g2p đúng cấu hình:** g2p-hamster vẫn
-nhỉnh nhất (0,985 vs 0,972) nhưng **không "bỏ xa"** — chênh lệch thật
+nhỉnh nhất (0,982 vs 0,966) nhưng **không "bỏ xa"** — chênh lệch thật
 ~1,3 điểm khớp-đọc, sea_g2p đạt 0 rò rỉ / 0 rơi. Các tuyên bố "sea rò
 72%", "0/390 câu khớp" của bản 0.2.1 là **sai vì đo sai cấu hình** —
 chúng tôi giữ dòng `sea_g2p_raw` trong
@@ -427,11 +435,11 @@ Theo từng category (khớp đọc gold — ours / donglao / sea đúng cấu h
 | time (133) | **1,000** | 0,769 | 0,952 |
 | date (104) | **0,971** | 0,954 | 0,955 |
 | percent (119) | **0,998** | 0,990 | 0,998 |
-| currency (122) | **0,991** | 0,965 | 0,985 |
-| units (81) | 0,966 | **0,969** | 0,964 |
+| currency (142) | **0,987** | 0,953 | 0,959 |
+| units (92) | **0,971** | 0,958 | 0,959 |
 | phone (17) | **1,000** | 0,841 | 1,000 |
 | acronyms (157) | **0,981** | 0,792 | 0,973 |
-| code-switch (139) | **0,945** | 0,877 | 0,942 |
+| code-switch (150) | 0,909 | 0,886 | **0,955** |
 | adversarial (44) | **0,971** | 0,875 | 0,947 |
 
 **Và công khai cả những chỗ repo này CHƯA hoàn hảo** (nguyên văn trong
@@ -441,6 +449,11 @@ Theo từng category (khớp đọc gold — ours / donglao / sea đúng cấu h
   nuốt số nhóm-nghìn; `RE_MONEY_SUFFIX` chỉ khớp `$`): cả 36 câu
   big_money giờ đọc đúng thang nghìn/triệu/tỷ, bị chặn hồi quy bằng
   unit test + frozen v2. Khớp đọc gold của repo 0,984 → **0,985**;
+- v3 (0.2.5) thêm 3 level phủ lỗ hổng bản 3 của đánh giá độc lập:
+  `caps_units` (60 KG, 500 ML, 100 KM/H), `currency_codes` (USD/EUR/
+  usd/vnđ/VNĐ), `transport_codes` (VN123, SE8) — 30 câu mới, mọi câu v2
+  giữ nguyên từng ký tự. Ở code-switch sea_g2p nhỉnh hơn (0,955 vs
+  0,909) — công khai luôn, không chọn lọc số;
 - `97,8%` trong câu mix được đọc kiểu anh "ninety-seven point eight" —
   có chủ đích hay lỗi, để người nghe quyết;
 - một phần điểm trừ là gold hẹp: `12 GB` đọc "gờ-bê" (cách đọc phổ
@@ -778,25 +791,26 @@ python3 -m g2p_hamster.so_sanh --input van_ban.txt --procs 22
 
 ## Kết quả đối chứng
 
-Tổng **803 case test, 0 fail** (đo lại 0.2.2 — thêm 1 test hồi quy tiền
-≥7 chữ số). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
+Tổng **809 case test, 0 fail** (0.2.5 — thêm test đơn vị HOA, mã tiền,
+mã chuyến bay, t1_review, label spell). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
 
 | Bộ test | Kết quả |
 |---|---|
-| t0 regression — tokenize/detect/verbalize (đã tách tiny2) | 38/38 test OK |
+| t0 regression — tokenize/detect/verbalize (đã tách tiny2) | 41/41 test OK |
 | CLI smoke | 4/4 test OK |
-| G2P v2 (state/strict/contract/scope/espeak mock + thật) | 47/47 test OK |
+| G2P v2 (state/strict/contract/scope/espeak mock + thật) | 49/49 test OK |
+| Báo cáo trung thực v2 (t1_review → notes, label spell) | 2/2 test OK |
 | G2P fase D/E (`test_g2p.py`) | 111 PASS, 0 FAIL |
 | vi_rules/vi_syllable | 466 PASS, 0 FAIL |
 | scope_policy mutation probes | 16 PASS, 0 FAIL |
 | cmu_en fase C | 47 PASS, 0 FAIL |
 | tone/coda mapper kokoro178 | 74 PASS, 0 FAIL |
-| Benchmark frozen v2 — 1.088 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,985** khớp-đọc-gold |
+| Benchmark frozen v3 — 1.118 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,982** khớp-đọc-gold |
 | Bài test 100k dev + 74.760 câu held-out | 0 leak / 0 drop (nguyên văn output trong repo) |
 | Kiểm chứng STT ngược 400 clip (`verify_roundtrip.py`) | ĐẠT — mọi điểm công bố tái lập được |
 
 Ngoài unit test, mức bảo đảm thật của dự án nằm ở các **benchmark dữ
-liệu thật** (300 câu 7-hệ · 99.999 câu dev · 74.760 câu held-out · 1.088
+liệu thật** (300 câu 7-hệ · 99.999 câu dev · 74.760 câu held-out · 1.118
 câu frozen gold) — toàn bộ script + nguyên văn output từng câu nằm
 trong repo để ai cũng audit được. Đánh giá độc lập 2026-10 đã tái lập
 đúng 802/802 case của 0.2.1 trên máy khác và xác nhận held-out không

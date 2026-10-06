@@ -494,5 +494,34 @@ class TestEspeakThat(unittest.TestCase):
         self.assertTrue(syls)
 
 
+class TestBaoCaoTrungThuc(unittest.TestCase):
+    """Bản 3 đánh giá độc lập: cờ review tầng 1 phải nổi lên kết quả v2;
+    đánh vần vì hết bậc cứu phải ghi source='spell', không phải 'core'."""
+
+    def test_t1_review_noi_vao_notes(self):
+        from g2p_hamster.g2p_v2 import text_to_profile_v2_full
+        r = text_to_profile_v2_full("Giá 1.000.000đ")
+        self.assertTrue(r["t1_review"], "t1_review phải có cờ don_vi_d")
+        self.assertTrue(any("review" in n for n in r["notes"]))
+        # câu sạch thì không có cờ
+        r2 = text_to_profile_v2_full("Xin chào, hôm nay trời đẹp quá!")
+        self.assertEqual(r2["t1_review"], [])
+
+    def test_spell_khong_gia_danh_source_core(self):
+        from g2p_hamster.g2p_v2 import text_to_profile_v2_full
+        import g2p_hamster.g2p_v2 as gv2
+        # có espeak thì OOV hầu hết được "nâng cấp" — ép kịch bản hết bậc
+        # cứu để chốt đúng label: đánh vần phải ghi source="spell"
+        with mock.patch.object(gv2, "rescue_syllables",
+                               return_value=(None, "hết bậc cứu")):
+            r = text_to_profile_v2_full("Tôi chưa biết chữ quokka.")
+        spell_units = [u for u in r["units"]
+                       if u["word"].strip(".,") == "quokka"]
+        self.assertTrue(spell_units, f"thiếu unit quokka: {r['units']}")
+        self.assertEqual(spell_units[0]["source"], "spell")
+        self.assertTrue(any("đánh vần 'quokka'" in n for n in r["notes"]))
+
+
+
 if __name__ == "__main__":
     unittest.main()

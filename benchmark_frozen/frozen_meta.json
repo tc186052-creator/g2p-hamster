@@ -1,8 +1,13 @@
 {
-  "frozen_version": 2,
+  "frozen_version": 3,
   "seed": 20261005,
   "date": "2026-10-05",
   "changes": [
+    {
+      "from": 2,
+      "to": 3,
+      "reason": "thêm 3 level phủ lỗ hổng bản 3 của đánh giá độc lập: units/caps_units (60 KG, 500 ML, 100 KM/H), currency/currency_codes (USD/EUR/usd/vnđ/VNĐ), code_switch/transport_codes (VN123, SE8) — 33 câu synthetic; mọi câu/gold khác GIỮ NGUYÊN."
+    },
     {
       "from": 1,
       "to": 2,

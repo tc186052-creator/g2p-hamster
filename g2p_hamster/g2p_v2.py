@@ -75,7 +75,7 @@ _CONTRACT_KIND_RES = {
 _ESPEAK_VOWELS = {
     "aɪ": "AY", "aʊ": "AW", "ɔɪ": "OY", "eɪ": "EY", "oʊ": "OW",
     "ɑ": "AA", "æ": "AE", "ɔ": "AO", "ʌ": "AH", "ə": "AH", "ɐ": "AH",
-    "ɛ": "EH", "ɜ": "ER", "ɝ": "ER", "ɪ": "IH", "i": "IY",
+    "ɛ": "EH", "ɜ": "ER", "ɝ": "ER", "ɚ": "ER", "ɪ": "IH", "i": "IY",
     "ʊ": "UH", "u": "UW", "o": "OW", "e": "EY",
     # nguyên âm + r (r-colored): core của token đuôi ɹ/r — ER đã bao h r-color
     "ɪr": "IH", "ir": "IH", "ɛr": "EH", "ɔr": "AO", "ʊr": "UH",
@@ -315,7 +315,10 @@ def _rescue_record(rec, by_id, notes):
                                   "source": src, "read_complete": True})
                     continue
             pieces.append(txt)               # hụt → giữ đánh vần (tốt hơn câm)
-            trace.append({"word": w_c, "outcome": "read", "source": "core",
+            # label trung thực: đây là SPELL (OOV hết bậc cứu), không phải
+            # "core" - trước đây ghi source="core" khiến lỗi này vô hình
+            notes.append(f"đánh vần '{w_c}' (hết bậc cứu phiên âm - v1 spell)")
+            trace.append({"word": w_c, "outcome": "read", "source": "spell",
                           "read_complete": True})
             continue
         if why == "scope_excluded":
@@ -528,6 +531,13 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
     ir = t1_normalize(text.translate(_WS_FIX))
     out = G.g2p_stream(ir)
     parts, errs, notes, warnings = [], [], [], []
+    # cờ review của tầng 1 (vd 'oov', 'don_vi_d', 'acronym_spell') phải NỔI
+    # LÊN kết quả v2 - trước đây tầng 1 phát hiện bất thường nhưng v2 trả
+    # notes=[] nên người gọi API không có cách nào biết
+    t1_review = list(ir.get("review") or [])
+    for tr_ in t1_review:
+        notes.append("tầng 1 cờ review '%s': %s - t0 đã chốt cách đọc, v2 theo"
+                     % (tr_.get("surface", "?"), tr_.get("reason", "?")))
     dropped, sources, units = [], Counter(), []
     contract_ok = True
     if out.get("contract_errors"):
@@ -637,6 +647,7 @@ def text_to_profile_v2_full(text: str, mode: str = "best_effort",
         "dropped": dropped,
         "units": units,
         "sources": dict(sources),
+        "t1_review": t1_review,
         "strict_policy": sorted(policy),
         "provenance": v2_provenance(),
     }

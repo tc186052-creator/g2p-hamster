@@ -495,6 +495,30 @@ family("currency", "big_money",
         "Khoản đầu tư ban đầu chiếm {}."],
        BIG_MONEY_V, {v: big_money_read(v) for v in BIG_MONEY_V})
 
+# v3: lớp đơn vị HOA + mã tiền tệ + mã ký hiệu — phủ lỗ hổng mà bản 3 của
+# đánh giá độc lập chỉ ra: gold v1-v2 chỉ có dạng chữ thường nên category
+# units đạt 0,966 dù lớp HOA vỡ; USD/EUR/vnđ/VNĐ từng bị xử lý 3 kiểu
+# khác nhau trong cùng một câu.
+CAPS_UNIT_V = [("60 KG", ["sáu mươi ký lô gam"]),
+               ("500 ML", ["năm trăm mi lít"]),
+               ("100 KM/H", ["một trăm ki lô mét một giờ"])]
+CUR_CODE_V = [("100 USD", ["một trăm đô la"]),
+              ("100 EUR", ["một trăm euro"]),
+              ("100 usd", ["một trăm đô la"]),
+              ("100 vnđ", ["một trăm đồng"]),
+              ("100 VNĐ", ["một trăm v n đ", "một trăm đồng"])]
+CODE_V = [("VN123", ["V N một hai ba"]),
+          ("SE8", ["S E tám"])]
+for _lv, _vs in (("caps_units", CAPS_UNIT_V), ("currency_codes", CUR_CODE_V),
+                 ("transport_codes", CODE_V)):
+    _cat = "units" if _lv == "caps_units" else "currency" if _lv == "currency_codes" else "code_switch"
+    family(_cat, _lv,
+           ["{} tùy nơi bán.",
+            "Bảng giá ghi rõ {}.",
+            "Tôi trả đúng {} cho mỗi phần."],
+           [v for v, _ in _vs], {v: w for v, w in _vs})
+
+
 SYN = list(ROWS)
 print(f"synthetic: {len(SYN)} câu "
       f"({sum(1 for r in SYN if r['gold_readings'])} có gold)")
@@ -586,10 +610,16 @@ with open(HERE / "gold.jsonl", "w", encoding="utf-8") as f:
 
 # Frozen versioning: sửa test set = bắt buộc bump version + ghi lý do.
 FROZEN_META = {
-    "frozen_version": 2,
+    "frozen_version": 3,
     "seed": 20261005,
     "date": "2026-10-05",
     "changes": [
+        {"from": 2, "to": 3,
+         "reason": "thêm 3 level phủ lỗ hổng bản 3 của đánh giá độc lập:"
+                   " units/caps_units (60 KG, 500 ML, 100 KM/H),"
+                   " currency/currency_codes (USD/EUR/usd/vnđ/VNĐ),"
+                   " code_switch/transport_codes (VN123, SE8) — 33 câu"
+                   " synthetic; mọi câu/gold khác GIỮ NGUYÊN."},
         {"from": 1, "to": 2,
          "reason": "thêm level 'currency/big_money' (9 giá trị tiền ≥ 7 chữ"
                    " số × 4 template = 36 câu synthetic) — lớp dữ liệu bị"

@@ -173,7 +173,9 @@ class TestTorture(unittest.TestCase):
         self.assertIn("Thế chiến hai", ir("Thế chiến II kết thúc.")["read_string"])
         # [VA 03/10/2026] USD → spell_en ("iu ét đi") theo duyệt chủ dự án 03/10
         # (chọn spell_en, bỏ expand "đô la Mỹ") — áp cho cả sau số
-        self.assertIn("một trăm iu ét đi", ir("tôi nộp 100 USD")["read_string"])
+        # 0.2.5: đơn vị/mã tiền sau số đọc NGHĨA bất kể HOA (nhất quán với
+        # "100 usd" thường — bản 3 đánh giá độc lập bắt được sự lệch)
+        self.assertIn("một trăm đô la", ir("tôi nộp 100 USD")["read_string"])
         self.assertIn("hai mươi lăm triệu", ir("giá 25tr")["read_string"])
 
     def test_vi_acronyms_round2(self):
@@ -296,6 +298,29 @@ class TestGapGroups(unittest.TestCase):
         # không giẫm các dạng đã đọc đúng
         self.assertIn("một đến hai triệu đồng", ir("1-2 triệu đồng.")["read_string"])
         self.assertIn("hai, một", ir("tỉ số 2-1.")["read_string"])
+
+
+
+    def test_caps_units_and_currency_codes(self):
+        # bản 3 đánh giá độc lập (a): HOA/thường phải nhất quán — đơn vị
+        # sau số đọc NGHĨA bất kể chữ hoa; riêng VNĐ HOA giữ nguyên văn
+        self.assertIn("một trăm đô la", ir("Giá 100 USD.")["read_string"])
+        self.assertIn("một trăm euro", ir("Giá 100 EUR.")["read_string"])
+        self.assertIn("một trăm đồng", ir("Giá 100 vnđ.")["read_string"])
+        self.assertIn("V N Đ", ir("Giá 100 VNĐ.")["read_string"])
+        self.assertIn("ki lô mét một giờ", ir("Vận tốc 100 KM/H.")["read_string"])
+        self.assertIn("mi lít", ir("Uống 500 ML.")["read_string"])
+        self.assertIn("ký lô gam", ir("Cân 60 KG.")["read_string"])
+        # từ KHÔNG phải đơn vị không bị kéo vào nhánh unit
+        self.assertIn("F A Q", ir("Tôi thấy 100 FAQ.")["read_string"])
+
+    def test_transport_code_digits(self):
+        # mã chuyến/tàu đọc vần chữ + từng chữ số, nhất quán với mã dài
+        self.assertIn("V N một hai ba", ir("Chuyến bay VN123.")["read_string"])
+        self.assertIn("S E tám", ir("Tàu SE8 vào ga.")["read_string"])
+        self.assertIn("A B một hai ba bốn năm sáu", ir("Mã đơn hàng AB123456.")["read_string"])
+        # ngoài ngữ cảnh vận tải -> giữ hành vi cũ
+        self.assertIn("Việt Nam", ir("Công ty VN1234 tận dụng.")["read_string"])
 
 
 

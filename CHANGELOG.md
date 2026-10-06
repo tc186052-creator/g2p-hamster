@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## 0.2.5 — 2026-10-06
+
+Theo **bản 3 của đánh giá độc lập** (nhất quán đơn vị, mất nội dung HOA,
+cờ review bị nuốt, espeak ɚ, mã chuyến bay, dataset held-out kín):
+
+- **Nhất quán đơn vị/mã tiền sau số — đọc NGHĨA bất kể HOA/thường**:
+  `100 USD` → "một trăm đô la" (trước đây đánh vần "iu ét đi"),
+  `100 EUR` → "một trăm euro" (trước đây token thô "Eur" còn trong chuỗi),
+  `100 vnđ` → "một trăm đồng" (trước đây bị BỎ từ — mất nội dung),
+  `100 KM/H` → "ki lô mét một giờ", `500 ML`, `60 KG` — trước đây đánh
+  vần hoặc rụng. Ngoại lệ có chủ đích: **VNĐ HOA** giữ nguyên văn "V N Đ"
+  (quyết của chủ dự án) và chữ cái đơn (`4K` vs `4k`) giữ hành vi cũ.
+  Chính sách được KHAI BÁO trong README thay vì để người dùng đoán.
+- **Cờ review tầng 1 nổi lên kết quả v2**: `text_to_profile_v2_full`
+  trả thêm `t1_review` và ghi từng cờ vào `notes` — trước đây tầng 1
+  phát hiện bất thường (`oov`, `don_vi_d`…) nhưng v2 trả `notes=[]`.
+- **espeak-ng: thêm `ɚ` vào bảng IPA→ARPABET** — mọi từ OOV có âm /ɚ/
+  (rất phổ biến en-us, vd "kubernetes") trước đây rơi khỏi bảng → hết
+  bậc cứu; giờ phiên âm được qua espeak.
+- **Label trung thực khi phải đánh vần**: unit đánh vần vì hết bậc cứu
+  giờ ghi `source="spell"` + note, không còn mượn nhãn `source="core"`
+  (khiến lỗi vô hình khi audit).
+- **Mã ký hiệu vận tải đọc nhất quán**: `Chuyến bay VN123` → "vê ên một
+  hai ba" (từng chữ số, như mã ≥5 chữ số đã làm) trong ngữ cảnh
+  chuyến/tàu/mã/lô; ngoài ngữ cảnh giữ hành vi cũ.
+- **Dataset held-out công khai**: `listening_test/g2p_compare_100k/
+  dataset_heldout_2026.tsv.gz` (74.760 câu đã lọc trùng dev) nằm trong
+  repo — tuyên bố "0 rò rỉ trên 74.760" giờ kiểm chứng độc lập được,
+  không cần file cục bộ nữa.
+- **Frozen v3** (`frozen_meta.json`): thêm 3 level phủ lỗ hổng —
+  `caps_units`, `currency_codes`, `transport_codes` (30 câu mới); mọi
+  câu/gold v2 giữ nguyên từng ký tự. Ours 0,982 · sea 0,966 · donglao
+  0,906; công khai luôn category code-switch sea nhỉnh (0,955 vs 0,909).
+- Test cũ khẳng định hành vi LỆCH ("100 USD" → "iu ét đi") được cập nhật
+  theo chính sách mới.
+
 ## 0.2.4 — 2026-10-05
 
 - Giảm rụng ở best_effort (mục 4.3/đề xuất 7 của đánh giá độc lập):

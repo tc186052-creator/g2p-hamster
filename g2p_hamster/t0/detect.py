@@ -101,6 +101,10 @@ MONEY_UNIT_WORDS = {"usd", "eur", "vnd", "đồng", "đ", "bảng", "yên", "usd
 FOOTBALL = {"tỉ", "thắng", "thua", "bại", "hạ", "hoà", "hòa", "đánh bại", "win", "beat"}
 # fold() không gỡ được "đ" (U+0111) -> phải kèm cả biến thể "đau".
 # CỤM "dẫn trước"/"tỷ số" khớp dạng bigram trên chuỗi window — từ đơn "dẫn" va chạm "dân số"
+# ngữ cảnh mã ký hiệu (chuyến bay/tàu/lô) — code đọc chữ + từng chữ số
+CODE_CTX_FOLD = {"chuyen", "bay", "tau", "tuyen", "hieu", "ma", "lo", "hang",
+                 "ve", "serial", "khoa", "so hieu", "don hang", "sân bay",
+                 "san bay", "boarding", "pass", "gate"}
 FOOTBALL_FOLD = {"ti", "ty", "thang", "thua", "bai", "ha", "hoa", "dau", "đau",
                  "danh bai", "win", "beat"}
 FOOTBALL_BIGRAM = {"dan truoc", "đan truoc", "ti so", "ty so"}
@@ -229,6 +233,19 @@ def detect(spans_in, config):
         prev_low = low[i - 1] if i else ""
         next_low = low[i + 1] if i + 1 < n else ""
 
+        # mã ký hiệu vận tải "VN123", "VN987" (tokenizer tách thành chữ +
+        # số) — trong ngữ cảnh chuyến/tàu/mã: đánh vần chữ + TỪNG chữ số,
+        # không "Việt Nam một trăm hai mươi ba" (đối chiếu: mã ≥5 chữ số
+        # đã đọc từng chữ số — hai kiểu mã phải nhất quán)
+        if (re.fullmatch(r"[A-ZĐ]{2,3}", s) and i + 1 < n
+                and toks[i + 1]["cat"] == "raw"
+                and re.fullmatch(r"\d{1,6}", toks[i + 1]["surface"])):
+            win_code = {fold(w) for w in low[max(0, i - 3):i]}
+            if win_code & CODE_CTX_FOLD:
+                mark(i, "number", kind="code",
+                     groups=(s, toks[i + 1]["surface"]))
+                toks[i + 1]["cat"] = "skip"
+                continue
         # 2b) @handle ("@keantoan", "@quoc_minh") -> "a còng ..." / "at ..."
         # (email đã xử lý ở mục 1; đây là mention không có domain)
         if re.fullmatch(r"@([A-Za-z0-9_.]{2,30})", s):
@@ -462,8 +479,13 @@ def detect(spans_in, config):
             toks[i - 1]["cat"] = "skip"   # "50" bị nuốt, chỉ "s" đọc "fifties"
             mark(i, "number", kind="decade_suffix", groups=(toks[i - 1]["surface"],))
             continue
+        # đơn vị sau số: thường hay HOA đều là ĐƠN VỊ (đọc nghĩa) —
+        # "60 KG" trên hoá đơn phải như "60 kg", không đánh vần, không rụng.
+        # RIÊNG "VNĐ" HOA giữ đọc nguyên văn (chủ dự án chốt: viết VNĐ
+        # thì đọc VNĐ — "v n đ" là cách đọc gold của benchmark)
         if (low_ in dicts.units()
-                and (not t["surface"].isupper() or low_ in ("mbps", "°c"))
+                and (not t["surface"].isupper() or low_ in ("mbps", "°c")
+                     or (low_ != "vnđ" and len(low_) >= 2))
                 and i > 0 and toks[i - 1].get("cat") == "number"):
             mark(i, "unit", origin="neu", route="en" if sent == "en" else "vi")
             if low_ == "đ":

@@ -1,9 +1,9 @@
 {
-  "n": 1088,
-  "n_gold": 452,
-  "date": "2026-10-05 23:43 UTC",
+  "n": 1118,
+  "n_gold": 482,
+  "date": "2026-10-06 00:33 UTC",
   "provenance": {
-    "frozen_version": 2,
+    "frozen_version": 3,
     "sea_g2p": "0.10.0",
     "donglao_g2p": "1.0.0",
     "espeak_ng": "eSpeak NG text-to-speech: 1.51  Data at: /usr/lib/x86_64-linux-gnu/espeak-ng-data"
@@ -42,24 +42,24 @@
           "match_mean": 0.9983
         },
         "currency": {
-          "n": 122,
+          "n": 137,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 82,
-          "match_ge95": 73,
-          "match_mean": 0.9906
+          "match_n": 97,
+          "match_ge95": 85,
+          "match_mean": 0.9871
         },
         "units": {
-          "n": 81,
+          "n": 90,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 51,
-          "match_ge95": 39,
-          "match_mean": 0.9659
+          "match_n": 60,
+          "match_ge95": 48,
+          "match_mean": 0.971
         },
         "phone": {
           "n": 17,
@@ -91,14 +91,14 @@
           "match_mean": 0.9814
         },
         "code_switch": {
-          "n": 139,
+          "n": 145,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 21,
+          "match_n": 27,
           "match_ge95": 12,
-          "match_mean": 0.9454
+          "match_mean": 0.9087
         },
         "adversarial": {
           "n": 44,
@@ -108,7 +108,7 @@
           "empty": 0,
           "match_n": 22,
           "match_ge95": 17,
-          "match_mean": 0.9711
+          "match_mean": 0.9675
         },
         "foreign_names": {
           "n": 40,
@@ -139,14 +139,14 @@
         }
       },
       "total": {
-        "n": 1088,
+        "n": 1118,
         "leak": 0,
         "drop": 0,
         "error": 0,
         "empty": 0,
-        "match_n": 426,
-        "match_mean": 0.985,
-        "match_ge95": 375
+        "match_n": 456,
+        "match_mean": 0.9818,
+        "match_ge95": 396
       },
       "match_worst": [
         {
@@ -227,6 +227,13 @@
           "out": "cwiə↗n baj baːʈʂamnammɨəjʂa↗w xəː↓j haː↘ɲ lu↗k namʝəː↘bo↗nmɨəj tɨ↘ ʂən baj tən ʂəːn ɲə↗t."
         },
         {
+          "idx": 266,
+          "text": "Tỷ giá hôm nay: 1 USD = 25.450đ.",
+          "best_alt": "Tỷ giá hôm nay: một USD bằng hai mươi lăm nghìn bốn trăm năm mươi đồng.",
+          "sim": 0.8571,
+          "out": "ti↓ ʝaː↗ hom naj: moʔ↓t dolaː haːjmɨəjlamŋi↘nbo↗nʈʂamnammɨəj do↘ŋ."
+        },
+        {
           "idx": 283,
           "text": "Hôm qua, thiết bị hỗ trợ dung lượng 12 GB.",
           "best_alt": "Hôm qua, thiết bị hỗ trợ dung lượng mười hai gi ga bai.",
@@ -253,6 +260,62 @@
           "best_alt": "Hôm qua, băng tải chạy tối đa mười hai gi ga bai.",
           "sim": 0.8667,
           "out": "hom kwaː, baŋ taː↓j caʔ↓j to↗j daː mɨə↘jhaːj ɣəː↘bəː↘."
+        },
+        {
+          "idx": 473,
+          "text": "100 VNĐ tùy nơi bán.",
+          "best_alt": "một trăm v n đ tùy nơi bán.",
+          "sim": 0.8235,
+          "out": "moʔ↓tʈʂam vəː↘nəː↘dəː↘ twi↘ nəːj baː↗n."
+        },
+        {
+          "idx": 474,
+          "text": "Bảng giá ghi rõ 100 VNĐ.",
+          "best_alt": "Bảng giá ghi rõ một trăm v n đ.",
+          "sim": 0.8333,
+          "out": "baː↓ŋ ʝaː↗ ɣi ʒɔʔ↗ moʔ↓tʈʂam vəː↘nəː↘dəː↘."
+        },
+        {
+          "idx": 475,
+          "text": "Tôi trả đúng 100 VNĐ cho mỗi phần.",
+          "best_alt": "Tôi trả đúng một trăm v n đ cho mỗi phần.",
+          "sim": 0.8636,
+          "out": "toj ʈʂaː↓ du↗ŋ moʔ↓tʈʂam vəː↘nəː↘dəː↘ cɔ moʔ↗j fə↘n."
+        },
+        {
+          "idx": 476,
+          "text": "VN123 tùy nơi bán.",
+          "best_alt": "V N một hai ba tùy nơi bán.",
+          "sim": 0.6512,
+          "out": "viəʔ↓tnaːm moʔ↓tʈʂamhaːjmɨəjbaː twi↘ nəːj baː↗n."
+        },
+        {
+          "idx": 477,
+          "text": "Bảng giá ghi rõ VN123.",
+          "best_alt": "Bảng giá ghi rõ V N một hai ba.",
+          "sim": 0.6667,
+          "out": "baː↓ŋ ʝaː↗ ɣi ʒɔʔ↗ viəʔ↓tnaːm moʔ↓tʈʂamhaːjmɨəjbaː."
+        },
+        {
+          "idx": 478,
+          "text": "Tôi trả đúng VN123 cho mỗi phần.",
+          "best_alt": "Tôi trả đúng V N một hai ba cho mỗi phần.",
+          "sim": 0.717,
+          "out": "toj ʈʂaː↓ du↗ŋ viəʔ↓tnaːm moʔ↓tʈʂamhaːjmɨəjbaː cɔ moʔ↗j fə↘n."
+        },
+        {
+          "idx": 479,
+          "text": "SE8 tùy nơi bán.",
+          "best_alt": "S E tám tùy nơi bán.",
+          "sim": 0.8636,
+          "out": "ɛ↗ti taː↗m twi↘ nəːj baː↗n."
+        },
+        {
+          "idx": 480,
+          "text": "Bảng giá ghi rõ SE8.",
+          "best_alt": "Bảng giá ghi rõ S E tám.",
+          "sim": 0.875,
+          "out": "baː↓ŋ ʝaː↗ ɣi ʒɔʔ↗ ɛ↗ti taː↗m."
         }
       ]
     },
@@ -289,24 +352,24 @@
           "match_mean": 0.9981
         },
         "currency": {
-          "n": 122,
+          "n": 137,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 82,
-          "match_ge95": 73,
-          "match_mean": 0.9851
+          "match_n": 97,
+          "match_ge95": 76,
+          "match_mean": 0.9591
         },
         "units": {
-          "n": 81,
+          "n": 90,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 51,
-          "match_ge95": 33,
-          "match_mean": 0.9637
+          "match_n": 60,
+          "match_ge95": 37,
+          "match_mean": 0.9589
         },
         "phone": {
           "n": 17,
@@ -338,14 +401,14 @@
           "match_mean": 0.9728
         },
         "code_switch": {
-          "n": 139,
+          "n": 145,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 21,
-          "match_ge95": 9,
-          "match_mean": 0.9421
+          "match_n": 27,
+          "match_ge95": 15,
+          "match_mean": 0.9549
         },
         "adversarial": {
           "n": 44,
@@ -386,14 +449,14 @@
         }
       },
       "total": {
-        "n": 1088,
+        "n": 1118,
         "leak": 0,
         "drop": 0,
         "error": 0,
         "empty": 0,
-        "match_n": 426,
-        "match_mean": 0.9716,
-        "match_ge95": 302
+        "match_n": 456,
+        "match_mean": 0.9661,
+        "match_ge95": 315
       },
       "match_worst": [
         {
@@ -606,24 +669,24 @@
           "match_mean": 0.9902
         },
         "currency": {
-          "n": 122,
+          "n": 137,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 82,
+          "match_n": 97,
           "match_ge95": 68,
-          "match_mean": 0.9652
+          "match_mean": 0.9526
         },
         "units": {
-          "n": 81,
+          "n": 90,
           "leak": 0,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 51,
-          "match_ge95": 40,
-          "match_mean": 0.9691
+          "match_n": 60,
+          "match_ge95": 43,
+          "match_mean": 0.9582
         },
         "phone": {
           "n": 17,
@@ -655,14 +718,14 @@
           "match_mean": 0.7915
         },
         "code_switch": {
-          "n": 139,
+          "n": 145,
           "leak": 0,
           "drop": 6,
           "error": 0,
           "empty": 0,
-          "match_n": 21,
-          "match_ge95": 7,
-          "match_mean": 0.8773
+          "match_n": 27,
+          "match_ge95": 8,
+          "match_mean": 0.8862
         },
         "adversarial": {
           "n": 44,
@@ -703,14 +766,14 @@
         }
       },
       "total": {
-        "n": 1088,
+        "n": 1118,
         "leak": 0,
         "drop": 103,
         "error": 0,
         "empty": 0,
-        "match_n": 426,
-        "match_mean": 0.9066,
-        "match_ge95": 236
+        "match_n": 456,
+        "match_mean": 0.9057,
+        "match_ge95": 240
       },
       "match_worst": [
         {
@@ -923,24 +986,24 @@
           "match_mean": 0.6179
         },
         "currency": {
-          "n": 122,
-          "leak": 122,
+          "n": 137,
+          "leak": 137,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 82,
+          "match_n": 97,
           "match_ge95": 0,
-          "match_mean": 0.6926
+          "match_mean": 0.6794
         },
         "units": {
-          "n": 81,
-          "leak": 81,
+          "n": 90,
+          "leak": 90,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 51,
+          "match_n": 60,
           "match_ge95": 0,
-          "match_mean": 0.7578
+          "match_mean": 0.7254
         },
         "phone": {
           "n": 17,
@@ -972,14 +1035,14 @@
           "match_mean": 0.7548
         },
         "code_switch": {
-          "n": 139,
-          "leak": 63,
+          "n": 145,
+          "leak": 69,
           "drop": 0,
           "error": 0,
           "empty": 0,
-          "match_n": 21,
+          "match_n": 27,
           "match_ge95": 0,
-          "match_mean": 0.6284
+          "match_mean": 0.6279
         },
         "adversarial": {
           "n": 44,
@@ -1020,13 +1083,13 @@
         }
       },
       "total": {
-        "n": 1088,
-        "leak": 798,
+        "n": 1118,
+        "leak": 828,
         "drop": 0,
         "error": 0,
         "empty": 0,
-        "match_n": 426,
-        "match_mean": 0.6611,
+        "match_n": 456,
+        "match_mean": 0.6565,
         "match_ge95": 0
       },
       "match_worst": [
