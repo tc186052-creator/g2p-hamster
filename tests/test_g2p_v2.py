@@ -523,5 +523,23 @@ class TestBaoCaoTrungThuc(unittest.TestCase):
 
 
 
+class TestAPIDefault026(unittest.TestCase):
+    """0.2.6: text_to_profile là V2 — chấm dứt footgun v1-mặc-dịnh mà
+    cả hai đợt đánh giá độc lập đều bắt (chưa có người dùng nên đổi thẳng)."""
+
+    def test_text_to_profile_la_v2_3_phan_tu(self):
+        import g2p_hamster
+        r = g2p_hamster.text_to_profile("Xin chào, hôm nay trời đẹp quá!")
+        self.assertEqual(len(r), 3)          # (profile, errs, notes) — của v2
+        self.assertTrue(r[0])
+
+    def test_v1_co_ten_tuong_minh(self):
+        import g2p_hamster
+        p, errs = g2p_hamster.text_to_profile_v1("Xin chào!")
+        self.assertTrue(p)
+        self.assertEqual(len(g2p_hamster.text_to_profile_v1("Xin chào!")), 2)
+
+
+
 if __name__ == "__main__":
     unittest.main()

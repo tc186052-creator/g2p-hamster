@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.2.6 — 2026-10-06
+
+**BREAKING** (chưa có người dùng package nên đổi thẳng theo chuẩn dự án
+chuyên nghiệp, không cần shim tương thích):
+
+- `text_to_profile` giờ là **V2** — trả `(profile, errs, notes)`, cứu
+  tối đa, không bao giờ bỏ câu. Chấm dứt footgun mà cả hai đợt đánh giá
+  độc lập đều bắt: tên "mặc định" trỏ vào bản v1 fail-closed rụng
+  email/SĐT.
+- Bản v1 đổi tên tường minh: `text_to_profile_v1` (nguyên `(profile,
+  errs)`). CLI `--v1` giữ nguyên hành vi.
+- README tách phần benchmark chi tiết (300 câu / 100k dev / held-out /
+  frozen) sang `docs/BENCHMARK.md` — README gọn còn 37 KB, giữ bảng
+  "Kết quả trong 30 giây" + chính sách đọc + cài đặt.
+
 ## 0.2.5 — 2026-10-06
 
 Theo **bản 3 của đánh giá độc lập** (nhất quán đơn vị, mất nội dung HOA,

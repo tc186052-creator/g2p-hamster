@@ -13,21 +13,27 @@ try:
     from importlib.metadata import version as _v
     __version__ = _v("g2p-hamster")
 except Exception:
-    __version__ = "0.2.5"
+    __version__ = "0.2.6"
 
-__all__ = ["text_to_profile", "text_to_profile_v2", "text_to_profile_v2_full",
-           "v2_provenance", "v2_policy_hash", "__version__"]
+__all__ = ["text_to_profile", "text_to_profile_v1", "text_to_profile_v2",
+           "text_to_profile_v2_full", "v2_provenance", "v2_policy_hash",
+           "__version__"]
 
 
 def __getattr__(name):
-    # nạp lười: import g2p_hamster thì chưa tải từ điển; gọi hàm mới tải
+    # nạp lười: import g2p_hamster thì chưa tải từ điển; gọi hàm mới tải.
+    # 0.2.6: text_to_profile là V2 (khuyên dùng) — chấm dứt footgun mà
+    # cả hai đợt đánh giá độc lập đều bắt: tên "mặc định" trỏ vào bản v1
+    # fail-closed rụng email/SĐT. Bản v1 đổi tên tường minh
+    # text_to_profile_v1 (chưa ai dùng package nên đổi không vỡ ai).
     if name in __all__:
-        if name == "text_to_profile":
-            from .g2p_v1 import text_to_profile
-            return text_to_profile
+        if name == "text_to_profile_v1":
+            from .g2p_v1 import text_to_profile as _v1
+            return _v1
         from .g2p_v2 import (v2_policy_hash, v2_provenance,
                              text_to_profile_v2, text_to_profile_v2_full)
-        return {"text_to_profile_v2": text_to_profile_v2,
+        return {"text_to_profile": text_to_profile_v2,
+                "text_to_profile_v2": text_to_profile_v2,
                 "text_to_profile_v2_full": text_to_profile_v2_full,
                 "v2_policy_hash": v2_policy_hash,
                 "v2_provenance": v2_provenance}[name]
