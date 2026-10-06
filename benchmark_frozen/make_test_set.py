@@ -359,14 +359,23 @@ add("code_switch", "L5",
     ["CPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai "
      "và API latency là bốn ba mi li giây.",
      "CPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai "
-     "gi ga bai và API latency là bốn mươi ba mi li giây."],
+     "gi ga bai và API latency là bốn mươi ba mi li giây.",
+     # v4: tên chữ cái Việt ("gơ bê") + đơn vị rút gọn ("mi giây") cũng là
+     # cách đọc hợp lệ — scorer lấy max nên thêm alt không trừ điểm hệ nào
+     "CPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gơ bê "
+     "và API latency là bốn ba mi giây.",
+     "CPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai "
+     "gơ bê và API latency là bốn mươi ba mi giây."],
     ["CPU", "GPU", "API"])
 add("code_switch", "L5",
     "Model đạt accuracy 97,8% trên tập test 10.000 câu.",
     ["Model đạt accuracy chín bảy phẩy tám phần trăm trên tập test "
      "mười nghìn câu.",
      "Model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test "
-     "một vạn câu."],
+     "một vạn câu.",
+     # v4: trong câu nhiều từ Anh, đọc số kiểu Anh cũng là cách đọc hợp lệ
+     "Model đạt accuracy ninety-seven point eight phần trăm trên tập "
+     "test mười nghìn câu."],
     ["Model", "accuracy", "test"])
 add("code_switch", "L5",
     "Tốc độ upload chỉ đạt 25 Mbps trong khi gói quảng cáo là 300 Mbps.",
@@ -419,6 +428,16 @@ family("code_switch", "L5",
        {"2,5%": ["hai phẩy năm phần trăm"], "48%": ["bốn mươi tám phần trăm"]},
        fixup=lambda t: t.replace("8 GB", "tám gi bai"),
        spans=["Server", "CPU", "GB", "RAM"])
+
+# v4: thêm cách đọc thay thế cho tên chữ cái viết tắt trong các câu còn lại
+# của level L5 ("GB" đọc "gơ bê" — tên chữ cái Việt — cạnh "gi bai" kiểu
+# mượn). Chỉ THÊM alt, không sửa alt cũ; scorer lấy max nên không hệ nào
+# bị trừ điểm. Các bản nhân bản phía dưới tự mang theo alt mới.
+for _r in ROWS:
+    if "8 GB RAM" in _r["text"] and _r["gold_readings"]:
+        _r["gold_readings"] += [
+            g.replace("gi ga bai", "gơ bê").replace("gi bai", "gơ bê")
+            for g in list(_r["gold_readings"])]
 
 # ---- adversarial ----
 ADV = [
@@ -507,8 +526,8 @@ CUR_CODE_V = [("100 USD", ["một trăm đô la"]),
               ("100 usd", ["một trăm đô la"]),
               ("100 vnđ", ["một trăm đồng"]),
               ("100 VNĐ", ["một trăm v n đ", "một trăm đồng"])]
-CODE_V = [("VN123", ["V N một hai ba"]),
-          ("SE8", ["S E tám"])]
+CODE_V = [("VN123", ["V N một hai ba", "Việt Nam một trăm hai mươi ba"]),
+          ("SE8", ["S E tám", "ét i tám"])]
 for _lv, _vs in (("caps_units", CAPS_UNIT_V), ("currency_codes", CUR_CODE_V),
                  ("transport_codes", CODE_V)):
     _cat = "units" if _lv == "caps_units" else "currency" if _lv == "currency_codes" else "code_switch"
@@ -517,6 +536,22 @@ for _lv, _vs in (("caps_units", CAPS_UNIT_V), ("currency_codes", CUR_CODE_V),
             "Bảng giá ghi rõ {}.",
             "Tôi trả đúng {} cho mỗi phần."],
            [v for v, _ in _vs], {v: w for v, w in _vs})
+
+# v4: mã vận tải CÓ ngữ cảnh — khi đứng sau "chuyến bay/tàu/mã", cách đọc
+# hợp lệ duy nhất là vần chữ + từng chữ số (giữ 2 chiều của policy
+# context-gated: ngoài ngữ cảnh "VN123" đọc "Việt Nam 123" vẫn đúng, trong
+# ngữ cảnh thì chỉ được đọc mã).
+CODE_CTX_V = [("VN123", ["V N một hai ba"]),
+              ("VN987", ["V N chín tám bảy"]),
+              ("SE8", ["S E tám"])]
+family("code_switch", "transport_codes_ctx",
+       ["Chuyến bay {} hạ cánh đúng giờ.",
+        "Tàu {} vào ga số 4.",
+        "Mã đặt chỗ của tôi là {}."],
+       [v for v, _ in CODE_CTX_V], {v: w for v, w in CODE_CTX_V},
+       gold_templates=["Chuyến bay {} hạ cánh đúng giờ.",
+                       "Tàu {} vào ga số bốn.",
+                       "Mã đặt chỗ của tôi là {}."])
 
 
 SYN = list(ROWS)
@@ -610,10 +645,24 @@ with open(HERE / "gold.jsonl", "w", encoding="utf-8") as f:
 
 # Frozen versioning: sửa test set = bắt buộc bump version + ghi lý do.
 FROZEN_META = {
-    "frozen_version": 3,
+    "frozen_version": 4,
     "seed": 20261005,
-    "date": "2026-10-05",
+    "date": "2026-10-06",
     "changes": [
+        {"from": 3, "to": 4,
+         "reason": "vá gold bất công ở nhóm code-switch (không đổi câu cũ):"
+                   " (1) transport_codes — 6 câu template KHÔNG có ngữ cảnh"
+                   " vận tải ('VN123 tùy nơi bán.') nhưng gold chỉ nhận đọc"
+                   " mã; giờ thêm alt 'Việt Nam một trăm hai mươi ba' /"
+                   " 'ét i tám' — hai cách đọc đều hợp lệ khi thiếu ngữ"
+                   " cảnh. (2) thêm 9 câu transport_codes_ctx CÓ ngữ cảnh"
+                   " ('Chuyến bay VN123…') chỉ chấp nhận đọc mã — kiểm"
+                   " benchmark 2 chiều của policy context-gated. (3) L5 —"
+                   " thêm cách đọc thay"
+                   " thế hợp lệ: số kiểu Anh ('ninety-seven point eight'),"
+                   " tên chữ cái Việt ('gơ bê'), đơn vị rút gọn ('mi"
+                   " giây'). Scorer lấy max trên alt nên thêm alt không"
+                   " trừ điểm hệ nào; câu/gold cũ khác GIỮ NGUYÊN."},
         {"from": 2, "to": 3,
          "reason": "thêm 3 level phủ lỗ hổng bản 3 của đánh giá độc lập:"
                    " units/caps_units (60 KG, 500 ML, 100 KM/H),"

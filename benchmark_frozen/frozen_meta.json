@@ -1,8 +1,13 @@
 {
-  "frozen_version": 3,
+  "frozen_version": 4,
   "seed": 20261005,
-  "date": "2026-10-05",
+  "date": "2026-10-06",
   "changes": [
+    {
+      "from": 3,
+      "to": 4,
+      "reason": "vá gold bất công ở nhóm code-switch (không đổi câu cũ): (1) transport_codes — 6 câu template KHÔNG có ngữ cảnh vận tải ('VN123 tùy nơi bán.') nhưng gold chỉ nhận đọc mã; giờ thêm alt 'Việt Nam một trăm hai mươi ba' / 'ét i tám' — hai cách đọc đều hợp lệ khi thiếu ngữ cảnh. (2) thêm 9 câu transport_codes_ctx CÓ ngữ cảnh ('Chuyến bay VN123…') chỉ chấp nhận đọc mã — kiểm benchmark 2 chiều của policy context-gated. (3) L5 — thêm cách đọc thay thế hợp lệ: số kiểu Anh ('ninety-seven point eight'), tên chữ cái Việt ('gơ bê'), đơn vị rút gọn ('mi giây'). Scorer lấy max trên alt nên thêm alt không trừ điểm hệ nào; câu/gold cũ khác GIỮ NGUYÊN."
+    },
     {
       "from": 2,
       "to": 3,

@@ -49,13 +49,13 @@ text thô ──▶ t0: clean/tokenize/detect/verbalize/route vi-en ──▶ IR
 ## Kết quả trong 30 giây — 3 hệ cuối cùng, một bảng
 
 Chỉ còn 3 hệ đạt "0 rò rỉ số + 0 lỗi" ở mọi bài test dữ liệu thật
-(300 câu · 99.999 câu dev · 74.760 câu held-out · 1.118 câu frozen).
+(300 câu · 99.999 câu dev · 74.760 câu held-out · 1.127 câu frozen).
 Bảng dưới chốt tất cả số liệu của README — mỗi ô có bài test gốc để
 tự audit:
 
 | Tiêu chí | **g2p-hamster** | sea_g2p¹ | donglao_g2p |
 |---|---|---|---|
-| **Khớp-đọc-gold** (frozen v3, 456 gold viết a-priori) | **0,982** | 0,966 | 0,906 |
+| **Khớp-đọc-gold** (frozen v4, 465 gold viết a-priori) | **0,988** | 0,967 | 0,907 |
 | Rò rỉ số — 99.999 câu dev | **0** | 1 câu (tên tàu) | **0** |
 | Rò rỉ số — 74.760 câu held-out | **0** | **0** | **0** |
 | Rơi âm thầm ở mẫu giờ `13h00` (held-out) | **0 / 239** | 0 / 239 | **92 / 239 — số biến mất khỏi đầu ra** |
@@ -76,7 +76,9 @@ chính công khai ([CHANGELOG](CHANGELOG.md)).
   cần chuẩn hoá tốt + nhanh hơn chúng ta ~20 lần — dùng
   [sea_g2p](https://pypi.org/project/sea-g2p/). Đó là lựa chọn hợp lý,
   không phải chê.
-- **Chúng ta thắng ở chỗ khác**: khớp-đọc-gold cao nhất mọi category,
+- **Chúng ta thắng ở chỗ khác**: khớp-đọc-gold cao nhất MỌI category
+  (kể cả code-switch: 0,985 vs 0,966 của sea — frozen v4, gold công bằng
+  cho cả hai chiều đọc),
   **0 rơi âm thầm**, coverage/strict/provenance từng từ (an toàn khi
   prep dữ liệu train TTS), đọc đúng tiền lớn. 141 câu/s = dưới 1% một
   nhân CPU — vẫn dư real-time.
@@ -98,7 +100,7 @@ tiền tệ đứng sau số đọc **NGHĨA** bất kể chữ hoa/thường �
 [Demo nghe thử](#demo--nghe-thử-400-clip--toàn-bộ-số-liệu) · [Cài đặt](#cài-đặt--sử-dụng) ·
 [Kết quả đối chứng](#kết-quả-đối-chứng) ·
 **Bằng chứng chi tiết:** [docs/BENCHMARK.md](docs/BENCHMARK.md) — 300 câu 7 hệ ·
-100k dev · held-out 74.760 · frozen v3 gold (nguyên văn output + script tái lập)
+100k dev · held-out 74.760 · frozen v4 gold (nguyên văn output + script tái lập)
 
 ## Cấu trúc
 
@@ -496,7 +498,7 @@ python3 -m g2p_hamster.so_sanh --input van_ban.txt --procs 22
 
 ## Kết quả đối chứng
 
-Tổng **815 case test, 0 fail** (0.2.7 — thêm test đơn vị HOA, mã tiền,
+Tổng **815 case test, 0 fail** (0.2.8 — thêm test đơn vị HOA, mã tiền,
 mã chuyến bay, t1_review, label spell, API mặc định v2, và 5 test định
 tuyến code-switch từ bộ test độc lập). Bảng đầy đủ, kèm các benchmark dữ liệu thật phía trên:
 
@@ -511,7 +513,7 @@ tuyến code-switch từ bộ test độc lập). Bảng đầy đủ, kèm các
 | scope_policy mutation probes | 16 PASS, 0 FAIL |
 | cmu_en fase C | 47 PASS, 0 FAIL |
 | tone/coda mapper kokoro178 | 74 PASS, 0 FAIL |
-| Benchmark frozen v3 — 1.118 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,982** khớp-đọc-gold |
+| Benchmark frozen v4 — 1.127 câu, gold viết a-priori | ours 0 leak / 0 drop / **0,988** khớp-đọc-gold (thắng mọi category, kể cả code-switch) |
 | Bài test 100k dev + 74.760 câu held-out | 0 leak / 0 drop (nguyên văn output trong repo) |
 | Kiểm chứng STT ngược 400 clip (`verify_roundtrip.py`) | ĐẠT — mọi điểm công bố tái lập được |
 

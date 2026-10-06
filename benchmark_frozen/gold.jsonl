@@ -243,8 +243,8 @@
 {"idx": 242, "category": "code_switch", "gold_readings": [], "en_spans": ["meeting", "office"]}
 {"idx": 243, "category": "code_switch", "gold_readings": [], "en_spans": ["job", "maternity leave"]}
 {"idx": 244, "category": "code_switch", "gold_readings": [], "en_spans": ["penalty"]}
-{"idx": 245, "category": "code_switch", "gold_readings": ["CPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai và API latency là bốn ba mi li giây.", "CPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gi ga bai và API latency là bốn mươi ba mi li giây."], "en_spans": ["CPU", "GPU", "API"]}
-{"idx": 246, "category": "code_switch", "gold_readings": ["Model đạt accuracy chín bảy phẩy tám phần trăm trên tập test mười nghìn câu.", "Model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test một vạn câu."], "en_spans": ["Model", "accuracy", "test"]}
+{"idx": 245, "category": "code_switch", "gold_readings": ["CPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai và API latency là bốn ba mi li giây.", "CPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gi ga bai và API latency là bốn mươi ba mi li giây.", "CPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gơ bê và API latency là bốn ba mi giây.", "CPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gơ bê và API latency là bốn mươi ba mi giây."], "en_spans": ["CPU", "GPU", "API"]}
+{"idx": 246, "category": "code_switch", "gold_readings": ["Model đạt accuracy chín bảy phẩy tám phần trăm trên tập test mười nghìn câu.", "Model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test một vạn câu.", "Model đạt accuracy ninety-seven point eight phần trăm trên tập test mười nghìn câu."], "en_spans": ["Model", "accuracy", "test"]}
 {"idx": 247, "category": "code_switch", "gold_readings": ["Tốc độ upload chỉ đạt hai lăm em e p e s trong khi gói quảng cáo là ba trăm em e p e s.", "Tốc độ upload chỉ đạt hai mươi lăm megabit một giây trong khi gói quảng cáo là ba trăm megabit một giây."], "en_spans": ["upload", "Mbps"]}
 {"idx": 248, "category": "code_switch", "gold_readings": [], "en_spans": ["OpenAI", "GPT", "API", "H100"]}
 {"idx": 249, "category": "code_switch", "gold_readings": [], "en_spans": ["deploy", "AWS"]}
@@ -257,8 +257,8 @@
 {"idx": 256, "category": "code_switch", "gold_readings": ["Tôi hẹn call với team lúc hai mươi giờ để review sprint này.", "Tôi hẹn call với team lúc hai mươi giờ không để review sprint này."], "en_spans": ["call", "team", "review", "sprint"]}
 {"idx": 257, "category": "code_switch", "gold_readings": ["Sprint review và planning sẽ diễn ra ngày ngày mười hai tháng ba năm hai nghìn không trăm lẻ hai mươi sáu.", "Sprint review và planning sẽ diễn ra ngày mười hai tháng ba năm hai nghìn không trăm lẻ hai mươi sáu."], "en_spans": ["Sprint", "review", "planning"]}
 {"idx": 258, "category": "code_switch", "gold_readings": ["Sprint review và planning sẽ diễn ra ngày ngày bảy tháng mười hai năm hai nghìn không trăm lẻ hai mươi bảy.", "Sprint review và planning sẽ diễn ra ngày bảy tháng mười hai năm hai nghìn không trăm lẻ hai mươi bảy."], "en_spans": ["Sprint", "review", "planning"]}
-{"idx": 259, "category": "code_switch", "gold_readings": ["Server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gi bai RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
-{"idx": 260, "category": "code_switch", "gold_readings": ["Server hiện tại chạy ổn định ở mức bốn mươi tám phần trăm CPU với tám gi bai RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
+{"idx": 259, "category": "code_switch", "gold_readings": ["Server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gi bai RAM.", "Server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gơ bê RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
+{"idx": 260, "category": "code_switch", "gold_readings": ["Server hiện tại chạy ổn định ở mức bốn mươi tám phần trăm CPU với tám gi bai RAM.", "Server hiện tại chạy ổn định ở mức bốn mươi tám phần trăm CPU với tám gơ bê RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
 {"idx": 261, "category": "adversarial", "gold_readings": ["Phiên bản v hai chấm một chấm không beta đã được triển khai lên máy chủ nội bộ.", "Phiên bản v hai phẩy một phẩy không beta đã được triển khai lên máy chủ nội bộ."], "en_spans": []}
 {"idx": 262, "category": "adversarial", "gold_readings": ["Chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất.", "Chuyến bay v n ê a ba lăm sáu khởi hành lúc năm giờ bốn mươi từ sân bay Tân Sơn Nhất."], "en_spans": []}
 {"idx": 263, "category": "adversarial", "gold_readings": ["Cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ tất cả các ngày trong tuần.", "Cửa hàng mở cửa từ bảy giờ đến hai mươi hai giờ không tất cả các ngày trong tuần."], "en_spans": []}
@@ -275,10 +275,10 @@
 {"idx": 274, "category": "adversarial", "gold_readings": [], "en_spans": []}
 {"idx": 275, "category": "adversarial", "gold_readings": ["Bệnh nhân bốn mươi lăm tuổi, số điện thoại không chín một hai ba bốn năm sáu bảy tám, khám lúc chín giờ mười lăm."], "en_spans": []}
 {"idx": 276, "category": "date", "gold_readings": ["Anh cho biết: chương trình bế mạc vào lúc mười một giờ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu.", "Anh cho biết: chương trình bế mạc vào lúc mười một giờ ngày ba mươi mốt tháng năm năm một nghìn chín trăm bốn mươi sáu."], "en_spans": []}
-{"idx": 277, "category": "code_switch", "gold_readings": ["Riêng trong tháng này, cPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai và API latency là bốn ba mi li giây.", "Riêng trong tháng này, cPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gi ga bai và API latency là bốn mươi ba mi li giây."], "en_spans": ["CPU", "GPU", "API"]}
+{"idx": 277, "category": "code_switch", "gold_readings": ["Riêng trong tháng này, cPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gi bai và API latency là bốn ba mi li giây.", "Riêng trong tháng này, cPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gi ga bai và API latency là bốn mươi ba mi li giây.", "Riêng trong tháng này, cPU load lên tám lăm phần trăm, GPU memory khoảng mười hai gơ bê và API latency là bốn ba mi giây.", "Riêng trong tháng này, cPU load lên tám mươi lăm phần trăm, GPU memory khoảng mười hai gơ bê và API latency là bốn mươi ba mi giây."], "en_spans": ["CPU", "GPU", "API"]}
 {"idx": 278, "category": "percent", "gold_readings": ["Theo đề án, doanh thu quý này tăng bốn mươi lăm phẩy hai mươi lăm phần trăm so với cùng kỳ.", "Theo đề án, doanh thu quý này tăng bốn mươi lăm phẩy hai lăm phần trăm so với cùng kỳ."], "en_spans": []}
 {"idx": 279, "category": "time", "gold_readings": ["Theo đề án, sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn.", "Theo đề án, sự kiện khai mạc lúc mười sáu giờ ba mươi tại Nhà hát Lớn."], "en_spans": []}
-{"idx": 280, "category": "code_switch", "gold_readings": ["Theo thông báo mới, server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gi bai RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
+{"idx": 280, "category": "code_switch", "gold_readings": ["Theo thông báo mới, server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gi bai RAM.", "Theo thông báo mới, server hiện tại chạy ổn định ở mức hai phẩy năm phần trăm CPU với tám gơ bê RAM."], "en_spans": ["Server", "CPU", "GB", "RAM"]}
 {"idx": 281, "category": "units", "gold_readings": ["Theo đề án, quãng đường còn lại khoảng ba mươi bảy độ xê.", "Theo đề án, quãng đường còn lại khoảng ba mươi bảy độ."], "en_spans": []}
 {"idx": 282, "category": "time", "gold_readings": ["Theo thông báo mới, chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia.", "Theo thông báo mới, chương trình phát sóng lúc bảy giờ mười lăm trên kênh truyền hình quốc gia."], "en_spans": []}
 {"idx": 283, "category": "units", "gold_readings": ["Hôm qua, thiết bị hỗ trợ dung lượng mười hai gi bai.", "Hôm qua, thiết bị hỗ trợ dung lượng mười hai gi ga bai."], "en_spans": []}
@@ -366,7 +366,7 @@
 {"idx": 365, "category": "currency", "gold_readings": ["Anh cho biết: tổng ngân sách dự kiến cho dự án là một phẩy năm tỷ.", "Anh cho biết: tổng ngân sách dự kiến cho dự án là một phẩy năm tỉ."], "en_spans": []}
 {"idx": 366, "category": "date", "gold_readings": ["Hôm qua, chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư.", "Hôm qua, chương trình bế mạc vào lúc mười một giờ ngày hai mươi tám tháng hai năm hai nghìn không trăm lẻ hai mươi tư."], "en_spans": []}
 {"idx": 367, "category": "currency", "gold_readings": ["Riêng trong tháng này, tổng ngân sách dự kiến cho dự án là hai trăm năm mươi nghìn đồng."], "en_spans": []}
-{"idx": 368, "category": "code_switch", "gold_readings": ["Hôm qua, model đạt accuracy chín bảy phẩy tám phần trăm trên tập test mười nghìn câu.", "Hôm qua, model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test một vạn câu."], "en_spans": ["Model", "accuracy", "test"]}
+{"idx": 368, "category": "code_switch", "gold_readings": ["Hôm qua, model đạt accuracy chín bảy phẩy tám phần trăm trên tập test mười nghìn câu.", "Hôm qua, model đạt accuracy chín mươi bảy phẩy tám phần trăm trên tập test một vạn câu.", "Hôm qua, model đạt accuracy ninety-seven point eight phần trăm trên tập test mười nghìn câu."], "en_spans": ["Model", "accuracy", "test"]}
 {"idx": 369, "category": "currency", "gold_readings": ["Hôm qua, gói cước này có giá một phẩy năm tỷ mỗi tháng.", "Hôm qua, gói cước này có giá một phẩy năm tỉ mỗi tháng."], "en_spans": []}
 {"idx": 370, "category": "phone", "gold_readings": ["Theo đề án, số điện thoại đặt vé: một tám không không sáu chín sáu ba."], "en_spans": []}
 {"idx": 371, "category": "percent", "gold_readings": ["Theo đề án, khoảng mười hai phần trăm người dùng chọn gói trả phí."], "en_spans": []}
@@ -474,9 +474,18 @@
 {"idx": 473, "category": "currency", "gold_readings": ["một trăm v n đ tùy nơi bán.", "một trăm đồng tùy nơi bán."], "en_spans": []}
 {"idx": 474, "category": "currency", "gold_readings": ["Bảng giá ghi rõ một trăm v n đ.", "Bảng giá ghi rõ một trăm đồng."], "en_spans": []}
 {"idx": 475, "category": "currency", "gold_readings": ["Tôi trả đúng một trăm v n đ cho mỗi phần.", "Tôi trả đúng một trăm đồng cho mỗi phần."], "en_spans": []}
-{"idx": 476, "category": "code_switch", "gold_readings": ["V N một hai ba tùy nơi bán."], "en_spans": []}
-{"idx": 477, "category": "code_switch", "gold_readings": ["Bảng giá ghi rõ V N một hai ba."], "en_spans": []}
-{"idx": 478, "category": "code_switch", "gold_readings": ["Tôi trả đúng V N một hai ba cho mỗi phần."], "en_spans": []}
-{"idx": 479, "category": "code_switch", "gold_readings": ["S E tám tùy nơi bán."], "en_spans": []}
-{"idx": 480, "category": "code_switch", "gold_readings": ["Bảng giá ghi rõ S E tám."], "en_spans": []}
-{"idx": 481, "category": "code_switch", "gold_readings": ["Tôi trả đúng S E tám cho mỗi phần."], "en_spans": []}
+{"idx": 476, "category": "code_switch", "gold_readings": ["V N một hai ba tùy nơi bán.", "Việt Nam một trăm hai mươi ba tùy nơi bán."], "en_spans": []}
+{"idx": 477, "category": "code_switch", "gold_readings": ["Bảng giá ghi rõ V N một hai ba.", "Bảng giá ghi rõ Việt Nam một trăm hai mươi ba."], "en_spans": []}
+{"idx": 478, "category": "code_switch", "gold_readings": ["Tôi trả đúng V N một hai ba cho mỗi phần.", "Tôi trả đúng Việt Nam một trăm hai mươi ba cho mỗi phần."], "en_spans": []}
+{"idx": 479, "category": "code_switch", "gold_readings": ["S E tám tùy nơi bán.", "ét i tám tùy nơi bán."], "en_spans": []}
+{"idx": 480, "category": "code_switch", "gold_readings": ["Bảng giá ghi rõ S E tám.", "Bảng giá ghi rõ ét i tám."], "en_spans": []}
+{"idx": 481, "category": "code_switch", "gold_readings": ["Tôi trả đúng S E tám cho mỗi phần.", "Tôi trả đúng ét i tám cho mỗi phần."], "en_spans": []}
+{"idx": 482, "category": "code_switch", "gold_readings": ["Chuyến bay V N một hai ba hạ cánh đúng giờ."], "en_spans": []}
+{"idx": 483, "category": "code_switch", "gold_readings": ["Tàu V N một hai ba vào ga số bốn."], "en_spans": []}
+{"idx": 484, "category": "code_switch", "gold_readings": ["Mã đặt chỗ của tôi là V N một hai ba."], "en_spans": []}
+{"idx": 485, "category": "code_switch", "gold_readings": ["Chuyến bay V N chín tám bảy hạ cánh đúng giờ."], "en_spans": []}
+{"idx": 486, "category": "code_switch", "gold_readings": ["Tàu V N chín tám bảy vào ga số bốn."], "en_spans": []}
+{"idx": 487, "category": "code_switch", "gold_readings": ["Mã đặt chỗ của tôi là V N chín tám bảy."], "en_spans": []}
+{"idx": 488, "category": "code_switch", "gold_readings": ["Chuyến bay S E tám hạ cánh đúng giờ."], "en_spans": []}
+{"idx": 489, "category": "code_switch", "gold_readings": ["Tàu S E tám vào ga số bốn."], "en_spans": []}
+{"idx": 490, "category": "code_switch", "gold_readings": ["Mã đặt chỗ của tôi là S E tám."], "en_spans": []}

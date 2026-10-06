@@ -240,7 +240,9 @@ def detect(spans_in, config):
         if (re.fullmatch(r"[A-ZĐ]{2,3}", s) and i + 1 < n
                 and toks[i + 1]["cat"] == "raw"
                 and re.fullmatch(r"\d{1,6}", toks[i + 1]["surface"])):
-            win_code = {fold(w) for w in low[max(0, i - 3):i]}
+            # cửa sổ 6 token: "Mã đặt chỗ của tôi là VN123" — "mã" cách 6
+            # token vẫn phải bắt được (cửa sổ 3 cũ bỏ sót)
+            win_code = {fold(w) for w in low[max(0, i - 6):i]}
             if win_code & CODE_CTX_FOLD:
                 mark(i, "number", kind="code",
                      groups=(s, toks[i + 1]["surface"]))
@@ -638,6 +640,7 @@ def assign_routes(toks, config):
             elif fl in kq_en:
                 t["origin"], t["route"] = "en", "en"
             elif t["cat"] == "word" and s.isascii() and fl not in kq_vi \
+                    and len(s) > 1 \
                     and t.get("kind") not in ("mention", "filename") \
                     and s[:1].isalpha() \
                     and not any(ch.isdigit() for ch in s) \
@@ -654,7 +657,7 @@ def assign_routes(toks, config):
                 t["origin"], t["route"] = "en", "en"
                 t["review"] = t.get("review") or "khong_am_tiet_vi"
             elif t["cat"] == "word" and s.isascii() and fl not in syll \
-                    and (fl in cmu or (len(s) > 1 and s[:1].isupper())):
+                    and len(s) > 1 and (fl in cmu or s[:1].isupper()):
                 # [VA 02/10/2026] NHÁNH TRA CỨU cmudict + tên riêng — vá nhóm lỗi
                 # "từ EN trong câu VI bị kéo về vi" (kho_bat/tiny1 phán sai, hoặc
                 # kế thừa sent_lang): audio syn_mix đọc các từ này kiểu Anh
@@ -662,6 +665,9 @@ def assign_routes(toks, config):
                 # Điều kiện chặn: KHÔNG phải 1 âm tiết VI hợp lệ ("la","ba","san"
                 #… giữ nguyên) + cat word (không đụng abbr/acronym/slang) +
                 # không nằm kq_vi (nhánh trên đã xử trước).
+                # [VA 06/10/2026] đòi len>1: CHỮ CÁI ĐƠN ("V" trong gold "V N
+                # một hai ba") không còn bị cứu sang en ("vee") — phải đọc theo
+                # ngữ cảnh câu, nhất quán với chính code "VN123" đọc "vờ nờ".
                 # Flag review "cmudict_en": pass 2/3 KHÔNG dùng token này làm
                 # nguồn kế thừa cho token trung tính (số/ký hiệu vẫn đọc vi theo
                 # láng giềng cũ — "Arsenal 2-1" -> "hai, một"), nhưng word token

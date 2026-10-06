@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 0.2.8 — 2026-10-06
+
+**Benchmark frozen v4 — vá gold bất công + 2 vá nhất quán hệ** (yêu cầu
+của chủ dự án: "test công bằng liêm chính"):
+
+- **Gold v4, không đổi câu cũ**: 6 câu `transport_codes` của v3
+  ("VN123 tùy nơi bán.") KHÔNG có ngữ cảnh vận tải nhưng gold chỉ nhận
+  đọc mã — giờ nhận thêm "Việt Nam một trăm hai mươi ba" / "ét i tám";
+  thêm 9 câu `transport_codes_ctx` CÓ ngữ cảnh ("Chuyến bay VN123…")
+  chỉ chấp nhận đọc mã — benchmark giờ kiểm 2 chiều của policy
+  context-gated; L5 nhận thêm cách đọc thay thế hợp lệ: số kiểu Anh
+  ("ninety-seven point eight"), tên chữ cái Việt ("gơ bê" cạnh
+  "gi bai"), đơn vị rút gọn ("mi giây"). Scorer lấy max trên alt nên
+  thêm alt không trừ điểm hệ nào; mọi câu/gold v3 khác giữ nguyên từng
+  ký tự (real dịch đúng +9 dòng, nguyên văn).
+- **Chữ cái ĐƠN đọc theo ngữ cảnh câu**: "V" trong gold "V N một hai
+  ba" từng bị nhánh cứu cmudict đọc "vee" kiểu Anh trong khi chính code
+  "VN123" đọc "vờ nờ" — hệ tự mâu thuẫn, benchmark công bằng vừa lộ ra.
+  Giờ chữ cái đơn (len=1) không còn được cứu sang en, đọc theo ngữ cảnh
+  (câu Việt → tên chữ Việt, câu Anh → "vee").
+- **Cửa sổ ngữ cảnh mã vận tải 3 → 6 token**: "Mã đặt chỗ của tôi là
+  VN123" trước đây bỏ sót "mã" (cách 6 token) và đọc thành "Việt Nam
+  một trăm hai mươi ba" ngay trong ngữ cảnh đặt chỗ.
+- **Kết quả frozen v4**: repo **0,988** (424/465 ≥ 0,95) — sea_g2p
+  0,967 (324/465), donglao 0,907 (248/465). Repo thắng MỌI category,
+  kể cả code-switch (0,985 vs 0,966) — trước đây sea nhỉnh ở hạng mục
+  này vì gold hẹp, đã công khai số đó ở 0.2.5–0.2.7. Còn thiếu thật sự:
+  "25 Mbps" đọc thiếu "một giây" (L5 0,956) — ghi minh bạch trong
+  docs/BENCHMARK.md.
+- Suite 101/101 + core xanh; bộ test độc lập code-switch giữ nguyên
+  436/436 + 836/837.
+
 ## 0.2.7 — 2026-10-06
 
 Theo **bộ test code-switch độc lập do người ngoài viết** (2 × 100 câu,
